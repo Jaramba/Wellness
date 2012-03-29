@@ -1,0 +1,48 @@
+{% load i18n %}
+<form action="{% url signup %}" method="post" class="sign-up-form" accept-charset="utf-8">{% csrf_token %}
+	<table>
+		{% for field in form.visible_fields %}
+			{% if forloop.first %}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+			{% endif %}
+			<tr>
+				<td>
+				{{ field.label_tag }}:
+				</td>
+				<td>
+					{{ field }}
+					{% if field.errors %}
+						<span class="quiet red"><br />* {{ field.errors|join:"; " }}</span>
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+		{% for field in upform.visible_fields %}
+			{% if forloop.first %}
+				{% for hidden in upform.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+			{% endif %}
+			<tr>
+				<td>
+				{{ field.label_tag }}:
+				</td>
+				<td>
+					{{ field }}
+					{% if field.errors %}
+						<span class="quiet red"><br />* {{ field.errors|join:"; " }}</span>
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+		{% if form.non_field_errors %}
+			<ul class="quiet red">{{ form.non_field_errors.as_ul }}</ul>
+		{% endif %}
+		{% if upform.non_field_errors %}
+			<ul class="quiet red">{{ upform.non_field_errors.as_ul }}</ul>
+		{% endif %}
+	</table>
+	<p><input type="submit" value="{% trans 'Register' %}" /></p>
+</form>

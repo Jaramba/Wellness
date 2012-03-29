@@ -1,0 +1,83 @@
+{% extends "recruit_base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}
+	Inposting | Company: {{ company.name }}
+{% endblock %}
+
+{% block extracss %}
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/enhanced.css">
+	
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/tagit.ui-zendesk.css">
+	<link href="{{ STATIC_URL }}js/tiny/themes/simple/skins/default/ui.css" rel="stylesheet" type="text/css">
+	<link href="{{ STATIC_URL }}js/tiny/themes/simple/skins/default/content.css" rel="stylesheet" type="text/css">
+	
+	<style type="text/css">
+		.help_text{
+			width: 100%;
+		}
+		textarea#id_about{
+			width:635px;
+			height:300px;
+		}
+	</style>
+{% endblock extracss %}
+
+{% block extrajs %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tiny/tiny_mce.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tiny/tiny_mce_init.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileinput.js"></script>
+	
+	<script src="{{STATIC_URL}}js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input.ui-widget-content").focus(function(){
+				$('ul.ui-widget-content').addClass("text");
+			});
+			$("input.ui-widget-content").focusout(function(){
+				$('ul.ui-widget-content').removeClass("text");
+			});
+
+            // singleFieldTags2 is an INPUT element, rather than a UL as in the other 
+            // examples, so it automatically defaults to singleField.
+		    $('#id_industries').tagit({allowSpaces: true});
+		    
+		    $(":text, textarea").addClass("text");
+			//$('#id_picture').customFileInput();
+	    });
+	</script>
+{% endblock extrajs %}
+
+{% block pitch %}
+	<div id="side_nav" class="left clearfix">
+		<label><u>My Settings</u></label>
+		<ul>
+			{% if not type == 'company' %}
+				<li>
+					<a href="{% url settings %}">Profile {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="{% url company-settings %}">Profile {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+				</li>
+			{% endif %}
+			<li>
+				<a href="{% if type == 'company' %}{% url settings-company-password %}{%else%}{% url settings-applicant-password %}{%endif%}">Password {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			{% if not type == 'company' %}
+				<li>
+					<a href="{% url applicant-preferences %}">Preferences {%if selected == 'preferences'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+				</li>
+			{% endif %}
+			<li>
+				<a href="{% url units %}">Units {%if selected == 'units'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+		</ul>
+	</div>
+	<div id="content">
+		{% uni_form form form.helper %}
+	</div>
+{% endblock %}

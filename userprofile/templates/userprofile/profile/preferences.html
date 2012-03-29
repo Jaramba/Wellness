@@ -1,0 +1,64 @@
+{% extends base_template %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}
+	{% trans "Inposting | Personal Profile" %}
+{% endblock %}
+
+{% block extracss %}
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/tagit.ui-zendesk.css">
+{% endblock extracss %}
+
+{% block extrajs %}
+	<script src="{{STATIC_URL}}js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(function() {
+				$("input[type='text'], textarea").addClass("text");
+				$("form input")[0].focus();
+			});
+			$("input.ui-widget-content").focus(function(){
+				alert("nes");
+				$('ul.ui-widget-content').addClass("text");
+			});
+			$("input.ui-widget-content").focusout(function(){
+				$('ul.ui-widget-content').removeClass("text");
+			});
+
+            // singleFieldTags2 is an INPUT element, rather than a UL as in the other 
+            // examples, so it automatically defaults to singleField.
+		    $('#id_industry').tagit({
+		    	allowSpaces: true,
+		    	availableTags:[
+		    		"Accounting", "Advertising", "Agriculture", "Aerospace", "Aircraft", "Airline", "Automotive", "Apparel & Accessories", "Banking", "Broadcasting", "Brokerage", "Biotechnology", "Call Centers", "Cargo Handling", "Chemical", "Computer", "Consulting", "Consumer Products", "Cosmetics", "Defense", "Department Stores", "Education", "Electronics", "Energy", "Entertainment & Leisure", "Executive Search", "Financial Services", "Food, Beverage & Tobacco", "Grocery", "Health Care", "Internet Publishing", "Investment Banking", "Legal", "Manufacturing", "Motion Picture & Video", "Music", "Newspaper Publishers", "Online Auctions", "Pension Funds", "Pharmaceuticals", "Private Equity", "Publishing", "Real Estate", "Retail & Wholesale", "Securities & Commodity Exchanges", "Service", "Soap & Detergent", "Software", "Sports", "Technology", "Telecommunications", "Television", "Transportation", "Venture Capital"
+		    	]
+		    });
+	    });
+	</script>
+{% endblock extrajs %}
+
+{% block pitch %}
+	<div id="side_nav" class="left clearfix">
+		<label><u>My Settings</u></label>
+		<ul class="profile_nav">
+			<li>
+				<a href="{% url settings %}">Profile {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li> 
+			<li>
+				<a href="{% url settings-applicant-password %}">Password {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			<li>
+				<a href="{% url applicant-preferences %}">Preferences {%if selected == 'preferences'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			<li>
+				<a href="{% url units %}">Units {%if selected == 'units'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+		</ul>
+	</div>
+	<div id="content">
+		{% uni_form form form.helper %}
+	</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+syntax: glob
+*.pyo
+*.pyc
+conf/*.py
+
+*.o
+*.pc
+*.svn-base
+*.svn
+database_dev.py
+media/cv/*
+test.json
+
+# Mercurial backup files
+*.orig
+
+# sqlite db files
+*.s3db
+*.db
+
+# Emacs backup and lock files
+*~
+\#*
