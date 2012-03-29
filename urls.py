@@ -1,16 +1,12 @@
-from conf.settings import *
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.views.generic.base import TemplateView, RedirectView
-from views import *
-from taggit.views import tagged_object_list
 
 from django.contrib.sites import models
-from django.utils.functional import lazy
+
+from django.conf import settings
 
 admin.autodiscover()
-
-reverse_lazy = lazy(reverse, str)
 
 #django
 urlpatterns = patterns('',
@@ -19,15 +15,7 @@ urlpatterns = patterns('',
 
 #static website
 urlpatterns += patterns('',
-    url(r'^about/$', TemplateView.as_view(template_name='website/about.html'), name="about"),
-    url(r'^how-it-works/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="how_it_works"),
-    url(r'^resources/$', TemplateView.as_view(template_name='website/resources.html'), name="resources"),
-    url(r'^what-it-is/$', TemplateView.as_view(template_name='website/what_it_is.html'), name="what_it_is"),
-    url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
-    url(r'^rewards/$', TemplateView.as_view(template_name='website/rewards.html'), name="rewards"),
-    url(r'^product-guide/$', TemplateView.as_view(template_name='website/product_guide.html'), name="product_guide"),
-    url(r'^faqs/$', TemplateView.as_view(template_name='website/faqs.html'), name="faqs"),
-    url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
+#    url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
 )
 
 #Acccount
@@ -54,44 +42,20 @@ urlpatterns += patterns('',
 #apps
 urlpatterns += patterns('',
     url(r'^admin_tools/', include('admin_tools.urls')),
-    url(r'^tags/(?P<slug>[-\w]+)/$', tagged_object_list, name='tags'),
 )
 
 #The app itself
 urlpatterns += patterns('',
-    url(r'^$', index, name="index"),
-    url(r'^choose-user-type/$', choose_usertype, name="choose-usertype"),
-    
-    url(r'^recruit/', include('recruit.urls')),
-    url(r'', include('applicant.urls')),
-    
     url(r'^register/$', 'userprofile.views.register', {'template_name':'sign_up.html'},name='register'),
     url(r'^login/$', 'userprofile.views.login', {'template_name':'sign_in.html'}, name='login'),
-    url(r'^logout/$','userprofile.views.logout', {"next_page":reverse_lazy("index")}, name='logout'),
-
-    url(r'^emailconfirmation/', include('emailconfirmation.urls')),
-    url(r'', include('social.urls')),
-)
-
-urlpatterns += patterns('',
-    url(r'', include('userprofile.urls')),
-    url(r'^schedule/', include('schedule.urls')),
-    url(r'^messages/', include('inbox.urls')),
-)
-
-urlpatterns += patterns('',
-    url(r'^units/', include('units.urls')),
-)
-#matcher app
-urlpatterns += patterns('',
-    url(r'^matcher/', include('matcher.urls')),
+    url(r'^logout/$','userprofile.views.logout', name='logout'),
     url(r'^upload/', include('fileuploader.urls')),
 )
 
-if DEBUG:
+if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root' :STATIC_ROOT}),
-        (r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root' : MEDIA_ROOT, 'show_indexes': True}),
+        (r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.STATIC_ROOT}),
+        (r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.MEDIA_ROOT, 'show_indexes': True}),
     )
 
 

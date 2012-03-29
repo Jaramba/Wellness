@@ -14,15 +14,10 @@ from django.views.generic.base import TemplateView
 from emailconfirmation.models import EmailAddress
 
 from forms import *
-from recruit.util import is_applicant, is_recruiter
 from userprofile import signals
 from models import UserProfile
 import copy
-from social.allauth.facebook.models import FacebookAccount
 from django.views.decorators.http import require_GET
-from units.models import *
-
-from recruit.models import *
 
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
@@ -35,9 +30,6 @@ def logout(request, type=None, user_type="applicant", *args, **kwargs):
         return auth_logout(request, *args, **kwargs)
     else:
         return HttpResponseRedirect(reverse("login"))
-
-def patch_profile(user, profile):
-    setattr(user, '_profile_cache', profile)
 
 class RegistrationCompleteTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
@@ -68,13 +60,6 @@ def public(request, user_id=None, template_name="userprofile/profile/public.html
         pass
         
     data['profile'] = profile
-    
-    try:
-        data['facebook_profile'] = FacebookAccount.get(user=request.user)
-    except:pass
-    
-    else:
-        return HttpResponseRedirect(reverse('settings'))
     
     return render_to_response(template_name, data, context_instance=RequestContext(request)) 
 
@@ -137,14 +122,14 @@ def delete(request):
     data = {}
 
     profile, created = UserProfile.objects.get_or_create(user=request.user)
-    if is_applicant(request.user) and not is_recruiter(request.user):
-        data['base_template'] = "applicant_base.html"
-        data['student'] = profile
-    elif is_recruiter(request.user):
-        data['base_template'] = "recruit_base.html"
-        data['recruiter'] = profile
-    else:
-        pass
+    #if is_applicant(request.user) and not is_recruiter(request.user):
+    #    data['base_template'] = "applicant_base.html"
+    #    data['student'] = profile
+    #elif is_recruiter(request.user):
+    #    data['base_template'] = "recruit_base.html"
+    #    data['recruiter'] = profile
+    #else:
+    #    pass
     
     if request.method == "POST":
         patch_profile(request.user, profile)

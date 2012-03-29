@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm as _PasswordChangeForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from recruit.util import full_name_to_user
 from uni_form.helper import FormHelper
 from uni_form.layout import *
 from models import *

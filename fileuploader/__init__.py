@@ -5,14 +5,14 @@
 """
 import os
 from django.conf import settings
-from recruit.util import generate_code
+#from recruit.util import generate_code
 
 class qqFileUploader(object):
     def __init__(self, allowedExtensions=[], sizeLimit=1024):
         self.allowedExtensions = allowedExtensions
         self.sizeLimit = sizeLimit
 
-    def handleUpload(self, djangoRequest, preferred_file_name=generate_code(str_length=32), storage_dir=settings.MEDIA_ROOT, upload_directory=''):
+    def handleUpload(self, djangoRequest, storage_dir=settings.MEDIA_ROOT, upload_directory=''):
         upload_destination = (storage_dir if storage_dir.endswith('/') else storage_dir + '/') + upload_directory
         #read file info from stream
         uploaded = djangoRequest.read
@@ -32,10 +32,10 @@ class qqFileUploader(object):
                 if not os.path.exists(upload_destination):
                     os.makedirs(upload_destination)
                 
-                file = open(upload_destination + preferred_file_name + fileExtension,"wb")
+                file = open(upload_destination + fileExtension,"wb")
                 file.write(djangoRequest.read(fileSize))
                 file.close()
-                return "{success:true, file: '%s'}" % (upload_directory + preferred_file_name + fileExtension)
+                return "{success:true, file: '%s'}" % (upload_directory + fileExtension)
             else:
                 return '{"error":"File is too large."}'
         else:
