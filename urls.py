@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.edit import UpdateView
+
+UpdateView
 
 from django.contrib.sites import models
 

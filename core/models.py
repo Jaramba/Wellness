@@ -1,5 +1,6 @@
 from django.db import models
-from django.auth.contrib.models import User
+from django.contrib.auth.models import User
+from fields import  *
 
 # Create your models here.
 class Person(models.Model):
@@ -13,17 +14,19 @@ class Person(models.Model):
 
 	title = models.CharField(max_length=20, choices=TITLES)
 	middle_name = models.CharField(max_length=50)
-	phone_number = models.RegexField()
+	phone_number = models.CharField(max_length=15)
 
 	postal_address = models.CharField(max_length=50)
-	photo = models.ImageField()
+	photo = models.ImageField(upload_to='photos')
 	gender = models.CharField(max_length=20, choices=(('male', 'Male'),('female', 'Female')))
-	nationality = models.CharField()
 
-	user = models.ForeignKey(unique=True)
+	country = CountryField()
+	nationality = models.CharField(max_length=150, default='kenyan')
+
+	user = models.ForeignKey(User, unique=True)
 	
-	date_edited = models.DatetimeField(auto_now=True)
-	date_created = models.DatetimeField(auto_now=True)
+	date_edited = models.DateTimeField(auto_now=True)
+	date_created = models.DateTimeField(auto_now=True)
 	
 	class Meta:
 		abstract = True
