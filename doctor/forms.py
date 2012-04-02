@@ -1,9 +1,9 @@
-from django.forms import form
 from models import *
+from django import forms
 
-class DoctorAdminForm(forms.Form):
+class DoctorAdminForm(forms.ModelForm):
 	first_name = forms.CharField()
-	last_name = forms.charField()
+	last_name = forms.CharField()
 	email = forms.EmailField()
 	
 	class Meta:
@@ -16,5 +16,3 @@ class DoctorForm(DoctorAdminForm):
 		model = Doctor
 		sequence = ['first_name', 'middle_name', 'last_name', 'email']
 		exclude = ['user']
-
-

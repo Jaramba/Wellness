@@ -6,20 +6,11 @@ class TrackingItem(models.Model):
     user = models.ForeignKey('auth.User')
     unit = models.CharField(max_length=50)
     daily_cummulative = models.BooleanField(default=False)
-    min_value = models.DecimalField()
-    max_value = models.DecimalField()
-    ideal_min_value = models.DecimalField()
-    ideal_max_value = models.DecimalField()
-    reminders = models.ManyToManyField('Reminder')
-    
-
-class Reminder(models.Model):
-    REPEATS = []
-    start = models.DateTimeField()
-    duration = models.CharField(max_length=20)
-    all_day = models.BooleanField(default=False)
-    occurence_pattern = models.CharField(max_length=100)
-    
+    min_value = models.CharField(max_length=5)
+    max_value = models.CharField(max_length=5)
+    ideal_min_value = models.CharField(max_length=5)
+    ideal_max_value = models.CharField(max_length=5)
+    reminders = models.ManyToManyField('core.Reminder')
 
 class Medication(models.Model):
     MEDICATION_TYPE=[

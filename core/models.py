@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from fields import  *
 
+class Reminder(models.Model):
+	REPEATS = []
+	start = models.DateTimeField()
+	duration = models.CharField(max_length=20)
+	all_day = models.BooleanField(default=False)
+	occurence_pattern = models.CharField(max_length=100)
+
 class Record(models.Model):
 	name = models.CharField(max_length=30)
 	user = models.ForeignKey("auth.User")
