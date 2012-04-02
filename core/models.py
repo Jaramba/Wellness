@@ -2,6 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 from fields import  *
 
+class Record(models.Model):
+	name = models.CharField(max_length=30)
+	user = models.ForeignKey("auth.User")
+	attachments = models.ManyToManyField("Attachment")
+	notes = models.CharField(max_length=2000)
+	
+	class Meta:
+		abstract=True
+		
+class Attachment(models.Model):
+	name = models.CharField(max_length=120)
+	file = models.FileField(upload_to="attachments")
+	date_of_upload = models.DateTimeField(auto_now_add=True)
+
 # Create your models here.
 class Person(models.Model):
 	TITLES = (
@@ -30,6 +44,6 @@ class Person(models.Model):
 	
 	class Meta:
 		abstract = True
-	
-User.profile = lambda self:self.__class__.objects.get_or_create(user=self.user)[0]
+
+User.profile = property(lambda self: Person.objects.get_or_create(user=self)[0])
 

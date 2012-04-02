@@ -31,7 +31,7 @@ class Patient(Person):
 	next_of_kin_email = models.EmailField(max_length=120, null=True)
 	next_of_kin_address = models.CharField(max_length=100, null=True)
 	
-	health_provider = models.ForeignKey("healthprovider.HealthProvider")
+	insurance_provider = models.ForeignKey("insuranceprovider.InsuranceProvider")
 	personal_doctor = models.ForeignKey("doctor.Doctor")
 
 	blood_group = models.CharField(max_length=20, choices=BLOOD_GROUPS)
@@ -66,5 +66,3 @@ class Patient(Person):
 
 	last_doctor_visit = models.DateTimeField()
 	
-	
-
