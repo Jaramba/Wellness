@@ -10,14 +10,14 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+
+from django.views.decorators.http import require_GET
 from django.views.generic.base import TemplateView
-from emailconfirmation.models import EmailAddress
 
 from forms import *
-from userprofile import signals
-from models import UserProfile
+from signals import *
+
 import copy
-from django.views.decorators.http import require_GET
 
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
@@ -182,11 +182,6 @@ def register(request, template_name=None):
                 
                 profile = UserProfile(user=user, default_dashboard=iam)
                 profile.save()
-                
-                try:
-                    EmailAddress.objects.add_email(user, user.email)
-                except:
-                    pass
                 
                 return login(request, template_name="sign_in.html")
         else:

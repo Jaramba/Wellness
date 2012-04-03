@@ -1,6 +1,6 @@
 from django.db import models
 from core.models import Record
- 
+
 class TrackingItem(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey('auth.User')
@@ -80,5 +80,5 @@ class Prescription(Record):
     unit = models.CharField(max_length=50, choices=UNIT)
     frequency = models.CharField(max_length=50, choices=[(n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,12)])
     period = models.CharField(max_length=50, choices=PERIODS)
-    prescribed_by = models.ForeignKey('doctor.Doctor')
+    prescribed_by = models.ForeignKey('healthprovider.HealthWorker')
 
