@@ -42,6 +42,7 @@ class Medication(models.Model):
         ('percent', 'Percent (%)'),
     ]
     
+    name = models.CharField(max_length=50)
     medication_type = models.CharField(max_length=10, choices=MEDICATION_TYPE)
     way_taken = models.CharField(max_length=10, choices=WAY_TAKEN)
     
@@ -49,7 +50,10 @@ class Medication(models.Model):
     strength_unit = models.CharField(max_length=50, choices=STRENGTH_UNIT)
     side_effects = models.CharField(max_length=200)
     
-class Prescription(Record):
+    def __unicode__(self):
+        return '%s type: %s' % (self.name, self.get_medication_type_display()) 
+
+class Prescription(models.Model):
     UNIT = [
         ('tablet', 'Tablet(s)'),         
         ('capsule', 'Capsule(s)'),
@@ -58,8 +62,8 @@ class Prescription(Record):
         ('suppository', 'Suppository'),
         ('ointment', 'Ointment'),
         ('millilitre', 'Millilitre (mL)'),
-        ('teaspoon', 'Teaspoon(Tbsp)'),
-        ('ounce', 'Ounce(oz)'),
+        ('teaspoon', 'Teaspoon (Tbsp)'),
+        ('ounce', 'Ounce (oz)'),
     ]
     PERIODS = [
         ('as-needed', 'As needed'),
@@ -69,13 +73,25 @@ class Prescription(Record):
         ('per-month', 'Per month'),
         ('per-year', 'Per year')
     ]
-    date_started = models.DateField()
-    date_ended = models.DateField()
-    date_prescribed = models.DateField()
+    patient = models.ForeignKey("patient.Patient")
+    medication = models.ForeignKey('Medication')
+    
     reason = models.CharField(max_length=300)
     quantity = models.SmallIntegerField()
+    frequency = models.CharField(max_length=50, choices=[(u'%s'%n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,13)])
     unit = models.CharField(max_length=50, choices=UNIT)
-    frequency = models.CharField(max_length=50, choices=[(n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,13)])
     period = models.CharField(max_length=50, choices=PERIODS)
+    
     prescribed_by = models.ForeignKey('healthprovider.HealthWorker')
-
+    
+    notes = models.CharField(max_length=2000)
+    
+    date_started = models.DateField()
+    date_ended = models.DateField()
+    
+    date_prescribed = models.DateField(auto_now=True)
+    
+    def __unicode__(self):
+        return '%s, %s %s taken %s %s for %s, prescribed by %s' % (
+            self.medication.name, self.quantity, self.unit, self.get_frequency_display(), self.get_period_display(), self.patient, self.prescribed_by
+        )

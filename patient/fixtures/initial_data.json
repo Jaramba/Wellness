@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "pk": 1, 
+    "model": "patient.patient", 
+    "fields": {
+      "profile": 2, 
+      "last_doctor_visit": "2012-04-07 23:02:52", 
+      "weight": 97, 
+      "blood_group": "b-positive", 
+      "duration_smoking": null, 
+      "disabilities": "", 
+      "doctor": 1, 
+      "excercising_times": null, 
+      "diet": "", 
+      "height": 159, 
+      "cancer_type": "", 
+      "date_of_birth": "1990-04-07", 
+      "smoker_type": "", 
+      "other_diseases": false, 
+      "smoking": "", 
+      "drinking": "", 
+      "employer": 1, 
+      "duration_drinking": null, 
+      "family_cancer_status": false, 
+      "drinker_type": "", 
+      "excercise_frequency": ""
+    }
+  }
+]

@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "pk": 2, 
+    "model": "healthprovider.healthcarefacility", 
+    "fields": {
+      "insurance_providers": [
+        1
+      ], 
+      "speciality": "clinics"
+    }
+  }
+]

@@ -99,8 +99,8 @@ class HealthCareFacility(EmployerCompany):
 	speciality = models.CharField(max_length=50, choices=TYPES)
 	
 	def __unicode__(self):
-		return 'Health care facility: ' + self.get_speciality_display()
-		
+		return self.name
+	
 	class Meta:
 		verbose_name_plural = 'Health care facilities'
 
@@ -109,4 +109,4 @@ class HealthWorker(models.Model):
 	speciality = models.CharField(max_length=200)
 	
 	def __unicode__(self):
-		return 'Health worker: %s specialises in %s' + (self.profile.user.full_name, self.speciality)
+		return self.profile.full_name

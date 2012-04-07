@@ -2,24 +2,45 @@ from core.models import *
 from core.utils import pkgen
 
 from django.contrib.auth.models import User
-from django.db import models
+from django.db import models, transaction
 
 from healthprovider.models import HealthWorker
 
-RELATIONSHIPS = []
+RELATIONSHIPS = [
+	('brother', 'Brother'),
+	('sister', 'Sister'),
+	('son', 'Son'),
+	('daughter', 'Daughter'),
+	('aunt', 'Aunt'),
+	('uncle', 'Uncle'),
+	('niece', 'Niece'),
+	('nephew', 'Nephew'),
+	('cousin', 'Cousin'),
+	('spouse', 'Spouse'),
+	('grandfather', 'Grandfather'),
+	('grandmother', 'Grandmother'),
+]
 
 class PatientKin(models.Model):
 	'''
 	A patient can decide to add family and track their files;
 	Only this patient can then decide to give access to HealthWorkers
 	Only When the PatientKin has reached 18, will they be given access to this system; 
-	Registration
+	Registration claim
 	'''
 	patient = models.ForeignKey('Patient', related_name='patient')
 	kin = models.ForeignKey('Patient', related_name='patient_kin')
 	next_of_kin = models.BooleanField(default=False)
 	relationship = models.CharField(max_length=50, choices=RELATIONSHIPS)
 	emergency_contact = models.BooleanField(default=False)
+	
+	@transaction.commit_on_success
+	def save(self, force_insert=False, force_update=False):
+		if self.patient and self.kin and (self.kin.id == self.patient.id):
+			class CircularRelationException(Exception):pass
+			raise CircularRelationException('Sorry. You cannot set yourself as your own kin')
+		else:
+			super(Patient, self).save(force_insert, force_update)
 
 class EmergencyContact(models.Model):
 	'''
@@ -39,7 +60,6 @@ class Patient(models.Model):
 	thus, they will inherit the nearest family members' doctor and entrustment
 	Everyone is a patient, and or whoever they choose to be.
 	'''
-	MEDICATION_TYPE=[]
 	SMOKE_TYPE = []
 	SMOKER_TYPE = []
 	DRINKER_TYPE = []
@@ -57,7 +77,6 @@ class Patient(models.Model):
 		('o-negative','O-'),
 	]
 	
-	id = models.CharField(primary_key=True, editable=False, max_length=9, default=pkgen)
 	profile = models.ForeignKey(UserProfile)
 	date_of_birth = models.DateField(null=True)
 	
@@ -69,33 +88,34 @@ class Patient(models.Model):
 	height = models.PositiveSmallIntegerField(default=0, null=True)
 	
 	#smokerspersonal_doctor
-	smoking = models.CharField(max_length=100, null=True, choices=SMOKER_TYPE)
-	smoker_type = models.CharField(max_length=100, null=True, choices=SMOKE_TYPE,help_text='')
-	duration_smoking = models.PositiveSmallIntegerField(null=True, help_text='Number of years smoking')
+	smoking = models.CharField(max_length=100, null=True, blank=True, choices=SMOKER_TYPE)
+	smoker_type = models.CharField(max_length=100, null=True, blank=True, choices=SMOKE_TYPE,help_text='')
+	duration_smoking = models.PositiveSmallIntegerField(null=True, blank=True, help_text='Number of years smoking')
 	
 	#drinkers
-	drinking = models.CharField(null=True, max_length=100, choices=DRINKER_TYPE)
-	drinker_type = models.CharField(max_length=100, null=True, choices=DRINK_TYPE, help_text='')
-	duration_drinking = models.PositiveSmallIntegerField(null=True, help_text='Number of years drinking')
+	drinking = models.CharField(null=True, blank=True, max_length=100, choices=DRINKER_TYPE)
+	drinker_type = models.CharField(max_length=100, null=True, blank=True, choices=DRINK_TYPE, help_text='')
+	duration_drinking = models.PositiveSmallIntegerField(null=True, blank=True, help_text='Number of years drinking')
 	
 	#Exercise
-	excercising_times = models.PositiveSmallIntegerField(null=True, help_text='Number of years')
-	excercise_frequency = models.CharField(max_length=100, choices=EXCERCISE_FREQUENCY, null=True, help_text='')
-	diet = models.CharField(max_length=100, choices=DIET_TYPE, null=True, help_text='')
+	excercising_times = models.PositiveSmallIntegerField(null=True, blank=True, help_text='Number of years')
+	excercise_frequency = models.CharField(max_length=100, choices=EXCERCISE_FREQUENCY, null=True, blank=True, help_text='')
+	diet = models.CharField(max_length=100, choices=DIET_TYPE, null=True, blank=True, help_text='')
 
 	family_cancer_status = models.BooleanField(default=False)
-	cancer_type = models.CharField(max_length=50, null=True)	
+	cancer_type = models.CharField(max_length=50, null=True, blank=True)	
 
 	other_diseases = models.BooleanField(default=False)
-	disabilities = models.CharField(max_length=250, null=True)
+	disabilities = models.CharField(max_length=250, null=True, blank=True)
 
 	employer = models.ForeignKey('insuranceprovider.EmployerCompany')
-	insurance = models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
+	
+	insurance	= models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
+	medications	= models.ManyToManyField('medication.Medication', through='medication.Prescription')
 
 	doctor = models.ForeignKey('healthprovider.HealthWorker', null=True, related_name='physician')
-	medication = models.CharField(max_length=100, choices=MEDICATION_TYPE, help_text='', null=True)
 	last_doctor_visit = models.DateTimeField(null=True)
 	
 	def __unicode__(self):
-		return 'Patient #%d %s' % (self.pk, self.profile.user)
+		return self.profile.full_name
 	

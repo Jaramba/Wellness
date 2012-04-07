@@ -22,7 +22,8 @@ class Attachment(models.Model):
 
 class Person(models.Model):
 	'''
-	Not Everyone is a patient
+	Not Everyone is a patient; This will act as a staging profile, until someone
+	gets an account.... hmmm, should we create an inactive user or just this?
 	'''
 	TITLES = (
 		('mr','Mr.'),
@@ -56,25 +57,31 @@ class Person(models.Model):
 	date_edited = models.DateTimeField(auto_now_add=True)
 	date_created = models.DateTimeField(auto_now=True)
 
+	def __unicode__(self):
+		return self.full_name
+	
+	@property
+	def full_name(self):
+		return u' '.join([i for i in (
+					(self.get_title_display() if self.title else ''),
+					self.first_name,
+					(self.middle_name if self.middle_name else ''),
+					self.last_name
+				) if i
+			]) 
+
 class UserProfile(Person):
 	user = models.ForeignKey('auth.User', unique=True, null=True)
 	
 	def __unicode__(self):
-		return "%s's profile" % self.user.full_name
+		return "%s's profile" % self.user.full_name if self.user else ''
 
 #User Hacks...
 User.is_healthworker = property(lambda self: self.groups.filter(name='Health workers').count())
 User.is_employer = property(lambda self: self.groups.filter(name='Employers').count())
 User.is_insuranceprovider = property(lambda self: self.groups.filter(name='Insurance agents').count())
 
-User.full_name = property(lambda self: u' '.join([i for i in (
-			(self.profile.get_title_display() if self.profile.title else ''),
-			self.first_name,
-			(self.profile.middle_name if self.profile.middle_name else ''),
-			self.last_name
-		) if i
-	]
-))
+User.full_name = property(lambda self: self.profile.full_name)
 User.get_full_name = lambda self: self.full_name
 User.__unicode__ = lambda self: self.full_name if self.full_name.split() else self.username
 
@@ -94,10 +101,5 @@ User.first_name = property(get_first_name, set_first_name)
 User.middle_name = property(get_middle_name, set_middle_name)
 User.last_name = property(get_last_name, set_last_name)
 
-@property
-def get_profile(self):
-	profile = UserProfile.objects.get_or_create(user=self)[0]
-#	if self.is_healthprovider:
-#		healthworker = HealthWorker.objects.get(user=self)
-	return profile
-User.profile = get_profile
+User.profile = property(lambda self: UserProfile.objects.get_or_create(user=self)[0] if self.pk else None)
+User.get_profile = lambda self: self.profile

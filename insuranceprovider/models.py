@@ -19,6 +19,9 @@ class HealthInsuranceProvider(Company):pass
 
 class EmployerCompany(Company):
 	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')
+	
+	class Meta:
+		verbose_name_plural = 'Employer companies'
 
 class Insurance(models.Model):
 	TYPES = [
@@ -31,6 +34,7 @@ class Insurance(models.Model):
 	plan_name = models.CharField(max_length=50)
 	type = models.CharField(max_length=50, choices=TYPES)
 	group_number = models.CharField(max_length=100)
+	
 
 class PatientInsurance(Record):
 	coverage_start_date = models.DateField()
