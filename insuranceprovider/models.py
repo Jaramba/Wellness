@@ -1,16 +1,24 @@
 from django.db import models
 from records.models import Record
 
-class EmployerCompany(models.Model):
+class Company(models.Model):
 	name = models.CharField(max_length=50)
 	phone = models.CharField(max_length=50)
 	email = models.EmailField()
 	location = models.CharField(max_length=200)
-	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')
 	date_edited = models.DateTimeField(auto_now=True)
 	date_added = models.DateTimeField(auto_now_add=True)
+	
+	class Meta:
+		abstract = True
+		
+	def __unicode__(self):
+		return '%s located in %s' % (self.name, self.location)
 
-class HealthInsuranceProvider(EmployerCompany):pass
+class HealthInsuranceProvider(Company):pass
+
+class EmployerCompany(Company):
+	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')
 
 class Insurance(models.Model):
 	TYPES = [
@@ -23,11 +31,10 @@ class Insurance(models.Model):
 	plan_name = models.CharField(max_length=50)
 	type = models.CharField(max_length=50, choices=TYPES)
 	group_number = models.CharField(max_length=100)
-	
+
 class PatientInsurance(Record):
 	coverage_start_date = models.DateField()
 	coverage_end_date = models.DateField()
-	patient = models.ForeignKey('patient.Patient')
 	insurance = models.ForeignKey('Insurance')
 	status = models.CharField(max_length=50)
 	subscriber_policy_id = models.CharField(max_length=100)

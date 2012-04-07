@@ -3,7 +3,7 @@ from core.models import Record
 
 class TrackingItem(models.Model):
     name = models.CharField(max_length=50)
-    user = models.ForeignKey('auth.User')
+    patient = models.ForeignKey('patient.Patient')
     unit = models.CharField(max_length=50)
     daily_cummulative = models.BooleanField(default=False)
     min_value = models.CharField(max_length=5)
@@ -19,7 +19,6 @@ class Medication(models.Model):
         ('prescribed-otc','PrescribedOTC')
     ]
     WAY_TAKEN = [
-        (None, ''),
         ('by-mouth', 'By mouth'),
         ('in-right-ear', 'In Right ear'),
         ('in-both-ears', 'In Both ears'),
@@ -37,7 +36,6 @@ class Medication(models.Model):
         ('subcataneous', 'Subcataneous'),
     ]
     STRENGTH_UNIT = [
-        (None, ''),
         ('gram', 'Gram (g)'),
         ('milligram', 'Milligram (mg)'),
         ('microgram', 'Microgram (mcg)'),
@@ -53,7 +51,6 @@ class Medication(models.Model):
     
 class Prescription(Record):
     UNIT = [
-        (None, ''),
         ('tablet', 'Tablet(s)'),         
         ('capsule', 'Capsule(s)'),
         ('lozenge', 'Lozenge(s)'),
@@ -78,7 +75,7 @@ class Prescription(Record):
     reason = models.CharField(max_length=300)
     quantity = models.SmallIntegerField()
     unit = models.CharField(max_length=50, choices=UNIT)
-    frequency = models.CharField(max_length=50, choices=[(n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,12)])
+    frequency = models.CharField(max_length=50, choices=[(n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,13)])
     period = models.CharField(max_length=50, choices=PERIODS)
     prescribed_by = models.ForeignKey('healthprovider.HealthWorker')
 

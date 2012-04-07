@@ -2,40 +2,25 @@ from models import *
 from django import forms
 from django.contrib.auth.models import User
 
-class DoctorAdminForm(forms.ModelForm):
+class HealthWorkerAdminForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
-		initial = {
-#			'first_name':self.instance.user.first_name,
-#			'last_name':self.instance.user.last_name,
-#			'email':self.instance.user.email
-		}
-		return super(DoctorAdminForm, self).__init__(initial=initial, *args, **kwargs)
+		return super(HealthWorkerAdminForm, self).__init__(*args, **kwargs)
 	
 	first_name = forms.CharField()
 	last_name = forms.CharField()
 	email = forms.EmailField()
 	mobile_phone = forms.RegexField(r'\+2547\d{8}')
 	home_phone = forms.RegexField(r'\+2547\d{8}')
-	
+
 	class Meta:
-		model = Doctor
+		model = HealthWorker
 		fields = [
-			'title',
 			'first_name', 
-			'middle_name', 
 			'last_name', 
 			'email',
 			'mobile_phone',
 			'home_phone',
-			'work_phone',
-			'postal_address',
-			'photo',
-			'gender',
-			'country',
-			'nationality',
-			'user',
 		]
-		exclude = ['user']
 	
 	def save(self, commit=True):
 		user = self.instance.user
@@ -46,9 +31,9 @@ class DoctorAdminForm(forms.ModelForm):
 		
 		user.save()
 		
-		return super(DoctorAdminForm, self).save(commit=commit)
+		return super(HealthWorkerAdminForm, self).save(commit=commit)
 
-class DoctorForm(DoctorAdminForm):
+class HealthWorkerForm(HealthWorkerAdminForm):
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
 		self.helper.form_id = 'doctor-form'
@@ -73,8 +58,8 @@ class DoctorForm(DoctorAdminForm):
 		)
 		self.helper.add_layout(layout)
 		
-		return super(DoctorForm, self).__init__(*args, **kwargs)
+		return super(HealthWorkerForm, self).__init__(*args, **kwargs)
 	
 	class Meta:
-		model = Doctor
+		model = HealthWorker
 		exclude = ['user','date_edited', 'date_created']

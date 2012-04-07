@@ -2,13 +2,17 @@ from django.contrib import admin
 from forms import *
 from models import *
 
-class DoctorAdmin(admin.ModelAdmin):
-    model = Doctor
-    form = DoctorAdminForm
+class HealthCareFacilityAdmin(admin.ModelAdmin):
+    model = HealthCareFacility
     
-    readonly_fields = ['date_edited', 'date_created']
+    list_display = [f.name for f in HealthCareFacility._meta.fields]
+    inlines = []
+admin.site.register(HealthCareFacility, HealthCareFacilityAdmin)
     
-    list_display = [f.name for f in Doctor._meta.fields]
+class HealthWorkerAdmin(admin.ModelAdmin):
+    model = HealthWorker
+    
+    list_display = [f.name for f in HealthWorker._meta.fields]
     inlines = []
 
-admin.site.register(Doctor, DoctorAdmin)
+admin.site.register(HealthWorker, HealthWorkerAdmin)
