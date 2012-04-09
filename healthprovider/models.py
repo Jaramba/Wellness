@@ -104,8 +104,7 @@ class HealthCareFacility(EmployerCompany):
 	class Meta:
 		verbose_name_plural = 'Health care facilities'
 
-class HealthWorker(models.Model):
-	profile = models.ForeignKey(UserProfile)
+class HealthWorker(UserProfile):
 	speciality = models.CharField(max_length=200)
 	
 	def __unicode__(self):

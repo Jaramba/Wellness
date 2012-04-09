@@ -13,7 +13,7 @@ class Company(models.Model):
 		abstract = True
 		
 	def __unicode__(self):
-		return '%s located in %s' % (self.name, self.location)
+		return self.name
 
 class HealthInsuranceProvider(Company):pass
 

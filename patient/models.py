@@ -54,12 +54,16 @@ class EmergencyContact(models.Model):
 	send_text = models.BooleanField(default=False)
 	detailed_message = models.BooleanField(default=False)
 
-class Patient(models.Model):
+class Patient(UserProfile):
 	'''
 	A patient with auth.User field empty is thought to have been under guardianship.
 	thus, they will inherit the nearest family members' doctor and entrustment
 	Everyone is a patient, and or whoever they choose to be.
 	'''
+	GENDER = (
+		('male', 'Male'),
+		('female', 'Female')
+	)
 	SMOKE_TYPE = []
 	SMOKER_TYPE = []
 	DRINKER_TYPE = []
@@ -77,7 +81,7 @@ class Patient(models.Model):
 		('o-negative','O-'),
 	]
 	
-	profile = models.ForeignKey(UserProfile)
+	gender = models.CharField(max_length=20, choices=GENDER, null=True)
 	date_of_birth = models.DateField(null=True)
 	
 	kins = models.ManyToManyField('Patient', null=True, through='PatientKin', related_name='patient_kins')

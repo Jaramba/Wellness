@@ -1,16 +1,20 @@
 from django.db import models
 from core.models import Record
 
-class TrackingItem(models.Model):
+class TrackingRecord(models.Model):
     name = models.CharField(max_length=50)
-    patient = models.ForeignKey('patient.Patient')
+    fields = models.ManyToManyField('TrackingField')
+    reminders = models.ManyToManyField('core.Reminder')
+
+class TrackingField(models.Model):
+    name = models.CharField(max_length=50)
+    patient = models.ForeignKey("patient.Patient")
     unit = models.CharField(max_length=50)
     daily_cummulative = models.BooleanField(default=False)
     min_value = models.CharField(max_length=5)
     max_value = models.CharField(max_length=5)
     ideal_min_value = models.CharField(max_length=5)
     ideal_max_value = models.CharField(max_length=5)
-    reminders = models.ManyToManyField('core.Reminder')
 
 class Medication(models.Model):
     MEDICATION_TYPE=[

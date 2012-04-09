@@ -5,21 +5,16 @@ from guardian.forms import BaseObjectPermissionsForm
 
 
 class BaseObjectPermissionsFormTests(TestCase):
-
+    fixtures = 'test.json'
+     
     def setUp(self):
-        self.user = User.objects.create_user('joe', 'joe@example.com', 'joe')
-        self.obj = ContentType.objects.create(name='foo', model='bar',
-            app_label='fake-for-guardian-tests')
+        self.user = User.objects.get(pk=1)
+        self.user = User.objects.get(pk=2)
+        self.user = User.objects.get(pk=3)
+        self.user = User.objects.get(pk=4)
+        self.user = User.objects.get(pk=5)
 
     def test_not_implemented(self):
-
-        class MyUserObjectPermissionsForm(BaseObjectPermissionsForm):
-
-            def __init__(formself, user, *args, **kwargs):
-                self.user = user
-                super(MyUserObjectPermissionsForm, formself).__init__(*args,
-                    **kwargs)
-
         form = MyUserObjectPermissionsForm(self.user, self.obj, {})
         self.assertRaises(NotImplementedError, form.save_obj_perms)
 

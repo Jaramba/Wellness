@@ -18,7 +18,7 @@ class BaseTestCase(TestCase):
     def assertQuerysetEqual(self, a, b):
         return self.assertEqual(self._sort_by_pk(a), self._sort_by_pk(b))
 
-
 class PatientModelTestCase(BaseTestCase):
+    pass
     
         
