@@ -21,7 +21,7 @@ RELATIONSHIPS = [
 	('grandmother', 'Grandmother'),
 ]
 
-class PatientKin(models.Model):
+class Kin(models.Model):
 	'''
 	A patient can decide to add family and track their files;
 	Only this patient can then decide to give access to HealthWorkers
@@ -40,7 +40,7 @@ class PatientKin(models.Model):
 			class CircularRelationException(Exception):pass
 			raise CircularRelationException('Sorry. You cannot set yourself as your own kin')
 		else:
-			super(Patient, self).save(force_insert, force_update)
+			super(Kin, self).save(force_insert, force_update)
 
 class EmergencyContact(models.Model):
 	'''
@@ -84,8 +84,19 @@ class Patient(UserProfile):
 	gender = models.CharField(max_length=20, choices=GENDER, null=True)
 	date_of_birth = models.DateField(null=True)
 	
-	kins = models.ManyToManyField('Patient', null=True, through='PatientKin', related_name='patient_kins')
-	emergencycontacts = models.ManyToManyField('core.Person', null=True, through='EmergencyContact', related_name='patient_emergencycontacts')
+	kins = models.ManyToManyField(
+		'self',
+		null=True, 
+		through='Kin', 
+		related_name='patient_kins',
+		symmetrical=False, 
+	)
+	emergencycontacts = models.ManyToManyField(
+		'core.Person', 
+		null=True, 
+		through='EmergencyContact', 
+		related_name='patient_emergencycontacts'
+	)
 	
 	blood_group = models.CharField(max_length=20, choices=BLOOD_GROUPS)
 	weight = models.PositiveSmallIntegerField(default=0, null=True)

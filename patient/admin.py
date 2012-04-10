@@ -30,8 +30,8 @@ class EmergencyContactAdmin(admin.ModelAdmin):
 
 admin.site.register(EmergencyContact, EmergencyContactAdmin)    
 
-class PatientKinAdmin(admin.ModelAdmin):
-    model = PatientKin
-    list_display = [f.name for f in PatientKin._meta.fields]
+class KinAdmin(admin.ModelAdmin):
+    model = Kin
+    list_display = [f.name for f in Kin._meta.fields]
 
-admin.site.register(PatientKin, PatientKinAdmin)
+admin.site.register(Kin, KinAdmin)
