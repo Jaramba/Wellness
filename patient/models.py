@@ -86,7 +86,6 @@ class Patient(UserProfile):
 	
 	kins = models.ManyToManyField(
 		'self',
-		null=True, 
 		through='Kin', 
 		related_name='patient_kins',
 		symmetrical=False, 

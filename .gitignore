@@ -1,7 +1,6 @@
 syntax: glob
 *.pyo
 *.pyc
-conf/*.py
 
 *.o
 *.pc

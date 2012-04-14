@@ -68,7 +68,7 @@ class UserProfile(Person):
 	user = models.OneToOneField('auth.User')
 	
 	def __unicode__(self):
-		return "%s's profile" % self.user.full_name if self.user else ''
+		return self.full_name
 	
 	class Meta:
 		verbose_name = 'Personal info'

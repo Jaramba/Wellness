@@ -1,6 +1,45 @@
 from django.db import models
 from core.models import Record
 
+class Problem(Record):
+    STATUS = ()
+    code = models.CharField(max_length=50)
+    details = models.CharField(max_length=150)
+    status = models.CharField(max_length=16, choices=STATUS)
+
+class Immunization(Record):
+    code = models.CharField(max_length=50)
+    vaccine = models.CharField(max_length=100)
+    brand_name = models.CharField(max_length=100)
+    lot_number = models.CharField(max_length=100)
+    route = models.CharField(max_length=100)
+    site = models.CharField(max_length=100)
+    expiry_date = models.DateTimeField(auto_now=True)
+    practice_date = models.DateTimeField(auto_now=True)
+
+class Diagnosis(Problem):pass
+class LabResult(Problem):pass
+class Symptom(Problem):
+    TYPE = (
+        ('chronic', 'Chronic'),
+        ('relapsing', 'Relapsing'),
+        ('remitting', 'Remitting')
+    )
+    type = models.CharField(max_length=16, choices=TYPE)
+    
+class Condition(Problem):pass
+    
+class Disease(Condition):
+    TYPE = (
+        ('pathogenic',      'Pathogenic'),
+        ('deficiency',      'Deficiency'),
+        ('hereditary',      'Hereditary'),
+        ('physiological',   'Physiological'),
+        ('communicable',   'Communicable'),
+        ('non-communicable',   'Non-communicable')
+    )
+    type = models.CharField(max_length=16, choices=TYPE)
+
 class TrackingRecord(models.Model):
     name = models.CharField(max_length=50)
     fields = models.ManyToManyField('TrackingField')
