@@ -1,28 +1,14 @@
 from django.contrib import admin
-from models import *
+import models
+from django.db.models.base import ModelBase
 
-class TrackingFieldAdmin(admin.ModelAdmin):
-    model = TrackingField
-    list_display = [f.name for f in TrackingField._meta.fields]
+model_classes = [x for x in models.__dict__.values()  if issubclass(type(x), ModelBase) and not x._meta.abstract]
 
-class TrackingRecordAdmin(admin.ModelAdmin):
-    model = TrackingRecord
-    
-    list_display = [f.name for f in TrackingRecord._meta.fields]
-
-class MedicationAdmin(admin.ModelAdmin):
-    model = Medication
-    
-    list_display = [f.name for f in Medication._meta.fields]
-    inlines = []
-    
-class PrescriptionAdmin(admin.ModelAdmin):
-    model = Prescription
-    
-    list_display = [f.name for f in Prescription._meta.fields]
-    inlines = []    
-
-admin.site.register(TrackingField, TrackingFieldAdmin)    
-admin.site.register(TrackingRecord, TrackingRecordAdmin)
-admin.site.register(Medication, MedicationAdmin)
-admin.site.register(Prescription, PrescriptionAdmin)
+for m in model_classes:
+    class ItemAdmin(admin.ModelAdmin):
+        model = m
+        list_display = [f.name for f in m._meta.fields]
+    try:
+        admin.site.register(m, ItemAdmin)
+    except:
+        admin.sites.AlreadyRegistered

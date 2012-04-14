@@ -109,7 +109,4 @@ class HealthWorker(UserProfile):
 	TYPES = ()
 	speciality = models.CharField(max_length=50, choices=TYPES)
 	practice_number = models.CharField(unique=True, max_length=20)
-	speciality = models.CharField(max_length=200)
-	
-class ProfessionalResource(HealthWorker): pass
 	

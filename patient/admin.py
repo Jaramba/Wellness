@@ -23,15 +23,3 @@ class PatientAdmin(admin.ModelAdmin):
     inlines = []
 
 admin.site.register(Patient, PatientAdmin)
-
-class EmergencyContactAdmin(admin.ModelAdmin):
-    model = EmergencyContact
-    list_display = [f.name for f in EmergencyContact._meta.fields]
-
-admin.site.register(EmergencyContact, EmergencyContactAdmin)    
-
-class KinAdmin(admin.ModelAdmin):
-    model = Kin
-    list_display = [f.name for f in Kin._meta.fields]
-
-admin.site.register(Kin, KinAdmin)

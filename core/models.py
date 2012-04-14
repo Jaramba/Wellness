@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import User
 
 from fields import  *
@@ -18,7 +18,47 @@ class Record(models.Model):
 class Attachment(models.Model):
 	name = models.CharField(max_length=120)
 	file = models.FileField(upload_to="attachments")
-	date_of_upload = models.DateTimeField(auto_now_add=True)
+	date_of_upload = models.DateTimeField(auto_now=True)
+
+class MetaData(models.Model):
+	name = models.CharField(max_length=120)
+	description = models.CharField(max_length=500)
+	date_created = models.DateTimeField(auto_now=True)
+	date_changed = models.DateTimeField(auto_now_add=True)
+	
+	class Meta:
+		abstract=True
+		
+class RelationshipType(MetaData):
+	a_is_to_b = models.CharField(max_length=50)
+	b_is_to_a = models.CharField(max_length=50)
+	weight = models.SmallIntegerField(default=0)
+	preffered = models.BooleanField(default=False)
+
+class Relationship(models.Model):
+	'''
+	A patient can decide to add family and track their files;
+	Only this patient can then decide to give access to HealthWorkers
+	Only When the PatientKin has reached 18, will they be given access to this system; 
+	Registration claim
+	----------------
+	A patient may state the Emergency Contact to be someone who is not a user of the system,
+	Also, they may be just someone they entrust to be their for them on health issues, even 
+	their lawyer. So, lets just use any person who can later be a patient. 
+	'''
+	person_a = models.ForeignKey('Person', related_name='person_a')
+	person_b = models.ForeignKey('Person', related_name='person_b')
+	next_of_kin = models.BooleanField(default=False)
+	relationship = models.ForeignKey(RelationshipType)
+	emergency_contact = models.BooleanField(default=False)
+	
+	@transaction.commit_on_success
+	def save(self, force_insert=False, force_update=False):
+		if self.patient_id and self.kin_id and (self.kin_id == self.patient_id):
+			class CircularRelationException(Exception):pass
+			raise CircularRelationException('Sorry. You cannot set yourself as a relation')
+		else:
+			super(Relationship, self).save(force_insert, force_update)
 
 class Person(models.Model):
 	'''
@@ -33,6 +73,12 @@ class Person(models.Model):
 		('prof', 'Professor'),
 	)
 	title = models.CharField(max_length=20, choices=TITLES, null=True)
+	
+	relationship = models.ManyToManyField(
+		'self',
+		through='Relationship', 
+		symmetrical=False, 
+	)
 
 	first_name = models.CharField(max_length=50, null=True)
 	middle_name = models.CharField(max_length=50, null=True)
@@ -42,11 +88,16 @@ class Person(models.Model):
 	home_phone = models.CharField(max_length=50, null=True, blank=True)
 	work_phone = models.CharField(max_length=50, null=True, blank=True)
 
-	postal_address = models.CharField(max_length=50, null=True)
 	photo = models.ImageField(upload_to='photos', null=True, blank=True)
 
+	village = models.CharField(max_length=50, null=True, blank=True)
+	province = models.CharField(max_length=50, null=True, blank=True)
+	postal_code = models.CharField(max_length=50, null=True, blank=True)
+	home_address = models.CharField(max_length=50, null=True, blank=True)
+	county = models.CharField(max_length=50, null=True, blank=True)
 	country = CountryField()
-	nationality = models.CharField(max_length=150, default='kenyan', null=True)
+	latitude = models.CharField(max_length=50, null=True, blank=True)
+	longitude = models.CharField(max_length=50, null=True, blank=True)
 	
 	date_edited = models.DateTimeField(auto_now_add=True)
 	date_created = models.DateTimeField(auto_now=True)

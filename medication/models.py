@@ -1,59 +1,9 @@
 from django.db import models
-from core.models import Record
+from core.models import Record, MetaData
 
-class Problem(Record):
-    STATUS = ()
-    code = models.CharField(max_length=50)
-    details = models.CharField(max_length=150)
-    status = models.CharField(max_length=16, choices=STATUS)
-
-class Immunization(Record):
-    code = models.CharField(max_length=50)
-    vaccine = models.CharField(max_length=100)
-    brand_name = models.CharField(max_length=100)
-    lot_number = models.CharField(max_length=100)
-    route = models.CharField(max_length=100)
-    site = models.CharField(max_length=100)
-    expiry_date = models.DateTimeField(auto_now=True)
-    practice_date = models.DateTimeField(auto_now=True)
-
-class Diagnosis(Problem):pass
-class LabResult(Problem):pass
-class Symptom(Problem):
-    TYPE = (
-        ('chronic', 'Chronic'),
-        ('relapsing', 'Relapsing'),
-        ('remitting', 'Remitting')
-    )
-    type = models.CharField(max_length=16, choices=TYPE)
-    
-class Condition(Problem):pass
-    
-class Disease(Condition):
-    TYPE = (
-        ('pathogenic',      'Pathogenic'),
-        ('deficiency',      'Deficiency'),
-        ('hereditary',      'Hereditary'),
-        ('physiological',   'Physiological'),
-        ('communicable',   'Communicable'),
-        ('non-communicable',   'Non-communicable')
-    )
-    type = models.CharField(max_length=16, choices=TYPE)
-
-class TrackingRecord(models.Model):
-    name = models.CharField(max_length=50)
-    fields = models.ManyToManyField('TrackingField')
-    reminders = models.ManyToManyField('core.Reminder')
-
-class TrackingField(models.Model):
-    name = models.CharField(max_length=50)
-    patient = models.ForeignKey("patient.Patient")
-    unit = models.CharField(max_length=50)
-    daily_cummulative = models.BooleanField(default=False)
-    min_value = models.CharField(max_length=5)
-    max_value = models.CharField(max_length=5)
-    ideal_min_value = models.CharField(max_length=5)
-    ideal_max_value = models.CharField(max_length=5)
+class MedicationIngredient(models.Model):
+    ingredient = models.CharField(max_length=100)
+    medication = models.ForeignKey('Medication')
 
 class Medication(models.Model):
     MEDICATION_TYPE=[
@@ -90,6 +40,9 @@ class Medication(models.Model):
     way_taken = models.CharField(max_length=10, choices=WAY_TAKEN)
     
     strength = models.CharField(max_length=50)
+    min_daily_dose = models.CharField(max_length=50)
+    max_daily_dose = models.CharField(max_length=50)
+    strength = models.CharField(max_length=50)
     strength_unit = models.CharField(max_length=50, choices=STRENGTH_UNIT)
     side_effects = models.CharField(max_length=200)
     
@@ -118,23 +71,21 @@ class Prescription(models.Model):
     ]
     patient = models.ForeignKey("patient.Patient")
     medication = models.ForeignKey('Medication')
+    prescribed_by = models.ForeignKey('healthprovider.HealthWorker')
     
     reason = models.CharField(max_length=300)
     quantity = models.SmallIntegerField()
     frequency = models.CharField(max_length=50, choices=[(u'%s'%n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,13)])
     unit = models.CharField(max_length=50, choices=UNIT)
     period = models.CharField(max_length=50, choices=PERIODS)
-    
-    prescribed_by = models.ForeignKey('healthprovider.HealthWorker')
-    
     notes = models.CharField(max_length=2000)
     
     date_started = models.DateField()
     date_ended = models.DateField()
-    
     date_prescribed = models.DateField(auto_now=True)
     
     def __unicode__(self):
         return '%s, %s %s taken %s %s for %s, prescribed by %s' % (
             self.medication.name, self.quantity, self.unit, self.get_frequency_display(), self.get_period_display(), self.patient, self.prescribed_by
         )
+    

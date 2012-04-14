@@ -6,54 +6,6 @@ from django.db import models, transaction
 
 from healthprovider.models import HealthWorker
 
-RELATIONSHIPS = [
-	('brother', 'Brother'),
-	('sister', 'Sister'),
-	('son', 'Son'),
-	('daughter', 'Daughter'),
-	('aunt', 'Aunt'),
-	('uncle', 'Uncle'),
-	('niece', 'Niece'),
-	('nephew', 'Nephew'),
-	('cousin', 'Cousin'),
-	('spouse', 'Spouse'),
-	('grandfather', 'Grandfather'),
-	('grandmother', 'Grandmother'),
-]
-
-class Kin(models.Model):
-	'''
-	A patient can decide to add family and track their files;
-	Only this patient can then decide to give access to HealthWorkers
-	Only When the PatientKin has reached 18, will they be given access to this system; 
-	Registration claim
-	'''
-	patient = models.ForeignKey('Patient', related_name='patient')
-	kin = models.ForeignKey('Patient', related_name='patient_kin')
-	next_of_kin = models.BooleanField(default=False)
-	relationship = models.CharField(max_length=50, choices=RELATIONSHIPS)
-	emergency_contact = models.BooleanField(default=False)
-	
-	@transaction.commit_on_success
-	def save(self, force_insert=False, force_update=False):
-		if self.patient and self.kin and (self.kin.id == self.patient.id):
-			class CircularRelationException(Exception):pass
-			raise CircularRelationException('Sorry. You cannot set yourself as your own kin')
-		else:
-			super(Kin, self).save(force_insert, force_update)
-
-class EmergencyContact(models.Model):
-	'''
-	A patient may state the Emergency Contact to be someone who is not a user of the system,
-	Also, they may be just someone they entrust to be their for them on health issues, even 
-	their lawyer. So, lets just use any person who can later be a patient. 
-	'''
-	contact = models.ForeignKey('core.Person')
-	patient = models.ForeignKey('Patient', related_name='patient_contact')
-	relationship = models.CharField(max_length=50, choices=RELATIONSHIPS)
-	send_text = models.BooleanField(default=False)
-	detailed_message = models.BooleanField(default=False)
-
 class Patient(UserProfile):
 	'''
 	A patient with auth.User field empty is thought to have been under guardianship.
@@ -83,19 +35,6 @@ class Patient(UserProfile):
 	
 	gender = models.CharField(max_length=20, choices=GENDER, null=True)
 	date_of_birth = models.DateField(null=True)
-	
-	kins = models.ManyToManyField(
-		'self',
-		through='Kin', 
-		related_name='patient_kins',
-		symmetrical=False, 
-	)
-	emergencycontacts = models.ManyToManyField(
-		'core.Person', 
-		null=True, 
-		through='EmergencyContact', 
-		related_name='patient_emergencycontacts'
-	)
 	
 	blood_group = models.CharField(max_length=20, choices=BLOOD_GROUPS)
 	weight = models.PositiveSmallIntegerField(default=0, null=True)

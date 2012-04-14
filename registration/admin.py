@@ -5,7 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from registration.models import RegistrationProfile
 
-
 class RegistrationAdmin(admin.ModelAdmin):
     actions = ['activate_users', 'resend_activation_email']
     list_display = ('user', 'activation_key_expired')
