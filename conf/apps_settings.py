@@ -27,6 +27,7 @@ INSTALLED_APPS = (
 	'medication',
 	'core',
 	'records',
+	'programs',
 	'insuranceprovider',
 )
 

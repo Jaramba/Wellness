@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 
 from fields import  *
 
-class Reminder(models.Model):
-	pattern = models.CharField(max_length=200)
-
 class Record(models.Model):
 	name = models.CharField(max_length=30)
 	patient = models.ForeignKey("patient.Patient")

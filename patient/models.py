@@ -70,5 +70,5 @@ class Patient(UserProfile):
 	last_doctor_visit = models.DateTimeField(null=True)
 	
 	def __unicode__(self):
-		return self.profile.full_name
+		return self.full_name
 	

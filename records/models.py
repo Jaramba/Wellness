@@ -11,36 +11,32 @@ class Immunization(Record):
     expiry_date = models.DateTimeField()
     practice_date = models.DateTimeField(auto_now=True)
 
-class TrackingRecord(models.Model):
+class TrackingRecord(Record):
     name = models.CharField(max_length=50)
-    fields = models.ManyToManyField('TrackingField')
-    reminders = models.ManyToManyField('core.Reminder')
 
-class TrackingField(models.Model):
-    name = models.CharField(max_length=50)
-    patient = models.ForeignKey("patient.Patient")
+class Reminder(models.Model):
+    pattern = models.CharField(max_length=200)
+    record = models.ManyToManyField('TrackingRecord')
+    
+    @property 
+    def datetime_start(self):pass
+    @property 
+    def datetime_stop(self):pass
+    @property 
+    def all_day(self):pass    
+    @property 
+    def where(self):pass
+    @property 
+    def repeat(self):pass
+
+class TrackingField(Record):
+    record = models.ManyToManyField('TrackingRecord')
     unit = models.CharField(max_length=50)
     daily_cummulative = models.BooleanField(default=False)
     min_value = models.CharField(max_length=5)
     max_value = models.CharField(max_length=5)
     ideal_min_value = models.CharField(max_length=5)
     ideal_max_value = models.CharField(max_length=5)
-
-class PatientProgram(models.Model):
-    patient = models.ForeignKey("patient.Patient")
-    program = models.ForeignKey("Program")
-    date_enrolled = models.DateField(auto_now=True)
-    date_completed = models.DateField()
-    outcome_notes = models.CharField(max_length=2000)
-    
-class Program(models.Model):
-    concept_details = models.CharField(max_length=300)
-    outcome_details = models.CharField(max_length=300)
-    
-class PatientStates(models.Model):
-    patient_program = models.ForeignKey("PatientProgram")
-    start_date = models.DateField(auto_now=True)
-    end_date = models.DateField()
 
 class Image(Record):
     date = models.DateField()
@@ -53,7 +49,7 @@ class Problem(Record):
     details = models.CharField(max_length=150)
     source = models.ForeignKey('healthprovider.HealthWorker')
     status = models.CharField(max_length=16, choices=STATUS)
-    
+
 class VisitType(MetaData):pass
 class Visit(models.Model):
     patient = models.ForeignKey("patient.Patient")
@@ -82,4 +78,3 @@ class Encounter(models.Model):
     encounter_date = models.DateTimeField(auto_now=True)
     type = models.ForeignKey('EncounterType')
     visit = models.ForeignKey('Visit')
-    
