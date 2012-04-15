@@ -2,13 +2,14 @@ from django.contrib import admin
 import models
 from django.db.models.base import ModelBase
 
-model_classes = [x for x in models.__dict__.values()  if issubclass(type(x), ModelBase) and not x._meta.abstract]
-
-for m in model_classes:
+for M in [x 
+    for x in models.__dict__.values()  
+        if (issubclass(type(x), ModelBase) and not x._meta.abstract)
+]:
     class ItemAdmin(admin.ModelAdmin):
-        model = m
-        list_display = [f.name for f in m._meta.fields]
+        model = M
+        list_display = [f.name for f in M._meta.fields]
     try:
-        admin.site.register(m, ItemAdmin)
-    except:
-        admin.sites.AlreadyRegistered
+        admin.site.register(M, ItemAdmin)
+    except admin.sites.AlreadyRegistered:
+        pass

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load uni_form_tags %}
+
+{% block container %}
+	<div class="row clearfix">
+		<div class="col_12">
+			<div class="widget clearfix" style="min-height: 300px;">
+				<h2>{% if doctor.id %}Edit{% else %}Add{% endif %} Encounter</h2>
+				<div class="widget_inside ">
+					{% uni_form form form.helper %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock container %}

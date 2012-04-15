@@ -1,24 +1,13 @@
 from django.conf.urls.defaults import *
-from django.contrib import admin
-from django.views.generic.base import TemplateView, RedirectView
-from django.views.generic.edit import UpdateView
-
-UpdateView
-
-from django.contrib.sites import models
-
 from django.conf import settings
+from django.views.generic.base import TemplateView
 
+from django.contrib import admin
 admin.autodiscover()
 
 #django
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-)
-
-#static website
-urlpatterns += patterns('',
-#    url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
 )
 
 #Acccount
@@ -45,6 +34,8 @@ urlpatterns += patterns('',
 #apps
 urlpatterns += patterns('',
     url(r'^admin_tools/', include('admin_tools.urls')),
+    
+    url(r'^records/', include('records.urls')),
 )
 
 #The app itself
@@ -52,7 +43,6 @@ urlpatterns += patterns('',
     url(r'^register/$', 'userprofile.views.register', {'template_name':'sign_up.html'},name='register'),
     url(r'^login/$', 'userprofile.views.login', {'template_name':'sign_in.html'}, name='login'),
     url(r'^logout/$','userprofile.views.logout', name='logout'),
-    url(r'^upload/', include('fileuploader.urls')),
 )
 
 if settings.DEBUG:

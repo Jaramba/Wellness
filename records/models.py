@@ -31,13 +31,14 @@ class Image(Record):
     date = models.DateField()
 
 class ProblemType(MetaData):pass
+class ProblemStatus(MetaData):pass
+
 class Problem(Record):
-    STATUS = ()
     code = models.CharField(max_length=50)
-    type = models.ForeignKey('ProblemType')
     details = models.CharField(max_length=150)
+    type = models.ForeignKey('ProblemType')
     source = models.ForeignKey('healthprovider.HealthWorker')
-    status = models.CharField(max_length=16, choices=STATUS)
+    status = models.ForeignKey('ProblemStatus')
 
 class VisitType(MetaData):pass
 class Visit(models.Model):
