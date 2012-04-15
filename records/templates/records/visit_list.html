@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block container %}
+	<div class="row clearfix">
+		<div class="col_12">
+			<div class="widget clearfix" style="min-height: 300px;">
+				<h2>Visits</h2>
+				<div class="widget_inside drugs-search">
+					<div id="add" style="width:100%;clear:both"><a href="{% url visit-create %}" class="button blue" style="float:right">Add Visit</a></div>
+					{% if visits %} 
+						<table class='regular'>
+							<tr>
+								<th>Code</th>
+								<th>Vaccine</th>
+								<th>Brand name</th>
+								<th>Lot number</th>
+								<th>Site</th>
+								<th>Date</th>
+							</tr>
+							{% for visit in visits %}
+								<tr>	
+									<td>{{visit.code}}</td>
+									<td>{{visit.vaccine}}</td>
+									<td>{{visit.brand_name}}</td>
+									<td>{{visit.lot_number}}</td>
+									<td>{{visit.site}}</td>
+									<td>{{visit.practice_date}}</td>
+									<td>
+										<a href="{% url visit-edit visit.pk %}">Edit</a> |
+										<a href="{% url visit-delete visit.pk %}">Delete</a>
+									</td>
+								</tr>
+							{% empty %}
+								<tr><td colspan="2">No Visits Found</td></tr>
+							{% endfor %}
+						</table>
+					{% else %}
+						No Visits Found
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock container %}
