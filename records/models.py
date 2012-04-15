@@ -11,24 +11,13 @@ class Immunization(Record):
     expiry_date = models.DateTimeField()
     practice_date = models.DateTimeField(auto_now=True)
 
-class TrackingRecord(Record):
-    name = models.CharField(max_length=50)
+class TrackingRecord(Record):pass
 
 class Reminder(models.Model):
     pattern = models.CharField(max_length=200)
+    datetime = models.DateTimeField()
     record = models.ManyToManyField('TrackingRecord')
     
-    @property 
-    def datetime_start(self):pass
-    @property 
-    def datetime_stop(self):pass
-    @property 
-    def all_day(self):pass    
-    @property 
-    def where(self):pass
-    @property 
-    def repeat(self):pass
-
 class TrackingField(Record):
     record = models.ManyToManyField('TrackingRecord')
     unit = models.CharField(max_length=50)

@@ -100,11 +100,19 @@ class DefaultMenu(Menu):
             items.MenuItem(_('Dashboard'), reverse('%s:index' % site_name)),
             items.Bookmarks(),
             items.AppList(
-                _('Applications'),
-                exclude=('django.contrib.*',)
+                'Records',
+                models=('records.*','medication.*'),
             ),
             items.AppList(
-                _('Administration'),
-                models=('django.contrib.*',)
-            )
+                'Employee/Patient Programs',
+                models=('programs.*',),
+            ),
+            items.AppList(
+                'Insurance Administration',
+                models=('insuranceprovider.*',),
+            ),
+            items.AppList(
+                'Administration',
+                exclude=('records.*','programs.*', 'insuranceprovider.*', 'medication.*'),
+            ),
         ]

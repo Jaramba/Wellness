@@ -22,12 +22,12 @@ INSTALLED_APPS = (
 	#'notification',
 	'fileuploader',
 	'uni_form',
-	'healthprovider',
-	'patient',
-	'medication',
 	'core',
 	'records',
 	'programs',
+	'patient',
+	'healthprovider',
+	'medication',
 	'insuranceprovider',
 )
 

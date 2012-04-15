@@ -227,10 +227,19 @@ class DefaultIndexDashboard(Dashboard):
             ]
         ))
 
-        # append an app list module for "Applications"
         self.children.append(modules.AppList(
-            _('Applications'),
-            exclude=('django.contrib.*',),
+            'Sections',
+            exclude=('django.contrib.*','records.*','programs.*'),
+        ))
+        
+        self.children.append(modules.AppList(
+            'Records',
+            models=('records.*',),
+        ))
+        
+        self.children.append(modules.AppList(
+            'Employee/Patient Programs',
+            models=('programs.*',),
         ))
 
         # append an app list module for "Administration"
@@ -238,39 +247,6 @@ class DefaultIndexDashboard(Dashboard):
             _('Administration'),
             models=('django.contrib.*',),
         ))
-
-        # append a recent actions module
-        self.children.append(modules.RecentActions(_('Recent Actions'), 5))
-
-        # append a feed module
-        self.children.append(modules.Feed(
-            _('Latest Django News'),
-            feed_url='http://www.djangoproject.com/rss/weblog/',
-            limit=5
-        ))
-
-        # append another link list module for "support".
-        self.children.append(modules.LinkList(
-            _('Support'),
-            children=[
-                {
-                    'title': _('Django documentation'),
-                    'url': 'http://docs.djangoproject.com/',
-                    'external': True,
-                },
-                {
-                    'title': _('Django "django-users" mailing list'),
-                    'url': 'http://groups.google.com/group/django-users',
-                    'external': True,
-                },
-                {
-                    'title': _('Django irc channel'),
-                    'url': 'irc://irc.freenode.net/django',
-                    'external': True,
-                },
-            ]
-        ))
-
 
 class DefaultAppIndexDashboard(AppIndexDashboard):
     """

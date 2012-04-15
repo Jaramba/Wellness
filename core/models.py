@@ -23,6 +23,9 @@ class MetaData(models.Model):
 	date_created = models.DateTimeField(auto_now=True)
 	date_changed = models.DateTimeField(auto_now_add=True)
 	
+	def __unicode__(self):
+		return self.name
+	
 	class Meta:
 		abstract=True
 		
@@ -111,6 +114,9 @@ class Person(models.Model):
 					self.last_name if hasattr(self, 'last_name') else ''
 				) if i
 			])
+	class Meta:
+		verbose_name = 'Person'
+		verbose_name_plural = 'People'
 
 class UserProfile(Person):
 	user = models.OneToOneField('auth.User')

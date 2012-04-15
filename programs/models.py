@@ -1,7 +1,12 @@
 from django.db import models
 from core.models import MetaData
 
-class ProgramType(MetaData):pass
+class ProgramType(MetaData):
+    '''
+    Meta-definer of the program; The type of program
+    '''
+    pass
+
 class Program(models.Model):
     '''
     This represents either an Employee Assistance Program (EAP)
@@ -9,8 +14,11 @@ class Program(models.Model):
     to help Alcoholics 
     '''
     type = models.ForeignKey("ProgramType")
-    concept_notes = models.CharField(max_length=300)
-    expected_outcome_notes = models.CharField(max_length=300)
+    concept_notes = models.CharField(max_length=500)
+    expected_outcome_notes = models.CharField(max_length=500)
+    
+    def __unicode__(self):
+        return str(self.type) 
 
 class ProgramWorkflow(models.Model):
     '''
@@ -21,31 +29,35 @@ class ProgramWorkflow(models.Model):
     Example: An Alcoholic Program would have Workflows like:
     Family Intervention, Withdrawal...    
     '''
-    program = models.ForeignKey("EnrolledProgram")
-    concept_notes = models.CharField(max_length=300)
+    enrolled_program = models.ForeignKey("EnrolledProgram")
+    concept_notes = models.CharField(max_length=500)
     start_date = models.DateField(auto_now=True)
     end_date = models.DateField()
 
 class ProgramWorkflowState(MetaData):
     '''
-    This represents a node/milestone state of @see: ProgramWorkflow
+    This represents a node/milestone state of @see: PrenrolleeogramWorkflow
     in the program.
     A state in the Alcoholic Program would be: Starting, Completed, or something
     '''
-    workflow = models.ForeignKey("ProgramWorkflow")
-    weight = models.DecimalField()
+    program_workflow = models.ForeignKey("ProgramWorkflow")
+    weight = models.CharField(max_length=5)
     initial = models.BooleanField(default=False)
     terminal = models.BooleanField(default=False)
-    concept_notes = models.CharField(max_length=300)
+    concept_notes = models.CharField(max_length=500)
         
 class EnrolledProgram(models.Model):
     '''
-    Patient/Employee can be enrolled in a Program to help them 
-    iron out issues...
+    Patient/Employee can be enrolled in a Program to help them
+    Anyone can be enrolled to this... Even Doctors or even employees
+    of Insurance companies
     '''
     program = models.ForeignKey("Program")
-    enrollee = models.ForeignKey("core.Person")
-    enroller = models.ForeignKey("core.Person")
+    enrollee = models.ForeignKey("core.Person", related_name='enrollee')
+    enroller = models.ForeignKey("core.Person", related_name='enroller')
     date_enrolled = models.DateField(auto_now=True)
     date_completed = models.DateField()
-    outcome_notes = models.CharField(max_length=2000)
+    outcome_notes = models.CharField(max_length=2000, null=True, blank=True)
+    
+    def __unicode__(self):
+        return str(self.enrollee) + ' enrolled to ' + str(self.program)  

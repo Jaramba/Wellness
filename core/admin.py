@@ -56,11 +56,6 @@ class AttachmentAdmin(admin.ModelAdmin):
     list_display = [f.name for f in Attachment._meta.fields]
 admin.site.register(Attachment, AttachmentAdmin)    
 
-class ReminderAdmin(admin.ModelAdmin):
-    model = Reminder
-    list_display = [f.name for f in Reminder._meta.fields]
-admin.site.register(Reminder, ReminderAdmin)
-
 admin.site.unregister(User)
 admin.site.unregister(FlatPage)
 admin.site.unregister(Comment)

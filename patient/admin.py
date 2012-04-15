@@ -4,22 +4,7 @@ from models import *
 
 class PatientAdmin(admin.ModelAdmin):
     model = Patient
-    list_display = [f.name for f in Patient._meta.fields if f.name not in [
-            'smoking', 
-            'smoker_type', 
-            'duration_smoking',
-            'drinking',
-            'drinker_type',
-            'duration_drinking',
-            'excercising_times',
-            'excercise_frequency',
-            'diet',
-            'family_cancer_status',
-            'cancer_type',
-            'other_diseases',
-            'disabilities'
-        ]
-    ]
+    list_display = ['first_name','middle_name','last_name','gender','doctor','mobile_phone','country','employer','blood_group']
     inlines = []
 
 admin.site.register(Patient, PatientAdmin)
