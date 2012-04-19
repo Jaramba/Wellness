@@ -1,16 +1,38 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% load uni_form_tags %}
 
-{% block container %}
-	<div class="row clearfix">
-		<div class="col_12">
-			<div class="widget clearfix" style="min-height: 300px;">
-				<h2>{% if encounter.id %}Edit{% else %}Add{% endif %} Encounter</h2>
-				<div class="widget_inside ">
-					{% uni_form form form.helper %}
-				</div>
-			</div>
-		</div>
+{% block extracss %}
+	<link href="{{ STATIC_URL }}js/tiny/themes/simple/skins/default/ui.css" rel="stylesheet" type="text/css">
+	<link href="{{ STATIC_URL }}js/tiny/themes/simple/skins/default/content.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/tagit.ui-zendesk.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/calendrical.css">
+{% endblock extracss %}
+
+{% block extrajs %}
+	<script src="{{STATIC_URL}}js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tiny/tiny_mce.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tiny/tiny_mce_init.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.calendrical.js"></script>
+	
+	<script type="text/javascript">
+		$(function() {
+			$(":text, textarea").addClass("text");
+			$("ul.tagit input").focusin(function(){
+				$('ul.tagit').addClass("text");
+			});
+			$("ul.tagit input").focusout(function(){
+				$('ul.tagit').removeClass("text");
+			});
+	    });
+	</script>
+{% endblock extrajs %}
+
+
+{% block pitch %}
+	<div class="widget_inside ">
+		{% uni_form form form.helper %}
 	</div>
-{% endblock container %}
+{% endblock pitch %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Wellness{% endblock %}
+
+{% block extrajs %} 
+	<script type="text/javascript" src="{{ STATIC_URL }}js/in.js">
+		api_key: y1h2gwttk84d
+		authentication: true
+	</script>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			$('div.photo a').fancyZoom({
+				directory : 'images/zoom',
+				scaleImg : true,
+				closeOnClick : true
+			});
+		});
+	</script>
+{% endblock %}
+
+{% block bg %}
+<div class="wrap">
+	{% block header %} <!-- logo -->
+		<h1><a href="{% url index %}"><img src="{{ STATIC_URL }}images/logo.png" /></a></h1>
+		<!-- /logo -->
+		<!-- menu -->
+		<div id="mainmenu">
+			{% block mainmenu %}
+				<ul id="menu">
+					<li> <a class="current" href="{% url index %}">HOME</a> </li>
+					<li> <a href="{% url what_it_is %}">WHAT IT IS</a> </li>
+					{% if not request.user.is_authenticated %}<li> <a class="try" href="{% url login %}">LOGIN</a> </li>{% endif %}
+				</ul>
+			{% endblock %}
+		</div>
+		{% comment %}
+			<div class="signLinks">
+				{% block signLinks %}
+					<ul class="links">
+						<li>
+							<a href="#">Sign Up with LinkedIn /</a>
+						</li>
+						<li>
+							<a href="#">Facebook</a>
+						</li>
+					</ul>
+				{% endblock signLinks %}
+			</div>
+		{% endcomment %}
+		<div class="separator"></div>
+		<!-- /menu -->
+	{% endblock header %} 
+	
+	{% block stats-bar %}{% endblock stats-bar %}
+	{% block no_pitch %}{% endblock no_pitch %}
+	
+	<div id="pitch"> {% block pitch %} {% endblock %} </div>
+	
+	{% block confidence-belt %} {% endblock %}
+	{% block bits %} {% endblock %}
+{% endblock %}
+
+{% block footer %}
+	<!-- Separator -->
+	<div class="separator2"></div>
+	<!-- footer -->
+	<div id="footer">
+		<!-- footer links -->
+		<ul>
+			<li>
+				<a href="{% url index %}">Wellness</a>
+			</li>
+		</ul>
+		<!-- /footer links -->
+		<span class="copyright">
+			©{% now "Y" %} Wellness - 
+			<a href="{% url terms_and_conditions %}">Terms</a> - 
+			<a href="{% url privacy-policy %}">Privacy Policy
+		</span>
+	</div>
+{% endblock footer %}

@@ -5,16 +5,27 @@ from uni_form.layout import *
 
 class EncounterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        self.layout = Layout(
-            Div('', css_class='clearfix'),
-            Div(
-                Div(
-                    Submit('Save', 'Save Changes', css_class='button blue'),
-                    css_class='input no-label'
-                ),
-                css_class='clearfix grey-highlight'
+        self.helper = FormHelper()
+        self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
+        layout = Layout(
+            Div(HTML('<h2 class="form_title">Create Encounter</h2>'), css_class="form_title_div"),
+            Row(Column('patient')),
+            Row(Column('observation_notes')),
+            Row(Column('encounter_provider')),
+            Row(Column('encounter_date')),
+            Row(Column('type')),
+            Row(Column('visit')),
+            Row(
+                ButtonHolder(
+                    Submit('Save', 'Save Changes'),
+                )
             )
         )
+        self.helper.add_layout(layout)
         super(EncounterForm, self).__init__(*args, **kwargs)
         
     class Meta:

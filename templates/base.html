@@ -1,168 +1,34 @@
-<html lang="en-us">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:ng="http://angularjs.org">
 	<head>
-			<meta charset="utf-8">
-			<link rel="apple-touch-con" href="">
-			<title>{% block title %}Muse Admin Panel {% endblock title%}</title>
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/columnal.css" type="text/css" media="screen">
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/jqueryui.css" type="text/css" media="screen">
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen">
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/global.css" type="text/css" media="screen">
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/config.css" type="text/css" media="screen">
-			{% block extracss %}
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" type="text/css" media="screen">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/validationEngine.jquery.css" type="text/css" media="screen">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.cleditor.css" type="text/css" media="screen">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/fullcalendar.print.css" type="text/css" media="print">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/fullcalendar.css" type="text/css" media="screen">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/colorbox.css" type="text/css" media="screen">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/colorpicker.css" type="text/css" media="screen">
-				<link rel="stylesheet" href="{{ STATIC_URL }}css/uploadify.css" type="text/css" media="screen">
-			{% endblock extracss %}
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.placeholder.1.2.min.shrink.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/superfish.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.flot.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.flot.pie.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.flot.stack.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/twipsy.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.cleditor.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/fullcalendar.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/gcal.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.colorbox-min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/colorpicker.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/muse.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.uploadify.v2.1.4.min.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/swfobject.js"></script>
-			<script type="text/javascript" src="{{ STATIC_URL }}js/demo.js"></script>
-			{% block extrajs %}{% endblock extrajs %}
+		<title>{% block title %}Inpostme{% endblock %}</title>
+		<link type="text/css"  href="{{ STATIC_URL }}css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+		{% block extracss %}{% endblock %}
+		
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/menu.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/slideshow.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/cufon-yui.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/GothamBook_500-GothamBold_500.font.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/fancyzoom.min.js"></script>
+		{% block cufon %}
+			<script type="text/javascript">
+				Cufon.replace('{% block cufon-gotham-book %}h2,h3,h5,h6,#menu,.overlay p,label,.flinks,.prev,.next,.use_as,#footer{% endblock cufon-gotham-book %}', {
+					fontFamily : 'GothamBook'
+				});
+			</script>
+		{% endblock cufon %}
+		{% block extrajs %}{% endblock %}
+		<meta name="robots" content="{% block robots %}index,follow{% endblock %}"/>
 	</head>
-	<body {% block body_id %}{% endblock %}>
-		{% block body %}
-			<div id="cboxOverlay" style="display: none; "></div>
-			<div style="padding-bottom: 42px; padding-right: 42px; display: none; " id="colorbox">
-				<div id="cboxWrapper" style="">
-					<div style="">
-						<div id="cboxTopLeft" style="float: left; "></div><div id="cboxTopCenter" style="float: left; "></div><div id="cboxTopRight" style="float: left; "></div>
-					</div>
-					<div style="clear: left; ">
-						<div id="cboxMiddleLeft" style="float: left; "></div>
-						<div id="cboxContent" style="float: left; ">
-							<div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow-x: hidden; overflow-y: hidden; "></div><div id="cboxLoadingOverlay" style=""></div><div id="cboxLoadingGraphic" style=""></div><div id="cboxTitle" style=""></div><div id="cboxCurrent" style=""></div><div id="cboxNext" style=""></div><div id="cboxPrevious" style=""></div><div id="cboxSlideshow" style=""></div><div id="cboxClose" style=""></div>
-						</div><div id="cboxMiddleRight" style="float: left; "></div>
-					</div>
-					<div style="clear: left; ">
-						<div id="cboxBottomLeft" style="float: left; "></div><div id="cboxBottomCenter" style="float: left; "></div><div id="cboxBottomRight" style="float: left; "></div>
-					</div>
-				</div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; "></div>
-			</div>
-			<div id="wrap">
-				<div id="main">
-					<header class="container">
-						<div class="row clearfix">
-							<div class="left">
-								<a href="index.php" id="logo">Muse</a>
-							</div>
-							<div class="right">
-								<ul id="toolbar">
-									<li>
-										<span>Logged in as </span><a class="user" href="#">{{request.user}}</a>
-									</li>
-									<li>
-										<a id="logoutprofile" href="{{ STATIC_URL }}auth/logout/">Logout</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</header>
-					<nav class="container">
-						<ul class="sf-menu mobile-hide row clearfix sf-js-enabled sf-shadow">
-							<li class="active iconed">
-								<a href=""><span><img src="{{ STATIC_URL }}images/icon_dashboard.png"> Dashboard</span></a>
-							</li>
-							<li>
-								<a href="/products/"><span>Products</span></a>
-							</li>
-								<li>
-									<a href="/wards/"><span>Wards</span></a>
-								</li>
-								<li>
-									<a href="#" class="sf-with-ul"><span>Patients</span><span class="sf-sub-indicator"> »</span></a>
-									<ul style="display: none; visibility: hidden; ">
-										<li>
-											<a href="/patients/inpatients/"><span>Inpatients</span></a>
-										</li>
-										<li>
-											<a href="/patients/outpatients/"><span>Outpatients</span></a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="/product-categories/"><span>Categories</span></a>
-								</li>
-								<li>
-									<a href="" class="sf-with-ul"><span>Staff</span><span class="sf-sub-indicator"> »</span></a>
-									<ul style="display: none; visibility: hidden; ">
-										<li>
-											<a href="/admin/staff/doctors/"><span>Doctors</span></a>
-										</li>
-										<li>
-											<a href="/admin/staff/doctors/"><span>Nurses</span></a>
-										</li>
-										<li>
-											<a href="/admin/staff/stock-personel/"><span>Stock</span></a>
-										</li>
-										<li>
-											<a href="/staff/pharmacists/"><span>Pharmacists</span></a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="/admin/users/"><span>Users</span></a>
-								</li>
-									<li>
-										<a href="#" class="sf-with-ul"><span>Reports</span><span class="sf-sub-indicator"> »</span></a>
-										<ul style="display: none; visibility: hidden; ">
-												<li>
-													<a href="/reports/feedback/"><span>Feedback</span></a>
-												</li>
-										</ul>
-									</li>
-						</ul>
-					</nav>
-					<div id="titlediv">
-						{% block titlediv %}
-							<div class="clearfix container" id="pattern">
-								<div class="row">
-									<div class="col_12">
-										<ul class="breadcrumbs hor-list">
-											<li>
-												<a href="/">Dashboard</a>
-											</li>
-										</ul>
-										<h1>{% block page_title %}Dashboard{% endblock %}</h1>
-									</div> 
-								</div>
-							</div>
-						{% endblock titlediv %}
-					</div>
-					<div class="container" id="actualbody">{% block container %}{% endblock %}</div>
-				</div>
-			</div>
-			<footer>
-				{% block footer %}
-					<div class="container">
-						<div class="row clearfix">
-							<div class="col_12">
-								<span class="left">©{{now|date:"Y"}} Wellness.</span>
-								<span class="right">Powered by Synacor Consortium</span>
-							</div>
-						</div>
-					</div>
-				{% endblock %}
-			</footer>
-		{% endblock %}
-	</body>
+	{% block body %}
+		<body {% block angular_hook %}{% endblock %}>
+			<div id="bg">{% block bg %}{% endblock %}</div>
+			{% block footer %}{% endblock footer %}
+			{% block overlays %}{% endblock overlays %}
+		</body>
+	{% endblock body %}
 </html>
