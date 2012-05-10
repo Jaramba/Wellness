@@ -1,21 +1,23 @@
 
-set :application, "wellington"
-set :deploy_to, "~/webapp_releases/wellington"
+set :application, "uhai"
+set :deploy_to, "~/webapp_releases/uhai"
 set :shared_children, %w(config lib upload database)
 
-set :repository, "~/hg/repos/wellington"
-set :scm, :mercurial
+set :repository, "~/webapps/git/repos/uhai.git"
+set :local_repository, "~/Aptana\\ Studio\\ 3\\ Workspace/wellness/src/wellness/.git"
 
-set :user, "synacor"
+set :scm, :git
+
+set :user, "uhai"
 set :use_sudo, false
-set :python_command, "PYTHONPATH=/home/synacor/webapps/wellington/lib/python2.7:$PYTHONPATH python2.7"
+set :python_command, "PYTHONPATH=/home/uhai/webapps/uhai/lib/python2.7:$PYTHONPATH python2.7"
 
-server "synacor.co.ke", :app, :web, :primary => true
+server "uhai.webfactional.com", :app, :web, :primary => true
 
 namespace :deploy do
 
   task :restart do
-    run "/home/synacor/webapps/wellington/apache2/bin/restart"
+    run "~/webapps/uhai/apache2/bin/restart"
   end
 
   task :finalize_update, :except => { :no_release => true } do
