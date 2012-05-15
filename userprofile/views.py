@@ -19,6 +19,9 @@ from signals import *
 
 import copy
 
+from core.models import UserProfile
+from core.forms import UserProfileForm
+
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
         return auth_login(request, *args, **kwargs)
@@ -82,7 +85,7 @@ def company(request, company_slug=None, selected="profile"):
 @login_required
 def personal(request, selected="profile"):
     """
-    Personal data of the user profile
+    UserProfileal data of the user profile
     """
     
     profile, created = UserProfile.objects.get_or_create(user=request.user)

@@ -4,8 +4,11 @@ from django.contrib import admin
 from models import (Encounter, Order, Problem, Immunization, Visit)
 from django.db.models.base import ModelBase
 from forms import (EncounterForm, OrderForm, ProblemForm, ImmunizationForm, VisitForm)
+from django.views.generic.base import TemplateView
 
-urlpatterns = patterns('')
+urlpatterns = patterns('',
+    url(r'^$', TemplateView.as_view(template_name='website/how_it_works.html'),name='records'),
+)
 
 for M in (Encounter, Order, Problem, Immunization, Visit):
     #The app itself

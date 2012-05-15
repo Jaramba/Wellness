@@ -2,6 +2,14 @@ from models import *
 from django import forms
 from django.contrib.auth.models import User
 
+
+class HealthCareFacilityForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		return super(HealthCareFacilityForm, self).__init__(*args, **kwargs)
+	
+	class Meta:
+		model = HealthCareFacility
+
 class HealthWorkerAdminForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		return super(HealthWorkerAdminForm, self).__init__(*args, **kwargs)

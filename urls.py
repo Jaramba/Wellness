@@ -10,6 +10,16 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 )
 
+
+#apps
+urlpatterns += patterns('',
+    url(r'^$', 'views.index', name="index"),
+    url(r'^admin_tools/', include('admin_tools.urls')),
+    url(r'^records/', include('records.urls')),
+    url(r'^providers/', include('healthprovider.urls')),
+    url(r'', include('userprofile.urls')),
+)
+
 #Acccount
 urlpatterns += patterns('',
     # Registration
@@ -22,14 +32,6 @@ urlpatterns += patterns('',
     url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
         {'template_name': 'userprofile/account/password_reset_complete.html'}, name="password_reset_complete"),
 )
-
-#apps
-urlpatterns += patterns('',
-    url(r'^$', 'views.index', name="index"),
-    url(r'^admin_tools/', include('admin_tools.urls')),
-    url(r'^records/', include('records.urls')),
-)
-
 #The app itself
 urlpatterns += patterns('',
     url(r'^register/$', 'userprofile.views.register', {'template_name':'sign_up.html'},name='register'),
@@ -38,12 +40,8 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-    url(r'^about/$', TemplateView.as_view(template_name='website/about.html'), name="about"),
-    url(r'^how-it-works/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="how_it_works"),
-    url(r'^resources/$', TemplateView.as_view(template_name='website/resources.html'), name="resources"),
-    url(r'^what-it-is/$', TemplateView.as_view(template_name='website/what_it_is.html'), name="what_it_is"),
+    url(r'^messages/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="messages"),
     url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
-    url(r'^rewards/$', TemplateView.as_view(template_name='website/rewards.html'), name="rewards"),
     url(r'^product-guide/$', TemplateView.as_view(template_name='website/product_guide.html'), name="product_guide"),
     url(r'^faqs/$', TemplateView.as_view(template_name='website/faqs.html'), name="faqs"),
     url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),

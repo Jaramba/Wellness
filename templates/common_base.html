@@ -1,7 +1,6 @@
 {% extends "index.html" %}
-{% load inclusions %}
 
-{% block title %}Inposting{% endblock %}
+{% block title %}Uhai{% endblock %}
 
 {% block signin_links %}{% endblock %}
 
@@ -13,16 +12,15 @@
     <!-- menu -->
     <div id="mainmenu">
 		<ul id="menu">
-			<li><a class="current" href="{% url index %}">Dashboard</a></li>
-			<li><a href="{% url student-interview-invite-list %}">My Invites</a></li>
-			<li><a href="{% url applicant_test_list %}">My Appraisals</a></li>
-			<li><a href="{% url public-cv request.user.cv.slug %}">My CV/Resume</a></li>
+			<li><a class="current" href="{% url index %}">Home</a></li>
+			<li><a href="{% url messages %}">Messages</a></li>
+			<li><a href="{% url records %}">Records</a></li>
+			<li><a href="{% url providers %}">Providers</a></li>
 			<li>
 				<a id="select-company" style="clear: both; width:55px" href="#">Account</a>
 				<span id="company-dropdown">
 					<ul class="account-dropdown" id="yw13" style="display: none; ">
 						<li><a href="{% url settings %}">Edit Profile</a></li>
-						<li><a href="{% url applicant-preferences %}">Edit Preferences</a></li>
 						<li><a href="{% url settings-password %}">Change Password</a></li>
 						<li class="list-last"><a href="{% url logout %}">Logout</a></li>
 					</ul>

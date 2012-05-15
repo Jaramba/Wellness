@@ -22,6 +22,7 @@ INSTALLED_APPS = (
 	#'notification',
 	'fileuploader',
 	'uni_form',
+	'userprofile',
 	'core',
 	'records',
 	'programs',
