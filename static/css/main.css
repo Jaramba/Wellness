@@ -44,7 +44,6 @@ h1
 {
 	float: left;
 	font-size: 2.1em;
-	letter-spacing: -1.4px;
 	margin: 0 0 10px 0;
 	padding: 34px 0 0 10px;
 }
@@ -566,7 +565,7 @@ h6
 #page li
 {
 	list-style: square;
-	padding: 6px 0;
+	padding: 3px 0;
 }
 .pleft
 {
@@ -727,10 +726,8 @@ h6
 #content
 {
 	float: left;
-	margin-bottom: 75px;
-	margin-top: 30px;
+	margin-bottom: 25px;
 	position: relative;
-	width: 710px;
 }
 #content.full
 {
@@ -4236,4 +4233,8 @@ div#resume .edit_form textarea#additionalinfo
 
 #stats-bar .greetings.applicant {
 	width: 210px;
+}
+
+.names{
+	width: 250px;
 }

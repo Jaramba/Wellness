@@ -1,0 +1,59 @@
+
+.frameBody
+{
+    font-family:Verdana, Arial, sans-serif;
+    font-size:70%;
+    margin:0;
+	padding:1em;
+    height:100%;
+}
+
+.frameBody p
+{
+    padding:0;
+}
+
+.rte-zone
+{
+	width:350px;
+	margin:0;
+	padding:0;
+	height:160px;
+	border:1px #999 solid;
+    clear:both;
+}
+
+.rte-edm {
+	display:block;
+}
+
+.rte-toolbar { 
+	overflow:hidden; 
+	background:url("../images/boxtopdown.png") repeat-x scroll center top transparent;
+}
+
+.rte-toolbar a, .rte-toolbar a img {
+	border:0;
+	vertical-align:bottom;
+}
+
+.rte-toolbar p {
+    float:left;
+    margin:0;
+    padding-right:5px;
+}
+
+.forecolor
+{
+    text-decoration:none;
+}
+
+.colorsqare
+{
+    width:10px;
+    height:10px;
+    float:left;
+    border: 3px double gray;
+    margin:3px 2px;
+}
+

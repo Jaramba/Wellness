@@ -17,6 +17,7 @@ urlpatterns += patterns('',
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^records/', include('records.urls')),
     url(r'^providers/', include('healthprovider.urls')),
+    url(r'^insurance/', include('insuranceprovider.urls')),
     url(r'', include('userprofile.urls')),
 )
 

@@ -1,0 +1,136 @@
+#toolbar 
+{
+	margin: 0 0 12px;
+	padding: 7px;
+	line-height: 100%;
+	background: #EFEFEF;
+	border: solid 1px #EEE;
+}
+
+#toolbar li {
+	margin: 0;
+	padding: 0;
+	float: left;
+	position: relative;
+	list-style: none;
+}
+
+#toolbar .checked
+{
+	background-image: url(/images/icons/16/102.png) !important;
+	background-position: right center !important;
+	background-repeat: no-repeat !important;
+}
+
+#toolbar a 
+{
+	background-color: #f5f5f5;
+	color: #666;
+	font-weight: 700;
+	text-decoration: none;
+	display: block;
+	padding:  2px 12px 3px 12px;
+	margin: 0;
+	border: 1px solid #C9C9C9;
+	margin-right: 6px;
+	border-radius: 2px;
+}
+
+#toolbar .current a, #toolbar li:hover > a {
+	background: white;
+	color: #444;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	border: 1px solid silver;
+}
+
+/* sub levels link hover */
+#toolbar ul li:hover a, #toolbar li:hover li a {
+	background: none;
+	border: none;
+	color: #666;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+#toolbar hr
+{
+	margin: 0;
+	padding: 0;
+	border-bottom: 0.5px dotted #999;
+}
+
+#toolbar ul a:hover {
+	background: #ccc !important; 
+	background: gradient(linear, left top, left bottom, from(#ccc), to(#aaa)) !important; 
+
+	color: #fff !important;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	margin-top: 0px;
+	padding: 5px 3px 5px 3px;
+	
+	border-radius: 1px;
+}
+
+/* level 2 list */
+#toolbar ul {
+	background-color: White;
+	color: #444;
+	box-shadow: 3px 3px 10px #bbb;
+	border: solid 1px #b4b4b4;
+	display: none;
+	margin: 0;
+	padding: 3px;
+	width: 185px;
+	position: absolute;
+	top: 17px;
+	left: 0;
+	z-index: 7500;
+}
+/* dropdown */
+#toolbar li:hover > ul {
+	display: block;
+}
+#toolbar ul li {
+	float: none;
+	margin: 0;
+	padding: 3px;
+}
+#toolbar ul a {
+	font-weight: normal;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
+	padding: 5px 3px 5px 3px;
+
+}
+/* level 3+ list */
+#toolbar ul ul {
+	left: 181px;
+	top: 0;
+}
+
+#toolbar:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+#toolbar {
+	display: inline-block;
+}
+
+.searchbox
+{
+	 width: 150px; 
+	 padding: 0 0 0 20px; 
+	 background: white url(/images/icons/16/049.png) top left no-repeat;
+	 margin:0;
+	 border:1px solid #ddd; 
+}
+
+html[xmlns] #toolbar {
+	display: block;
+}
+* html #toolbar {
+	height: 1%;
+}

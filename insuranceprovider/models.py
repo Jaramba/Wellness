@@ -37,8 +37,14 @@ class Insurance(models.Model):
 	
 
 class PatientInsurance(Record):
+	STATUS = (
+		(0, "Inactive"),
+		(1, "Approved"),
+		(2, "Suspended"),
+		(3, "Expired")
+	)
 	coverage_start_date = models.DateField()
 	coverage_end_date = models.DateField()
-	insurance = models.ForeignKey('Insurance')
-	status = models.CharField(max_length=50)
+	insurance = models.ForeignKey('Insurance', help_text='Type of cover')
+	status = models.CharField(max_length=50, choices=STATUS)
 	subscriber_policy_id = models.CharField(max_length=100)

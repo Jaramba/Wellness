@@ -24,12 +24,12 @@ INSTALLED_APPS = (
 	'uni_form',
 	'userprofile',
 	'core',
+	'insuranceprovider',
 	'records',
 	'programs',
 	'patient',
 	'healthprovider',
 	'medication',
-	'insuranceprovider',
 )
 
 AUTHENTICATION_BACKENDS = (

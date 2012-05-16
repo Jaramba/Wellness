@@ -1,21 +1,20 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 
-from models import (EmployerCompany, HealthInsuranceProvider, Insurance, PatientInsurance)
+from models import (Patient)
 from django.db.models.base import ModelBase
-from forms import (EmployerCompanyForm, HealthInsuranceProviderForm, InsuranceForm, PatientInsuranceForm)
+from forms import (PatientForm)
 from django.views.generic.base import TemplateView
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='website/how_it_works.html'),name='providers'),
 )
 
-for M in (EmployerCompany, HealthInsuranceProvider, 
-          Insurance, PatientInsurance):
+for M in (Patient):
     #The app itself
     model_name = M.__name__.lower()
     form_class = globals()[M.__name__+'Form'] 
-    urlpatterns += patterns('insuranceprovider.views',
+    urlpatterns += patterns('healthprovider.views',
         url(r'^%s/list/$' % model_name, model_name, {'action' : 'list', 'model_class':M}, name='%s-list' % model_name),
         url(r'^%s/create/$' % model_name, model_name, {
                         'action' : 'create',
