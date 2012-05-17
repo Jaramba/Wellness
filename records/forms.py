@@ -35,12 +35,12 @@ class OrderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
-        self.helper.form_class = 'form'
+        self.helper.form_class = 'general_form'
         self.helper.form_method = 'POST'
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div('', css_class='clearfix'),
+            Div(''),
             Div(
                 Div(
                     Submit('Save', 'Save Changes', css_class='button blue'),
@@ -59,17 +59,17 @@ class VisitForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'visit-form'
-        self.helper.form_class = 'form'
+        self.helper.form_class = 'general_form'
         self.helper.form_method = 'POST'
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div('patient', css_class='clearfix'),
-            Div('type', css_class='clearfix'),
-            Div('indication_notes', css_class='clearfix'),
-            Div('location', css_class='clearfix'),
-            Div('start_time', css_class='clearfix'),
-            Div('stop_time', css_class='clearfix'),
+            Row(Column('patient')),
+            Row(Column('type')),
+            Row(Column('indication_notes')),
+            Row(Column('location')),
+            Row(Column('start_time')),
+            Row(Column('stop_time')),
             Div(
                 Div(
                     Submit('Save', 'Save Changes', css_class='button blue'),
@@ -87,33 +87,45 @@ class VisitForm(forms.ModelForm):
         
 class ProblemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = 'problem-form'
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
         self.layout = Layout(
-            Div('', css_class='clearfix'),
-            Div(
-                Div(
-                    Submit('Save', 'Save Changes', css_class='button blue'),
-                    css_class='input no-label'
-                ),
-                css_class='clearfix grey-highlight'
+            Div(HTML('<h2 class="form_title">Create Problem</h2>'), css_class="form_title_div"),
+            Row(Column('code')),
+            Row(Column('type')),
+            Row(Column('source')),
+            Row(Column('status')),
+            Row(Column('notes')),
+            Row(
+                Column(
+                    Submit('Save', 'Save Changes'),
+                )
             )
         )
+        
+        self.helper.add_layout(self.layout)
         super(ProblemForm, self).__init__(*args, **kwargs)
         
     class Meta:
         model = Problem
+        exclude = ['patient', 'attachments', 'name']
         
 class TrackingFieldForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = 'problem-form'
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
         self.layout = Layout(
-            Div('', css_class='clearfix'),
-            Div(
-                Div(
-                    Submit('Save', 'Save Changes', css_class='button blue'),
-                    css_class='input no-label'
-                ),
-                css_class='clearfix grey-highlight'
-            )
         )
+        
+        self.helper.add_layout(self.layout)
         super(TrackingFieldForm, self).__init__(*args, **kwargs)
         
     class Meta:
@@ -121,18 +133,34 @@ class TrackingFieldForm(forms.ModelForm):
         
 class ImmunizationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = 'problem-form'
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
         self.layout = Layout(
-            Div('', css_class='clearfix'),
-            Div(
-                Div(
-                    Submit('Save', 'Save Changes', css_class='button blue'),
-                    css_class='input no-label'
-                ),
-                css_class='clearfix grey-highlight'
+            Div(HTML('<h2 class="form_title">Create Immunization</h2>'), css_class="form_title_div"),
+            Row(Column('name')),
+            Row(Column('code')),
+            Row(Column('vaccine')),
+            Row(Column('brand_name')),
+            Row(Column('lot_number')),
+            Row(Column('route')),
+            Row(Column('site')),
+            Row(Column('expiry_date')),
+            Row(Column('practice_date')),
+            Row(Column('notes')),
+            Row(
+                Column(
+                    Submit('Save', 'Save Changes'),
+                )
             )
         )
+        self.helper.add_layout(self.layout)
         super(ImmunizationForm, self).__init__(*args, **kwargs)
         
     class Meta:
         model = Immunization
+        exclude = ['patient', 'attachments']
         

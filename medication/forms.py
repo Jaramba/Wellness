@@ -1,14 +1,9 @@
 from django import forms
 from models import *
 
-class TrackingItemForm(forms.ModelForm):
+class MedicationIngredientForm(forms.ModelForm):
     class Meta:
-        model = TrackingItem
-        exclude = ['user']
-
-class ReminderForm(forms.ModelForm):
-    class Meta:
-        model = Reminder
+        model = MedicationIngredient
 
 class MedicationForm(forms.ModelForm):
     class Meta:

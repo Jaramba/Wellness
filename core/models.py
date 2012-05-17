@@ -19,7 +19,7 @@ class Attachment(models.Model):
 
 class MetaData(models.Model):
 	name = models.CharField(max_length=120)
-	description = models.CharField(max_length=500)
+	description = models.CharField(max_length=500, null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
 	date_changed = models.DateTimeField(auto_now_add=True)
 	
@@ -28,12 +28,17 @@ class MetaData(models.Model):
 	
 	class Meta:
 		abstract=True
-		
-class RelationshipType(MetaData):
+
+class RelationshipType(models.Model):
 	a_is_to_b = models.CharField(max_length=50)
 	b_is_to_a = models.CharField(max_length=50)
 	weight = models.SmallIntegerField(default=0)
 	preffered = models.BooleanField(default=False)
+	date_created = models.DateTimeField(auto_now=True)
+	date_changed = models.DateTimeField(auto_now_add=True)
+	
+	def __unicode__(self):
+		return self.a_is_to_b + ' - ' + self.b_is_to_a
 
 class Relationship(models.Model):
 	'''
@@ -52,9 +57,12 @@ class Relationship(models.Model):
 	relationship = models.ForeignKey(RelationshipType)
 	emergency_contact = models.BooleanField(default=False)
 	
+	def __unicode__(self):
+		return '%s and %s (%s)' % (self.person_a, self.person_b, self.relationship)
+	
 	@transaction.commit_on_success
 	def save(self, force_insert=False, force_update=False):
-		if self.patient_id and self.kin_id and (self.kin_id == self.patient_id):
+		if self.person_a_id and self.person_b_id and (self.person_a_id == self.person_b_id):
 			class CircularRelationException(Exception):pass
 			raise CircularRelationException('Sorry. You cannot set yourself as a relation')
 		else:
@@ -76,8 +84,8 @@ class Person(models.Model):
 	
 	relationship = models.ManyToManyField(
 		'self',
-		through='Relationship', 
-		symmetrical=False, 
+		through='Relationship',
+		symmetrical=False,
 	)
 
 	first_name = models.CharField(max_length=50, null=True)

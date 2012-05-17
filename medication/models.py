@@ -88,4 +88,4 @@ class Prescription(models.Model):
         return '%s, %s %s taken %s %s for %s, prescribed by %s' % (
             self.medication.name, self.quantity, self.unit, self.get_frequency_display(), self.get_period_display(), self.patient, self.prescribed_by
         )
-    
+     

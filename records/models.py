@@ -35,7 +35,6 @@ class ProblemStatus(MetaData):pass
 
 class Problem(Record):
     code = models.CharField(max_length=50)
-    details = models.CharField(max_length=150)
     type = models.ForeignKey('ProblemType')
     source = models.ForeignKey('healthprovider.HealthWorker')
     status = models.ForeignKey('ProblemStatus')

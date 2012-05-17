@@ -10,14 +10,15 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 )
 
-
 #apps
 urlpatterns += patterns('',
     url(r'^$', 'views.index', name="index"),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^records/', include('records.urls')),
     url(r'^providers/', include('healthprovider.urls')),
+    url(r'^employee-programs/', include('programs.urls')),
     url(r'^insurance/', include('insuranceprovider.urls')),
+    url(r'', include('core.urls')),
     url(r'', include('userprofile.urls')),
 )
 
@@ -54,7 +55,3 @@ if settings.DEBUG:
         (r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.STATIC_ROOT}),
         (r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root' : settings.MEDIA_ROOT, 'show_indexes': True}),
     )
-
-
-
-

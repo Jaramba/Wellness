@@ -1,5 +1,5 @@
 from django import forms
-from models import UserProfile
+from models import *
 from uni_form.helper import *
 from uni_form.layout import *
 
@@ -42,3 +42,11 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'picture':forms.HiddenInput
         }
+
+class RelationshipForm(forms.ModelForm):
+    class Meta:
+        model = Relationship
+
+class RelationshipTypeForm(forms.ModelForm):
+    class Meta:
+        model = RelationshipType

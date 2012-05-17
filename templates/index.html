@@ -19,22 +19,7 @@
 
 {% block bg %}
 	<div class="wrap">
-		{% block header %} <!-- logo -->
-			<h1><a href="{% url index %}"><img src="{{ STATIC_URL }}images/logo.png" /></a></h1>
-			<!-- /logo -->
-			<!-- menu -->
-			<div id="mainmenu">
-				{% block mainmenu %}
-					<ul id="menu">
-						<li> <a class="current" href="{% url index %}">HOME</a> </li>
-						<li> <a href="{% url what_it_is %}">WHAT IT IS</a> </li>
-						{% if not request.user.is_authenticated %}<li> <a class="try" href="{% url login %}">LOGIN</a> </li>{% endif %}
-					</ul>
-				{% endblock %}
-			</div>
-			<div class="separator"></div>
-			<!-- /menu -->
-		{% endblock header %} 
+		{% block header %} <!-- logo --> {% endblock header %}
 		
 		{% block stats-bar %}{% endblock stats-bar %}
 		{% block no_pitch %}{% endblock no_pitch %}
