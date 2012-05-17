@@ -9,18 +9,12 @@ INSTALLED_APPS = (
 	'admin_tools.dashboard',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
-	'django.contrib.comments',
 	'django.contrib.sessions',
 	'django.contrib.sites',
 	'django.contrib.messages',
 	'django.contrib.admin',
-	'django.contrib.admindocs',
 	'django.contrib.markup',	
 	'django.contrib.staticfiles',
-	'django.contrib.flatpages', #Put the '#' for the tests... Django guys made a mistake
-	# i.e; the test does not look at LOGIN_URL; automatically uses '/accounts/login/'	
-	#'notification',
-	'fileuploader',
 	'uni_form',
 	'userprofile',
 	'core',

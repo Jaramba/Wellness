@@ -18,6 +18,7 @@ urlpatterns += patterns('',
     url(r'^providers/', include('healthprovider.urls')),
     url(r'^employee-programs/', include('programs.urls')),
     url(r'^insurance/', include('insuranceprovider.urls')),
+    url(r'^medications/', include('medication.urls')),
     url(r'', include('core.urls')),
     url(r'', include('userprofile.urls')),
 )

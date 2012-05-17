@@ -57,8 +57,6 @@ class AttachmentAdmin(admin.ModelAdmin):
 admin.site.register(Attachment, AttachmentAdmin)    
 
 admin.site.unregister(User)
-admin.site.unregister(FlatPage)
-admin.site.unregister(Comment)
 admin.site.unregister(Site)
 admin.site.register(User, UserUserProfileAdmin)
 admin.site.register(Relationship)
