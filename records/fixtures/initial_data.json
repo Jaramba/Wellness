@@ -1,0 +1,42 @@
+[
+  {
+    "pk": 1, 
+    "model": "records.problemtype", 
+    "fields": {
+      "date_created": "2012-05-17 02:39:12", 
+      "date_changed": "2012-05-17 02:39:12", 
+      "name": "Condition", 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "records.problemtype", 
+    "fields": {
+      "date_created": "2012-05-17 02:39:38", 
+      "date_changed": "2012-05-17 02:39:38", 
+      "name": "Allergy", 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "records.problemtype", 
+    "fields": {
+      "date_created": "2012-05-17 02:39:53", 
+      "date_changed": "2012-05-17 02:39:53", 
+      "name": "Disease", 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "records.problemtype", 
+    "fields": {
+      "date_created": "2012-05-17 02:39:59", 
+      "date_changed": "2012-05-17 02:39:59", 
+      "name": "Infection", 
+      "description": ""
+    }
+  }
+]
