@@ -5,11 +5,13 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.comments.models import Comment
 from django.contrib.sites.models import Site
+from healthprovider.models import HealthWorker
+from patient.models import Patient
 
 class UserProfileAdmin(admin.StackedInline):
     model = UserProfile
     extra = 1
-
+    
 class UserUserProfileAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
@@ -29,6 +31,17 @@ class UserUserProfileAdmin(UserAdmin):
     def mobile_phone(self, user):
         return user.profile.mobile_phone or ''
     
+    def make_healthworker(self, request, queryset):
+        for user in queryset:
+            HealthWorker.objects.create(user=user)
+    make_healthworker.short_description = 'Approve Health worker profile'
+    
+    def make_patient(self, request, queryset):
+        for user in queryset:
+            user.profile.userprofile.patient
+    make_patient.short_description = 'Approve Patient profile'
+    
+    actions = ['make_patient', 'make_healthworker']
     list_display = ('username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_staff')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     inlines = (UserProfileAdmin,)

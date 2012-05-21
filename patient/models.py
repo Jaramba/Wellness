@@ -62,11 +62,9 @@ class Patient(UserProfile):
 	disabilities = models.CharField(max_length=250, null=True, blank=True)
 
 	employer = models.ForeignKey('insuranceprovider.EmployerCompany')
-	
 	insurance	= models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
 	medications	= models.ManyToManyField('medication.Medication', through='medication.Prescription')
 
-	doctor = models.ForeignKey('healthprovider.HealthWorker', null=True, related_name='physician')
 	last_doctor_visit = models.DateTimeField(null=True)
 	
 	def __unicode__(self):

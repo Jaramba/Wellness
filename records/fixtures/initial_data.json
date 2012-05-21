@@ -55,7 +55,7 @@
       "max_value": "230", 
       "min_value": "50", 
       "daily_cummulative": false, 
-      "record": 3,
+      "record": 3, 
       "ideal_min_value": "90", 
       "ideal_max_value": "130", 
       "unit": "mmHg"
@@ -69,7 +69,7 @@
       "max_value": "140", 
       "min_value": "35", 
       "daily_cummulative": false, 
-      "record": 3,
+      "record": 3, 
       "ideal_min_value": "65", 
       "ideal_max_value": "90", 
       "unit": "mmHg"
@@ -83,7 +83,7 @@
       "max_value": "400", 
       "min_value": "40", 
       "daily_cummulative": false, 
-      "record": 2,
+      "record": 2, 
       "ideal_min_value": "80", 
       "ideal_max_value": "180", 
       "unit": "mg/dL"
@@ -97,7 +97,7 @@
       "max_value": "38", 
       "min_value": "36", 
       "daily_cummulative": false, 
-      "record": 5,
+      "record": 5, 
       "ideal_min_value": "37", 
       "ideal_max_value": "37", 
       "unit": "degrees (Centigrade)"
@@ -111,7 +111,7 @@
       "max_value": "135", 
       "min_value": "2.25", 
       "daily_cummulative": false, 
-      "record": 1,
+      "record": 1, 
       "ideal_min_value": "45", 
       "ideal_max_value": "72", 
       "unit": "kg"
@@ -125,7 +125,7 @@
       "max_value": "16", 
       "min_value": "0", 
       "daily_cummulative": false, 
-      "record": 6,
+      "record": 6, 
       "ideal_min_value": "8", 
       "ideal_max_value": "10", 
       "unit": "hours"

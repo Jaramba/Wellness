@@ -29,7 +29,7 @@ class ProgramWorkflow(models.Model):
     Example: An Alcoholic Program would have Workflows like:
     Family Intervention, Withdrawal...    
     '''
-    enrolled_program = models.ForeignKey("EnrolledProgram")
+    program = models.ForeignKey("Program")
     concept_notes = models.CharField(max_length=500)
     start_date = models.DateField(auto_now=True)
     end_date = models.DateField()
@@ -45,6 +45,9 @@ class ProgramWorkflowState(MetaData):
     initial = models.BooleanField(default=False)
     terminal = models.BooleanField(default=False)
     concept_notes = models.CharField(max_length=500)
+    
+    def __unicode__(self):
+        return self.program_workflow
         
 class EnrolledProgram(models.Model):
     '''

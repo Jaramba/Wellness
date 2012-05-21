@@ -108,7 +108,7 @@ class Person(models.Model):
 	latitude = models.CharField(max_length=50, null=True, blank=True)
 	longitude = models.CharField(max_length=50, null=True, blank=True)
 	
-	date_edited = models.DateTimeField(auto_now_add=True)
+	date_edited = models.DateTimeField(auto_now=True)
 	date_created = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):

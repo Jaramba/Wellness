@@ -21,7 +21,6 @@ class PatientTrackingRecord(models.Model):
     tracking_record = models.ForeignKey('TrackingRecord')
     value = models.CharField(max_length=10)
     
-    
     def __unicode__(self):
         return 'Tracking %s for %s' % (self.tracking_record, self.patient)
 

@@ -1,0 +1,34 @@
+[
+  {
+    "pk": 1, 
+    "model": "programs.programtype", 
+    "fields": {
+      "date_created": "2012-05-21 06:16:55", 
+      "description": "", 
+      "date_changed": "2012-05-21 06:16:55", 
+      "name": "Alcoholism Program", 
+      "slug": "alcoholism-program"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "programs.program", 
+    "fields": {
+      "type": 1, 
+      "expected_outcome_notes": "Stop Drinking", 
+      "concept_notes": "20 days without drinking... find out why he drinks"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "programs.enrolledprogram", 
+    "fields": {
+      "enroller": 6, 
+      "date_completed": "2012-05-21", 
+      "outcome_notes": "", 
+      "program": 1, 
+      "enrollee": 5, 
+      "date_enrolled": "2012-05-21"
+    }
+  }
+]
