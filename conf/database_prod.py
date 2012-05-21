@@ -7,12 +7,12 @@ from settings import os, CURRENT_PATH
 
 DATABASES = {
     'default': {
-        'ENGINE'    : 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME'      : 'uhai', # Or path to database file if using sqlite3.
+        'ENGINE'    : 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME'      : CURRENT_PATH+'/../db/wellness.db', # Or path to database file if using sqlite3.
         'HOST'      : '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'USER'      : 'uhai',
+        'USER'      : '',
         'PORT'      : '',                      # Set to empty string for default. Not used with sqlite3.
-        'PASSWORD'  : 'uhai90@210!',
+        'PASSWORD'  : '',
  
     }
 }
