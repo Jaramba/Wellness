@@ -1,5 +1,353 @@
 [
   {
+    "pk": 1, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:02:47", 
+      "date_created": "2012-05-21 08:02:47", 
+      "b_is_to_a": "Child", 
+      "a_is_to_b": "Parent"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:02:58", 
+      "date_created": "2012-05-21 08:02:58", 
+      "b_is_to_a": "Child", 
+      "a_is_to_b": "Grandparent"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:03:06", 
+      "date_created": "2012-05-21 08:03:06", 
+      "b_is_to_a": "Cousin", 
+      "a_is_to_b": "Cousin"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:03:18", 
+      "date_created": "2012-05-21 08:03:18", 
+      "b_is_to_a": "Niece", 
+      "a_is_to_b": "Aunt"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:03:30", 
+      "date_created": "2012-05-21 08:03:30", 
+      "b_is_to_a": "Niece", 
+      "a_is_to_b": "Uncle"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:03:40", 
+      "date_created": "2012-05-21 08:03:40", 
+      "b_is_to_a": "Nephew", 
+      "a_is_to_b": "Aunt"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:03:46", 
+      "date_created": "2012-05-21 08:03:46", 
+      "b_is_to_a": "Nephew", 
+      "a_is_to_b": "Uncle"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:03:56", 
+      "date_created": "2012-05-21 08:03:56", 
+      "b_is_to_a": "Child", 
+      "a_is_to_b": "Guardian"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:04:10", 
+      "date_created": "2012-05-21 08:04:10", 
+      "b_is_to_a": "Child", 
+      "a_is_to_b": "Foster Parent"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "core.relationshiptype", 
+    "fields": {
+      "weight": 0, 
+      "preffered": false, 
+      "date_changed": "2012-05-21 08:04:28", 
+      "date_created": "2012-05-21 08:04:28", 
+      "b_is_to_a": "Doctor", 
+      "a_is_to_b": "Patient"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "core.relationship", 
+    "fields": {
+      "next_of_kin": false, 
+      "emergency_contact": false, 
+      "person_b": 3, 
+      "relationship": 10, 
+      "person_a": 2
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "core.person", 
+    "fields": {
+      "province": "Nairobi", 
+      "first_name": "Onesmus", 
+      "last_name": "Mukewa", 
+      "middle_name": "Wekalao", 
+      "title": "mr", 
+      "work_phone": "+254736705812", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "Bungoma", 
+      "mobile_phone": "+254736705812", 
+      "postal_code": "30177-00100", 
+      "home_phone": "+254736705812", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 04:44:26", 
+      "date_edited": "2012-05-21 04:18:50"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "core.person", 
+    "fields": {
+      "province": "", 
+      "first_name": "David", 
+      "last_name": "Simbiri", 
+      "middle_name": "Simbiri", 
+      "title": "mr", 
+      "work_phone": "", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "", 
+      "mobile_phone": "+254735199807", 
+      "postal_code": "", 
+      "home_phone": "", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 04:46:48", 
+      "date_edited": "2012-05-21 04:46:48"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "core.person", 
+    "fields": {
+      "province": "", 
+      "first_name": "Davis", 
+      "last_name": "Ambima", 
+      "middle_name": "Khaemba", 
+      "title": "dr", 
+      "work_phone": "", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "", 
+      "mobile_phone": "+254721111234", 
+      "postal_code": "", 
+      "home_phone": "", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 07:02:16", 
+      "date_edited": "2012-05-21 07:02:16"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "core.person", 
+    "fields": {
+      "province": "Nairobi", 
+      "first_name": "Mary", 
+      "last_name": "Wekasa", 
+      "middle_name": "Nafula", 
+      "title": "mrs", 
+      "work_phone": "254736705812", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "", 
+      "mobile_phone": "+254721111265", 
+      "postal_code": "30177-00100", 
+      "home_phone": "254736705812", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 04:55:18", 
+      "date_edited": "2012-05-21 04:48:39"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "core.person", 
+    "fields": {
+      "province": "Nairobi", 
+      "first_name": "Edth", 
+      "last_name": "Khalai", 
+      "middle_name": "Wekalao", 
+      "title": "miss", 
+      "work_phone": "254736705812", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "", 
+      "mobile_phone": "+254721111234", 
+      "postal_code": "30177-00100", 
+      "home_phone": "254736705812", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 04:52:05", 
+      "date_edited": "2012-05-21 04:49:45"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "core.person", 
+    "fields": {
+      "province": "Nairobi", 
+      "first_name": "Davis", 
+      "last_name": "Ambima", 
+      "middle_name": "Litunya", 
+      "title": "mr", 
+      "work_phone": "254736705812", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "", 
+      "mobile_phone": "+254721111232", 
+      "postal_code": "30177-00100", 
+      "home_phone": "254736705812", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 04:51:44", 
+      "date_edited": "2012-05-21 04:50:33"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "core.person", 
+    "fields": {
+      "province": "Nairobi", 
+      "first_name": "Mary", 
+      "last_name": "Khaemba", 
+      "middle_name": "Masika", 
+      "title": "mrs", 
+      "work_phone": "254736705812", 
+      "photo": "", 
+      "longitude": "", 
+      "county": "", 
+      "mobile_phone": "+254735100807", 
+      "postal_code": "30177-00100", 
+      "home_phone": "254736705812", 
+      "village": "", 
+      "latitude": "", 
+      "home_address": "", 
+      "country": "KE", 
+      "date_created": "2012-05-21 04:55:08", 
+      "date_edited": "2012-05-21 04:51:10"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 2
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 3
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 4
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 5
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 6
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "core.userprofile", 
+    "fields": {
+      "user": 7
+    }
+  },
+  {
     "pk": 142, 
     "model": "auth.permission", 
     "fields": {
@@ -2482,354 +2830,6 @@
       "password": "sha1$196c3$1b7ddc03089e2e39b49604f1130461ec59fff20b", 
       "email": "kanarelo+mmasika@gmail.com", 
       "date_joined": "2012-05-21 04:51:10"
-    }
-  },
-  {
-    "pk": 1, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:02:47", 
-      "date_created": "2012-05-21 08:02:47", 
-      "b_is_to_a": "Child", 
-      "a_is_to_b": "Parent"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:02:58", 
-      "date_created": "2012-05-21 08:02:58", 
-      "b_is_to_a": "Child", 
-      "a_is_to_b": "Grandparent"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:03:06", 
-      "date_created": "2012-05-21 08:03:06", 
-      "b_is_to_a": "Cousin", 
-      "a_is_to_b": "Cousin"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:03:18", 
-      "date_created": "2012-05-21 08:03:18", 
-      "b_is_to_a": "Niece", 
-      "a_is_to_b": "Aunt"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:03:30", 
-      "date_created": "2012-05-21 08:03:30", 
-      "b_is_to_a": "Niece", 
-      "a_is_to_b": "Uncle"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:03:40", 
-      "date_created": "2012-05-21 08:03:40", 
-      "b_is_to_a": "Nephew", 
-      "a_is_to_b": "Aunt"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:03:46", 
-      "date_created": "2012-05-21 08:03:46", 
-      "b_is_to_a": "Nephew", 
-      "a_is_to_b": "Uncle"
-    }
-  }, 
-  {
-    "pk": 8, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:03:56", 
-      "date_created": "2012-05-21 08:03:56", 
-      "b_is_to_a": "Child", 
-      "a_is_to_b": "Guardian"
-    }
-  }, 
-  {
-    "pk": 9, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:04:10", 
-      "date_created": "2012-05-21 08:04:10", 
-      "b_is_to_a": "Child", 
-      "a_is_to_b": "Foster Parent"
-    }
-  }, 
-  {
-    "pk": 10, 
-    "model": "core.relationshiptype", 
-    "fields": {
-      "weight": 0, 
-      "preffered": false, 
-      "date_changed": "2012-05-21 08:04:28", 
-      "date_created": "2012-05-21 08:04:28", 
-      "b_is_to_a": "Doctor", 
-      "a_is_to_b": "Patient"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "core.relationship", 
-    "fields": {
-      "next_of_kin": false, 
-      "emergency_contact": false, 
-      "person_b": 3, 
-      "relationship": 10, 
-      "person_a": 2
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "core.person", 
-    "fields": {
-      "province": "Nairobi", 
-      "first_name": "Onesmus", 
-      "last_name": "Mukewa", 
-      "middle_name": "Wekalao", 
-      "title": "mr", 
-      "work_phone": "+254736705812", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "Bungoma", 
-      "mobile_phone": "+254736705812", 
-      "postal_code": "30177-00100", 
-      "home_phone": "+254736705812", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 04:44:26", 
-      "date_edited": "2012-05-21 04:18:50"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "core.person", 
-    "fields": {
-      "province": "", 
-      "first_name": "David", 
-      "last_name": "Simbiri", 
-      "middle_name": "Simbiri", 
-      "title": "mr", 
-      "work_phone": "", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "", 
-      "mobile_phone": "+254735199807", 
-      "postal_code": "", 
-      "home_phone": "", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 04:46:48", 
-      "date_edited": "2012-05-21 04:46:48"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "core.person", 
-    "fields": {
-      "province": "", 
-      "first_name": "Davis", 
-      "last_name": "Ambima", 
-      "middle_name": "Khaemba", 
-      "title": "dr", 
-      "work_phone": "", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "", 
-      "mobile_phone": "+254721111234", 
-      "postal_code": "", 
-      "home_phone": "", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 07:02:16", 
-      "date_edited": "2012-05-21 07:02:16"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "core.person", 
-    "fields": {
-      "province": "Nairobi", 
-      "first_name": "Mary", 
-      "last_name": "Wekasa", 
-      "middle_name": "Nafula", 
-      "title": "mrs", 
-      "work_phone": "254736705812", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "", 
-      "mobile_phone": "+254721111265", 
-      "postal_code": "30177-00100", 
-      "home_phone": "254736705812", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 04:55:18", 
-      "date_edited": "2012-05-21 04:48:39"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "core.person", 
-    "fields": {
-      "province": "Nairobi", 
-      "first_name": "Edth", 
-      "last_name": "Khalai", 
-      "middle_name": "Wekalao", 
-      "title": "miss", 
-      "work_phone": "254736705812", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "", 
-      "mobile_phone": "+254721111234", 
-      "postal_code": "30177-00100", 
-      "home_phone": "254736705812", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 04:52:05", 
-      "date_edited": "2012-05-21 04:49:45"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "core.person", 
-    "fields": {
-      "province": "Nairobi", 
-      "first_name": "Davis", 
-      "last_name": "Ambima", 
-      "middle_name": "Litunya", 
-      "title": "mr", 
-      "work_phone": "254736705812", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "", 
-      "mobile_phone": "+254721111232", 
-      "postal_code": "30177-00100", 
-      "home_phone": "254736705812", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 04:51:44", 
-      "date_edited": "2012-05-21 04:50:33"
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "core.person", 
-    "fields": {
-      "province": "Nairobi", 
-      "first_name": "Mary", 
-      "last_name": "Khaemba", 
-      "middle_name": "Masika", 
-      "title": "mrs", 
-      "work_phone": "254736705812", 
-      "photo": "", 
-      "longitude": "", 
-      "county": "", 
-      "mobile_phone": "+254735100807", 
-      "postal_code": "30177-00100", 
-      "home_phone": "254736705812", 
-      "village": "", 
-      "latitude": "", 
-      "home_address": "", 
-      "country": "KE", 
-      "date_created": "2012-05-21 04:55:08", 
-      "date_edited": "2012-05-21 04:51:10"
-    }
-  }, 
-  {
-    "pk": 1, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 1
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 2
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 3
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 4
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 5
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 6
-    }
-  }, 
-  {
-    "pk": 7, 
-    "model": "core.userprofile", 
-    "fields": {
-      "user": 7
     }
   }
 ]
