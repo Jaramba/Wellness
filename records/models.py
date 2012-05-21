@@ -19,6 +19,8 @@ class Reminder(models.Model):
 class PatientTrackingRecord(models.Model):
     patient = models.ForeignKey('patient.Patient')
     tracking_record = models.ForeignKey('TrackingRecord')
+    value = models.CharField(max_length=10)
+    
     
     def __unicode__(self):
         return 'Tracking %s for %s' % (self.tracking_record, self.patient)
@@ -41,7 +43,7 @@ class TrackingField(models.Model):
     ideal_max_value = models.CharField(max_length=5)
     
     def __unicode__(self):
-        return self.name
+        return '%s in %s' % (self.name, self.unit)
 
 class Image(Record):
     date = models.DateField()

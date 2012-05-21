@@ -11,6 +11,7 @@ visit = login_required(lambda request, *args, **kwargs: model_view(request, *arg
 immunization = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 trackingfield = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 trackingrecord = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
+patienttrackingrecord = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 
 @login_required
 def problem(request, problem_type='', *args, **kwargs):

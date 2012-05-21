@@ -1,9 +1,9 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 
-from models import (Encounter, Order, Problem, Immunization, Visit, TrackingRecord, TrackingField)
+from models import (Encounter, Order, Problem, Immunization, Visit, TrackingRecord, PatientTrackingRecord, TrackingField)
 from django.db.models.base import ModelBase
-from forms import (EncounterForm, OrderForm, ProblemForm, ImmunizationForm, VisitForm, TrackingRecordForm, TrackingFieldForm)
+from forms import (EncounterForm, OrderForm, ProblemForm, ImmunizationForm, VisitForm, PatientTrackingRecordForm, TrackingRecordForm, TrackingFieldForm)
 from django.views.generic.base import TemplateView
 
 urlpatterns = patterns('',
@@ -26,7 +26,7 @@ urlpatterns += patterns('records.views',
     ),
 )
 
-for M in (Encounter, Order, Immunization, Problem, Visit, TrackingRecord, TrackingField):
+for M in (Encounter, Order, Immunization, Problem, Visit, TrackingRecord, TrackingField, PatientTrackingRecord):
     #The app itself
     model_name = M.__name__.lower()
     form_class = globals()[M.__name__+'Form'] 

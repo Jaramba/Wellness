@@ -18,6 +18,8 @@ class UserUserProfileAdmin(UserAdmin):
         (('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     #OK, I tried @staticmethod, didnt work, weirdly, this works
+    def title(self, user):
+        return user.profile.get_title_display() or ''
     def first_name(self):
         return self.profile.first_name or ''
     def middle_name(self, user):
@@ -27,7 +29,7 @@ class UserUserProfileAdmin(UserAdmin):
     def mobile_phone(self, user):
         return user.profile.mobile_phone or ''
     
-    list_display = ('username', 'email', first_name, 'middle_name', last_name, 'mobile_phone', 'is_staff')
+    list_display = ('username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_staff')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     inlines = (UserProfileAdmin,)
 

@@ -115,8 +115,51 @@ class ProblemForm(forms.ModelForm):
         exclude = ['patient', 'attachments', 'name']
 
 class TrackingRecordForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
+        self.layout = Layout(
+            Div(''),
+            Div(
+                Div(
+                    Submit('Save', 'Save Changes', css_class='button blue'),
+                    css_class='input no-label'
+                ),
+                css_class='clearfix grey-highlight'
+            )
+        )
+        self.helper.add_layout(self.layout)
+        super(TrackingRecordForm, self).__init__(*args, **kwargs)
     class Meta:
         model = TrackingRecord
+        
+class PatientTrackingRecordForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
+        self.layout = Layout(
+            Div(''),
+            Div(
+                Div(
+                    Submit('Save', 'Save Changes', css_class='button blue'),
+                    css_class='input no-label'
+                ),
+                css_class='clearfix grey-highlight'
+            )
+        )
+        self.helper.add_layout(self.layout)
+        super(PatientTrackingRecordForm, self).__init__(*args, **kwargs)
+        
+    class Meta:
+        model = PatientTrackingRecord
         
 class TrackingFieldForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
