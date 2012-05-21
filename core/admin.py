@@ -7,7 +7,6 @@ from django.contrib.comments.models import Comment
 from django.contrib.sites.models import Site
 
 class UserProfileAdmin(admin.StackedInline):
-    template = 'admin/edit_inline/single_stacked.html'
     model = UserProfile
     extra = 1
 

@@ -11,21 +11,37 @@ class Immunization(Record):
     expiry_date = models.DateTimeField()
     practice_date = models.DateTimeField(auto_now=True)
 
-class TrackingRecord(Record):pass
-
 class Reminder(models.Model):
     pattern = models.CharField(max_length=200)
     datetime = models.DateTimeField()
     record = models.ManyToManyField('TrackingRecord')
+
+class PatientTrackingRecord(models.Model):
+    patient = models.ForeignKey('patient.Patient')
+    tracking_record = models.ForeignKey('TrackingRecord')
     
-class TrackingField(Record):
-    record = models.ManyToManyField('TrackingRecord')
+    def __unicode__(self):
+        return 'Tracking %s for %s' % (self.tracking_record, self.patient)
+
+class TrackingRecord(models.Model):
+    name = models.CharField(max_length=30)
+    notes = models.CharField(max_length=2000, null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.name
+    
+class TrackingField(models.Model):
+    name =  models.CharField(max_length=120)
+    record = models.ForeignKey('TrackingRecord')
     unit = models.CharField(max_length=50)
-    daily_cummulative = models.BooleanField(default=False)
+    daily_cummulative = models.BooleanField(default=False, help_text="Check here if this is a 'daily cumulative' tracking item (calories, for instance) ")
     min_value = models.CharField(max_length=5)
     max_value = models.CharField(max_length=5)
     ideal_min_value = models.CharField(max_length=5)
     ideal_max_value = models.CharField(max_length=5)
+    
+    def __unicode__(self):
+        return self.name
 
 class Image(Record):
     date = models.DateField()

@@ -14,6 +14,7 @@ def model_view(request, pk=None,
          model_form_classes={},
          action='view',
          data = {},
+         initial_form_data=lambda:{},
          save_form=lambda form:form.save(),
          redirect_to=lambda model_class:'%s-detail' % model_class._meta.object_name.lower(),
          extra_action=lambda request, action:None,
@@ -40,7 +41,7 @@ def model_view(request, pk=None,
     if request.method == 'GET':
         if action in ['create', 'detail', 'edit', 'delete', 'list']:
             if action in ['create', 'edit', 'delete']:
-                data[context_form_name] = model_form_class()
+                data[context_form_name] = model_form_class(initial_form_data())
         else:
             extra_action(request, action)
         

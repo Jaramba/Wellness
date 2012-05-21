@@ -120,16 +120,16 @@
 													Add your Medical Records
 													<ul>
 														<li>
-															<a onclick="" id="Allergies5">Allergies</a>
+															<a href="{% url problem-create 'allergies' %}" id="Allergies5">Allergies</a>
 														</li>
 														<li>
-															<a onclick="" id="Immunizations6">Add your Immunizations</a>
+															<a href="{% url immunization-create %}" id="Immunizations6">Add your Immunizations</a>
 														</li>
 														<li>
-															<a onclick="" id="Conditions7">Conditions</a>
+															<a href="{% url problem-create %}" id="Conditions7">Conditions / Problems</a>
 														</li>
 														<li>
-															<a onclick="" id="Medications8">Add your Medications</a>
+															<a href="{% url medication-create %}" id="Medications8">Add your Medications</a>
 														</li>
 														<li>
 															<a onclick="" id="TrackingRecords9">Create a Custom Tracking Record</a>

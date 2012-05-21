@@ -113,6 +113,10 @@ class ProblemForm(forms.ModelForm):
     class Meta:
         model = Problem
         exclude = ['patient', 'attachments', 'name']
+
+class TrackingRecordForm(forms.ModelForm):
+    class Meta:
+        model = TrackingRecord
         
 class TrackingFieldForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

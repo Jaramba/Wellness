@@ -1,12 +1,145 @@
 [
   {
     "pk": 1, 
+    "model": "records.trackingrecord", 
+    "fields": {
+      "notes": "", 
+      "name": "Weight"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "records.trackingrecord", 
+    "fields": {
+      "notes": "", 
+      "name": "Blood Sugar"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "records.trackingrecord", 
+    "fields": {
+      "notes": "", 
+      "name": "Blood Pressure"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "records.trackingrecord", 
+    "fields": {
+      "notes": "", 
+      "name": "Resting Heart Rate"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "records.trackingrecord", 
+    "fields": {
+      "notes": "", 
+      "name": "Temprature (Oral)"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "records.trackingrecord", 
+    "fields": {
+      "notes": "", 
+      "name": "Sleep"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "records.trackingfield", 
+    "fields": {
+      "name": "Systolic", 
+      "max_value": "230", 
+      "min_value": "50", 
+      "daily_cummulative": false, 
+      "record": 3,
+      "ideal_min_value": "90", 
+      "ideal_max_value": "130", 
+      "unit": "mmHg"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "records.trackingfield", 
+    "fields": {
+      "name": "Diastolic", 
+      "max_value": "140", 
+      "min_value": "35", 
+      "daily_cummulative": false, 
+      "record": 3,
+      "ideal_min_value": "65", 
+      "ideal_max_value": "90", 
+      "unit": "mmHg"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "records.trackingfield", 
+    "fields": {
+      "name": "Fingerstick-blood sugar", 
+      "max_value": "400", 
+      "min_value": "40", 
+      "daily_cummulative": false, 
+      "record": 2,
+      "ideal_min_value": "80", 
+      "ideal_max_value": "180", 
+      "unit": "mg/dL"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "records.trackingfield", 
+    "fields": {
+      "name": "Temperature (oral)", 
+      "max_value": "38", 
+      "min_value": "36", 
+      "daily_cummulative": false, 
+      "record": 5,
+      "ideal_min_value": "37", 
+      "ideal_max_value": "37", 
+      "unit": "degrees (Centigrade)"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "records.trackingfield", 
+    "fields": {
+      "name": "Weight", 
+      "max_value": "135", 
+      "min_value": "2.25", 
+      "daily_cummulative": false, 
+      "record": 1,
+      "ideal_min_value": "45", 
+      "ideal_max_value": "72", 
+      "unit": "kg"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "records.trackingfield", 
+    "fields": {
+      "name": "Sleep", 
+      "max_value": "16", 
+      "min_value": "0", 
+      "daily_cummulative": false, 
+      "record": 6,
+      "ideal_min_value": "8", 
+      "ideal_max_value": "10", 
+      "unit": "hours"
+    }
+  }, 
+  {
+    "pk": 1, 
     "model": "records.problemtype", 
     "fields": {
       "date_created": "2012-05-17 02:39:12", 
+      "description": "", 
       "date_changed": "2012-05-17 02:39:12", 
       "name": "Condition", 
-      "description": ""
+      "slug": "sondition"
     }
   }, 
   {
@@ -14,9 +147,10 @@
     "model": "records.problemtype", 
     "fields": {
       "date_created": "2012-05-17 02:39:38", 
+      "description": "", 
       "date_changed": "2012-05-17 02:39:38", 
       "name": "Allergy", 
-      "description": ""
+      "slug": "allergy"
     }
   }, 
   {
@@ -24,9 +158,10 @@
     "model": "records.problemtype", 
     "fields": {
       "date_created": "2012-05-17 02:39:53", 
+      "description": "", 
       "date_changed": "2012-05-17 02:39:53", 
       "name": "Disease", 
-      "description": ""
+      "slug": "disease"
     }
   }, 
   {
@@ -34,9 +169,10 @@
     "model": "records.problemtype", 
     "fields": {
       "date_created": "2012-05-17 02:39:59", 
+      "description": "", 
       "date_changed": "2012-05-17 02:39:59", 
       "name": "Infection", 
-      "description": ""
+      "slug": "infection"
     }
   }
 ]

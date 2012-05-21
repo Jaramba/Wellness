@@ -6,8 +6,8 @@ from fields import  *
 class Record(models.Model):
 	name = models.CharField(max_length=30)
 	patient = models.ForeignKey("patient.Patient")
-	attachments = models.ManyToManyField("Attachment")
-	notes = models.CharField(max_length=2000)
+	attachments = models.ManyToManyField("Attachment", null=True, blank=True)
+	notes = models.CharField(max_length=2000, null=True, blank=True)
 	
 	class Meta:
 		abstract=True
@@ -19,6 +19,7 @@ class Attachment(models.Model):
 
 class MetaData(models.Model):
 	name = models.CharField(max_length=120)
+	slug = models.SlugField(max_length=200, unique=True)
 	description = models.CharField(max_length=500, null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
 	date_changed = models.DateTimeField(auto_now_add=True)
@@ -162,3 +163,4 @@ def get_profile(self):
 
 User.get_profile = get_profile
 User.profile = property(get_profile)
+
