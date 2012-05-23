@@ -1,8 +1,8 @@
-# Django settings for inposting project.
+# Django settings for wellness project.
 import os
 from django.utils.translation import ugettext_lazy as _
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'inposting.conf.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'conf.settings'
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
