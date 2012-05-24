@@ -4,7 +4,7 @@ set :deploy_to, "~/webapp_releases/uhai"
 set :shared_children, %w(config lib upload database)
 
 set :repository, "~/webapps/git/repos/uhai.git"
-set :local_repository, "../.git"
+set :local_repository, ".git"
 
 set :scm, :git
 
