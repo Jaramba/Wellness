@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 
-from models import (HealthCareFacility, HealthWorker)
+from models import (HealthCareFacility, HealthWorker, Speciality)
 from django.db.models.base import ModelBase
 from forms import (HealthWorkerForm,  HealthCareFacilityForm)
 from django.views.generic.base import TemplateView

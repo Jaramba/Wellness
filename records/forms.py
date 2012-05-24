@@ -54,37 +54,7 @@ class OrderForm(forms.ModelForm):
         
     class Meta:
         model = Order
-        
-class VisitForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_id = 'visit-form'
-        self.helper.form_class = 'general_form'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = '#'
-        
-        self.layout = Layout(
-            Row(Column('patient')),
-            Row(Column('type')),
-            Row(Column('indication_notes')),
-            Row(Column('location')),
-            Row(Column('start_time')),
-            Row(Column('stop_time')),
-            Div(
-                Div(
-                    Submit('Save', 'Save Changes', css_class='button blue'),
-                    css_class='input no-label'
-                ),
-                css_class='clearfix grey-highlight'
-            )
-        )
-        
-        self.helper.add_layout(self.layout)
-        super(VisitForm, self).__init__(*args, **kwargs)
-        
-    class Meta:
-        model = Visit
-        
+                
 class ProblemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()

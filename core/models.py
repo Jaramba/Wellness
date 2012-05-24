@@ -6,16 +6,10 @@ from fields import  *
 class Record(models.Model):
 	name = models.CharField(max_length=30)
 	patient = models.ForeignKey("patient.Patient")
-	attachments = models.ManyToManyField("Attachment", null=True, blank=True)
 	notes = models.CharField(max_length=2000, null=True, blank=True)
 	
 	class Meta:
 		abstract=True
-		
-class Attachment(models.Model):
-	name = models.CharField(max_length=120)
-	file = models.FileField(upload_to="attachments")
-	date_of_upload = models.DateTimeField(auto_now=True)
 
 class MetaData(models.Model):
 	name = models.CharField(max_length=120)
@@ -33,7 +27,6 @@ class MetaData(models.Model):
 class RelationshipType(models.Model):
 	a_is_to_b = models.CharField(max_length=50)
 	b_is_to_a = models.CharField(max_length=50)
-	weight = models.SmallIntegerField(default=0)
 	preffered = models.BooleanField(default=False)
 	date_created = models.DateTimeField(auto_now=True)
 	date_changed = models.DateTimeField(auto_now_add=True)
@@ -69,20 +62,53 @@ class Relationship(models.Model):
 		else:
 			super(Relationship, self).save(force_insert, force_update)
 
+class Country(models.Model):
+	name = models.CharField(max_length=150)
+	iso = models.CharField(max_length=2)
+	
+	def __unicode__(self):
+		return '%s' % (self.name)
+	
+	class Meta:
+		verbose_name_plural = 'Countries'
+		pass#sort = ['name']
+		
+class Province(models.Model):
+	name = models.CharField(max_length=150)
+	iso = models.CharField(max_length=2)
+	country = models.ForeignKey(Country)
+	
+	def __unicode__(self):
+		return '%s, %s' % (self.name, self.country)
+	
+	class Meta:
+		verbose_name_plural = 'Provinces'
+		#sort = ['name']
+		
+class County(models.Model):
+	name = models.CharField(max_length=150)
+	iso = models.CharField(max_length=2)
+	province = models.ForeignKey(Province)
+	
+	def __unicode__(self):
+		return '%s, %s' % (self.name, self.province)
+	
+	class Meta:
+		verbose_name_plural = 'Counties'
+		pass#sort = ['name']
+			
+class Title(models.Model):
+	name = models.CharField(max_length=50)
+	
+	def __unicode__(self):
+		return self.name
+
 class Person(models.Model):
 	'''
 	Not Everyone is a patient; This will act as a staging profile, until someone
 	gets an account.... hmmm, should we create an inactive user or just this?
 	'''
-	TITLES = (
-		('mr','Mr.'),
-		('mrs','Mrs.'),
-		('miss','Miss'),
-		('dr', 'Dr.'),
-		('prof', 'Professor'),
-	)
-	title = models.CharField(max_length=20, choices=TITLES, null=True)
-	
+	title = models.ForeignKey(Title)
 	relationship = models.ManyToManyField(
 		'self',
 		through='Relationship',
@@ -99,12 +125,12 @@ class Person(models.Model):
 
 	photo = models.FileField(upload_to='photos', null=True, blank=True)
 
-	village = models.CharField(max_length=50, null=True, blank=True)
-	province = models.CharField(max_length=50, null=True, blank=True)
 	postal_code = models.CharField(max_length=50, null=True, blank=True)
-	home_address = models.CharField(max_length=50, null=True, blank=True)
-	county = models.CharField(max_length=50, null=True, blank=True)
-	country = CountryField()
+	village = models.CharField(max_length=50, null=True, blank=True)
+	province = models.ForeignKey(Province)
+	county = models.ForeignKey(County)
+	country = models.ForeignKey(Country)
+	
 	latitude = models.CharField(max_length=50, null=True, blank=True)
 	longitude = models.CharField(max_length=50, null=True, blank=True)
 	
@@ -117,7 +143,7 @@ class Person(models.Model):
 	@property
 	def full_name(self):
 		return u' '.join([i for i in (
-					(self.get_title_display() if self.title else ''),
+					(self.title.name if self.title else ''),
 					self.first_name if hasattr(self, 'first_name') else '',
 					(self.middle_name if self.middle_name else ''),
 					self.last_name if hasattr(self, 'last_name') else ''
@@ -125,7 +151,6 @@ class Person(models.Model):
 			])
 	class Meta:
 		verbose_name = 'Person'
-		verbose_name_plural = 'People'
 
 class UserProfile(Person):
 	user = models.OneToOneField('auth.User')
@@ -134,13 +159,12 @@ class UserProfile(Person):
 		return self.full_name
 	
 	class Meta:
-		verbose_name = 'Personal info'
-		verbose_name_plural = 'Personal info'
+		verbose_name = 'System User profile'
 	
 	@property
 	def full_name(self):
 		return u' '.join([i for i in (
-					(self.get_title_display() if self.title else ''),
+					(self.title.name if self.title else ''),
 					self.first_name,
 					(self.middle_name if self.middle_name else ''),
 					self.last_name

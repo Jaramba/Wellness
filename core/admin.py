@@ -65,10 +65,19 @@ class PersonAdmin(admin.ModelAdmin):
     
 admin.site.register(Person, PersonAdmin)
 
-class AttachmentAdmin(admin.ModelAdmin):
-    model = Attachment
-    list_display = [f.name for f in Attachment._meta.fields]
-admin.site.register(Attachment, AttachmentAdmin)    
+for M in [Country, County, Province, Title]:
+    class ItemAdmin(admin.ModelAdmin):
+        model = M
+        list_display = [f.name for f in M._meta.fields]
+    try:
+        admin.site.register(M, ItemAdmin)
+    except admin.sites.AlreadyRegistered:
+        pass
+
+#class AttachmentAdmin(admin.ModelAdmin):
+#    model = Attachment
+#    list_display = [f.name for f in Attachment._meta.fields]
+#admin.site.register(Attachment, AttachmentAdmin)    
 
 admin.site.unregister(User)
 admin.site.unregister(Site)

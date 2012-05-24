@@ -18,8 +18,3 @@ class InsuranceAdmin(admin.ModelAdmin):
     model = Insurance
     list_display = [f.name for f in Insurance._meta.fields]
 admin.site.register(Insurance, InsuranceAdmin)
-
-class PatientInsuranceAdmin(admin.ModelAdmin):
-    model = PatientInsurance
-    list_display = [f.name for f in PatientInsurance._meta.fields]
-admin.site.register(PatientInsurance, PatientInsuranceAdmin)

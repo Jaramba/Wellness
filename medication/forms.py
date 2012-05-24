@@ -39,10 +39,6 @@ class MedicationForm(forms.ModelForm):
         model = Medication
         exclude = ['patient']
 
-class MedicationIngredientForm(forms.ModelForm):
-    class Meta:
-        model = MedicationIngredient
-        
 class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription

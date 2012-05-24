@@ -1,5 +1,6 @@
 from django.db import models
 from records.models import Record
+from core.models import MetaData
 
 class Company(models.Model):
 	name = models.CharField(max_length=50)
@@ -14,15 +15,20 @@ class Company(models.Model):
 		
 	def __unicode__(self):
 		return self.name
-
-class HealthInsuranceProvider(Company):pass
+		
+class HealthInsuranceProvider(Company):
+	contact_person = models.ForeignKey('core.UserProfile', related_name='healthinsurance_contactperson')
+	admins = models.ManyToManyField('core.UserProfile', related_name='healthinsurance_admins')
 
 class EmployerCompany(Company):
+	contact_person = models.ForeignKey('core.UserProfile', related_name='employercompany_contactperson')
+	admins = models.ManyToManyField('core.UserProfile', related_name='employercompany_admins')
 	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')
 	
 	class Meta:
 		verbose_name_plural = 'Employer companies'
 
+class InsuranceType(MetaData):pass
 class Insurance(models.Model):
 	TYPES = [
 		('health', 'Health'),
@@ -30,11 +36,10 @@ class Insurance(models.Model):
 		('vision', 'Life'),
 		('other', 'Other'),
 	]
-	plan_id = models.CharField(max_length=70)
+	plan_id = models.CharField('Policy/Plan ID', max_length=70)
 	plan_name = models.CharField(max_length=50)
-	type = models.CharField(max_length=50, choices=TYPES)
-	group_number = models.CharField(max_length=100)
-	
+	type = models.ForeignKey('InsuranceType')
+	notes = models.CharField(max_length=2000, null=True, blank=True)	
 
 class PatientInsurance(Record):
 	STATUS = (

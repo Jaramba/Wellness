@@ -52,12 +52,11 @@
     "model": "records.trackingfield", 
     "fields": {
       "name": "Systolic", 
-      "max_value": "230", 
-      "min_value": "50", 
+      "severe": "230", 
+      "moderate": "50", 
       "daily_cummulative": false, 
       "record": 3, 
-      "ideal_min_value": "90", 
-      "ideal_max_value": "130", 
+      "normal": "130", 
       "unit": "mmHg"
     }
   }, 
@@ -66,12 +65,11 @@
     "model": "records.trackingfield", 
     "fields": {
       "name": "Diastolic", 
-      "max_value": "140", 
-      "min_value": "35", 
+      "severe": "140", 
+      "moderate": "35", 
       "daily_cummulative": false, 
       "record": 3, 
-      "ideal_min_value": "65", 
-      "ideal_max_value": "90", 
+      "normal": "90", 
       "unit": "mmHg"
     }
   }, 
@@ -80,12 +78,11 @@
     "model": "records.trackingfield", 
     "fields": {
       "name": "Fingerstick-blood sugar", 
-      "max_value": "400", 
-      "min_value": "40", 
+      "severe": "400", 
+      "moderate": "40", 
       "daily_cummulative": false, 
       "record": 2, 
-      "ideal_min_value": "80", 
-      "ideal_max_value": "180", 
+      "normal": "180", 
       "unit": "mg/dL"
     }
   }, 
@@ -94,12 +91,11 @@
     "model": "records.trackingfield", 
     "fields": {
       "name": "Temperature (oral)", 
-      "max_value": "38", 
-      "min_value": "36", 
+      "severe": "38", 
+      "moderate": "36", 
       "daily_cummulative": false, 
       "record": 5, 
-      "ideal_min_value": "37", 
-      "ideal_max_value": "37", 
+      "normal": "37", 
       "unit": "degrees (Centigrade)"
     }
   }, 
@@ -108,12 +104,11 @@
     "model": "records.trackingfield", 
     "fields": {
       "name": "Weight", 
-      "max_value": "135", 
-      "min_value": "2.25", 
+      "severe": "135", 
+      "moderate": "2.25", 
       "daily_cummulative": false, 
       "record": 1, 
-      "ideal_min_value": "45", 
-      "ideal_max_value": "72", 
+      "normal": "72", 
       "unit": "kg"
     }
   }, 
@@ -122,12 +117,11 @@
     "model": "records.trackingfield", 
     "fields": {
       "name": "Sleep", 
-      "max_value": "16", 
-      "min_value": "0", 
+      "severe": "16", 
+      "moderate": "0", 
       "daily_cummulative": false, 
       "record": 6, 
-      "ideal_min_value": "8", 
-      "ideal_max_value": "10", 
+      "normal": "10", 
       "unit": "hours"
     }
   }, 

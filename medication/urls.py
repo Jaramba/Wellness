@@ -1,15 +1,15 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 
-from models import (Prescription, Medication, MedicationIngredient)
+from models import (Prescription, Medication)
 from django.db.models.base import ModelBase
-from forms import (PrescriptionForm, MedicationForm, MedicationIngredientForm)
+from forms import (PrescriptionForm, MedicationForm)
 from django.views.generic.base import TemplateView
 
 urlpatterns = patterns('',
 )
 
-for M in (Prescription, Medication, MedicationIngredient):
+for M in (Prescription, Medication):
     #The app itself
     model_name = M.__name__.lower()
     form_class = globals()[M.__name__+'Form'] 
