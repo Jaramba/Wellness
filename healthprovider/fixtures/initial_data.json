@@ -46,7 +46,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:53.704",
+      "date_added": "2012-05-24 10:47:53.704",
       "name": "Other",
       "slug": "other",
 	  "category": 1
@@ -57,7 +57,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:53.822",
+      "date_added": "2012-05-24 10:47:53.822",
       "name": "Clinics",
       "slug": "clinics",
 	  "category": 1
@@ -68,7 +68,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:53.922",
+      "date_added": "2012-05-24 10:47:53.922",
       "name": "Acupuncturists",
       "slug": "acupuncturists",
 	  "category": 1
@@ -79,7 +79,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.030",
+      "date_added": "2012-05-24 10:47:54.030",
       "name": "Chiropractors",
       "slug": "chiropractors",
 	  "category": 1
@@ -90,7 +90,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.130",
+      "date_added": "2012-05-24 10:47:54.130",
       "name": "Naturopathic medicine",
       "slug": "naturopathic-medicine",
 	  "category": 1
@@ -101,7 +101,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.239",
+      "date_added": "2012-05-24 10:47:54.239",
       "name": "Osteopathic",
       "slug": "osteopathic",
 	  "category": 1
@@ -112,7 +112,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.339",
+      "date_added": "2012-05-24 10:47:54.339",
       "name": "speciality alternative",
       "slug": "speciality-alternative",
 	  "category": 1
@@ -123,7 +123,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.584",
+      "date_added": "2012-05-24 10:47:54.584",
       "name": "General",
       "slug": "general",
 	  "category": 1
@@ -134,7 +134,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.689",
+      "date_added": "2012-05-24 10:47:54.689",
       "name": "Cosmetic",
       "slug": "cosmetic",
 	  "category": 1
@@ -145,7 +145,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.797",
+      "date_added": "2012-05-24 10:47:54.797",
       "name": "Dentist referral services",
       "slug": "dentist-referral-services",
 	  "category": 1
@@ -156,7 +156,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:54.914",
+      "date_added": "2012-05-24 10:47:54.914",
       "name": "Endodontics",
       "slug": "endodontics",
 	  "category": 1
@@ -167,7 +167,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.022",
+      "date_added": "2012-05-24 10:47:55.022",
       "name": "Orthodontics",
       "slug": "orthodontics",
 	  "category": 1
@@ -178,7 +178,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.139",
+      "date_added": "2012-05-24 10:47:55.139",
       "name": "Pediatric",
       "slug": "pediatric",
 	  "category": 1
@@ -189,7 +189,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.239",
+      "date_added": "2012-05-24 10:47:55.239",
       "name": "Periodontics",
       "slug": "periodontics",
 	  "category": 1
@@ -200,7 +200,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.339",
+      "date_added": "2012-05-24 10:47:55.339",
       "name": "Prosthodontics",
       "slug": "prosthodontics",
 	  "category": 1
@@ -211,7 +211,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.464",
+      "date_added": "2012-05-24 10:47:55.464",
       "name": "Speciality dental care",
       "slug": "speciality-dental-care",
 	  "category": 1
@@ -222,7 +222,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.622",
+      "date_added": "2012-05-24 10:47:55.622",
       "name": "Other",
       "slug": "other-doctors",
 	  "category": 1
@@ -233,7 +233,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.747",
+      "date_added": "2012-05-24 10:47:55.747",
       "name": "Allergists and Immunologists",
       "slug": "allergists-immunologists",
 	  "category": 1
@@ -244,7 +244,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.864",
+      "date_added": "2012-05-24 10:47:55.864",
       "name": "Bariatrics Doctors",
       "slug": "bariatrics-doctors",
 	  "category": 1
@@ -255,7 +255,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:55.972",
+      "date_added": "2012-05-24 10:47:55.972",
       "name": "Cardiologists",
       "slug": "cardiologists",
 	  "category": 1
@@ -266,7 +266,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.076",
+      "date_added": "2012-05-24 10:47:56.076",
       "name": "Dermatologists",
       "slug": "dermatologists",
 	  "category": 1
@@ -277,7 +277,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.205",
+      "date_added": "2012-05-24 10:47:56.205",
       "name": "Endocrinologists",
       "slug": "endocrinologists",
 	  "category": 1
@@ -288,7 +288,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.314",
+      "date_added": "2012-05-24 10:47:56.314",
       "name": "ENT Doctors",
       "slug": "ent-doctors",
 	  "category": 1
@@ -299,7 +299,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.439",
+      "date_added": "2012-05-24 10:47:56.439",
       "name": "Gastroenterologists",
       "slug": "gastroenterologists",
 	  "category": 1
@@ -310,7 +310,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.539",
+      "date_added": "2012-05-24 10:47:56.539",
       "name": "General Practitioners",
       "slug": "general-practitioners",
 	  "category": 1
@@ -321,7 +321,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.647",
+      "date_added": "2012-05-24 10:47:56.647",
       "name": "General Surgeons",
       "slug": "general-surgeons",
 	  "category": 1
@@ -332,7 +332,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.747",
+      "date_added": "2012-05-24 10:47:56.747",
       "name": "Geriatrics Doctors",
       "slug": "geriatrics-doctors",
 	  "category": 1
@@ -343,7 +343,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.847",
+      "date_added": "2012-05-24 10:47:56.847",
       "name": "Gynecologists and Obstetricians",
       "slug": "gynecologists-obstetricians",
 	  "category": 1
@@ -354,7 +354,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:56.947",
+      "date_added": "2012-05-24 10:47:56.947",
       "name": "Internists",
       "slug": "internists",
 	  "category": 1
@@ -365,7 +365,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.055",
+      "date_added": "2012-05-24 10:47:57.055",
       "name": "Neurologists",
       "slug": "neurologists",
 	  "category": 1
@@ -376,7 +376,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.164",
+      "date_added": "2012-05-24 10:47:57.164",
       "name": "Oncologists",
       "slug": "oncologists",
 	  "category": 1
@@ -387,7 +387,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.264",
+      "date_added": "2012-05-24 10:47:57.264",
       "name": "Ophthalmologists",
       "slug": "ophthalmologists",
 	  "category": 1
@@ -398,7 +398,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.380",
+      "date_added": "2012-05-24 10:47:57.380",
       "name": "Oral and Maxillofacial Surgeons",
       "slug": "oral-maxillofacial-surgeons",
 	  "category": 1
@@ -409,7 +409,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.472",
+      "date_added": "2012-05-24 10:47:57.472",
       "name": "Orthopedists",
       "slug": "orthopedists",
 	  "category": 1
@@ -420,7 +420,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.630",
+      "date_added": "2012-05-24 10:47:57.630",
       "name": "Pediatricians",
       "slug": "pediatricians",
 	  "category": 1
@@ -431,7 +431,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.722",
+      "date_added": "2012-05-24 10:47:57.722",
       "name": "Physician Referral Services",
       "slug": "physician-referral-services",
 	  "category": 1
@@ -442,7 +442,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.814",
+      "date_added": "2012-05-24 10:47:57.814",
       "name": "Plastic and Reconstructive Surgeons",
       "slug": "plastic-reconstructive-surgeons",
 	  "category": 1
@@ -453,7 +453,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.905",
+      "date_added": "2012-05-24 10:47:57.905",
       "name": "Podiatrists",
       "slug": "podiatrists",
 	  "category": 1
@@ -464,7 +464,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:57.996",
+      "date_added": "2012-05-24 10:47:57.996",
       "name": "Psychiatrists",
       "slug": "psychiatrists",
 	  "category": 1
@@ -475,7 +475,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.114",
+      "date_added": "2012-05-24 10:47:58.114",
       "name": "Radiologists",
       "slug": "radiologists",
 	  "category": 1
@@ -486,7 +486,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.239",
+      "date_added": "2012-05-24 10:47:58.239",
       "name": "Urologists",
       "slug": "urologists",
 	  "category": 1
@@ -497,7 +497,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.331",
+      "date_added": "2012-05-24 10:47:58.331",
       "name": "Vascular Surgeons",
       "slug": "vascular-surgeons",
 	  "category": 1
@@ -508,7 +508,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.422",
+      "date_added": "2012-05-24 10:47:58.422",
       "name": "Assisted Living",
       "slug": "assisted-living",
 	  "category": 1
@@ -519,7 +519,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.522",
+      "date_added": "2012-05-24 10:47:58.522",
       "name": "Donor Centers",
       "slug": "donor-centers",
 	  "category": 1
@@ -530,7 +530,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.614",
+      "date_added": "2012-05-24 10:47:58.614",
       "name": "Health Care Clinics",
       "slug": "health-care-clinics",
 	  "category": 1
@@ -541,7 +541,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.714",
+      "date_added": "2012-05-24 10:47:58.714",
       "name": "Hospitals",
       "slug": "hospitals",
 	  "category": 1
@@ -552,7 +552,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.822",
+      "date_added": "2012-05-24 10:47:58.822",
       "name": "Nursing Homes",
       "slug": "nursing homes",
 	  "category": 1
@@ -563,7 +563,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.912",
+      "date_added": "2012-05-24 10:47:58.912",
       "name": "Pharmacies",
       "slug": "pharmacies",
 	  "category": 1
@@ -574,7 +574,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:58.987",
+      "date_added": "2012-05-24 10:47:58.987",
       "name": "Diagnostic Services",
       "slug": "diagnostic-services",
 	  "category": 1
@@ -585,7 +585,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.062",
+      "date_added": "2012-05-24 10:47:59.062",
       "name": "Health Associations",
       "slug": "health-associations",
 	  "category": 1
@@ -596,7 +596,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.129",
+      "date_added": "2012-05-24 10:47:59.129",
       "name": "Health Care Referral Services",
       "slug": "health-care-referral-services",
 	  "category": 1
@@ -607,7 +607,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.212",
+      "date_added": "2012-05-24 10:47:59.212",
       "name": "Home Health Care",
       "slug": "home-health-care",
 	  "category": 1
@@ -618,7 +618,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.295",
+      "date_added": "2012-05-24 10:47:59.295",
       "name": "Medical Support Services",
       "slug": "medical-support-services",
 	  "category": 1
@@ -629,7 +629,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.371",
+      "date_added": "2012-05-24 10:47:59.371",
       "name": "Other",
       "slug": "other-speciality",
 	  "category": 1
@@ -640,7 +640,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.455",
+      "date_added": "2012-05-24 10:47:59.455",
       "name": "Addiction",
       "slug": "addiction",
 	  "category": 1
@@ -651,7 +651,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.626",
+      "date_added": "2012-05-24 10:47:59.626",
       "name": "Cancer Services",
       "slug": "cancer-services",
 	  "category": 1
@@ -662,7 +662,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.712",
+      "date_added": "2012-05-24 10:47:59.712",
       "name": "Counseling",
       "slug": "counseling",
 	  "category": 1
@@ -673,7 +673,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.796",
+      "date_added": "2012-05-24 10:47:59.796",
       "name": "Dialysis",
       "slug": "dialysis",
 	  "category": 1	  
@@ -684,7 +684,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.887",
+      "date_added": "2012-05-24 10:47:59.887",
       "name": "Hospice",
       "slug": "hospice",
 	  "category": 1
@@ -695,7 +695,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:47:59.979",
+      "date_added": "2012-05-24 10:47:59.979",
       "name": "Laser Vision Correction",
       "slug": "laser-vision-correction",
 	  "category": 1
@@ -706,7 +706,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.071",
+      "date_added": "2012-05-24 10:48:00.071",
       "name": "Men's Health",
       "slug": "mens-health",
 	  "category": 1
@@ -717,7 +717,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.171",
+      "date_added": "2012-05-24 10:48:00.171",
       "name": "Hospice",
       "slug": "hospice",
 	  "category": 1
@@ -728,7 +728,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.254",
+      "date_added": "2012-05-24 10:48:00.254",
       "name": "Mental Health Services",
       "slug": "mental-health",
 	  "category": 1
@@ -739,7 +739,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.346",
+      "date_added": "2012-05-24 10:48:00.346",
       "name": "Nutrition",
       "slug": "nutrition",
 	  "category": 1
@@ -750,7 +750,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.446",
+      "date_added": "2012-05-24 10:48:00.446",
       "name": "Optometrists",
       "slug": "optometrists",
 	  "category": 1
@@ -761,7 +761,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.529",
+      "date_added": "2012-05-24 10:48:00.529",
       "name": "Pain Management",
       "slug": "pain-management",
 	  "category": 1
@@ -772,7 +772,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.622",
+      "date_added": "2012-05-24 10:48:00.622",
       "name": "Physical Therapy",
       "slug": "physical-therapy",
 	  "category": 1
@@ -783,7 +783,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.697",
+      "date_added": "2012-05-24 10:48:00.697",
       "name": "Sleep Disorders",
       "slug": "sleep-disorders",
 	  "category": 1
@@ -794,7 +794,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.795",
+      "date_added": "2012-05-24 10:48:00.795",
       "name": "Speech and Hearing",
       "slug": "speech-hearing",
 	  "category": 1
@@ -805,7 +805,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.887",
+      "date_added": "2012-05-24 10:48:00.887",
       "name": "Sports Medicine",
       "slug": "sports-medicine",
 	  "category": 1
@@ -816,7 +816,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:00.979",
+      "date_added": "2012-05-24 10:48:00.979",
       "name": "Weight Loss",
       "slug": "weight-loss",
 	  "category": 1
@@ -827,7 +827,7 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24T10:48:01.062",
+      "date_added": "2012-05-24 10:48:01.062",
       "name": "Women's Health",
       "slug": "womens-health",
 	  "category": 1

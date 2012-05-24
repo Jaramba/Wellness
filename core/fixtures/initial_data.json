@@ -4,10 +4,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:02:47",
+      "date_created": "2012-05-21 08:02:47",
       "b_is_to_a": "Child",
       "a_is_to_b": "Parent",
-      "date_changed": "2012-05-21T08:02:47"
+      "date_changed": "2012-05-21 08:02:47"
     }
   },
   {
@@ -15,10 +15,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:02:58",
+      "date_created": "2012-05-21 08:02:58",
       "b_is_to_a": "Child",
       "a_is_to_b": "Grandparent",
-      "date_changed": "2012-05-21T08:02:58"
+      "date_changed": "2012-05-21 08:02:58"
     }
   },
   {
@@ -26,10 +26,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:03:06",
+      "date_created": "2012-05-21 08:03:06",
       "b_is_to_a": "Cousin",
       "a_is_to_b": "Cousin",
-      "date_changed": "2012-05-21T08:03:06"
+      "date_changed": "2012-05-21 08:03:06"
     }
   },
   {
@@ -37,10 +37,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:03:18",
+      "date_created": "2012-05-21 08:03:18",
       "b_is_to_a": "Niece",
       "a_is_to_b": "Aunt",
-      "date_changed": "2012-05-21T08:03:18"
+      "date_changed": "2012-05-21 08:03:18"
     }
   },
   {
@@ -48,10 +48,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:03:30",
+      "date_created": "2012-05-21 08:03:30",
       "b_is_to_a": "Niece",
       "a_is_to_b": "Uncle",
-      "date_changed": "2012-05-21T08:03:30"
+      "date_changed": "2012-05-21 08:03:30"
     }
   },
   {
@@ -59,10 +59,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:03:40",
+      "date_created": "2012-05-21 08:03:40",
       "b_is_to_a": "Nephew",
       "a_is_to_b": "Aunt",
-      "date_changed": "2012-05-21T08:03:40"
+      "date_changed": "2012-05-21 08:03:40"
     }
   },
   {
@@ -70,10 +70,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:03:46",
+      "date_created": "2012-05-21 08:03:46",
       "b_is_to_a": "Nephew",
       "a_is_to_b": "Uncle",
-      "date_changed": "2012-05-21T08:03:46"
+      "date_changed": "2012-05-21 08:03:46"
     }
   },
   {
@@ -81,10 +81,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:03:56",
+      "date_created": "2012-05-21 08:03:56",
       "b_is_to_a": "Child",
       "a_is_to_b": "Guardian",
-      "date_changed": "2012-05-21T08:03:56"
+      "date_changed": "2012-05-21 08:03:56"
     }
   },
   {
@@ -92,10 +92,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:04:10",
+      "date_created": "2012-05-21 08:04:10",
       "b_is_to_a": "Child",
       "a_is_to_b": "Foster Parent",
-      "date_changed": "2012-05-21T08:04:10"
+      "date_changed": "2012-05-21 08:04:10"
     }
   },
   {
@@ -103,10 +103,10 @@
     "model": "core.relationshiptype",
     "fields": {
       "preffered": false,
-      "date_created": "2012-05-21T08:04:28",
+      "date_created": "2012-05-21 08:04:28",
       "b_is_to_a": "Doctor",
       "a_is_to_b": "Patient",
-      "date_changed": "2012-05-21T08:04:28"
+      "date_changed": "2012-05-21 08:04:28"
     }
   },
   {
@@ -199,9 +199,9 @@
       "home_phone": "+254736705812",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T04:44:26",
+      "date_created": "2012-05-21 04:44:26",
       "country": 1,
-      "date_edited": "2012-05-21T04:18:50"
+      "date_edited": "2012-05-21 04:18:50"
     }
   },
   {
@@ -222,9 +222,9 @@
       "home_phone": "",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T04:46:48",
+      "date_created": "2012-05-21 04:46:48",
       "country": 1,
-      "date_edited": "2012-05-21T04:46:48"
+      "date_edited": "2012-05-21 04:46:48"
     }
   },
   {
@@ -245,9 +245,9 @@
       "home_phone": "",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T07:02:16",
+      "date_created": "2012-05-21 07:02:16",
       "country": 1,
-      "date_edited": "2012-05-21T07:02:16"
+      "date_edited": "2012-05-21 07:02:16"
     }
   },
   {
@@ -268,9 +268,9 @@
       "home_phone": "254736705812",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T04:55:18",
+      "date_created": "2012-05-21 04:55:18",
       "country": 1,
-      "date_edited": "2012-05-21T04:48:39"
+      "date_edited": "2012-05-21 04:48:39"
     }
   },
   {
@@ -291,9 +291,9 @@
       "home_phone": "254736705812",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T04:52:05",
+      "date_created": "2012-05-21 04:52:05",
       "country": 1,
-      "date_edited": "2012-05-21T04:49:45"
+      "date_edited": "2012-05-21 04:49:45"
     }
   },
   {
@@ -314,9 +314,9 @@
       "home_phone": "254736705812",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T04:51:44",
+      "date_created": "2012-05-21 04:51:44",
       "country": 1,
-      "date_edited": "2012-05-21T04:50:33"
+      "date_edited": "2012-05-21 04:50:33"
     }
   },
   {
@@ -337,9 +337,9 @@
       "home_phone": "254736705812",
       "village": "",
       "latitude": "",
-      "date_created": "2012-05-21T04:55:08",
+      "date_created": "2012-05-21 04:55:08",
       "country": 1,
-      "date_edited": "2012-05-21T04:51:10"
+      "date_edited": "2012-05-21 04:51:10"
     }
   },
   {
