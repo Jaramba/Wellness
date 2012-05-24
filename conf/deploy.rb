@@ -4,7 +4,7 @@ set :deploy_to, "~/webapp_releases/uhai"
 set :shared_children, %w(config lib upload database)
 
 set :repository, "~/webapps/git/repos/uhai.git"
-set :local_repository, "~/Aptana\\ Studio\\ 3\\ Workspace/wellness/src/wellness/.git"
+set :local_repository, "~/Documents/GitHub/wellness/.git"
 
 set :scm, :git
 
