@@ -14,13 +14,13 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
     url(r'^$', 'views.index', name="index"),
     url(r'^admin_tools/', include('admin_tools.urls')),
-    url(r'^records/', include('records.urls')),
-    url(r'^providers/', include('healthprovider.urls')),
-    url(r'^employee-programs/', include('programs.urls')),
-    url(r'^insurance/', include('insuranceprovider.urls')),
-    url(r'^medications/', include('medication.urls')),
-    url(r'', include('core.urls')),
-    url(r'', include('userprofile.urls')),
+    url(r'^records/', include('wellness.records.urls')),
+    url(r'^providers/', include('wellness.healthprovider.urls')),
+    url(r'^employee-programs/', include('wellness.programs.urls')),
+    url(r'^insurance/', include('wellness.insuranceprovider.urls')),
+    url(r'^medications/', include('wellness.medication.urls')),
+    url(r'', include('wellness.core.urls')),
+    url(r'', include('wellness.userprofile.urls')),
 )
 
 #Acccount
@@ -37,9 +37,8 @@ urlpatterns += patterns('',
 )
 #The app itself
 urlpatterns += patterns('',
-    url(r'^register/$', 'userprofile.views.register', {'template_name':'sign_up.html'},name='register'),
-    url(r'^login/$', 'userprofile.views.login', {'template_name':'sign_in.html'}, name='login'),
-    url(r'^logout/$','userprofile.views.logout', name='logout'),
+    url(r'^login/$', 'wellness.userprofile.views.login', {'template_name':'sign_in.html'}, name='login'),
+    url(r'^logout/$','wellness.userprofile.views.logout', name='logout'),
 )
 
 urlpatterns += patterns('',
