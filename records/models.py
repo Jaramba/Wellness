@@ -12,74 +12,101 @@ class Immunization(Record):
 	expiry_date = models.DateTimeField()
 	practice_date = models.DateTimeField(auto_now=True)
 
-class ReminderType(MetaData):pass
-class Reminder(models.Model):
-    pattern = models.CharField(max_length=200)
-    datetime = models.DateTimeField()
-    record = models.ManyToManyField('TrackingRecord')
-
-class PatientTrackingRecord(models.Model):
-    patient = models.ForeignKey('patient.Patient')
-    tracking_record = models.ForeignKey('TrackingRecord')
-    value = models.CharField(max_length=10)
-    
-    def __unicode__(self):
-        return 'Tracking %s for %s' % (self.tracking_record, self.patient)
-
-class TrackingRecord(models.Model):
-    name = models.CharField(max_length=30)
-    notes = models.CharField(max_length=2000, null=True, blank=True)
-    
-    def __unicode__(self):
-        return self.name
-    
-class TrackingField(models.Model):
-    name =  models.CharField(max_length=120)
-    record = models.ForeignKey('TrackingRecord')
-    unit = models.CharField(max_length=50)
-    daily_cummulative = models.BooleanField(default=False, help_text="Check here if this is a 'daily cumulative' tracking item (calories, for instance) ")
-    normal = models.CharField(max_length=5)
-    severe = models.CharField(max_length=5)
-    moderate = models.CharField(max_length=5)
-    
-    def __unicode__(self):
-        return '%s in %s' % (self.name, self.unit)
-
 class Image(Record):
     date = models.DateField()
 
 class ProblemType(MetaData):pass
 class ProblemStatus(MetaData):pass
+class Problem(models.Model):
+	name = models.CharField(max_length=30)
+	notes = models.CharField(max_length=2000, null=True, blank=True)
+	code = models.CharField(max_length=50, null=True, blank=True)
+	status = models.ForeignKey('ProblemStatus')
+	type = models.ForeignKey('ProblemType')
+	
+	def __unicode__(self):
+		return '%s' % (self.name)
 
-class Problem(Record):
-    code = models.CharField(max_length=50)
-    type = models.ForeignKey('ProblemType')
-    source = models.ForeignKey('healthprovider.HealthWorker')
-    status = models.ForeignKey('ProblemStatus')
+
+class TrackingField(models.Model):
+	'''
+	Every problem is trackable, and has things that are tracked
+	That's only its conditional, or is Patient defined,
+	or if in a Program
+	'''
+	name =  models.CharField(max_length=120)
+	problem = models.ForeignKey('Problem')
+	unit = models.CharField(max_length=50)
+	daily_cummulative = models.BooleanField(default=False, help_text="Check here if this is a 'daily cumulative' tracking item (calories, for instance) ")
+
+	upper_normal = models.CharField(max_length=5)
+	normal = models.CharField(max_length=5)
+	lower_normal = models.CharField(max_length=5)
+
+	upper_severe = models.CharField(max_length=5)
+	severe = models.CharField(max_length=5)	
+	lower_severe = models.CharField(max_length=5)
+
+	upper_moderate = models.CharField(max_length=5)	
+	moderate = models.CharField(max_length=5)
+	lower_moderate = models.CharField(max_length=5)
+
+	def __unicode__(self):
+		return '%s in %s' % (self.name, self.unit)
+
+class EncounterType(MetaData):pass
+class Encounter(models.Model):
+	patient = models.ForeignKey("patient.Patient")
+	provider = models.ForeignKey('healthprovider.HealthWorker')	
+	type = models.ForeignKey('EncounterType')
+	patient_complience = models.BooleanField(default=False)
+	location = models.CharField(max_length=100)
+	encounter_date = models.DateTimeField(auto_now=True)
+	start_time = models.DateTimeField(auto_now=True)
+	end_time = models.DateTimeField(auto_now=True)
+	observation_notes = models.CharField(max_length=600)
+	
+	def __unicode__(self):
+		return 'Visit by %s' % (self.patient)
 
 class Order(models.Model):
 	encounter = models.ForeignKey('Encounter')
 	concept_notes = models.CharField(max_length=500)
 	instructions = models.CharField(max_length=500)
 	discontinued = models.BooleanField(default=False)
-	discontinued_date = models.DateTimeField()
-	discontinued_by = models.ForeignKey('healthprovider.HealthWorker')
+	discontinued_date = models.DateTimeField(editable=False)
+	discontinued_by = models.ForeignKey('healthprovider.HealthWorker', editable=False)
 	discontinued_reason = models.CharField(max_length=500)
 
 	class Meta:
 		verbose_name = "Doctor's Order"
 		verbose_name_plural = "Doctors' Orders"
-
-class EncounterType(MetaData):pass
-class Encounter(models.Model):
-	patient = models.ForeignKey("patient.Patient")
-	provider = models.ForeignKey('healthprovider.HealthWorker')
-	encounter_date = models.DateTimeField(auto_now=True)
-	type = models.ForeignKey('EncounterType')
-	patient_complience = models.BooleanField(default=False)
-	diagnosis = models.CharField(max_length=150)
-	location = models.CharField(max_length=100)
-	start_time = models.DateTimeField(auto_now=True)
-	end_time = models.DateTimeField(auto_now=True)
-	observation_notes = models.CharField(max_length=600)
+		
+class Diagnosis(models.Model):
+	problem = models.ForeignKey('Problem')
+	approved = models.BooleanField(default=False)
+	encounter = models.ForeignKey('Encounter')
+	notes = models.CharField(max_length=600)
 	
+	class Meta:
+		verbose_name_plural = 'Diagnoses'
+
+class Test(MetaData):
+	expected_outcomes = models.CharField(max_length=600)
+	date_added = models.DateTimeField(auto_now=True)
+
+class ProblemTest(Test):
+	problem = models.ForeignKey('Problem')
+
+class EncounterTest(models.Model):
+	name = models.CharField(max_length=30)
+	encounter = models.ForeignKey('Encounter')
+	test = models.ForeignKey('Test')
+	notes = models.CharField(max_length=2000, null=True, blank=True)
+	date_administered = models.DateTimeField()
+	
+class EncounterTestResult(models.Model):
+	name = models.CharField(max_length=30)
+	encounter_test = models.ForeignKey(EncounterTest)
+	inference = models.CharField(max_length=2000, null=True, blank=True)
+	notes = models.CharField(max_length=2000, null=True, blank=True)

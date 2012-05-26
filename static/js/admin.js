@@ -1,0 +1,4 @@
+$(function() {
+    // Autocomplete
+    $("select").chosen();
+});

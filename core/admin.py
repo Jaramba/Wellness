@@ -4,15 +4,16 @@ from models import *
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.comments.models import Comment
-from django.contrib.sites.models import Site
-from healthprovider.models import HealthWorker
-from patient.models import Patient
 
-class UserProfileAdmin(admin.StackedInline):
+class ModelAdminMedia(object):
+	class Media:
+		pass
+		
+class UserProfileAdmin(admin.StackedInline, ModelAdminMedia):
     model = UserProfile
     extra = 1
-    
-class UserUserProfileAdmin(UserAdmin):
+	   
+class UserUserProfileAdmin(UserAdmin, ModelAdminMedia):
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
         (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser')}),
@@ -31,22 +32,11 @@ class UserUserProfileAdmin(UserAdmin):
     def mobile_phone(self, user):
         return user.profile.mobile_phone or ''
     
-    def make_healthworker(self, request, queryset):
-        for user in queryset:
-            HealthWorker.objects.create(user=user)
-    make_healthworker.short_description = 'Approve Health worker profile'
-    
-    def make_patient(self, request, queryset):
-        for user in queryset:
-            user.profile.userprofile.patient
-    make_patient.short_description = 'Approve Patient profile'
-    
-    actions = ['make_patient', 'make_healthworker']
     list_display = ('username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_staff')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     inlines = (UserProfileAdmin,)
 
-class PersonAdmin(admin.ModelAdmin):
+class PersonAdmin(admin.ModelAdmin, ModelAdminMedia):
     model = Person
     list_display = [f.name for f in Person._meta.fields if f.name not in [
           'photo', 
@@ -66,7 +56,7 @@ class PersonAdmin(admin.ModelAdmin):
 admin.site.register(Person, PersonAdmin)
 
 for M in [Country, County, Province, Title]:
-    class ItemAdmin(admin.ModelAdmin):
+    class ItemAdmin(admin.ModelAdmin, ModelAdminMedia):
         model = M
         list_display = [f.name for f in M._meta.fields]
     try:
@@ -80,7 +70,6 @@ for M in [Country, County, Province, Title]:
 #admin.site.register(Attachment, AttachmentAdmin)    
 
 admin.site.unregister(User)
-admin.site.unregister(Site)
 admin.site.register(User, UserUserProfileAdmin)
 admin.site.register(Relationship)
 admin.site.register(RelationshipType)

@@ -30,10 +30,10 @@ class Medication(models.Model):
         ('microgram', 'Microgram (mcg)'),
         ('percent', 'Percent (%)'),
     ]
-    
+	
     name = models.CharField(max_length=50)
     medication_type = models.CharField(max_length=10, choices=MEDICATION_TYPE)
-    way_taken = models.CharField(max_length=10, choices=WAY_TAKEN)
+    way_taken = models.CharField(max_length=20, choices=WAY_TAKEN)
     
     strength = models.CharField(max_length=50)
     min_daily_dose = models.CharField(max_length=50)
@@ -65,18 +65,17 @@ class Prescription(models.Model):
 		('per-month', 'Per month'),
 		('per-year', 'Per year')
 	]
-	patient = models.ForeignKey("patient.Patient")
+	encounter = models.ForeignKey("records.Encounter")
 	medication = models.ForeignKey('Medication')
-	prescribed_by = models.ForeignKey('healthprovider.HealthWorker')
-
+	
 	reason = models.CharField(max_length=300)
+	
 	quantity = models.SmallIntegerField()
 	frequency = models.CharField(max_length=50, choices=[(u'%s'%n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,13)])
 	unit = models.CharField(max_length=50, choices=UNIT)
 	period = models.CharField(max_length=50, choices=PERIODS)
-	reminder_type = models.ForeignKey('records.ReminderType')
-	notes = models.CharField(max_length=2000)
-	
+	reminder_type = models.ForeignKey('reminders.ReminderType')
+	notes = models.CharField(max_length=2000)	
 
 	date_started = models.DateField()
 	date_ended = models.DateField()
@@ -85,6 +84,8 @@ class Prescription(models.Model):
 
 	def __unicode__(self):
 		return '%s, %s %s taken %s %s for %s, prescribed by %s' % (
-			self.medication.name, self.quantity, self.unit, self.get_frequency_display(), self.get_period_display(), self.patient, self.prescribed_by
+			self.medication.name, self.quantity, self.unit, 
+			self.get_frequency_display(), self.get_period_display(), 
+			self.encounter.patient, self.encounter.provider
 		)
 	 

@@ -14,7 +14,13 @@ def pkgen():
             if pk.find(rw) >= 0:
                 bad_pk = True
                 return pk
-            
+
+def perform_raw_sql(sql, data=[]):
+	from django.db import connection, transaction
+	cursor = connection.cursor()
+	cursor.execute(sql, data)
+	transaction.commit_unless_managed()
+			
 def is_doctor(function=None):
     actual_decorator = user_passes_test(
         lambda u: u.is_authenticated(),

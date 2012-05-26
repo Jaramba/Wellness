@@ -1,62 +1,20 @@
 [
   {
     "pk": 1, 
-    "model": "records.trackingrecord", 
-    "fields": {
-      "notes": "", 
-      "name": "Weight"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "records.trackingrecord", 
-    "fields": {
-      "notes": "", 
-      "name": "Blood Sugar"
-    }
-  }, 
-  {
-    "pk": 3, 
-    "model": "records.trackingrecord", 
-    "fields": {
-      "notes": "", 
-      "name": "Blood Pressure"
-    }
-  }, 
-  {
-    "pk": 4, 
-    "model": "records.trackingrecord", 
-    "fields": {
-      "notes": "", 
-      "name": "Resting Heart Rate"
-    }
-  }, 
-  {
-    "pk": 5, 
-    "model": "records.trackingrecord", 
-    "fields": {
-      "notes": "", 
-      "name": "Temprature (Oral)"
-    }
-  }, 
-  {
-    "pk": 6, 
-    "model": "records.trackingrecord", 
-    "fields": {
-      "notes": "", 
-      "name": "Sleep"
-    }
-  }, 
-  {
-    "pk": 1, 
     "model": "records.trackingfield", 
     "fields": {
       "name": "Systolic", 
       "severe": "230", 
+	  "upper_severe": "245", 
+      "lower_severe": "190", 
+	  "lower_moderate": "48", 
+	  "upper_moderate": "52",
       "moderate": "50", 
       "daily_cummulative": false, 
-      "record": 3, 
+      "problem": 1, 
       "normal": "130", 
+	  "upper_normal": "127.5", 
+	  "lower_normal": "132.5", 
       "unit": "mmHg"
     }
   }, 
@@ -66,10 +24,16 @@
     "fields": {
       "name": "Diastolic", 
       "severe": "140", 
+	  "upper_severe": "145", 
+      "lower_severe": "130", 
+	  "lower_moderate": "38", 
+	  "upper_moderate": "42",
       "moderate": "35", 
       "daily_cummulative": false, 
-      "record": 3, 
+      "problem": 1, 
       "normal": "90", 
+	  "upper_normal": "97.5", 
+	  "lower_normal": "82.5", 
       "unit": "mmHg"
     }
   }, 
@@ -79,10 +43,16 @@
     "fields": {
       "name": "Fingerstick-blood sugar", 
       "severe": "400", 
+	  "upper_severe": "410", 
+      "lower_severe": "390", 
+	  "lower_moderate": "38", 
+	  "upper_moderate": "42", 
       "moderate": "40", 
       "daily_cummulative": false, 
-      "record": 2, 
+      "problem": 1, 
       "normal": "180", 
+	  "upper_normal": "177.5", 
+	  "lower_normal": "182.5", 
       "unit": "mg/dL"
     }
   }, 
@@ -92,10 +62,16 @@
     "fields": {
       "name": "Temperature (oral)", 
       "severe": "38", 
+	  "upper_severe": "40", 
+      "lower_severe": "37", 
+	  "lower_moderate": "37", 
+	  "upper_moderate": "35", 
       "moderate": "36", 
       "daily_cummulative": false, 
-      "record": 5, 
+      "problem": 1, 
       "normal": "37", 
+	  "upper_normal": "37.5", 
+	  "lower_normal": "36.5", 
       "unit": "degrees (Centigrade)"
     }
   }, 
@@ -103,12 +79,18 @@
     "pk": 5, 
     "model": "records.trackingfield", 
     "fields": {
-      "name": "Weight", 
-      "severe": "135", 
+      "name": "Weight",
+	  "severe": "135", 
+	  "upper_severe": "150", 
+      "lower_severe": "120", 
+	  "lower_moderate": "135", 
+	  "upper_moderate": "135", 
       "moderate": "2.25", 
       "daily_cummulative": false, 
-      "record": 1, 
+      "problem": 1, 
       "normal": "72", 
+	  "upper_normal": "135", 
+	  "lower_normal": "135", 
       "unit": "kg"
     }
   }, 
@@ -118,10 +100,16 @@
     "fields": {
       "name": "Sleep", 
       "severe": "16", 
+	  "upper_severe": "17", 
+      "lower_severe": "15", 
+	  "lower_moderate": "1", 
+	  "upper_moderate": "0", 
       "moderate": "0", 
       "daily_cummulative": false, 
-      "record": 6, 
+      "problem": 1, 
       "normal": "10", 
+	  "upper_normal": "11", 
+	  "lower_normal": "9", 
       "unit": "hours"
     }
   }, 

@@ -1,6 +1,5 @@
 from django.db import models
 from core.models import *
-
 from insuranceprovider.models import *
 
 class SpecialityCategory(models.Model):
@@ -35,5 +34,5 @@ class HealthCareFacility(EmployerCompany):
 
 class HealthWorker(UserProfile):
 	speciality = models.ManyToManyField(Speciality)
-	practice_number = models.CharField(unique=True, max_length=20)
+	practice_number = models.CharField(max_length=20, null=True, blank=True)
 	

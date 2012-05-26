@@ -64,7 +64,7 @@ class Relationship(models.Model):
 
 class Country(models.Model):
 	name = models.CharField(max_length=150)
-	iso = models.CharField(max_length=2)
+	iso = models.CharField(max_length=4)
 	
 	def __unicode__(self):
 		return '%s' % (self.name)
@@ -75,7 +75,7 @@ class Country(models.Model):
 		
 class Province(models.Model):
 	name = models.CharField(max_length=150)
-	iso = models.CharField(max_length=2)
+	iso = models.CharField(max_length=4)
 	country = models.ForeignKey(Country)
 	
 	def __unicode__(self):
@@ -87,7 +87,7 @@ class Province(models.Model):
 		
 class County(models.Model):
 	name = models.CharField(max_length=150)
-	iso = models.CharField(max_length=2)
+	iso = models.CharField(max_length=4)
 	province = models.ForeignKey(Province)
 	
 	def __unicode__(self):
@@ -154,6 +154,7 @@ class Person(models.Model):
 
 class UserProfile(Person):
 	user = models.OneToOneField('auth.User')
+	national_id = models.CharField(max_length=25)
 	
 	def __unicode__(self):
 		return self.full_name

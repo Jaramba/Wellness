@@ -101,11 +101,7 @@ class DefaultMenu(Menu):
             items.Bookmarks(),
             items.AppList(
                 'Records',
-                models=('records.*','medication.*'),
-            ),
-            items.AppList(
-                'Employee/Patient Programs',
-                models=('programs.*',),
+                models=('records.*','medication.*', 'questions.*', 'programs.*'),
             ),
             items.AppList(
                 'Insurance Administration',
@@ -113,6 +109,6 @@ class DefaultMenu(Menu):
             ),
             items.AppList(
                 'Administration',
-                exclude=('records.*','programs.*', 'insuranceprovider.*', 'medication.*'),
+                exclude=('questions.*','records.*','programs.*', 'insuranceprovider.*', 'medication.*'),
             ),
         ]
