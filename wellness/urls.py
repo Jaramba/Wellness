@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
 #apps
 urlpatterns += patterns('',
-    url(r'^$', 'views.index', name="index"),
+    url(r'^$', 'wellness.views.index', name="index"),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^records/', include('wellness.records.urls')),
     url(r'^providers/', include('wellness.healthprovider.urls')),
