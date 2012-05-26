@@ -3,7 +3,7 @@ from wellness.core.models import Record, MetaData
 
 class Immunization(Record):
 	code = models.CharField(max_length=50)
-	vaccine = models.ForeignKey('Medications'),
+	vaccine = models.ForeignKey('medication.Medications'),
 	brand_name = models.CharField(max_length=100)
 	lot_number = models.CharField(max_length=100)
 	route = models.CharField(max_length=100)
