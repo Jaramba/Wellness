@@ -1,6 +1,6 @@
 from django.db import models
-from core.models import *
-from insuranceprovider.models import *
+from wellness.core.models import *
+from wellness.insuranceprovider.models import *
 
 class SpecialityCategory(models.Model):
 	name = models.CharField(max_length=150)

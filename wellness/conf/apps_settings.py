@@ -15,16 +15,16 @@ INSTALLED_APPS = (
 	'django.contrib.markup',	
 	'django.contrib.staticfiles',
 	'uni_form',
-	'userprofile',
-	'core',	
-	'programs',
-	'insuranceprovider',
-	'records',
-	'patient',	
-	'healthprovider',
-	'medication',
-	'questions',
-	'reminders',
+	'wellness.userprofile',
+	'wellness.core',	
+	'wellness.programs',
+	'wellness.insuranceprovider',
+	'wellness.records',
+	'wellness.patient',	
+	'wellness.healthprovider',
+	'wellness.medication',
+	'wellness.questions',
+	'wellness.reminders',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -50,15 +50,8 @@ MIDDLEWARE_CLASSES = (
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
-	#'debug_toolbar.middleware.DebugToolbarMiddleware',
 	'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 NOTIFICATIONS = {
 }
-
-from settings import os, CURRENT_PATH
-
-#Begin-Djapian
-DJAPIAN_DATABASE_PATH = os.path.join(CURRENT_PATH, '..', 'djapian_spaces')
-#End-Djapian

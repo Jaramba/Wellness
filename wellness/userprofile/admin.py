@@ -1,8 +1,8 @@
 from django.contrib import admin
-from core.models import UserProfile
-from healthprovider.models import HealthWorker
-from patient.models import Patient
-from core.utils import perform_raw_sql
+from wellness.core.models import UserProfile
+from wellness.healthprovider.models import HealthWorker
+from wellness.patient.models import Patient
+from wellness.core.utils import perform_raw_sql
 from datetime import datetime
 
 def get_random_string(allowed_chars='ABCDEFGHIJKLMNPQRSTUVWXYZ123456789', length=8):

@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import Record, MetaData
+from wellness.core.models import Record, MetaData
 
 class ReminderType(MetaData):pass
 class Reminder(models.Model):

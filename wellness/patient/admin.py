@@ -1,6 +1,6 @@
 from django.contrib import admin
 from models import *
-from insuranceprovider.models import PatientInsurance
+from wellness.insuranceprovider.models import PatientInsurance
 
 class PatientInsuranceAdmin(admin.TabularInline):
     model = PatientInsurance

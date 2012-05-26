@@ -1,10 +1,10 @@
-from core.models import *
-from core.utils import pkgen
+from wellness.core.models import *
+from wellness.core.utils import pkgen
 
 from django.contrib.auth.models import User
 from django.db import models, transaction
 
-from healthprovider.models import HealthWorker
+from wellness.healthprovider.models import HealthWorker
 
 class Patient(UserProfile):
 	'''

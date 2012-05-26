@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from core.models import MetaData
+from wellness.core.models import MetaData
 
 class ProgramQuestionnaire(models.Model):
 	name = models.CharField(max_length=255)

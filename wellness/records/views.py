@@ -2,7 +2,7 @@
 from models import *
 from forms import * 
 from django.contrib.auth.decorators import login_required
-from core.views import model_view
+from wellness.core.views import model_view
 from django.shortcuts import get_object_or_404
 
 encounter = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))

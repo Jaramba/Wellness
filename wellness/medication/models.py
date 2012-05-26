@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import Record, MetaData
+from wellness.core.models import Record, MetaData
 
 class Medication(models.Model):
     MEDICATION_TYPE=[

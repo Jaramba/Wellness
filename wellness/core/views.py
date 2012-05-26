@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
-from core.models import Relationship
+from wellness.core.models import Relationship
 
 def model_view(request, pk=None, 
          template_name='', 

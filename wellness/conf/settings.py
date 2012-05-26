@@ -2,7 +2,6 @@
 import os
 from django.utils.translation import ugettext_lazy as _
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'conf.settings'
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (

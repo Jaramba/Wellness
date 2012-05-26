@@ -1,6 +1,6 @@
 from django.db import models
-from records.models import Record
-from core.models import MetaData
+from wellness.records.models import Record
+from wellness.core.models import MetaData
 
 class Company(models.Model):
 	name = models.CharField(max_length=50)
