@@ -1,10 +1,13 @@
-from django.utils.crypto import get_random_string
 from django.contrib import admin
 from core.models import UserProfile
 from healthprovider.models import HealthWorker
 from patient.models import Patient
 from core.utils import perform_raw_sql
 from datetime import datetime
+
+def get_random_string(allowed_chars='ABCDEFGHIJKLMNPQRSTUVWXYZ123456789', length=8):
+	from random import choice
+    return ''.join([choice(allowed_chars) for i in range(length)])
 
 class UserProfileAdmin(admin.ModelAdmin):
 	model = UserProfile
@@ -26,7 +29,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 				perform_raw_sql(
 					"INSERT INTO patient_patient (userprofile_ptr_id, patient_number) VALUES (%s, %s)", 
 					[profile.id, 'PAT-%s-%s' % 
-					(datetime.now().strftime('%Y'), get_random_string(4, 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'))]
+					(datetime.now().strftime('%Y'), get_random_string(4))]
 				)
 								
 	make_patient.short_description = 'Prepare Patient profile'
