@@ -7,7 +7,7 @@ from datetime import datetime
 
 def get_random_string(allowed_chars='ABCDEFGHIJKLMNPQRSTUVWXYZ123456789', length=8):
 	from random import choice
-    return ''.join([choice(allowed_chars) for i in range(length)])
+	return ''.join([choice(allowed_chars) for i in range(length)])
 
 class UserProfileAdmin(admin.ModelAdmin):
 	model = UserProfile
