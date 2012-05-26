@@ -1,4 +1,3 @@
-
 set :application, "uhai"
 set :deploy_to, "~/webapp_releases/uhai"
 set :shared_children, %w(config lib upload database)
@@ -11,7 +10,6 @@ set :scm, :git
 set :user, "uhai"
 set :use_sudo, false
 set :python_command, "PYTHONPATH=/home/uhai/webapps/uhai/lib/python2.7:$PYTHONPATH python2.7"
-
 server "uhai.webfactional.com", :app, :web, :primary => true
 
 namespace :deploy do

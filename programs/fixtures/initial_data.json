@@ -1,34 +1,86 @@
 [
   {
-    "pk": 1, 
-    "model": "programs.programtype", 
+    "pk": 1,
+    "model": "programs.programtype",
     "fields": {
-      "date_created": "2012-05-21 06:16:55", 
-      "description": "", 
-      "date_changed": "2012-05-21 06:16:55", 
-      "name": "Alcoholism Program", 
-      "slug": "alcoholism-program"
+      "date_created": "2012-05-26T14:55:01.792",
+      "description": "",
+      "date_changed": "2012-05-26T14:55:01.792",
+      "name": "Health",
+      "slug": "health"
     }
-  }, 
+  },
   {
-    "pk": 1, 
-    "model": "programs.program", 
+    "pk": 1,
+    "model": "programs.program",
     "fields": {
-      "type": 1, 
-      "expected_outcome_notes": "Stop Drinking", 
-      "concept_notes": "20 days without drinking... find out why he drinks"
+      "name": "Weight Gain",
+      "program_owner": 1,
+      "concept_notes": "",
+      "is_public": false,
+      "problem": 2,
+      "type": 1,
+      "expected_outcome_notes": "Gain Prescribe weight"
     }
-  }, 
+  },
   {
-    "pk": 1, 
-    "model": "programs.enrolledprogram", 
+    "pk": 2,
+    "model": "programs.program",
     "fields": {
-      "enroller": 6, 
-      "date_completed": "2012-05-21", 
-      "outcome_notes": "", 
-      "program": 1, 
-      "enrollee": 5, 
-      "date_enrolled": "2012-05-21"
+      "name": "HIV/AIDS Improvement",
+      "program_owner": 1,
+      "concept_notes": "",
+      "is_public": false,
+      "problem": 1,
+      "type": 1,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.enrolledprogram",
+    "fields": {
+      "enroller": 3,
+      "date_completed": "2012-05-26",
+      "outcome_notes": "",
+      "program": 2,
+      "enrollee": 1,
+      "date_enrolled": "2012-05-26"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.programworkflow",
+    "fields": {
+      "days": 0,
+      "program": 1,
+      "continued": false,
+      "name": "Eat Healthy",
+      "concept_notes": "The "
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.programworkflowstate",
+    "fields": {
+      "name": "Eating Vegetables",
+      "weight": 2,
+      "initial": true,
+      "concept_notes": "This is important for the patient, especially with HBP",
+      "terminal": false,
+      "program_workflow": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "programs.programworkflowstate",
+    "fields": {
+      "name": "Reduce Fats",
+      "weight": 3,
+      "initial": false,
+      "concept_notes": "The patient needs to watch what he is eating....",
+      "terminal": false,
+      "program_workflow": 1
     }
   }
 ]

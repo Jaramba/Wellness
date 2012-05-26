@@ -1,28 +1,58 @@
 [
   {
-    "pk": 1, 
-    "model": "patient.patient", 
+    "pk": 1,
+    "model": "patient.patient",
     "fields": {
-      "family_cancer_status": false, 
-      "weight": 97, 
-      "blood_group": "b-positive", 
-      "gender": null, 
-      "disabilities": "", 
-      "last_doctor_visit": "2012-04-07 23:02:52", 
-      "excercising_times": null, 
-      "diet": "", 
-      "height": 159, 
-      "cancer_type": "", 
-      "date_of_birth": "1990-04-07", 
-      "smoker_type": "", 
-      "other_diseases": false, 
-      "smoking": "", 
-      "drinking": "", 
-      "excercise_frequency": "", 
-      "duration_drinking": null, 
-      "employer": 1, 
-      "drinker_type": "", 
-      "duration_smoking": null
+      "weight": 97,
+      "blood_group": "b-positive",
+      "gender": "male",
+      "last_doctor_visit": "2012-04-07T23:02:52",
+      "height": 159,
+      "date_of_birth": "1990-04-07",
+      "patient_number": "PAT-2001-89SE",
+      "employer": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "patient.patient",
+    "fields": {
+      "weight": null,
+      "blood_group": null,
+      "gender": null,
+      "last_doctor_visit": null,
+      "height": null,
+      "date_of_birth": null,
+      "patient_number": "PAT-2012-YJXA",
+      "employer": null
+    }
+  },
+  {
+    "pk": 5,
+    "model": "patient.patient",
+    "fields": {
+      "weight": null,
+      "blood_group": null,
+      "gender": null,
+      "last_doctor_visit": null,
+      "height": null,
+      "date_of_birth": null,
+      "patient_number": "PAT-2012-MDJV",
+      "employer": null
+    }
+  },
+  {
+    "pk": 7,
+    "model": "patient.patient",
+    "fields": {
+      "weight": null,
+      "blood_group": null,
+      "gender": null,
+      "last_doctor_visit": null,
+      "height": null,
+      "date_of_birth": null,
+      "patient_number": "PAT-2012-TDA8",
+      "employer": null
     }
   }
 ]
