@@ -14,7 +14,7 @@ for M in (Patient):
     #The app itself
     model_name = M.__name__.lower()
     form_class = globals()[M.__name__+'Form'] 
-    urlpatterns += patterns('healthprovider.views',
+    urlpatterns += patterns('wellness.healthprovider.views',
         url(r'^%s/list/$' % model_name, model_name, {'action' : 'list', 'model_class':M}, name='%s-list' % model_name),
         url(r'^%s/create/$' % model_name, model_name, {
                         'action' : 'create',

@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='website/how_it_works.html'),name='records'),
 )
 
-urlpatterns += patterns('records.views',
+urlpatterns += patterns('wellness.records.views',
     url(r'^problem/(?P<problem_type>[-\w]+)/list/$', 'problem', {
                 'action' : 'list', 
                 'model_class':Problem
@@ -30,7 +30,7 @@ for M in (Encounter, Order, Immunization, Problem, TrackingField):
     #The app itself
     model_name = M.__name__.lower()
     form_class = globals()[M.__name__+'Form'] 
-    urlpatterns += patterns('records.views',
+    urlpatterns += patterns('wellness.records.views',
         url(r'^%s/list/$' % model_name, model_name, {'action' : 'list', 'model_class':M}, name='%s-list' % model_name),
         url(r'^%s/create/$' % model_name, model_name, {
                         'action' : 'create',
