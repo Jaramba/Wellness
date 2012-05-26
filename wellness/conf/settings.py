@@ -62,7 +62,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'wellness.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
