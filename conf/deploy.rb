@@ -36,14 +36,7 @@ namespace (:django) do
     run "mkdir -p #{latest_release}/static"
     run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput" 
   end
-
-  desc <<-DESC
-    Run the "python manage.py index --rebuild" task
-  DESC
-  task :search do
-    run "cd #{latest_release} && #{python_command}  manage.py index --rebuild"
-  end
-
+  
   desc <<-DESC
     Run the "python manage.py syncdb" task
   DESC
@@ -55,7 +48,7 @@ namespace (:django) do
     Run the "python manage.py reset web" task
   DESC
   task :reset do
-    run "cd #{latest_release} && #{python_command} manage.py reset web --noinput"
+    run "cd #{latest_release} && #{python_command} manage.py reset core records --noinput"
   end
 
 end

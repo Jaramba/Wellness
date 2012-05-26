@@ -3,18 +3,18 @@
     "pk": 1,
     "model": "questions.programquestionnaire",
     "fields": {
-      "date_created": "2012-05-26T19:07:16.887",
-      "finish_date": "2012-08-26T19:07:08",
+      "date_created": "2012-05-26 19:07:16.887",
+      "finish_date": "2012-08-26 19:07:08",
       "program": 2,
       "name": "HIV/AIDs Follow up",
-      "start_date": "2012-05-26T19:07:06"
+      "start_date": "2012-05-26 19:07:06"
     }
   },
   {
     "pk": 1,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:07:27.359",
+      "date_created": "2012-05-26 19:07:27.359",
       "questionnaire": 1,
       "label": "HIV/AIDs"
     }
@@ -23,7 +23,7 @@
     "pk": 2,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:07:40.902",
+      "date_created": "2012-05-26 19:07:40.902",
       "questionnaire": 1,
       "label": "Diarrhoea"
     }
@@ -32,7 +32,7 @@
     "pk": 3,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:07:49.172",
+      "date_created": "2012-05-26 19:07:49.172",
       "questionnaire": 1,
       "label": "ART"
     }
@@ -41,7 +41,7 @@
     "pk": 4,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:07:59.637",
+      "date_created": "2012-05-26 19:07:59.637",
       "questionnaire": 1,
       "label": "Liver function"
     }
@@ -50,7 +50,7 @@
     "pk": 5,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:08:23.495",
+      "date_created": "2012-05-26 19:08:23.495",
       "questionnaire": 1,
       "label": "Tiredness or Weakness"
     }
@@ -59,7 +59,7 @@
     "pk": 6,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:08:31.823",
+      "date_created": "2012-05-26 19:08:31.823",
       "questionnaire": 1,
       "label": "Eyes"
     }
@@ -68,7 +68,7 @@
     "pk": 7,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:08:44.051",
+      "date_created": "2012-05-26 19:08:44.051",
       "questionnaire": 1,
       "label": "Tuberculosis"
     }
@@ -77,7 +77,7 @@
     "pk": 9,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:04.839",
+      "date_created": "2012-05-26 19:09:04.839",
       "questionnaire": 1,
       "label": "Blood test"
     }
@@ -86,7 +86,7 @@
     "pk": 10,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:13.392",
+      "date_created": "2012-05-26 19:09:13.392",
       "questionnaire": 1,
       "label": "Vaccinations"
     }
@@ -95,7 +95,7 @@
     "pk": 12,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:25.513",
+      "date_created": "2012-05-26 19:09:25.513",
       "questionnaire": 1,
       "label": "Vitamins"
     }
@@ -104,7 +104,7 @@
     "pk": 13,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:32.821",
+      "date_created": "2012-05-26 19:09:32.821",
       "questionnaire": 1,
       "label": "Viral load"
     }
@@ -113,7 +113,7 @@
     "pk": 14,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:39.470",
+      "date_created": "2012-05-26 19:09:39.470",
       "questionnaire": 1,
       "label": "CD4"
     }
@@ -122,7 +122,7 @@
     "pk": 15,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:47.930",
+      "date_created": "2012-05-26 19:09:47.930",
       "questionnaire": 1,
       "label": "Condoms"
     }
@@ -131,7 +131,7 @@
     "pk": 16,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:09:53.637",
+      "date_created": "2012-05-26 19:09:53.637",
       "questionnaire": 1,
       "label": "Cough"
     }
@@ -140,7 +140,7 @@
     "pk": 17,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:10:06.534",
+      "date_created": "2012-05-26 19:10:06.534",
       "questionnaire": 1,
       "label": "Fluids"
     }
@@ -149,7 +149,7 @@
     "pk": 18,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:10:17.675",
+      "date_created": "2012-05-26 19:10:17.675",
       "questionnaire": 1,
       "label": "Thrush"
     }
@@ -158,7 +158,7 @@
     "pk": 19,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:10:26.342",
+      "date_created": "2012-05-26 19:10:26.342",
       "questionnaire": 1,
       "label": "Lower extremities"
     }
@@ -167,7 +167,7 @@
     "pk": 21,
     "model": "questions.questionset",
     "fields": {
-      "date_created": "2012-05-26T19:10:50.913",
+      "date_created": "2012-05-26 19:10:50.913",
       "questionnaire": 1,
       "label": "Prophylactic Therapy"
     }
@@ -639,7 +639,7 @@
       "questionnaire": 1,
       "completed": false,
       "enrolled_program": 1,
-      "updated_at": "2012-05-26T19:30:51.024"
+      "updated_at": "2012-05-26 19:30:51.024"
     }
   }
 ]
