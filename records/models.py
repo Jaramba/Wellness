@@ -12,9 +12,6 @@ class Immunization(Record):
 	expiry_date = models.DateTimeField()
 	practice_date = models.DateTimeField(auto_now=True)
 
-class Image(Record):
-    date = models.DateField()
-
 class ProblemType(MetaData):pass
 class ProblemStatus(MetaData):pass
 class Problem(models.Model):
