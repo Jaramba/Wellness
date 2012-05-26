@@ -19,8 +19,8 @@ from signals import *
 
 import copy
 
-from core.models import UserProfile
-from core.forms import UserProfileForm
+from wellness.core.models import UserProfile
+from wellness.core.forms import UserProfileForm
 
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
