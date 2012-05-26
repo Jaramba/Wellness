@@ -1,0 +1,261 @@
+
+/** The Column **/
+.form-column{
+clear:both;
+padding:2px 0px 15px 12px;
+display: inline-block;
+vertical-align: top;
+width: 300px;
+margin: 0 20px 10px 0;
+position: relative;
+
+}
+
+.form-row{
+	width:100%;
+	clear:both;
+	position: relative;
+	overflow: hidden;
+}
+
+/** The General Form **/
+.general_form{
+width:97%;
+padding:15px 15px 20px 20px;
+background:#ffffff;
+border-radius:8px;
+-webkit-border-radius:8px;
+-moz-border-radius:8px;
+float:left;
+-webkit-box-shadow: inset 0.5px 0.5px 2px 2px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: inset 0.5px 0.5px 2px 2px rgba(0, 0, 0, 0.2);
+box-shadow: inset 0.5px 0.5px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+div.form_title_div{
+	padding: 20px;
+}
+
+h3.form_title{
+	font-size: 14px;
+	color: #4B4B4B;
+	border-bottom: 1px dotted #CCC;
+	width: 93%;
+	margin: 0px 0px 15px 5px;
+	padding-right: 40px;
+}
+
+h2.form_title{
+	font-size: 20px;
+	color: #4B4B4B;
+	border-bottom: 1px dotted #CCC;
+	width: 93%;
+	margin: 0px 0px 15px 5px;
+	padding-right: 40px;
+}
+
+#posting-form textarea#id_description {
+	height: 140px;
+}	
+
+#posting-form textarea#id_qualifications {
+	height: 150px;
+}
+
+#posting-form input#id_date_open, 
+input#id_date_closed, 
+input#id_date_starting, 
+input#id_date_finishing {
+	width: 130px;
+}
+
+.dates{
+	width:300px;
+}
+
+h2.form_title_nums{
+	padding-left: 35px;
+	font-size: 23px;
+	color: #4B4B4B;
+	border-bottom: 1px dotted #CCC;
+	width: 100%;
+}
+
+.field{
+	margin:0 10px;
+}
+
+.field label{
+	font-size:12px;
+	color:#181818;
+	float:left;
+}
+
+.field .indicator{
+clear:right;
+color:#181818;
+float:right;
+font-size:10px;
+}
+
+.field select{
+clear:both;
+float:left;
+height:30px;
+}
+
+.field .help_text{
+clear:left;
+color:#898989;
+float:left;
+font-size:10px;
+padding: 0px 0px 3px 0px;
+}
+
+.hide{
+display:none;
+}
+
+.field input{
+clear:both;
+float:left;
+height:30px;
+width: 100%;
+max-width: 610px;
+padding: 0 4px;
+margin: 7px 0 0 0;
+}
+
+.field select{
+clear:both;
+float:left;
+height:30px;
+width: 100%;
+max-width: 610px;
+padding: 0 4px;
+margin: 7px 0 0 0;
+}
+
+.field textarea {
+	width: 100%;
+	height: 90px;
+	clear: both;
+	float: left;
+	padding: 2px;
+}
+
+.buttonHolder{
+	border-top: 1px dotted #CCC;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.text textarea{
+	font-family: arial, verdana, sans-serif;
+}
+
+.field textarea:focus{
+color:#777777;
+}
+
+.field input:focus{
+color:#777777;
+}
+
+.long{
+width:344px;
+}
+
+.field .error{
+font-style:italic;
+clear:both;
+float:right;
+color:#ff0000;
+font-size:10px;
+}
+
+.tips{
+width:30%;
+margin-top:15px;
+float:right;
+margin-right:90px;
+}
+
+.tips b{
+}
+
+.submit{
+clear:both;
+float:left;
+cursor: pointer;
+height:32px;
+margin:15px 0px 5px 0px;
+padding:0px 10px 0px 10px;
+background: #1ba1db; /* Old browsers */
+background: -moz-linear-gradient(top,  #1ba1db 0%, #188ec1 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1ba1db), color-stop(100%,#188ec1)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #1ba1db 0%,#188ec1 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #1ba1db 0%,#188ec1 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #1ba1db 0%,#188ec1 100%); /* IE10+ */
+background: linear-gradient(top,  #1ba1db 0%,#188ec1 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ba1db', endColorstr='#188ec1',GradientType=0 ); /* IE6-9 */
+border:none;
+-webkit-border-radius:3px;
+border-radius:3px;
+-moz-border-radius:3px;
+font-weight:bold;
+text-shadow: 0px -1px 0px #949494;
+filter: dropshadow(color=#949494, offx=1, offy=1);
+color:#ffffff;
+}
+
+.submit:hover{
+background: #188ec1; /* Old browsers */
+background: -moz-linear-gradient(top,  #188ec1 0%, #1ba1db 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#188ec1), color-stop(100%,#1ba1db)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #188ec1 0%,#1ba1db 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #188ec1 0%,#1ba1db 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #188ec1 0%,#1ba1db 100%); /* IE10+ */
+background: linear-gradient(top,  #188ec1 0%,#1ba1db 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#188ec1', endColorstr='#1ba1db',GradientType=0 ); /* IE6-9 */
+}
+
+.section{
+float:left;
+width:95%;
+padding:8px;
+}
+
+.section .number{
+-webkit-border-radius:180px;
+-moz-border-radius:190px;
+border-radius:200px;
+color:#ffffff;
+background:#a5c727;
+font-size:19px;
+padding:1.5px 8px;
+float:left;
+font-weight:bold;
+}
+
+select#id_companies{
+	height: 110px
+}
+
+div#resume .form-column{
+	width: 100%;
+	padding: 2px 0px 8px 0px;
+}
+
+div#resume label{
+	margin: 0;
+}
+
+div#resume select{
+	width: 102%;
+}
+
+div#resume .buttonHolder{
+	margin-left: 10px;
+	margin-right: none;
+}

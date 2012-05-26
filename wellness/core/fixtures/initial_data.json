@@ -1,0 +1,953 @@
+[
+  {
+    "pk": 1,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:02:47",
+      "b_is_to_a": "Child",
+      "a_is_to_b": "Parent",
+      "date_changed": "2012-05-21 08:02:47"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:02:58",
+      "b_is_to_a": "Child",
+      "a_is_to_b": "Grandparent",
+      "date_changed": "2012-05-21 08:02:58"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:03:06",
+      "b_is_to_a": "Cousin",
+      "a_is_to_b": "Cousin",
+      "date_changed": "2012-05-21 08:03:06"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:03:18",
+      "b_is_to_a": "Niece",
+      "a_is_to_b": "Aunt",
+      "date_changed": "2012-05-21 08:03:18"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:03:30",
+      "b_is_to_a": "Niece",
+      "a_is_to_b": "Uncle",
+      "date_changed": "2012-05-21 08:03:30"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:03:40",
+      "b_is_to_a": "Nephew",
+      "a_is_to_b": "Aunt",
+      "date_changed": "2012-05-21 08:03:40"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:03:46",
+      "b_is_to_a": "Nephew",
+      "a_is_to_b": "Uncle",
+      "date_changed": "2012-05-21 08:03:46"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:03:56",
+      "b_is_to_a": "Child",
+      "a_is_to_b": "Guardian",
+      "date_changed": "2012-05-21 08:03:56"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:04:10",
+      "b_is_to_a": "Child",
+      "a_is_to_b": "Foster Parent",
+      "date_changed": "2012-05-21 08:04:10"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "core.relationshiptype",
+    "fields": {
+      "preffered": false,
+      "date_created": "2012-05-21 08:04:28",
+      "b_is_to_a": "Doctor",
+      "a_is_to_b": "Patient",
+      "date_changed": "2012-05-21 08:04:28"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.relationship",
+    "fields": {
+      "next_of_kin": false,
+      "emergency_contact": false,
+      "person_b": 3,
+      "relationship": 10,
+      "person_a": 2
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.country",
+    "fields": {
+      "iso": "KE",
+      "name": "Kenya"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.province",
+    "fields": {
+      "country": 1,
+      "iso": "Nrb",
+      "name": "Nairobi"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.county",
+    "fields": {
+      "province": 1,
+      "iso": "Emb",
+      "name": "Embakassi"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.title",
+    "fields": {
+      "name": "Mr."
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.title",
+    "fields": {
+      "name": "Mrs."
+    }
+  },
+  {
+    "pk": 3,
+    "model": "core.title",
+    "fields": {
+      "name": "Miss"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "core.title",
+    "fields": {
+      "name": "Dr."
+    }
+  },
+  {
+    "pk": 5,
+    "model": "core.title",
+    "fields": {
+      "name": "Prof"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Onesmus",
+      "last_name": "Mukewa",
+      "middle_name": "Wekalao",
+      "title": 1,
+      "work_phone": "+254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254736705812",
+      "postal_code": "30177-00100",
+      "home_phone": "+254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 04:44:26",
+      "country": 1,
+      "date_edited": "2012-05-21 04:18:50"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "David",
+      "last_name": "Simbiri",
+      "middle_name": "Simbiri",
+      "title": 1,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254735199807",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 04:46:48",
+      "country": 1,
+      "date_edited": "2012-05-21 04:46:48"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Davis",
+      "last_name": "Ambima",
+      "middle_name": "Khaemba",
+      "title": 4,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111234",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 07:02:16",
+      "country": 1,
+      "date_edited": "2012-05-21 07:02:16"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Mary",
+      "last_name": "Wekasa",
+      "middle_name": "Nafula",
+      "title": 2,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111265",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 04:55:18",
+      "country": 1,
+      "date_edited": "2012-05-21 04:48:39"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Edth",
+      "last_name": "Khalai",
+      "middle_name": "Wekalao",
+      "title": 3,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111234",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 04:52:05",
+      "country": 1,
+      "date_edited": "2012-05-21 04:49:45"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Davis",
+      "last_name": "Ambima",
+      "middle_name": "Litunya",
+      "title": 1,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111232",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 04:51:44",
+      "country": 1,
+      "date_edited": "2012-05-21 04:50:33"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "core.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Mary",
+      "last_name": "Khaemba",
+      "middle_name": "Masika",
+      "title": 2,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254735100807",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21 04:55:08",
+      "country": 1,
+      "date_edited": "2012-05-21 04:51:10"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 2
+    }
+  },
+  {
+    "pk": 3,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 3
+    }
+  },
+  {
+    "pk": 4,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 4
+    }
+  },
+  {
+    "pk": 5,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 5
+    }
+  },
+  {
+    "pk": 6,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 6
+    }
+  },
+  {
+    "pk": 7,
+    "model": "core.userprofile",
+    "fields": {
+      "user": 7
+    }
+  },
+  {
+    "pk": 1, 
+    "model": "auth.group", 
+    "fields": {
+      "name": "Health Workers", 
+      "permissions": [
+        41, 
+        154, 
+        42, 
+        155, 
+        151, 
+        152, 
+        153, 
+        148, 
+        149, 
+        44, 
+        157, 
+        45, 
+        158, 
+        121, 
+        122, 
+        124, 
+        125, 
+        130, 
+        131, 
+        127, 
+        128, 
+        133, 
+        118, 
+        119, 
+        115, 
+        116, 
+        112, 
+        109, 
+        110, 
+        106, 
+        107, 
+        80, 
+        193, 
+        81, 
+        194, 
+        98, 
+        211, 
+        99, 
+        212, 
+        95, 
+        208, 
+        96, 
+        209, 
+        92, 
+        205, 
+        93, 
+        206, 
+        190, 
+        191, 
+        86, 
+        199, 
+        87, 
+        200, 
+        83, 
+        196, 
+        84, 
+        85, 
+        103, 
+        104, 
+        214, 
+        101
+      ]
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.group", 
+    "fields": {
+      "name": "Admins", 
+      "permissions": [
+        145, 
+        32, 
+        146, 
+        33, 
+        147, 
+        34, 
+        41, 
+        154, 
+        42, 
+        155, 
+        43, 
+        156, 
+        38, 
+        151, 
+        39, 
+        152, 
+        40, 
+        153, 
+        35, 
+        148, 
+        36, 
+        149, 
+        37, 
+        150, 
+        44, 
+        157, 
+        45, 
+        158, 
+        46, 
+        159, 
+        121, 
+        122, 
+        123, 
+        124, 
+        125, 
+        126, 
+        178, 
+        65, 
+        179, 
+        66, 
+        180, 
+        67, 
+        175, 
+        62, 
+        176, 
+        63, 
+        177, 
+        64, 
+        68, 
+        181, 
+        69, 
+        182, 
+        70, 
+        183, 
+        184, 
+        71, 
+        185, 
+        72, 
+        186, 
+        73, 
+        130, 
+        131, 
+        132, 
+        127, 
+        128, 
+        129, 
+        133, 
+        134, 
+        135, 
+        118, 
+        119, 
+        120, 
+        172, 
+        59, 
+        173, 
+        60, 
+        174, 
+        61, 
+        50, 
+        163, 
+        51, 
+        164, 
+        52, 
+        165, 
+        47, 
+        160, 
+        48, 
+        161, 
+        49, 
+        162, 
+        53, 
+        166, 
+        54, 
+        167, 
+        55, 
+        168, 
+        169, 
+        56, 
+        170, 
+        57, 
+        171, 
+        58, 
+        115, 
+        116, 
+        117, 
+        112, 
+        113, 
+        114, 
+        89, 
+        202, 
+        90, 
+        203, 
+        91, 
+        204, 
+        187, 
+        74, 
+        188, 
+        75, 
+        189, 
+        76, 
+        109, 
+        110, 
+        111, 
+        106, 
+        107, 
+        108, 
+        80, 
+        193, 
+        81, 
+        194, 
+        82, 
+        195, 
+        98, 
+        211, 
+        99, 
+        212, 
+        100, 
+        213, 
+        95, 
+        208, 
+        96, 
+        209, 
+        97, 
+        210, 
+        92, 
+        205, 
+        93, 
+        206, 
+        94, 
+        207, 
+        77, 
+        190, 
+        78, 
+        191, 
+        79, 
+        192, 
+        86, 
+        199, 
+        87, 
+        200, 
+        88, 
+        201, 
+        83, 
+        196, 
+        84, 
+        197, 
+        85, 
+        198, 
+        103, 
+        104, 
+        105, 
+        214, 
+        101, 
+        102
+      ]
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.group", 
+    "fields": {
+      "name": "Insurance Agents", 
+      "permissions": [
+        41, 
+        154, 
+        42, 
+        155, 
+        43, 
+        156, 
+        38, 
+        151, 
+        39, 
+        152, 
+        40, 
+        153, 
+        35, 
+        148, 
+        36, 
+        149, 
+        37, 
+        150, 
+        44, 
+        157, 
+        45, 
+        158, 
+        46, 
+        159, 
+        178, 
+        65, 
+        179, 
+        66, 
+        180, 
+        67, 
+        175, 
+        62, 
+        176, 
+        63, 
+        177, 
+        64, 
+        68, 
+        181, 
+        69, 
+        182, 
+        70, 
+        183, 
+        184, 
+        71, 
+        185, 
+        72, 
+        186, 
+        73, 
+        118, 
+        119, 
+        120, 
+        172, 
+        59, 
+        173, 
+        60, 
+        174, 
+        61, 
+        50, 
+        163, 
+        51, 
+        164, 
+        52, 
+        165, 
+        47, 
+        160, 
+        48, 
+        161, 
+        49, 
+        162, 
+        53, 
+        166, 
+        54, 
+        167, 
+        55, 
+        168, 
+        169, 
+        56, 
+        170, 
+        57, 
+        171, 
+        58, 
+        80, 
+        193, 
+        81, 
+        194, 
+        82, 
+        195, 
+        98, 
+        211, 
+        99, 
+        212, 
+        100, 
+        213, 
+        95, 
+        208, 
+        96, 
+        209, 
+        97, 
+        210, 
+        92, 
+        205, 
+        93, 
+        206, 
+        94, 
+        207
+      ]
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "auth.group", 
+    "fields": {
+      "name": "Patients", 
+      "permissions": [
+        41, 
+        154, 
+        151, 
+        152, 
+        148, 
+        44, 
+        121, 
+        124, 
+        178, 
+        65, 
+        175, 
+        68, 
+        181, 
+        184, 
+        130, 
+        133, 
+        118, 
+        50, 
+        51, 
+        52, 
+        115, 
+        116, 
+        109, 
+        110, 
+        80, 
+        193, 
+        98, 
+        211, 
+        99, 
+        212, 
+        100, 
+        213, 
+        95, 
+        208, 
+        96, 
+        86, 
+        199, 
+        87, 
+        200, 
+        88, 
+        201, 
+        83, 
+        196, 
+        84, 
+        197, 
+        85, 
+        198, 
+        103, 
+        104
+      ]
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "ian", 
+      "first_name": "Onesmus", 
+      "last_name": "Mukewa", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2012-04-07 07:26:58", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$b2294$fcae86c2c9280c7ca532bd1db880f2aee34fee2c", 
+      "email": "kanarelo@gmail.com", 
+      "date_joined": "2012-04-07 07:26:52"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "zimbo", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2012-05-21 04:46:48", 
+      "groups": [
+        2
+      ], 
+      "user_permissions": [], 
+      "password": "sha1$81bc5$a0fe71f92472cd77d3aab0e9a70ab78af1d167bc", 
+      "email": "david.simbiri@gmail.com", 
+      "date_joined": "2012-05-21 04:46:48"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "jkhaemba", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": true, 
+      "last_login": "2012-05-21 04:47:50", 
+      "groups": [
+        1
+      ], 
+      "user_permissions": [], 
+      "password": "sha1$e84dc$b7767c929221184e4beba14eb55d14f40d1d38a0", 
+      "email": "kanarelo+jkhaemba@gmail.com", 
+      "date_joined": "2012-05-21 04:47:50"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "mnafula", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2012-05-21 04:48:39", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$30281$ec1da8944dccc195226a9954e3ae4a5d57540e43", 
+      "email": "kanarelo+mnafula@gmail.com", 
+      "date_joined": "2012-05-21 04:48:39"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "ekhalai", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": true, 
+      "last_login": "2012-05-21 04:49:45", 
+      "groups": [
+        4
+      ], 
+      "user_permissions": [], 
+      "password": "sha1$ee5d5$c07716618ad64f094a9ca3460df1a95cb947883c", 
+      "email": "kanarelo+ekhalai@gmail.com", 
+      "date_joined": "2012-05-21 04:49:45"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "dlitunya", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2012-05-21 04:50:33", 
+      "groups": [
+        3
+      ], 
+      "user_permissions": [], 
+      "password": "sha1$fc6d0$e3c57694630b6a61c82d15fdf14cdb9d9e83122c", 
+      "email": "kanarelo+dlitunya@gmail.com", 
+      "date_joined": "2012-05-21 04:50:33"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "mmasika", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": false, 
+      "is_staff": false, 
+      "last_login": "2012-05-21 04:51:10", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "sha1$196c3$1b7ddc03089e2e39b49604f1130461ec59fff20b", 
+      "email": "kanarelo+mmasika@gmail.com", 
+      "date_joined": "2012-05-21 04:51:10"
+    }
+  }
+]

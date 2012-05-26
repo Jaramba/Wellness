@@ -1,0 +1,68 @@
+[
+  {
+    "pk": 1,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "1",
+      "strength": "3",
+      "name": "Insulin",
+      "side_effects": "Sweaty hands",
+      "medication_type": "prescribed",
+      "way_taken": "intravenous",
+      "max_daily_dose": "3",
+      "strength_unit": "gram"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "1",
+      "strength": "2",
+      "name": "Panadol",
+      "side_effects": "Head ache",
+      "medication_type": "otc",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "2",
+      "strength_unit": "milligram"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "medication.prescription",
+    "fields": {
+      "medication": 1,
+      "date_ended": "2012-05-26",
+      "notes": "Nes",
+      "next_prescription_date": "2012-06-26",
+      "reminder_type": 2,
+      "period": "as-needed",
+      "reason": "Low blood sugar",
+      "frequency": "3",
+      "encounter": 1,
+      "date_prescribed": "2012-05-26",
+      "date_started": "2012-05-26",
+      "unit": "suppository",
+      "quantity": 2
+    }
+  },
+  {
+    "pk": 2,
+    "model": "medication.prescription",
+    "fields": {
+      "medication": 2,
+      "date_ended": "2012-05-26",
+      "notes": "We cant get it!!",
+      "next_prescription_date": "2012-07-20",
+      "reminder_type": 2,
+      "period": "per-day",
+      "reason": "Head ache",
+      "frequency": "3",
+      "encounter": 2,
+      "date_prescribed": "2012-05-26",
+      "date_started": "2011-05-26",
+      "unit": "tablet",
+      "quantity": 2
+    }
+  }
+]
