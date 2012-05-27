@@ -11,12 +11,12 @@ def model_view(request, pk=None,
          queryset=None,
          model_class=None,
          model_form_class=None,
-         model_form_classes={},
+         model_form_classes=[],
          action='view',
          data = {},
          initial_form_data=lambda:{},
          save_form=lambda form:form.save(),
-         redirect_to=lambda model_class:'%s-detail' % model_class._meta.object_name.lower(),
+         redirect_to=None,
          extra_action=lambda request, action:None,
          context_object_name=lambda model_obj:model_obj._meta.object_name.lower(),
          context_object_name_plural=lambda model_obj:model_obj._meta.object_name.lower()+'s',
@@ -41,21 +41,26 @@ def model_view(request, pk=None,
     if request.method == 'GET':
         if action in ['create', 'detail', 'edit', 'delete', 'list']:
             if action in ['create', 'edit', 'delete']:
-                data[context_form_name] = model_form_class(initial_form_data())
+                initial = initial_form_data()                
+                data[context_form_name] = model_form_class() if initial else model_form_class(initial=initial) 
         else:
             extra_action(request, action)
         
     elif request.method == 'POST':
         if action == 'edit' or action == 'create':
             if not model_form_classes and model_form_class:
-                model_form_classes['main'] = model_form_class
-                
-            for model_form_class in model_form_classes.values():  
-                form = model_form_class(request.POST, request.FILES, instance=model_obj)
-                if form.is_valid():
-                    save_form(form)
-            if model_form_classes['main'].success:
-                return HttpResponseRedirect(reverse(callable(redirect_to) and redirect_to() or redirect_to))
+				model_form_classes.append(model_form_class)
+				success = False
+
+            for model_form_class in model_form_classes:  
+				form = model_form_class(request.POST, request.FILES, instance=model_obj)
+				if form.is_valid():
+					o = save_form(form)
+					redirect_to = ['%s-detail' % model_class.__name__.lower(), o.pk]
+					success = True
+					
+            if success:
+                return HttpResponseRedirect(reverse(**redirect_to))
             data[context_form_name] = form
         elif action == 'delete':
             if model_obj:

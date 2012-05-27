@@ -2,8 +2,6 @@ from django.contrib import admin
 from forms import *
 from models import *
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.flatpages.models import FlatPage
-from django.contrib.comments.models import Comment
 
 class ModelAdminMedia(object):
 	class Media:

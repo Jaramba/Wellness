@@ -1,0 +1,46 @@
+{% extends "applicant_base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block extracss %}
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/enhanced.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/tagit.ui-zendesk.css">
+{% endblock extracss %}
+
+{% block extrajs %}
+	<script type="text/javascript">
+		$(function() {
+			$(":text, textarea").addClass("text");
+		});
+	</script>
+{% endblock extrajs %}
+
+{% block pitch %}
+	<div id="side_nav" class="left clearfix">
+		<label><u>Medication</u></label>
+		<ul class="profile_nav">
+			<li>
+				<a href="{% url immunization-create %}">Add Immunization {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li> 
+			<li>
+				<a href="{% url encounter-create %}">Add Encounter {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			<li>
+				<a href="{% url order-create %}">Add Doctor Order{%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			<li>
+				<a href="{% url problem-create %}">Add Medical Problem{%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			<li>
+				<a href="{% url order-create %}">Medication List{%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+		</ul>
+	</div>
+	<div id="content">
+		{% block content_details %}
+			{% uni_form form form.helper %}
+		{% endblock content_details %}
+	</div>
+{% endblock %}

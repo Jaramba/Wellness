@@ -1,11 +1,6 @@
 {% extends "applicant_base.html" %}
 {% load i18n %}
 {% load uni_form_tags %}
-{% comment %}{% load thumbnail %}{% endcomment %}
-
-{% block title %}
-	{% trans "Inposting | Medication Create" %}
-{% endblock %}
 
 {% block extracss %}
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
@@ -24,17 +19,22 @@
 
 {% block pitch %}
 	<div id="side_nav" class="left clearfix">
-		<label><u>My Settings</u></label>
+		<label><u>Medication</u></label>
 		<ul class="profile_nav">
 			<li>
-				<a href="{% url settings %}">Profile {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+				<a href="{% url prescription-create %}">Add prescription {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
 			</li> 
 			<li>
-				<a href="{% url settings-password %}">Password {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+				<a href="{% url medication-create %}">Add Medication {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+			<li>
+				<a href="{% url medication-list %}">Medication List{%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
 			</li>
 		</ul>
 	</div>
 	<div id="content">
-		{% uni_form form form.helper %}
+		{% block content_details %}
+			{% uni_form form form.helper %}
+		{% endblock content_details %}
 	</div>
 {% endblock %}

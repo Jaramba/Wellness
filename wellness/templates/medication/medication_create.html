@@ -1,0 +1,11 @@
+{% extends "medication/medication_base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}
+	{% trans "Uhai | Medication Create" %}
+{% endblock %}
+
+{% block content_details %}
+	{% uni_form form form.helper %}
+{% endblock content_details %}

@@ -36,16 +36,14 @@ class Patient(UserProfile):
 	patient_number = models.CharField(unique=True, max_length=15)
 	
 	gender = models.CharField(max_length=20, choices=GENDER, null=True)
-	date_of_birth = models.DateField(null=True)
+	date_of_birth = models.DateField(null=True, help_text='The Patient\'s indicated date of birth')
 	
 	blood_group = models.CharField(max_length=20, choices=BLOOD_GROUPS, null=True)
-	weight = models.PositiveSmallIntegerField(default=0, null=True)
-	height = models.PositiveSmallIntegerField(default=0, null=True)
+	weight = models.CharField(max_length=5, default=0, null=True, help_text='Enter weight in Kilograms (Kgs)')
+	height = models.CharField(max_length=7, default=0, null=True, help_text='Enter standard height, eg: 5\'9" for 5 foot 9 inch')
 	
 	employer 	= models.ForeignKey('insuranceprovider.EmployerCompany', null=True)
 	insurance	= models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
-
-	last_doctor_visit = models.DateTimeField(null=True)
 	
 	def __unicode__(self):
 		return '%s [PNo. %s]' % (self.full_name, self.patient_number)

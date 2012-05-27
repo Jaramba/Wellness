@@ -50,7 +50,7 @@ class PatientProgramQuestionnaire(models.Model):
 	questionnaire = models.ForeignKey('ProgramQuestionnaire')
 	enrolled_program = models.ForeignKey('programs.EnrolledProgram')
 	completed = models.BooleanField(default=False)
-	updated_at = models.DateTimeField(auto_now=True)
+	updated_at = models.DateTimeField(auto_now_add=True)
 	
 	def __unicode__(self):
 		return '%s enrolled for %s' % (self.questionnaire, self.enrolled_program)

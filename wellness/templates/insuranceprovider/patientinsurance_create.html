@@ -4,23 +4,14 @@
 {% comment %}{% load thumbnail %}{% endcomment %}
 
 {% block title %}
-	{% trans "Patient Insuarance" %}
+	{% trans "Inposting | Personal Profile" %}
 {% endblock %}
 
 {% block extracss %}
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/enhanced.css">
-	<l<li>
-			</liink rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/tagit.ui-zendesk.css">
-	<style type="text/css" media="screen">
-		.qq-upload-list{
-			list-style: none;
-		}
-		.qq-upload-list li span{
-			margin-right: 10px;
-		}
-	</style>
 {% endblock extracss %}
 
 {% block extrajs %}
@@ -32,6 +23,17 @@
 {% endblock extrajs %}
 
 {% block pitch %}
+	<div id="side_nav" class="left clearfix">
+		<label><u>My Settings</u></label>
+		<ul class="profile_nav">
+			<li>
+				<a href="{% url settings %}">Profile {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li> 
+			<li>
+				<a href="{% url settings-password %}">Password {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
+			</li>
+		</ul>
+	</div>
 	<div id="content">
 		{% uni_form form form.helper %}
 	</div>

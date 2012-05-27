@@ -79,7 +79,7 @@ class Prescription(models.Model):
 
 	date_started = models.DateField()
 	date_ended = models.DateField()
-	date_prescribed = models.DateField(auto_now=True)
+	date_prescribed = models.DateField()
 	next_prescription_date = models.DateField()
 
 	def __unicode__(self):

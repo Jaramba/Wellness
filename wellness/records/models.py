@@ -3,22 +3,20 @@ from wellness.core.models import Record, MetaData
 
 class Immunization(Record):
 	code = models.CharField(max_length=50)
-	vaccine = models.ForeignKey('medication.Medications'),
+	vaccine = models.ForeignKey('medication.Medication')
 	brand_name = models.CharField(max_length=100)
 	lot_number = models.CharField(max_length=100)
 	route = models.CharField(max_length=100)
 	site = models.CharField(max_length=100)
 	follow_up_date = models.DateTimeField()
 	expiry_date = models.DateTimeField()
-	practice_date = models.DateTimeField(auto_now=True)
+	practice_date = models.DateTimeField()
 
 class ProblemType(MetaData):pass
-class ProblemStatus(MetaData):pass
 class Problem(models.Model):
 	name = models.CharField(max_length=30)
 	notes = models.CharField(max_length=2000, null=True, blank=True)
 	code = models.CharField(max_length=50, null=True, blank=True)
-	status = models.ForeignKey('ProblemStatus')
 	type = models.ForeignKey('ProblemType')
 	
 	def __unicode__(self):
@@ -58,9 +56,9 @@ class Encounter(models.Model):
 	type = models.ForeignKey('EncounterType')
 	patient_complience = models.BooleanField(default=False)
 	location = models.CharField(max_length=100)
-	encounter_date = models.DateTimeField(auto_now=True)
-	start_time = models.DateTimeField(auto_now=True)
-	end_time = models.DateTimeField(auto_now=True)
+	encounter_date = models.DateTimeField()
+	start_time = models.DateTimeField()
+	end_time = models.DateTimeField()
 	observation_notes = models.CharField(max_length=600)
 	
 	def __unicode__(self):
@@ -107,3 +105,4 @@ class EncounterTestResult(models.Model):
 	encounter_test = models.ForeignKey(EncounterTest)
 	inference = models.CharField(max_length=2000, null=True, blank=True)
 	notes = models.CharField(max_length=2000, null=True, blank=True)
+	date_added = models.DateTimeField(auto_now=True)

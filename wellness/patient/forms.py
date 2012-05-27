@@ -1,5 +1,7 @@
 from django import forms
 from models import *
+from uni_form.helper import FormHelper
+from uni_form.layout import *
 
 class PatientForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -12,16 +14,16 @@ class PatientForm(forms.ModelForm):
         layout = Layout(
             Row(Column('title')),
             Row(Column('first_name'),Column('middle_name'),Column('last_name')),
-            Row(Column('email')),
-            Row(Column('mobile_phone'),Column('mobile_phone'),Column('work_phone')),
+			Row(Column('national_id')),
+            Row(Column('postal_code')),
+            Row(Column('home_phone'),Column('mobile_phone'),Column('work_phone')),
+			Row(Column('blood_group')),
             Row(Column('postal_address')),
-            Row(Column('gender')),
-            Row(Column('country'), Column('nationality')),
-            Row(Column('blood_group')),
+            Row(Column('gender'), Column('date_of_birth')),
+            Row(Column('country'), Column('province'), Column('county'), Column('village')),            
             Row(Column('weight'), Column('height')),
             Row(Column('employer')),
-            Row(Column('doctor')),
-            Row(Column('disabilities')),
+            Row(Column('doctor')),            
             Row(
                 ButtonHolder(
                     Submit('Save', 'Save Changes'),
@@ -30,13 +32,21 @@ class PatientForm(forms.ModelForm):
         )
         self.helper.add_layout(layout)
         
-        return super(HealthWorkerForm, self).__init__(*args, **kwargs)
+        return super(PatientForm, self).__init__(*args, **kwargs)
     
     gender = forms.ChoiceField(
         choices=(('','Select your gender'),('male','Male'),('female','Female')), 
         help_text="Whats your gender?"
     )
-    birthday = forms.DateField(input_formats=['%d/%m/%Y','%Y-%m-%d'], required=False)
+    date_of_birth = forms.DateField(
+		input_formats=['%d/%m/%Y','%Y-%m-%d'], required=False, 
+		help_text='The Patient\'s indicated date of birth'
+	)
     
     class Meta:
-        model = Patient
+		model = Patient
+		exclude = [
+			'insurance', 'relationship', 
+			'latitude', 'longitude', 'photo',
+			'user', 'patient_number'
+		]

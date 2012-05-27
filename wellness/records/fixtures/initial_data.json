@@ -3,9 +3,9 @@
     "pk": 1,
     "model": "records.problemtype",
     "fields": {
-      "date_created": "2012-05-17 02:39:12",
+      "date_created": "2012-05-17T02:39:12",
       "description": "",
-      "date_changed": "2012-05-17 02:39:12",
+      "date_changed": "2012-05-17T02:39:12",
       "name": "Condition",
       "slug": "sondition"
     }
@@ -14,9 +14,9 @@
     "pk": 2,
     "model": "records.problemtype",
     "fields": {
-      "date_created": "2012-05-17 02:39:38",
+      "date_created": "2012-05-17T02:39:38",
       "description": "",
-      "date_changed": "2012-05-17 02:39:38",
+      "date_changed": "2012-05-17T02:39:38",
       "name": "Allergy",
       "slug": "allergy"
     }
@@ -25,9 +25,9 @@
     "pk": 3,
     "model": "records.problemtype",
     "fields": {
-      "date_created": "2012-05-17 02:39:53",
+      "date_created": "2012-05-17T02:39:53",
       "description": "",
-      "date_changed": "2012-05-17 02:39:53",
+      "date_changed": "2012-05-17T02:39:53",
       "name": "Disease",
       "slug": "disease"
     }
@@ -36,9 +36,9 @@
     "pk": 4,
     "model": "records.problemtype",
     "fields": {
-      "date_created": "2012-05-17 02:39:59",
+      "date_created": "2012-05-17T02:39:59",
       "description": "",
-      "date_changed": "2012-05-17 02:39:59",
+      "date_changed": "2012-05-17T02:39:59",
       "name": "Infection",
       "slug": "infection"
     }
@@ -47,51 +47,28 @@
     "pk": 5,
     "model": "records.problemtype",
     "fields": {
-      "date_created": "2012-05-26 19:59:57.751",
+      "date_created": "2012-05-26T19:59:57.751",
       "description": "",
-      "date_changed": "2012-05-26 19:59:57.751",
+      "date_changed": "2012-05-26T19:59:57.751",
       "name": "Abnormality",
       "slug": "abrnormality"
     }
   },
   {
-    "pk": 1,
-    "model": "records.problemstatus",
+    "pk": 6,
+    "model": "records.problemtype",
     "fields": {
-      "date_created": "2012-05-26 14:51:09.920",
-      "description": "The patient has already started the project",
-      "date_changed": "2012-05-26 14:51:09.920",
-      "name": "Started",
-      "slug": "started"
-    }
-  },
-  {
-    "pk": 2,
-    "model": "records.problemstatus",
-    "fields": {
-      "date_created": "2012-05-26 14:51:26.438",
+      "date_created": "2012-05-27T08:56:18.432",
       "description": "",
-      "date_changed": "2012-05-26 14:51:26.438",
-      "name": "Healed",
-      "slug": "healed"
-    }
-  },
-  {
-    "pk": 3,
-    "model": "records.problemstatus",
-    "fields": {
-      "date_created": "2012-05-26 14:53:17.083",
-      "description": "just acquired the disease",
-      "date_changed": "2012-05-26 14:53:17.083",
-      "name": "Acquired",
-      "slug": "acquired"
+      "date_changed": "2012-05-27T08:56:18.432",
+      "name": "Trackable",
+      "slug": "trackable"
     }
   },
   {
     "pk": 1,
     "model": "records.problem",
     "fields": {
-      "status": 3,
       "notes": "",
       "code": "HIV001",
       "type": 1,
@@ -102,7 +79,6 @@
     "pk": 2,
     "model": "records.problem",
     "fields": {
-      "status": 1,
       "notes": "",
       "code": "",
       "type": 1,
@@ -113,7 +89,6 @@
     "pk": 3,
     "model": "records.problem",
     "fields": {
-      "status": 1,
       "notes": "",
       "code": "",
       "type": 1,
@@ -124,10 +99,9 @@
     "pk": 4,
     "model": "records.problem",
     "fields": {
-      "status": 1,
       "notes": "",
       "code": "",
-      "type": 5,
+      "type": 6,
       "name": "Weight"
     }
   },
@@ -135,7 +109,6 @@
     "pk": 5,
     "model": "records.problem",
     "fields": {
-      "status": 1,
       "notes": "",
       "code": "",
       "type": 1,
@@ -146,11 +119,70 @@
     "pk": 6,
     "model": "records.problem",
     "fields": {
-      "status": 1,
       "notes": "",
       "code": "",
-      "type": 5,
+      "type": 6,
       "name": "Body Temperature"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "records.problem",
+    "fields": {
+      "notes": "",
+      "code": "",
+      "type": 6,
+      "name": "Resting Heart Rate"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "records.problem",
+    "fields": {
+      "notes": "",
+      "code": "",
+      "type": 1,
+      "name": "Sleep"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "records.problem",
+    "fields": {
+      "notes": "",
+      "code": "",
+      "type": 6,
+      "name": "Temperature (oral)"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "records.problem",
+    "fields": {
+      "notes": "",
+      "code": "",
+      "type": 6,
+      "name": "Calories"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "records.problem",
+    "fields": {
+      "notes": "",
+      "code": "",
+      "type": 6,
+      "name": "Exercise"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "records.problem",
+    "fields": {
+      "notes": "",
+      "code": "",
+      "type": 6,
+      "name": "Blood sugar"
     }
   },
   {
@@ -271,9 +303,9 @@
     "pk": 1,
     "model": "records.encountertype",
     "fields": {
-      "date_created": "2012-05-26 18:01:54.248",
+      "date_created": "2012-05-26T18:01:54.248",
       "description": "",
-      "date_changed": "2012-05-26 18:01:54.248",
+      "date_changed": "2012-05-26T18:01:54.248",
       "name": "Weekly Visit",
       "slug": "weekly-visit"
     }
@@ -282,9 +314,9 @@
     "pk": 2,
     "model": "records.encountertype",
     "fields": {
-      "date_created": "2012-05-26 18:07:22.127",
+      "date_created": "2012-05-26T18:07:22.127",
       "description": "",
-      "date_changed": "2012-05-26 18:07:22.127",
+      "date_changed": "2012-05-26T18:07:22.127",
       "name": "Home Visit",
       "slug": "home-visit"
     }
@@ -295,13 +327,13 @@
     "fields": {
       "patient": 4,
       "patient_complience": false,
-      "start_time": "2012-05-26 18:03:35.027",
+      "start_time": "2012-05-26T18:03:35.027",
       "observation_notes": "Nothing much",
-      "encounter_date": "2012-05-26 18:03:35.027",
+      "encounter_date": "2012-05-26T18:03:35.027",
       "location": "Home",
       "provider": 7,
       "type": 1,
-      "end_time": "2012-05-26 18:03:35.027"
+      "end_time": "2012-05-26T18:03:35.027"
     }
   },
   {
@@ -310,13 +342,13 @@
     "fields": {
       "patient": 5,
       "patient_complience": false,
-      "start_time": "2012-05-26 18:07:32.345",
+      "start_time": "2012-05-26T18:07:32.345",
       "observation_notes": "Wew",
-      "encounter_date": "2012-05-26 18:07:32.345",
+      "encounter_date": "2012-05-26T18:07:32.345",
       "location": "Nairobi. Kenya",
       "provider": 3,
       "type": 2,
-      "end_time": "2012-05-26 18:07:32.345"
+      "end_time": "2012-05-26T18:07:32.345"
     }
   },
   {
@@ -324,10 +356,10 @@
     "model": "records.test",
     "fields": {
       "description": "",
-      "date_added": "2012-05-26 19:39:47.542",
+      "date_added": "2012-05-26T19:39:47.542",
       "expected_outcomes": "Good Blood ",
-      "date_changed": "2012-05-26 19:39:47.542",
-      "date_created": "2012-05-26 19:39:47.542",
+      "date_changed": "2012-05-26T19:39:47.542",
+      "date_created": "2012-05-26T19:39:47.542",
       "slug": "blood-test",
       "name": "Blood test"
     }
@@ -337,10 +369,10 @@
     "model": "records.test",
     "fields": {
       "description": "",
-      "date_added": "2012-05-26 19:41:07.086",
+      "date_added": "2012-05-26T19:41:07.086",
       "expected_outcomes": "Stool test",
-      "date_changed": "2012-05-26 19:41:07.086",
-      "date_created": "2012-05-26 19:41:07.086",
+      "date_changed": "2012-05-26T19:41:07.086",
+      "date_created": "2012-05-26T19:41:07.086",
       "slug": "stool",
       "name": "Stool"
     }
@@ -353,7 +385,7 @@
       "notes": "",
       "name": "Blood Test",
       "encounter": 1,
-      "date_administered": "2012-05-26 19:39:50"
+      "date_administered": "2012-05-26T19:39:50"
     }
   },
   {
@@ -364,7 +396,7 @@
       "notes": "",
       "name": "Stool",
       "encounter": 1,
-      "date_administered": "2012-05-26 19:41:12"
+      "date_administered": "2012-05-26T19:41:12"
     }
   }
 ]
