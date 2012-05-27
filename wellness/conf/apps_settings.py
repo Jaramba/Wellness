@@ -29,7 +29,7 @@ INSTALLED_APPS = (
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-    "auth.email.EmailBackend"
+    "wellness.auth.email.EmailBackend"
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
