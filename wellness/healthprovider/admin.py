@@ -18,10 +18,10 @@ class HealthWorkerAdmin(admin.ModelAdmin):
 admin.site.register(HealthWorker, HealthWorkerAdmin)
 
 class SpecialityAdmin(admin.ModelAdmin):
-    model = Speciality
-    
-    list_display = [f.name for f in Speciality._meta.fields]
-    inlines = []
+	model = Speciality
+
+	list_display = [f.name for f in Speciality._meta.fields]
+	prepopulated_fields = {'slug':('name',),}
 
 admin.site.register(Speciality, SpecialityAdmin)
 
@@ -29,6 +29,5 @@ class SpecialityCategoryAdmin(admin.ModelAdmin):
     model = SpecialityCategory
     
     list_display = [f.name for f in SpecialityCategory._meta.fields]
-    inlines = []
 
 admin.site.register(SpecialityCategory, SpecialityCategoryAdmin)

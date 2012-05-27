@@ -6,15 +6,15 @@ from fields import  *
 class Record(models.Model):
 	name = models.CharField(max_length=30)
 	patient = models.ForeignKey("patient.Patient")
-	notes = models.CharField(max_length=2000, null=True, blank=True)
+	notes = models.TextField()
 	
 	class Meta:
 		abstract=True
 
 class MetaData(models.Model):
 	name = models.CharField(max_length=120)
-	slug = models.SlugField(max_length=200, unique=True)
-	description = models.CharField(max_length=500, null=True, blank=True)
+	slug = models.SlugField(max_length=200, unique=True, editable=False)
+	description = models.TextField(null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
 	date_changed = models.DateTimeField(auto_now_add=True)
 	

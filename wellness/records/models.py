@@ -14,10 +14,10 @@ class Immunization(Record):
 
 class ProblemType(MetaData):pass
 class Problem(models.Model):
-	name = models.CharField(max_length=30)
-	notes = models.CharField(max_length=2000, null=True, blank=True)
+	name = models.CharField(max_length=30)	
 	code = models.CharField(max_length=50, null=True, blank=True)
 	type = models.ForeignKey('ProblemType')
+	notes = models.TextField()
 	
 	def __unicode__(self):
 		return '%s' % (self.name)
@@ -59,7 +59,7 @@ class Encounter(models.Model):
 	encounter_date = models.DateTimeField()
 	start_time = models.DateTimeField()
 	end_time = models.DateTimeField()
-	observation_notes = models.CharField(max_length=600)
+	observation_notes = models.TextField()
 	
 	def __unicode__(self):
 		return 'Visit by %s' % (self.patient)
@@ -81,13 +81,13 @@ class Diagnosis(models.Model):
 	problem = models.ForeignKey('Problem')
 	approved = models.BooleanField(default=False)
 	encounter = models.ForeignKey('Encounter')
-	notes = models.CharField(max_length=600)
+	notes = models.TextField()
 	
 	class Meta:
 		verbose_name_plural = 'Diagnoses'
 
 class Test(MetaData):
-	expected_outcomes = models.CharField(max_length=600)
+	expected_outcomes = models.TextField()
 	date_added = models.DateTimeField(auto_now=True)
 
 class ProblemTest(Test):
@@ -97,12 +97,12 @@ class EncounterTest(models.Model):
 	name = models.CharField(max_length=30)
 	encounter = models.ForeignKey('Encounter')
 	test = models.ForeignKey('Test')
-	notes = models.CharField(max_length=2000, null=True, blank=True)
+	notes = models.TextField(null=True, blank=True)
 	date_administered = models.DateTimeField()
 	
 class EncounterTestResult(models.Model):
 	name = models.CharField(max_length=30)
 	encounter_test = models.ForeignKey(EncounterTest)
-	inference = models.CharField(max_length=2000, null=True, blank=True)
-	notes = models.CharField(max_length=2000, null=True, blank=True)
+	inference = models.TextField(null=True, blank=True)
+	notes = models.TextField(null=True, blank=True)
 	date_added = models.DateTimeField(auto_now=True)

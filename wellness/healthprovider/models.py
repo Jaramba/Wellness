@@ -13,7 +13,7 @@ class SpecialityCategory(models.Model):
 
 class Speciality(models.Model):
 	name = models.CharField(max_length=150)
-	slug = models.SlugField(max_length=150)
+	slug = models.SlugField(max_length=150, unique=True)
 	category = models.ForeignKey(SpecialityCategory, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now=True)
 

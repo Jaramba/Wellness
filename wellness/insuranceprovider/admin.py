@@ -8,13 +8,12 @@ class EmployerCompanyAdmin(admin.ModelAdmin):
     inlines = []
 admin.site.register(EmployerCompany, EmployerCompanyAdmin)
 
+class InsuranceTabularAdmin(admin.TabularInline):
+    model = Insurance
+    extra = 0
+
 class HealthInsuranceProviderAdmin(admin.ModelAdmin):
     model = HealthInsuranceProvider
     list_display = [f.name for f in HealthInsuranceProvider._meta.fields]
-    inlines = []
+    inlines = [InsuranceTabularAdmin]
 admin.site.register(HealthInsuranceProvider, HealthInsuranceProviderAdmin)
-
-class InsuranceAdmin(admin.ModelAdmin):
-    model = Insurance
-    list_display = [f.name for f in Insurance._meta.fields]
-admin.site.register(Insurance, InsuranceAdmin)

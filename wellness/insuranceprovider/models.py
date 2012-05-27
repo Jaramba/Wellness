@@ -39,7 +39,8 @@ class Insurance(models.Model):
 	plan_id = models.CharField('Policy/Plan ID', max_length=70)
 	plan_name = models.CharField(max_length=50)
 	type = models.ForeignKey('InsuranceType')
-	notes = models.CharField(max_length=2000, null=True, blank=True)	
+	policy_provider = models.ForeignKey('HealthInsuranceProvider')
+	notes = models.TextField(null=True, blank=True)	
 
 class PatientInsurance(Record):
 	STATUS = (
