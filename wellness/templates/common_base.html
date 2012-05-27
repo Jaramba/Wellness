@@ -13,16 +13,8 @@
 			<li><a class="current" href="{% url index %}">Home</a></li>
 			<li><a href="{% url records %}">Records</a></li>
 			<li><a href="{% url providers %}">Providers</a></li>
-			<li>
-				<a id="select-company" style="clear: both; width:55px" href="#">Account</a>
-				<span id="company-dropdown">
-					<ul class="account-dropdown" id="yw13" style="display: none; ">
-						<li><a href="{% url settings %}">Edit Profile</a></li>
-						<li><a href="{% url settings-password %}">Change Password</a></li>
-						<li class="list-last"><a href="{% url logout %}">Logout</a></li>
-					</ul>
-				</span>
-			</li>
+			<li><a href="{% url settings-password %}">Password</a></li>
+			<li class="list-last"><a href="{% url logout %}">Logout</a></li>
   		</ul>
     </div>
     <div class="separator"></div>

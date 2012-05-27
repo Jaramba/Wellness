@@ -9,9 +9,10 @@ from wellness.core.utils import get_crud_urls
 from models import *
 from forms import *
 
-urlpatterns = patterns('',
-    url(r'^$', TemplateView.as_view(template_name='website/how_it_works.html'), name='records'),
+urlpatterns = patterns('wellness.records.views',
+    url(r'^$', 'index', name='records'),
 )
+
 
 urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
