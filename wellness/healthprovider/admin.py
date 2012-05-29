@@ -11,9 +11,7 @@ admin.site.register(HealthCareFacility, HealthCareFacilityAdmin)
     
 class HealthWorkerAdmin(admin.ModelAdmin):
     model = HealthWorker
-    
-    list_display = [f.name for f in HealthWorker._meta.fields]
-    inlines = []
+    list_display = ['title','first_name','middle_name','last_name','mobile_phone','country']
 
 admin.site.register(HealthWorker, HealthWorkerAdmin)
 
