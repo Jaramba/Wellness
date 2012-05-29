@@ -26,8 +26,11 @@ admin.site.register(models.Encounter, EncounterAdmin)
 
 class ProblemAdmin(admin.ModelAdmin):
 	model = models.Problem
-	list_display = [f.name for f in models.Problem._meta.fields]
+	fields = [f.name for f in models.Problem._meta.fields if f.name not in ('id', 'icd10_block')]
+	list_display = fields
+	search_fields = fields[:len(fields)/2]
 	inlines = [ProblemTestInline]
+	
 admin.site.register(models.Problem, ProblemAdmin)
 
 class ICD10Blockline(admin.TabularInline):
@@ -55,6 +58,7 @@ for M in [x
 		model = M
 		list_display = [f.name for f in M._meta.fields]
 		inlines = []
+		search_fields = M._meta.fields[:5]
 		
 		if 'slug' in [f.name for f in M._meta.fields]:
 			prepopulated_fields = {'slug':('name',),}
