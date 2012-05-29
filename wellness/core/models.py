@@ -13,7 +13,7 @@ class Record(models.Model):
 
 class MetaData(models.Model):
 	name = models.CharField(max_length=120)
-	slug = models.SlugField(max_length=200, unique=True, editable=False)
+	slug = models.SlugField(max_length=200, unique=True)
 	description = models.TextField(null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
 	date_changed = models.DateTimeField(auto_now_add=True)

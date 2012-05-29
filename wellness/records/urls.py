@@ -13,7 +13,6 @@ urlpatterns = patterns('wellness.records.views',
     url(r'^$', 'index', name='records'),
 )
 
-
 urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
     models=[

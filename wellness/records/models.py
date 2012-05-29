@@ -12,17 +12,29 @@ class Immunization(Record):
 	expiry_date = models.DateTimeField()
 	practice_date = models.DateTimeField()
 
-class ProblemType(MetaData):pass
 class Problem(models.Model):
 	name = models.CharField(max_length=30)	
-	code = models.CharField(max_length=50, null=True, blank=True)
-	type = models.ForeignKey('ProblemType')
-	notes = models.TextField()
-	
+	icd10_code = models.CharField(max_length=10, verbose_name='ICD Code', null=True, blank=True)
+	icd10_block = models.ForeignKey('ICD10Block', verbose_name='ICD Block', editable=False, null=True)
+	detail = models.CharField(max_length=150, null=True, blank=True)
+	cause  = models.CharField(max_length=150, null=True, blank=True)
+	notes  = models.TextField(null=True)
+
 	def __unicode__(self):
 		return '%s' % (self.name)
 
+class ICD10Chapter(MetaData):
+	class Meta:		
+		verbose_name = 'ICD 10 Chapter'
 
+class ICD10Block(MetaData):
+	min_code = models.CharField(max_length=10)
+	max_code = models.CharField(max_length=10)
+	chapter = models.ForeignKey(ICD10Chapter)
+	
+	class Meta:
+		verbose_name = 'ICD 10 Chapter Block'
+	
 class TrackingField(models.Model):
 	'''
 	Every problem is trackable, and has things that are tracked

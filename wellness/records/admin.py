@@ -45,6 +45,9 @@ for M in [x
 		list_display = [f.name for f in M._meta.fields]
 		inlines = []
 		
+		if 'slug' in [f.name for f in M._meta.fields]:
+			prepopulated_fields = {'slug':('name',),}
+		
 	try:
 		admin.site.register(M, ItemAdmin)
 	except admin.sites.AlreadyRegistered:

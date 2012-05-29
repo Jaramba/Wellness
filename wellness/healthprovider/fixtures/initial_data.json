@@ -717,17 +717,6 @@
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
-      "date_added": "2012-05-24 10:48:00.171",
-      "name": "Hospice",
-      "slug": "hospice",
-	  "category": 1
-    }
-  },
-  {
-    "pk": 63,
-    "model": "healthprovider.speciality",
-    "fields": {
-      "category": null,
       "date_added": "2012-05-24 10:48:00.254",
       "name": "Mental Health Services",
       "slug": "mental-health",
@@ -735,7 +724,7 @@
     }
   },
   {
-    "pk": 64,
+    "pk": 63,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -746,7 +735,7 @@
     }
   },
   {
-    "pk": 65,
+    "pk": 64,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -757,7 +746,7 @@
     }
   },
   {
-    "pk": 66,
+    "pk": 65,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -768,7 +757,7 @@
     }
   },
   {
-    "pk": 67,
+    "pk": 66,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -779,7 +768,7 @@
     }
   },
   {
-    "pk": 68,
+    "pk": 67,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -790,7 +779,7 @@
     }
   },
   {
-    "pk": 69,
+    "pk": 68,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -801,7 +790,7 @@
     }
   },
   {
-    "pk": 70,
+    "pk": 69,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -812,7 +801,7 @@
     }
   },
   {
-    "pk": 71,
+    "pk": 70,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
@@ -823,7 +812,7 @@
     }
   },
   {
-    "pk": 72,
+    "pk": 71,
     "model": "healthprovider.speciality",
     "fields": {
       "category": null,
