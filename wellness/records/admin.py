@@ -30,6 +30,16 @@ class ProblemAdmin(admin.ModelAdmin):
 	inlines = [ProblemTestInline]
 admin.site.register(models.Problem, ProblemAdmin)
 
+class ICD10Blockline(admin.TabularInline):
+	model = models.ICD10Block
+	extra = 1
+
+class ICD10ChapterAdmin(admin.ModelAdmin):
+	model = models.ICD10Chapter
+	list_display = [f.name for f in models.ICD10Chapter._meta.fields]
+	inlines = [ICD10Blockline]
+admin.site.register(models.ICD10Chapter, ICD10ChapterAdmin)
+
 for M in [x
     for x in models.__dict__.values()  
         if (issubclass(type(x), ModelBase) and 
@@ -37,6 +47,7 @@ for M in [x
 		x.__name__ not in [
 				'EncounterTest', 'ProblemTest', 
 				'Diagnosis', 'Encounter', 'Order'
+				'ICD10Chapter','ICD10Block'
 			]
 		)
 ]:
