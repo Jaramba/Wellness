@@ -131511,7 +131511,7 @@
     "pk": 10960,
     "model": "records.problem",
     "fields": {
-      "name": "By spouse or partner",
+      "name": "Assault by spouse or partner",
       "notes": null,
       "detail": null,
       "icd10_code": "Y060",
@@ -131523,7 +131523,7 @@
     "pk": 10961,
     "model": "records.problem",
     "fields": {
-      "name": "By parent",
+      "name": "Assault by parent",
       "notes": null,
       "detail": null,
       "icd10_code": "Y061",
@@ -131535,7 +131535,7 @@
     "pk": 10962,
     "model": "records.problem",
     "fields": {
-      "name": "By acquaintance or friend",
+      "name": "Assault by acquaintance or friend",
       "notes": null,
       "detail": null,
       "icd10_code": "Y062",
@@ -131547,7 +131547,7 @@
     "pk": 10963,
     "model": "records.problem",
     "fields": {
-      "name": "By other specified persons",
+      "name": "Assault by other specified persons",
       "notes": null,
       "detail": null,
       "icd10_code": "Y068",
@@ -131559,7 +131559,7 @@
     "pk": 10964,
     "model": "records.problem",
     "fields": {
-      "name": "By unspecified person",
+      "name": "Assault by unspecified person",
       "notes": null,
       "detail": null,
       "icd10_code": "Y069",
@@ -131583,7 +131583,7 @@
     "pk": 10966,
     "model": "records.problem",
     "fields": {
-      "name": "By spouse or partner",
+      "name": "Assault by spouse or partner",
       "notes": null,
       "detail": null,
       "icd10_code": "Y070",
@@ -131595,7 +131595,7 @@
     "pk": 10967,
     "model": "records.problem",
     "fields": {
-      "name": "By parent",
+      "name": "Assault by parent",
       "notes": null,
       "detail": null,
       "icd10_code": "Y071",
@@ -131607,7 +131607,7 @@
     "pk": 10968,
     "model": "records.problem",
     "fields": {
-      "name": "By acquaintance or friend",
+      "name": "Assault by acquaintance or friend",
       "notes": null,
       "detail": null,
       "icd10_code": "Y072",
@@ -131619,7 +131619,7 @@
     "pk": 10969,
     "model": "records.problem",
     "fields": {
-      "name": "By official authorities",
+      "name": "Assault by official authorities",
       "notes": null,
       "detail": null,
       "icd10_code": "Y073",
@@ -131631,7 +131631,7 @@
     "pk": 10970,
     "model": "records.problem",
     "fields": {
-      "name": "By other specified persons",
+      "name": "Assault by other specified persons",
       "notes": null,
       "detail": null,
       "icd10_code": "Y078",
@@ -131643,7 +131643,7 @@
     "pk": 10971,
     "model": "records.problem",
     "fields": {
-      "name": "By unspecified person",
+      "name": "Assault by unspecified person",
       "notes": null,
       "detail": null,
       "icd10_code": "Y079",

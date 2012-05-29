@@ -1,0 +1,1940 @@
+[
+  {
+    "pk": 25,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_logentry",
+      "name": "Can add log entry",
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 26,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_logentry",
+      "name": "Can change log entry",
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 27,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_logentry",
+      "name": "Can delete log entry",
+      "content_type": 9
+    }
+  },
+  {
+    "pk": 7,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_group",
+      "name": "Can add group",
+      "content_type": 4
+    }
+  },
+  {
+    "pk": 10,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_group",
+      "name": "Can change group",
+      "content_type": 4
+    }
+  },
+  {
+    "pk": 13,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_group",
+      "name": "Can delete group",
+      "content_type": 4
+    }
+  },
+  {
+    "pk": 8,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_permission",
+      "name": "Can add permission",
+      "content_type": 3
+    }
+  },
+  {
+    "pk": 11,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_permission",
+      "name": "Can change permission",
+      "content_type": 3
+    }
+  },
+  {
+    "pk": 14,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_permission",
+      "name": "Can delete permission",
+      "content_type": 3
+    }
+  },
+  {
+    "pk": 9,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_user",
+      "name": "Can add user",
+      "content_type": 5
+    }
+  },
+  {
+    "pk": 12,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_user",
+      "name": "Can change user",
+      "content_type": 5
+    }
+  },
+  {
+    "pk": 15,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_user",
+      "name": "Can delete user",
+      "content_type": 5
+    }
+  },
+  {
+    "pk": 16,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_contenttype",
+      "name": "Can add content type",
+      "content_type": 6
+    }
+  },
+  {
+    "pk": 17,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_contenttype",
+      "name": "Can change content type",
+      "content_type": 6
+    }
+  },
+  {
+    "pk": 18,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_contenttype",
+      "name": "Can delete content type",
+      "content_type": 6
+    }
+  },
+  {
+    "pk": 31,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_country",
+      "name": "Can add country",
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 40,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_country",
+      "name": "Can change country",
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 49,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_country",
+      "name": "Can delete country",
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 32,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_county",
+      "name": "Can add county",
+      "content_type": 15
+    }
+  },
+  {
+    "pk": 41,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_county",
+      "name": "Can change county",
+      "content_type": 15
+    }
+  },
+  {
+    "pk": 50,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_county",
+      "name": "Can delete county",
+      "content_type": 15
+    }
+  },
+  {
+    "pk": 28,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_person",
+      "name": "Can add Person",
+      "content_type": 17
+    }
+  },
+  {
+    "pk": 37,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_person",
+      "name": "Can change Person",
+      "content_type": 17
+    }
+  },
+  {
+    "pk": 46,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_person",
+      "name": "Can delete Person",
+      "content_type": 17
+    }
+  },
+  {
+    "pk": 33,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_province",
+      "name": "Can add province",
+      "content_type": 14
+    }
+  },
+  {
+    "pk": 42,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_province",
+      "name": "Can change province",
+      "content_type": 14
+    }
+  },
+  {
+    "pk": 51,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_province",
+      "name": "Can delete province",
+      "content_type": 14
+    }
+  },
+  {
+    "pk": 34,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_relationship",
+      "name": "Can add relationship",
+      "content_type": 12
+    }
+  },
+  {
+    "pk": 43,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_relationship",
+      "name": "Can change relationship",
+      "content_type": 12
+    }
+  },
+  {
+    "pk": 52,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_relationship",
+      "name": "Can delete relationship",
+      "content_type": 12
+    }
+  },
+  {
+    "pk": 35,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_relationshiptype",
+      "name": "Can add relationship type",
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 44,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_relationshiptype",
+      "name": "Can change relationship type",
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 53,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_relationshiptype",
+      "name": "Can delete relationship type",
+      "content_type": 11
+    }
+  },
+  {
+    "pk": 36,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_title",
+      "name": "Can add title",
+      "content_type": 16
+    }
+  },
+  {
+    "pk": 45,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_title",
+      "name": "Can change title",
+      "content_type": 16
+    }
+  },
+  {
+    "pk": 54,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_title",
+      "name": "Can delete title",
+      "content_type": 16
+    }
+  },
+  {
+    "pk": 29,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_userprofile",
+      "name": "Can add System User profile",
+      "content_type": 18
+    }
+  },
+  {
+    "pk": 38,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_userprofile",
+      "name": "Can change System User profile",
+      "content_type": 18
+    }
+  },
+  {
+    "pk": 47,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_userprofile",
+      "name": "Can delete System User profile",
+      "content_type": 18
+    }
+  },
+  {
+    "pk": 4,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_dashboardpreferences",
+      "name": "Can add dashboard preferences",
+      "content_type": 2
+    }
+  },
+  {
+    "pk": 5,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_dashboardpreferences",
+      "name": "Can change dashboard preferences",
+      "content_type": 2
+    }
+  },
+  {
+    "pk": 6,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_dashboardpreferences",
+      "name": "Can delete dashboard preferences",
+      "content_type": 2
+    }
+  },
+  {
+    "pk": 133,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_healthcarefacility",
+      "name": "Can add health care facility",
+      "content_type": 47
+    }
+  },
+  {
+    "pk": 137,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_healthcarefacility",
+      "name": "Can change health care facility",
+      "content_type": 47
+    }
+  },
+  {
+    "pk": 141,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_healthcarefacility",
+      "name": "Can delete health care facility",
+      "content_type": 47
+    }
+  },
+  {
+    "pk": 134,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_healthworker",
+      "name": "Can add health worker",
+      "content_type": 48
+    }
+  },
+  {
+    "pk": 138,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_healthworker",
+      "name": "Can change health worker",
+      "content_type": 48
+    }
+  },
+  {
+    "pk": 142,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_healthworker",
+      "name": "Can delete health worker",
+      "content_type": 48
+    }
+  },
+  {
+    "pk": 135,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_speciality",
+      "name": "Can add speciality",
+      "content_type": 46
+    }
+  },
+  {
+    "pk": 139,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_speciality",
+      "name": "Can change speciality",
+      "content_type": 46
+    }
+  },
+  {
+    "pk": 143,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_speciality",
+      "name": "Can delete speciality",
+      "content_type": 46
+    }
+  },
+  {
+    "pk": 136,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_specialitycategory",
+      "name": "Can add speciality category",
+      "content_type": 45
+    }
+  },
+  {
+    "pk": 140,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_specialitycategory",
+      "name": "Can change speciality category",
+      "content_type": 45
+    }
+  },
+  {
+    "pk": 144,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_specialitycategory",
+      "name": "Can delete speciality category",
+      "content_type": 45
+    }
+  },
+  {
+    "pk": 70,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_employercompany",
+      "name": "Can add employer company",
+      "content_type": 27
+    }
+  },
+  {
+    "pk": 76,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_employercompany",
+      "name": "Can change employer company",
+      "content_type": 27
+    }
+  },
+  {
+    "pk": 82,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_employercompany",
+      "name": "Can delete employer company",
+      "content_type": 27
+    }
+  },
+  {
+    "pk": 72,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_healthinsuranceprovider",
+      "name": "Can add health insurance provider",
+      "content_type": 26
+    }
+  },
+  {
+    "pk": 78,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_healthinsuranceprovider",
+      "name": "Can change health insurance provider",
+      "content_type": 26
+    }
+  },
+  {
+    "pk": 84,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_healthinsuranceprovider",
+      "name": "Can delete health insurance provider",
+      "content_type": 26
+    }
+  },
+  {
+    "pk": 74,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_insurance",
+      "name": "Can add insurance",
+      "content_type": 28
+    }
+  },
+  {
+    "pk": 80,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_insurance",
+      "name": "Can change insurance",
+      "content_type": 28
+    }
+  },
+  {
+    "pk": 86,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_insurance",
+      "name": "Can delete insurance",
+      "content_type": 28
+    }
+  },
+  {
+    "pk": 151,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_insurancetype",
+      "name": "Can add insurance type",
+      "content_type": 51
+    }
+  },
+  {
+    "pk": 152,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_insurancetype",
+      "name": "Can change insurance type",
+      "content_type": 51
+    }
+  },
+  {
+    "pk": 153,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_insurancetype",
+      "name": "Can delete insurance type",
+      "content_type": 51
+    }
+  },
+  {
+    "pk": 75,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_patientinsurance",
+      "name": "Can add patient insurance",
+      "content_type": 29
+    }
+  },
+  {
+    "pk": 81,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_patientinsurance",
+      "name": "Can change patient insurance",
+      "content_type": 29
+    }
+  },
+  {
+    "pk": 87,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_patientinsurance",
+      "name": "Can delete patient insurance",
+      "content_type": 29
+    }
+  },
+  {
+    "pk": 145,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_medication",
+      "name": "Can add medication",
+      "content_type": 49
+    }
+  },
+  {
+    "pk": 147,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_medication",
+      "name": "Can change medication",
+      "content_type": 49
+    }
+  },
+  {
+    "pk": 149,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_medication",
+      "name": "Can delete medication",
+      "content_type": 49
+    }
+  },
+  {
+    "pk": 146,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_prescription",
+      "name": "Can add prescription",
+      "content_type": 50
+    }
+  },
+  {
+    "pk": 148,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_prescription",
+      "name": "Can change prescription",
+      "content_type": 50
+    }
+  },
+  {
+    "pk": 150,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_prescription",
+      "name": "Can delete prescription",
+      "content_type": 50
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_bookmark",
+      "name": "Can add bookmark",
+      "content_type": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_bookmark",
+      "name": "Can change bookmark",
+      "content_type": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_bookmark",
+      "name": "Can delete bookmark",
+      "content_type": 1
+    }
+  },
+  {
+    "pk": 130,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_patient",
+      "name": "Can add patient",
+      "content_type": 44
+    }
+  },
+  {
+    "pk": 131,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_patient",
+      "name": "Can change patient",
+      "content_type": 44
+    }
+  },
+  {
+    "pk": 132,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_patient",
+      "name": "Can delete patient",
+      "content_type": 44
+    }
+  },
+  {
+    "pk": 55,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_enrolledprogram",
+      "name": "Can add enrolled program",
+      "content_type": 23
+    }
+  },
+  {
+    "pk": 60,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_enrolledprogram",
+      "name": "Can change enrolled program",
+      "content_type": 23
+    }
+  },
+  {
+    "pk": 65,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_enrolledprogram",
+      "name": "Can delete enrolled program",
+      "content_type": 23
+    }
+  },
+  {
+    "pk": 56,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_program",
+      "name": "Can add program",
+      "content_type": 20
+    }
+  },
+  {
+    "pk": 61,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_program",
+      "name": "Can change program",
+      "content_type": 20
+    }
+  },
+  {
+    "pk": 66,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_program",
+      "name": "Can delete program",
+      "content_type": 20
+    }
+  },
+  {
+    "pk": 57,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_programtype",
+      "name": "Can add program type",
+      "content_type": 19
+    }
+  },
+  {
+    "pk": 62,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_programtype",
+      "name": "Can change program type",
+      "content_type": 19
+    }
+  },
+  {
+    "pk": 67,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_programtype",
+      "name": "Can delete program type",
+      "content_type": 19
+    }
+  },
+  {
+    "pk": 58,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_programworkflow",
+      "name": "Can add program workflow",
+      "content_type": 21
+    }
+  },
+  {
+    "pk": 63,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_programworkflow",
+      "name": "Can change program workflow",
+      "content_type": 21
+    }
+  },
+  {
+    "pk": 68,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_programworkflow",
+      "name": "Can delete program workflow",
+      "content_type": 21
+    }
+  },
+  {
+    "pk": 59,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_programworkflowstate",
+      "name": "Can add program workflow state",
+      "content_type": 22
+    }
+  },
+  {
+    "pk": 64,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_programworkflowstate",
+      "name": "Can change program workflow state",
+      "content_type": 22
+    }
+  },
+  {
+    "pk": 69,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_programworkflowstate",
+      "name": "Can delete program workflow state",
+      "content_type": 22
+    }
+  },
+  {
+    "pk": 173,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_patientprogramquestionnaire",
+      "name": "Can add patient program questionnaire",
+      "content_type": 63
+    }
+  },
+  {
+    "pk": 180,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_patientprogramquestionnaire",
+      "name": "Can change patient program questionnaire",
+      "content_type": 63
+    }
+  },
+  {
+    "pk": 187,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_patientprogramquestionnaire",
+      "name": "Can delete patient program questionnaire",
+      "content_type": 63
+    }
+  },
+  {
+    "pk": 174,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_programquestionnaire",
+      "name": "Can add program questionnaire",
+      "content_type": 59
+    }
+  },
+  {
+    "pk": 181,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_programquestionnaire",
+      "name": "Can change program questionnaire",
+      "content_type": 59
+    }
+  },
+  {
+    "pk": 188,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_programquestionnaire",
+      "name": "Can delete program questionnaire",
+      "content_type": 59
+    }
+  },
+  {
+    "pk": 176,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_question",
+      "name": "Can add question",
+      "content_type": 61
+    }
+  },
+  {
+    "pk": 183,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_question",
+      "name": "Can change question",
+      "content_type": 61
+    }
+  },
+  {
+    "pk": 190,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_question",
+      "name": "Can delete question",
+      "content_type": 61
+    }
+  },
+  {
+    "pk": 177,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_questionset",
+      "name": "Can add question set",
+      "content_type": 60
+    }
+  },
+  {
+    "pk": 184,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_questionset",
+      "name": "Can change question set",
+      "content_type": 60
+    }
+  },
+  {
+    "pk": 191,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_questionset",
+      "name": "Can delete question set",
+      "content_type": 60
+    }
+  },
+  {
+    "pk": 178,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_response",
+      "name": "Can add response",
+      "content_type": 64
+    }
+  },
+  {
+    "pk": 185,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_response",
+      "name": "Can change response",
+      "content_type": 64
+    }
+  },
+  {
+    "pk": 192,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_response",
+      "name": "Can delete response",
+      "content_type": 64
+    }
+  },
+  {
+    "pk": 160,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_diagnosis",
+      "name": "Can add diagnosis",
+      "content_type": 54
+    }
+  },
+  {
+    "pk": 164,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_diagnosis",
+      "name": "Can change diagnosis",
+      "content_type": 54
+    }
+  },
+  {
+    "pk": 168,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_diagnosis",
+      "name": "Can delete diagnosis",
+      "content_type": 54
+    }
+  },
+  {
+    "pk": 89,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_encounter",
+      "name": "Can add encounter",
+      "content_type": 43
+    }
+  },
+  {
+    "pk": 103,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_encounter",
+      "name": "Can change encounter",
+      "content_type": 43
+    }
+  },
+  {
+    "pk": 117,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_encounter",
+      "name": "Can delete encounter",
+      "content_type": 43
+    }
+  },
+  {
+    "pk": 161,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_encountertest",
+      "name": "Can add encounter test",
+      "content_type": 56
+    }
+  },
+  {
+    "pk": 165,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_encountertest",
+      "name": "Can change encounter test",
+      "content_type": 56
+    }
+  },
+  {
+    "pk": 169,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_encountertest",
+      "name": "Can delete encounter test",
+      "content_type": 56
+    }
+  },
+  {
+    "pk": 162,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_encountertestresult",
+      "name": "Can add encounter test result",
+      "content_type": 57
+    }
+  },
+  {
+    "pk": 166,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_encountertestresult",
+      "name": "Can change encounter test result",
+      "content_type": 57
+    }
+  },
+  {
+    "pk": 170,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_encountertestresult",
+      "name": "Can delete encounter test result",
+      "content_type": 57
+    }
+  },
+  {
+    "pk": 90,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_encountertype",
+      "name": "Can add encounter type",
+      "content_type": 42
+    }
+  },
+  {
+    "pk": 104,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_encountertype",
+      "name": "Can change encounter type",
+      "content_type": 42
+    }
+  },
+  {
+    "pk": 118,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_encountertype",
+      "name": "Can delete encounter type",
+      "content_type": 42
+    }
+  },
+  {
+    "pk": 202,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_icd10block",
+      "name": "Can add ic d10 block",
+      "content_type": 69
+    }
+  },
+  {
+    "pk": 205,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_icd10block",
+      "name": "Can change ic d10 block",
+      "content_type": 69
+    }
+  },
+  {
+    "pk": 208,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_icd10block",
+      "name": "Can delete ic d10 block",
+      "content_type": 69
+    }
+  },
+  {
+    "pk": 203,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_icd10chapter",
+      "name": "Can add ic d10 chapter",
+      "content_type": 68
+    }
+  },
+  {
+    "pk": 206,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_icd10chapter",
+      "name": "Can change ic d10 chapter",
+      "content_type": 68
+    }
+  },
+  {
+    "pk": 209,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_icd10chapter",
+      "name": "Can delete ic d10 chapter",
+      "content_type": 68
+    }
+  },
+  {
+    "pk": 92,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_immunization",
+      "name": "Can add immunization",
+      "content_type": 30
+    }
+  },
+  {
+    "pk": 106,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_immunization",
+      "name": "Can change immunization",
+      "content_type": 30
+    }
+  },
+  {
+    "pk": 120,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_immunization",
+      "name": "Can delete immunization",
+      "content_type": 30
+    }
+  },
+  {
+    "pk": 88,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_order",
+      "name": "Can add Doctor's Order",
+      "content_type": 41
+    }
+  },
+  {
+    "pk": 102,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_order",
+      "name": "Can change Doctor's Order",
+      "content_type": 41
+    }
+  },
+  {
+    "pk": 116,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_order",
+      "name": "Can delete Doctor's Order",
+      "content_type": 41
+    }
+  },
+  {
+    "pk": 94,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_problem",
+      "name": "Can add problem",
+      "content_type": 38
+    }
+  },
+  {
+    "pk": 108,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_problem",
+      "name": "Can change problem",
+      "content_type": 38
+    }
+  },
+  {
+    "pk": 122,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_problem",
+      "name": "Can delete problem",
+      "content_type": 38
+    }
+  },
+  {
+    "pk": 193,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_problemtest",
+      "name": "Can add problem test",
+      "content_type": 65
+    }
+  },
+  {
+    "pk": 194,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_problemtest",
+      "name": "Can change problem test",
+      "content_type": 65
+    }
+  },
+  {
+    "pk": 195,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_problemtest",
+      "name": "Can delete problem test",
+      "content_type": 65
+    }
+  },
+  {
+    "pk": 163,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_test",
+      "name": "Can add test",
+      "content_type": 55
+    }
+  },
+  {
+    "pk": 167,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_test",
+      "name": "Can change test",
+      "content_type": 55
+    }
+  },
+  {
+    "pk": 171,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_test",
+      "name": "Can delete test",
+      "content_type": 55
+    }
+  },
+  {
+    "pk": 98,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_trackingfield",
+      "name": "Can add tracking field",
+      "content_type": 34
+    }
+  },
+  {
+    "pk": 112,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_trackingfield",
+      "name": "Can change tracking field",
+      "content_type": 34
+    }
+  },
+  {
+    "pk": 126,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_trackingfield",
+      "name": "Can delete tracking field",
+      "content_type": 34
+    }
+  },
+  {
+    "pk": 196,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_reminder",
+      "name": "Can add reminder",
+      "content_type": 67
+    }
+  },
+  {
+    "pk": 198,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_reminder",
+      "name": "Can change reminder",
+      "content_type": 67
+    }
+  },
+  {
+    "pk": 200,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_reminder",
+      "name": "Can delete reminder",
+      "content_type": 67
+    }
+  },
+  {
+    "pk": 197,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_remindertype",
+      "name": "Can add reminder type",
+      "content_type": 66
+    }
+  },
+  {
+    "pk": 199,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_remindertype",
+      "name": "Can change reminder type",
+      "content_type": 66
+    }
+  },
+  {
+    "pk": 201,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_remindertype",
+      "name": "Can delete reminder type",
+      "content_type": 66
+    }
+  },
+  {
+    "pk": 19,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_session",
+      "name": "Can add session",
+      "content_type": 7
+    }
+  },
+  {
+    "pk": 20,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_session",
+      "name": "Can change session",
+      "content_type": 7
+    }
+  },
+  {
+    "pk": 21,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_session",
+      "name": "Can delete session",
+      "content_type": 7
+    }
+  },
+  {
+    "pk": 22,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_site",
+      "name": "Can add site",
+      "content_type": 8
+    }
+  },
+  {
+    "pk": 23,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_site",
+      "name": "Can change site",
+      "content_type": 8
+    }
+  },
+  {
+    "pk": 24,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_site",
+      "name": "Can delete site",
+      "content_type": 8
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.group",
+    "fields": {
+      "name": "Health Workers",
+      "permissions": [
+        41,
+        42,
+        44,
+        45,
+        133,
+        84,
+        80,
+        86,
+        151,
+        152,
+        153,
+        81,
+        87,
+        149,
+        148,
+        130,
+        131,
+        190,
+        191,
+        103,
+        104,
+        118,
+        205,
+        208,
+        206,
+        209,
+        92,
+        106,
+        116,
+        122,
+        193,
+        194,
+        98,
+        112,
+        196,
+        200,
+        199
+      ]
+    }
+  },
+  {
+    "pk": 2,
+    "model": "auth.group",
+    "fields": {
+      "name": "Admins",
+      "permissions": [
+        9,
+        12,
+        31,
+        40,
+        49,
+        32,
+        41,
+        50,
+        28,
+        37,
+        46,
+        33,
+        42,
+        51,
+        34,
+        43,
+        52,
+        35,
+        44,
+        53,
+        36,
+        45,
+        54,
+        29,
+        38,
+        47,
+        133,
+        137,
+        141,
+        134,
+        138,
+        142,
+        135,
+        139,
+        143,
+        136,
+        140,
+        144,
+        70,
+        76,
+        82,
+        72,
+        78,
+        84,
+        74,
+        80,
+        86,
+        151,
+        152,
+        153,
+        75,
+        81,
+        87,
+        145,
+        147,
+        149,
+        146,
+        148,
+        150,
+        130,
+        131,
+        132,
+        55,
+        60,
+        65,
+        56,
+        61,
+        66,
+        57,
+        62,
+        67,
+        58,
+        63,
+        68,
+        59,
+        64,
+        69,
+        173,
+        180,
+        187,
+        174,
+        181,
+        188,
+        176,
+        183,
+        190,
+        177,
+        184,
+        191,
+        178,
+        185,
+        192,
+        160,
+        164,
+        168,
+        89,
+        103,
+        117,
+        161,
+        165,
+        169,
+        162,
+        166,
+        170,
+        90,
+        104,
+        118,
+        202,
+        205,
+        208,
+        203,
+        206,
+        209,
+        92,
+        106,
+        120,
+        88,
+        102,
+        116,
+        94,
+        108,
+        122,
+        193,
+        194,
+        195,
+        163,
+        167,
+        171,
+        98,
+        112,
+        126,
+        196,
+        198,
+        200,
+        197,
+        199,
+        201
+      ]
+    }
+  },
+  {
+    "pk": 3,
+    "model": "auth.group",
+    "fields": {
+      "name": "Insurance Agents",
+      "permissions": [
+        34,
+        43,
+        52,
+        35,
+        44,
+        53,
+        70,
+        76,
+        72,
+        78,
+        84,
+        74,
+        80,
+        86,
+        151,
+        152,
+        153,
+        75,
+        81,
+        130,
+        131,
+        55,
+        60,
+        65,
+        56,
+        61,
+        66,
+        57,
+        62,
+        67,
+        58,
+        63,
+        68,
+        59,
+        64,
+        69,
+        173,
+        180,
+        187,
+        174,
+        181,
+        188,
+        176,
+        183,
+        190,
+        177,
+        184,
+        191,
+        178,
+        185,
+        192
+      ]
+    }
+  },
+  {
+    "pk": 4,
+    "model": "auth.group",
+    "fields": {
+      "name": "Patients",
+      "permissions": [
+        41,
+        50,
+        51,
+        52,
+        44,
+        133,
+        84,
+        80,
+        86,
+        151,
+        152,
+        87,
+        148,
+        130,
+        65,
+        68,
+        181,
+        184,
+        178,
+        103,
+        104,
+        118,
+        208,
+        88,
+        116,
+        193,
+        98,
+        196,
+        198,
+        200,
+        197,
+        199,
+        201
+      ]
+    }
+  },
+  {
+    "pk": 5,
+    "model": "auth.group",
+    "fields": {
+      "name": "Employer",
+      "permissions": [
+        28,
+        37,
+        46,
+        34,
+        43,
+        52,
+        70,
+        76,
+        82,
+        75,
+        81,
+        87,
+        130,
+        55,
+        60,
+        65,
+        56,
+        61,
+        66,
+        57,
+        62,
+        67,
+        58,
+        63,
+        68,
+        59,
+        64,
+        69,
+        173,
+        180,
+        187,
+        174,
+        181,
+        188,
+        176,
+        183,
+        190,
+        177,
+        184,
+        191,
+        178,
+        185,
+        192
+      ]
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+      "username": "ian",
+      "first_name": "Onesmus",
+      "last_name": "Mukewa",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2012-04-07T07:26:58",
+      "groups": [],
+      "user_permissions": [],
+      "password": "sha1$b2294$fcae86c2c9280c7ca532bd1db880f2aee34fee2c",
+      "email": "kanarelo@gmail.com",
+      "date_joined": "2012-04-07T07:26:52"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "auth.user",
+    "fields": {
+      "username": "zimbo",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "last_login": "2012-05-21T04:46:48",
+      "groups": [
+        2
+      ],
+      "user_permissions": [],
+      "password": "sha1$81bc5$a0fe71f92472cd77d3aab0e9a70ab78af1d167bc",
+      "email": "david.simbiri@gmail.com",
+      "date_joined": "2012-05-21T04:46:48"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "auth.user",
+    "fields": {
+      "username": "jkhaemba",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": true,
+      "last_login": "2012-05-21T04:47:50",
+      "groups": [
+        1
+      ],
+      "user_permissions": [],
+      "password": "sha1$e84dc$b7767c929221184e4beba14eb55d14f40d1d38a0",
+      "email": "kanarelo+jkhaemba@gmail.com",
+      "date_joined": "2012-05-21T04:47:50"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "auth.user",
+    "fields": {
+      "username": "mnafula",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2012-05-21T04:48:39",
+      "groups": [],
+      "user_permissions": [],
+      "password": "sha1$30281$ec1da8944dccc195226a9954e3ae4a5d57540e43",
+      "email": "kanarelo+mnafula@gmail.com",
+      "date_joined": "2012-05-21T04:48:39"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "auth.user",
+    "fields": {
+      "username": "ekhalai",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": true,
+      "last_login": "2012-05-21T04:49:45",
+      "groups": [
+        4
+      ],
+      "user_permissions": [],
+      "password": "sha1$ee5d5$c07716618ad64f094a9ca3460df1a95cb947883c",
+      "email": "kanarelo+ekhalai@gmail.com",
+      "date_joined": "2012-05-21T04:49:45"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "auth.user",
+    "fields": {
+      "username": "dlitunya",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2012-05-21T04:50:33",
+      "groups": [
+        3
+      ],
+      "user_permissions": [],
+      "password": "sha1$fc6d0$e3c57694630b6a61c82d15fdf14cdb9d9e83122c",
+      "email": "kanarelo+dlitunya@gmail.com",
+      "date_joined": "2012-05-21T04:50:33"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "auth.user",
+    "fields": {
+      "username": "mmasika",
+      "first_name": "",
+      "last_name": "",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2012-05-21T04:51:10",
+      "groups": [],
+      "user_permissions": [],
+      "password": "sha1$196c3$1b7ddc03089e2e39b49604f1130461ec59fff20b",
+      "email": "kanarelo+mmasika@gmail.com",
+      "date_joined": "2012-05-21T04:51:10"
+    }
+  }
+]

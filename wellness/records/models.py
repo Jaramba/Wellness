@@ -21,7 +21,9 @@ class Problem(models.Model):
 	notes  = models.TextField(null=True)
 
 	def __unicode__(self):
-		return '%s' % (self.name)
+		message = '%s due to %s' % (self.name, self.cause) if self.cause else self.name
+		message = '%s: %s' % (message, self.detail) if self.detail else message
+		return '%s - %s' % (self.icd10_code, message) if self.icd10_code else message
 
 class ICD10Chapter(MetaData):
 	class Meta:		

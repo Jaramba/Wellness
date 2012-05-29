@@ -25,6 +25,7 @@ INSTALLED_APPS = (
 	'wellness.medication',
 	'wellness.questions',
 	'wellness.reminders',
+	'wellness.userprofile',
 )
 
 AUTHENTICATION_BACKENDS = (

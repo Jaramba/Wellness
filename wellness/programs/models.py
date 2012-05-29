@@ -14,12 +14,12 @@ class Program(models.Model):
 	to help Alcoholics.
 	'''
 	name = models.CharField(max_length=100)
-	program_owner = models.ForeignKey('core.UserProfile')
-	type = models.ForeignKey("ProgramType")
-	is_public = models.BooleanField(default=False, help_text='Can be used by other Patients, Users as a Template. Leave unchecked, to be private')
+	program_owner = models.ForeignKey('core.UserProfile', null=True, editable=False)
+	type = models.ForeignKey("ProgramType", null=True, editable=False)
+	is_public = models.BooleanField(default=False, editable=False, help_text='Can be used by other Patients, Users as a Template. Leave unchecked, to be private')
 	problem = models.ForeignKey("records.Problem")
-	concept_notes = models.CharField(max_length=500, null=True, blank=True)
-	expected_outcome_notes = models.CharField(max_length=500, null=True, blank=True)
+	concept_notes = models.TextField(null=True, blank=True)
+	expected_outcome_notes = models.TextField(null=True, blank=True)
 
 	def __unicode__(self):
 		return str(self.name)
@@ -37,7 +37,7 @@ class EnrolledProgram(models.Model):
     enroller = models.ForeignKey("core.UserProfile", related_name='enroller')
     date_enrolled = models.DateField(auto_now=True)
     date_completed = models.DateField()
-    outcome_notes = models.CharField(max_length=2000, null=True, blank=True)
+    outcome_notes = models.TextField(null=True, blank=True)
     
     def __unicode__(self):
         return 'Program enrolled to: %s by %s' % (self.program, self.enrollee)
@@ -53,7 +53,7 @@ class ProgramWorkflow(models.Model):
 	'''
 	name = models.CharField(max_length=100)
 	program = models.ForeignKey("Program")
-	concept_notes = models.CharField(max_length=500)
+	concept_notes = models.TextField()
 	continued = models.BooleanField(default=True)
 	days = models.IntegerField(default=0, blank=True, null=True)
 
@@ -71,7 +71,7 @@ class ProgramWorkflowState(models.Model):
 	weight = models.IntegerField(default=0)
 	initial = models.BooleanField(default=False)
 	terminal = models.BooleanField(default=False)
-	concept_notes = models.CharField(max_length=500)
+	concept_notes = models.TextField()
 
 	def __unicode__(self):
 		return 'Node: %s %s' % (self.name, self.program_workflow)

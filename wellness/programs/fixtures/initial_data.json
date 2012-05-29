@@ -3,9 +3,9 @@
     "pk": 1,
     "model": "programs.programtype",
     "fields": {
-      "date_created": "2012-05-26 14:55:01.792",
+      "date_created": "2012-05-26T14:55:01.792",
       "description": "",
-      "date_changed": "2012-05-26 14:55:01.792",
+      "date_changed": "2012-05-26T14:55:01.792",
       "name": "Health",
       "slug": "health"
     }
