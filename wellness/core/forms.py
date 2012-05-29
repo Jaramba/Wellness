@@ -1,7 +1,42 @@
 from django import forms
+from django.utils.crypto import get_random_string
+
 from models import *
+
 from uni_form.helper import *
 from uni_form.layout import *
+
+from utils import perform_raw_sql
+from datetime import datetime
+
+class UserProfileInlineForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        
+    def save(self, commit=True):
+        profile = super(UserProfileInlineForm, self).save(commit=commit)
+        
+        if profile.user.is_healthworker:
+            try:
+                profile.healthworker
+                profile.user.is_staff = True
+                profile.user.save()
+            except:
+                perform_raw_sql("INSERT INTO healthprovider_healthworker (userprofile_ptr_id) VALUES (%s)", [profile.id])
+
+        try:
+            profile.patient
+        except:
+            perform_raw_sql(
+                "INSERT INTO patient_patient (userprofile_ptr_id, patient_number) VALUES (%s, %s)", 
+                [profile.id, 'PAT-%s-%s' % 
+                (datetime.now().strftime('%Y'), get_random_string(4))]
+            )
+        
+        if commit:
+            profile.save()
+            
+        return profile
 
 class UserProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

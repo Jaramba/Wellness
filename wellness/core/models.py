@@ -45,8 +45,8 @@ class Relationship(models.Model):
 	Also, they may be just someone they entrust to be their for them on health issues, even 
 	their lawyer. So, lets just use any person who can later be a patient. 
 	'''
-	person_a = models.ForeignKey('Person', related_name='person_a')
-	person_b = models.ForeignKey('Person', related_name='person_b')
+	person_a = models.ForeignKey('Person', verbose_name='Patient', related_name='person_a')
+	person_b = models.ForeignKey('Person', verbose_name='Person', related_name='person_b')
 	next_of_kin = models.BooleanField(default=False)
 	relationship = models.ForeignKey(RelationshipType)
 	emergency_contact = models.BooleanField(default=False)
@@ -108,7 +108,7 @@ class Person(models.Model):
 	Not Everyone is a patient; This will act as a staging profile, until someone
 	gets an account.... hmmm, should we create an inactive user or just this?
 	'''
-	title = models.ForeignKey(Title)
+	title = models.ForeignKey(Title, null=True)
 	relationship = models.ManyToManyField(
 		'self',
 		through='Relationship',
@@ -116,23 +116,23 @@ class Person(models.Model):
 	)
 
 	first_name = models.CharField(max_length=50, null=True)
-	middle_name = models.CharField(max_length=50, null=True)
-	last_name = models.CharField(max_length=50, null=True)
+	middle_name = models.CharField(max_length=50, null=True, )
+	last_name = models.CharField(max_length=50, null=True, help_text="Family/Sur-name")
 	
-	mobile_phone = models.CharField(max_length=50, null=True)
-	home_phone = models.CharField(max_length=50, null=True, blank=True)
-	work_phone = models.CharField(max_length=50, null=True, blank=True)
+	mobile_phone = models.CharField(max_length=50, null=True, help_text="Format: +2547xxxxxxxx or +254020xxxxxxx")
+	home_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx or +254020xxxxxxx")
+	work_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx or +254020xxxxxxx")
 
 	photo = models.FileField(upload_to='photos', null=True, blank=True)
 
 	postal_code = models.CharField(max_length=50, null=True, blank=True)
 	village = models.CharField(max_length=50, null=True, blank=True)
-	province = models.ForeignKey(Province)
-	county = models.ForeignKey(County)
-	country = models.ForeignKey(Country)
+	province = models.ForeignKey(Province, null=True)
+	county = models.ForeignKey(County, null=True)
+	country = models.ForeignKey(Country, null=True)
 	
-	latitude = models.CharField(max_length=50, null=True, blank=True)
-	longitude = models.CharField(max_length=50, null=True, blank=True)
+	latitude = models.CharField(max_length=50, null=True, blank=True, editable=True)
+	longitude = models.CharField(max_length=50, null=True, blank=True, editable=True)
 	
 	date_edited = models.DateTimeField(auto_now=True)
 	date_created = models.DateTimeField(auto_now=True)
