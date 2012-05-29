@@ -32,39 +32,33 @@
 									<div style="margin-top: 15px;">
 										<ul class="tabs-vert">
 											<li class="records">
-												<a id="TabTrackingRecords" href="#"><span>Tracking Records</span></a>
+												<a id="TabTrackingRecords" href="{% url encounter-list %}"><span>Encounters</span></a>
 											</li>
 											<li class="records">
-												<a id="TabAllergies" href="#"><span>Allergies</span></a>
-											</li>
-											<li class="records">
-												<a id="TabConditions" href="#"><span>Conditions</span></a>
+												<a id="TabConditions" href="{% url encounter-list %}"><span>Conditions / Problems</span></a>
 											</li>
 											<li class="records">
 												<a id="TabImmunizations" href="#"><span>Immunizations</span></a>
 											</li>
 											<li class="records">
-												<a id="TabMedications" href="#"><span>Medications</span></a>
+												<a id="TabMedications" href="{% url encounter-list %}"><span>Medications</span></a>
 											</li>
 											<li class="records">
-												<a id="TabProcedures" href="#"><span>Surgical History</span></a>
+												<a id="TabProcedures" href="{% url encounter-list %}"><span>Surgical History</span></a>
 											</li>
 											<li class="records">
-												<a id="TabLabResults" href="#"><span>Lab Results</span></a>
+												<a id="TabLabResults" href="{% url encounter-list %}"><span>Lab Results</span></a>
 											</li>
 											<li class="records">
-												<a id="TabImaging" href="#"><span>Imaging</span></a>
+												<a id="TabEmergencyContacts" href="{% url encounter-list %}"><span>Emergency Contacts</span></a>
 											</li>
 											<li class="records">
-												<a id="TabEmergencyContacts" href="#"><span>Emergency Contacts</span></a>
-											</li>
-											<li class="records">
-												<a id="TabInsurance" href="#"><span>Insurance</span></a>
+												<a id="TabInsurance" href="{% url encounter-list %}"><span>Insurance</span></a>
 											</li>
 										</ul>
 									</div></td>
 									<td id="rest">
-									<form class=" ajaxform" onsubmit="return false;">
+										{% block rest %}
 										<div id="medicalrecord" class="ajaxcontainer ">
 											<table cellspacing="10">
 												<tbody>
@@ -154,7 +148,8 @@
 												</tbody>
 											</table>
 										</div>
-									</form></td>
+										{% endblock rest %}
+									</td>
 								</tr>
 							</tbody>
 						</table>

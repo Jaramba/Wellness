@@ -20,11 +20,6 @@ diagnosis = login_required(lambda request, *args, **kwargs: model_view(request, 
 problemtest = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 
 @login_required
-def problem(request, problem_type='', *args, **kwargs):
-    get_object_or_404(ProblemType,slug=problem_type)
-    return model_view(request, *args, **kwargs)
-
-@login_required
 def index(request, problem_type='', template_name = "records/index.html", *args, **kwargs):
     data = {}
     return render_to_response(template_name, data, context_instance= RequestContext(request))

@@ -17,7 +17,7 @@ urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
     models=[
        Encounter, Order, 
-       Immunization, Problem, 
+       Immunization,  
        TrackingField, Diagnosis, 
        ProblemTest, EncounterTest, 
        EncounterTestResult
