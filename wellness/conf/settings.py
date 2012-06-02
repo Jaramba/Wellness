@@ -1,5 +1,7 @@
 # Django settings for wellness project.
 import os
+import dj_database_url
+
 from django.utils.translation import ugettext_lazy as _
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -8,7 +10,6 @@ ADMINS = (
     ('ONESMUS MUKEWA', 'kanarelo@gmail.com'),
 )
 
-
 # debug-toolbar settings
 INTERNAL_IPS = ('127.0.0.1',)
 
@@ -16,15 +17,7 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False
 }
 
-############################--DATABASES--###############################################
-USE_SQLITE = True
-
-try:
-    from database_dev import *
-except:
-    from database_prod import *
-    
-########################################################################################
+DATABASES = {'default': dj_database_url.config(env='UHAI_DATABASE_URL')}
 
 MANAGERS = ADMINS
 
@@ -106,6 +99,69 @@ LOGGING = {
 
 #CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = os.path.join(CURRENT_PATH, '..','media')
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/media/'
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = os.path.join(CURRENT_PATH, '..', '..', 'static_root')
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = '/static/'
+
+# URL prefix for admin static files -- CSS, JavaScript and images.
+# Make sure to use a trailing slash.
+# Examples: "http://foo.com/static/admin/", "/static/admin/".
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(CURRENT_PATH, '..', 'static'),
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
 from apps_settings import *
-from extra_settings import *
-from static_media_settings import *
+
+# Deployment stage: defaults to 'development', but may be set to
+# 'staging' or 'production' by remote server wsgi file. Determines
+# which settings override will be applied to the project.
+'''
+STAGE = os.environ.get('STAGE', 'development')
+
+# Load settings specified by STAGE environment variable
+def override_settings(dottedpath):
+    try:
+		from django.utils.importlib import import_module
+		_m = import_module(dottedpath)
+    except ImportError:
+		import warnings
+		warnings.warn("Failed to import %s" % dottedpath)
+		print "Path is %s" % os.path.abspath(os.path.dirname(__file__))
+    else:
+		import sys
+		_thismodule = sys.modules[__name__]
+		for _k in dir(_m):
+			if _k.isupper() and not _k.startswith('__'): 
+				setattr(_thismodule, _k, getattr(_m, _k))
+
+dottedpath = '.'.join(['wellness', 'conf', 'settings_overrides', STAGE])
+override_settings(dottedpath)
+'''

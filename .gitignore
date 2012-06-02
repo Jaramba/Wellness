@@ -6,8 +6,10 @@ syntax: glob
 *.pc
 *.svn-base
 *.svn
+
 database_dev.py
 media/cv/*
+static_root/*
 test.json
 
 # Mercurial backup files

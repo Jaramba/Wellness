@@ -131,8 +131,8 @@ class Person(models.Model):
 	county = models.ForeignKey(County, null=True)
 	country = models.ForeignKey(Country, null=True)
 	
-	latitude = models.CharField(max_length=50, null=True, blank=True, editable=True)
-	longitude = models.CharField(max_length=50, null=True, blank=True, editable=True)
+	latitude = models.CharField(max_length=50, null=True, blank=True, editable=False)
+	longitude = models.CharField(max_length=50, null=True, blank=True, editable=False)
 	
 	date_edited = models.DateTimeField(auto_now=True)
 	date_created = models.DateTimeField(auto_now=True)

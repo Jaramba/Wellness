@@ -111,62 +111,6 @@ class Dashboard(object):
 
 
 class AppIndexDashboard(Dashboard):
-    """
-    Class that represents an app index dashboard, app index dashboards are
-    displayed in the applications index page.
-    :class:`~admin_tools.dashboard.AppIndexDashboard` is very similar to the
-    :class:`~admin_tools.dashboard.Dashboard` class except
-    that its constructor receives two extra arguments:
-
-    ``app_title``
-        The title of the application
-
-    ``models``
-        A list of strings representing the available models for the current
-        application, example::
-
-            ['yourproject.app.Model1', 'yourproject.app.Model2']
-
-    It also provides two helper methods:
-
-    ``get_app_model_classes()``
-        Method that returns the list of model classes for the current app.
-
-    ``get_app_content_types()``
-        Method that returns the list of content types for the current app.
-
-    If you want to provide custom app index dashboard, be sure to inherit from
-    this class instead of the :class:`~admin_tools.dashboard.Dashboard` class.
-
-    Here's an example of a custom app index dashboard::
-
-        from django.core.urlresolvers import reverse
-        from django.utils.translation import ugettext_lazy as _
-        from admin_tools.dashboard import modules, AppIndexDashboard
-
-        class MyAppIndexDashboard(AppIndexDashboard):
-
-            # we don't want a title, it's redundant
-            title = ''
-
-            def __init__(self, app_title, models, **kwargs):
-                AppIndexDashboard.__init__(self, app_title, models, **kwargs)
-
-                # append a model list module that lists all models
-                # for the app and a recent actions module for the current app
-                self.children += [
-                    modules.ModelList(self.app_title, self.models),
-                    modules.RecentActions(
-                        include_list=self.models,
-                        limit=5
-                    )
-                ]
-
-    Below is a screenshot of the resulting dashboard:
-
-    .. image:: images/dashboard_app_index_example.png
-    """
-
     models = None
     app_title = None
 
@@ -211,42 +155,22 @@ class DefaultIndexDashboard(Dashboard):
     point to your custom index dashboard class.
     """
     def init_with_context(self, context):
-        site_name = get_admin_site_name(context)
-        # append a link list module for "quick links"
-        self.children.append(modules.LinkList(
-            _('Quick links'),
-            layout='inline',
-            draggable=False,
-            deletable=False,
-            collapsible=False,
-            children=[
-                [_('Return to site'), '/'],
-                [_('Change password'),
-                 reverse('%s:password_change' % site_name)],
-                [_('Log out'), reverse('%s:logout' % site_name)],
-            ]
-        ))
-
-        self.children.append(modules.AppList(
-            'Sections',
-            exclude=('django.contrib.*','records.*','programs.*'),
-        ))
-        
-        self.children.append(modules.AppList(
-            'Records',
-            models=('records.*',),
-        ))
-        
-        self.children.append(modules.AppList(
-            'Employee/Patient Programs',
-            models=('programs.*',),
-        ))
-
-        # append an app list module for "Administration"
-        self.children.append(modules.AppList(
-            _('Administration'),
-            models=('django.contrib.*',),
-        ))
+		site_name = get_admin_site_name(context)
+		# append a link list module for "quick links"
+		'''self.children.append(modules.LinkList(
+			_('Quick links'),
+			layout='inline',
+			draggable=False,
+			deletable=False,
+			collapsible=False,
+			children=[
+				[_('Return to site'), '/'],
+				[_('Change password'),
+				 reverse('%s:password_change' % site_name)],
+				[_('Log out'), reverse('%s:logout' % site_name)],
+			]
+		))
+		'''
 
 class DefaultAppIndexDashboard(AppIndexDashboard):
     """

@@ -83,28 +83,26 @@ class Menu(object):
 
 
 class DefaultMenu(Menu):
-    """
-    The default menu displayed by django-admin-tools.
-    To change the default menu you'll have to type the following from the
-    commandline in your project root directory::
-
-        python manage.py custommenu
-
-    And then set the ``ADMIN_TOOLS_MENU`` settings variable to point to your
-    custom menu class.
-    """
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
 
         self.children += [
-            items.MenuItem(_('Dashboard'), reverse('%s:index' % site_name)),
-            items.Bookmarks(),
+            items.MenuItem(_('Return to site'), '/'),
+			items.MenuItem(_('Dashboard'), reverse('%s:index' % site_name)),
             items.AppList(
-                'Records',
+                'Medical Records',
                 models=(
-					'wellness.records.*','wellness.medication.*', 
-					'wellness.questions.*', 'wellness.programs.*'
+					'wellness.records.*','wellness.medication.*', 					
+					'wellness.patient.*',					
 				),
+            ),
+			items.AppList(
+                'Patient / Employee Programs',
+                models=('wellness.questions.*', 'wellness.programs.*',),
+            ),
+			items.AppList(
+                'Providers',
+                models=('wellness.healthprovider.*',),
             ),
             items.AppList(
                 'Insurance Administration',
@@ -115,7 +113,8 @@ class DefaultMenu(Menu):
                 exclude=(
 					'wellness.questions.*','wellness.records.*',
 					'wellness.programs.*', 'wellness.insuranceprovider.*', 
-					'wellness.medication.*'
+					'wellness.medication.*', 'wellness.patient.*',
+					'wellness.healthprovider.*'
 				),
             ),
         ]
