@@ -1,5 +1,4 @@
 #development settings
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

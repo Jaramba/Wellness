@@ -24,13 +24,19 @@ from wellness.core.forms import UserProfileForm
 
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
-        return auth_login(request, *args, **kwargs)
+		if request.method == 'POST':
+			if not request.POST.get('remember', None):
+				request.session.set_expiry(0)
+		return auth_login(request, *args, **kwargs)
     else:
         return HttpResponseRedirect(reverse('index'))
 
-def logout(request, type=None, user_type="applicant", *args, **kwargs):
+def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
     if request.user.is_authenticated():
-        return auth_logout(request, *args, **kwargs)
+		if request.method == "GET":
+			return render_to_response(template_name, {}, context_instance=RequestContext(request)) 
+		elif request.method == "POST":
+			return auth_logout(request, *args, **kwargs)
     else:
         return HttpResponseRedirect(reverse("login"))
 
@@ -44,7 +50,7 @@ class RegistrationCompleteTemplateView(TemplateView):
 
 @login_required
 @require_GET
-def public(request, user_id=None, template_name="userprofile/profile/public.html"):
+def public(request, user_id=None, template_name="userprofile/public.html"):
     data = {}
     
     user = user=get_object_or_404(User, pk=user_id)
@@ -78,12 +84,12 @@ def company(request, company_slug=None, selected="profile"):
     else:
         form = CompanyForm(instance=company)
         
-    template = "userprofile/profile/company_profile.html"
+    template = "userprofile/company_profile.html"
     data.update({ 'section': 'personal', 'form': form, 'type':'company', 'selected': 'profile'})
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 @login_required
-def personal(request, selected="profile"):
+def personal(request, selected="profile", form=None):
     """
     UserProfileal data of the user profile
     """
@@ -93,9 +99,8 @@ def personal(request, selected="profile"):
     data = {}
     data["selected"] = selected
     data["profile"] = profile
-    data['base_template'] = "applicant_base.html"
     
-    ProfileForm = UserProfileForm
+    ProfileForm = form
     
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -116,7 +121,7 @@ def personal(request, selected="profile"):
             instance=profile
         )
 
-    template = "userprofile/profile/personal.html"
+    template = "userprofile/personal.html"
     data.update({ 'section': 'personal', 'form': form, })
     return render_to_response(template, data, context_instance=RequestContext(request))
 
@@ -154,7 +159,7 @@ def delete(request):
         signal_responses = signals.post_signal.send(sender=delete, request=request, extra={'old_profile':old_profile, 'old_user': old_user})
         return signals.last_response(signal_responses) or HttpResponseRedirect(reverse("profile_overview"))
 
-    template = "userprofile/profile/delete.html"
+    template = "userprofile/delete.html"
     data.update({ 'section': 'delete' })
     signals.context_signal.send(sender=delete, request=request, context=data)
     return render_to_response(template, data, context_instance=RequestContext(request))

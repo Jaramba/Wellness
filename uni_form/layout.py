@@ -108,7 +108,7 @@ class Submit(BaseInput):
     .. note:: The first argument is also slugified and turned into the id for the submit button.
     """
     input_type = 'submit'
-    field_classes = 'submit'
+    field_classes = 'btn'
 
 
 class Button(BaseInput):
@@ -246,7 +246,7 @@ class Row(Div):
 
         Row('form_field_1', 'form_field_2', 'form_field_3')
     """
-    css_class = 'form-row'
+    css_class = 'row'
 
 
 class Column(Div):
@@ -255,7 +255,7 @@ class Column(Div):
 
         Column('form_field_1', 'form_field_2') 
     """
-    css_class = 'form-column'
+    css_class = 'column'
 
 
 class HTML(object):

@@ -1,6 +1,6 @@
 {% extends "applicant_base.html" %}
 {% load i18n %}
-{% load uni_form_tags %}
+{% load crispy_forms_tags %}
 {% comment %}{% load thumbnail %}{% endcomment %}
 
 {% block title %}
@@ -35,6 +35,6 @@
 		</ul>
 	</div>
 	<div id="content">
-		{% uni_form form form.helper %}
+		{% crispy form form.helper %}
 	</div>
 {% endblock %}

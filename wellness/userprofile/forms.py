@@ -2,8 +2,8 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm as _PasswordChangeForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
-from uni_form.helper import FormHelper
-from uni_form.layout import *
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import *
 from models import *
 import re
 
@@ -78,97 +78,25 @@ class PasswordChangeForm(_PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'password-change-form'
-        self.helper.form_class = 'general_form'
         self.helper.form_method = 'POST'
         self.helper.form_action = '.'
         
         layout = Layout(
-            Row(HTML('<h2 class="form_title">Password Change</h2>')),
+            Row(HTML('<legend>Password Change</legend>')),
             Row(Column('old_password')),
             Row(Column('new_password1')),
             Row(Column('new_password2')),
-            Row(
-                ButtonHolder(
-                    Submit('Save', 'Save Changes'),
-                )
+			
+			Row(
+                Div(
+                    Submit('Save', 'Save Changes', css_class='btn-primary'),
+                css_class='form-actions')
             )
         )
         self.helper.add_layout(layout)
 
         return super(PasswordChangeForm, self).__init__(*args, **kwargs)
-
-    
-#class UserProfileForm(forms.ModelForm):
-#    def __init__(self, *args, **kwargs):
-#        self.helper = FormHelper()
-#        self.helper.form_id = 'applicant-settings-form'
-#        self.helper.form_class = 'general_form'
-#        self.helper.form_method = 'POST'
-#        self.helper.form_action = '.'
-#        
-#        layout = Layout(
-#            HTML('<h2 class="form_title">Personal Profile</h2>'),
-#            Row(
-#                Column(
-#                       HTML("""
-#                           <label style="margin-left:10px;">Profile Picture</label>
-#                           <div id="settings-image">
-#                                <div id="settings-image-holder">
-#                                    <img id="setting-profile-pic" src="{{ MEDIA_URL }}{{ profile.picture|default:'profilepics/default_avatar.png' }}"/>
-#                                </div>
-#                                <div id="image-upload-button" style="float: left;width: 50%;"></div>
-#                           </div>
-#                       """),
-#                       'picture'
-#                   ),
-#                Column('description')
-#            ),
-#            Row(Column('first_name'), Column('last_name'),), 
-#            Row(Column('email'),Column('phone')),
-#            Row(Column('gender'), Column('birthday'),),
-#            Row(Column('country'), Column('city')),
-#            Row(Column('postal_address'), Column('education')),
-#            
-#            Row(
-#                ButtonHolder(
-#                    Submit('Save', 'Save Changes'),
-#                )
-#            )
-#        )
-#        self.helper.add_layout(layout)
-#        
-#        return super(UserProfileForm, self).__init__(*args, **kwargs)
-#    
-#    first_name = forms.CharField()
-#    last_name = forms.CharField()
-#    email = forms.EmailField(help_text="The Email used to send alerts")
-#    description = forms.CharField(label="Bio", widget=forms.Textarea, max_length=200, help_text="A brief about myself")
-#    gender = forms.ChoiceField(
-#        choices=(('','Select your gender'),('male','Male'),('female','Female')), 
-#        help_text="Whats your gender?"
-#    )
-#    education = forms.ChoiceField(
-#        choices=(
-#            ('school-of-life','School of life'),
-#            ('high-school','High School'),
-#            ('certificate','Certificate'),
-#            ('diploma', 'Diploma'),
-#            ('graduate','Graduate'),
-#            ('post-graduate','Post Graduate'),
-#            ('phd','PhD'),
-#            ('professor','Professor'),
-#        ),
-#        help_text="Select your level of Education"
-#    )
-#    birthday = forms.DateField(input_formats=['%d/%m/%Y','%Y-%m-%d'], required=False)
-#    
-#    class Meta:
-#        model = UserProfile
-#        exclude = ["user", "is_active_profile", "tags", "companies","default_dashboard"]
-#        widgets = {
-#            'picture':forms.HiddenInput
-#        }
-        
+       
 class EmailValidationForm(forms.Form):
     email = forms.EmailField()
 

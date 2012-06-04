@@ -1,34 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:ng="http://angularjs.org">
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<title>{% block title %}Inpostme{% endblock %}</title>
-		<link type="text/css"  href="{{ STATIC_URL }}css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
-		<link rel="stylesheet" href="{{ STATIC_URL }}css/main.css" type="text/css" />
+		<title>{% block title %}Uhai &mdash; {% block page-title %}name{% endblock page-title %}{% endblock %}</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700" type="text/css" />
+		
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/uhai.css" type="text/css" />
+		
 		{% block extracss %}{% endblock %}
 		
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/menu.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/slideshow.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/cufon-yui.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/GothamBook_500-GothamBold_500.font.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/fancyzoom.min.js"></script>
-		{% block cufon %}
-			<script type="text/javascript">
-				Cufon.replace('{% block cufon-gotham-book %}h2,h3,h5,h6,#menu,.overlay p,label,.flinks,.prev,.next,.use_as,#footer{% endblock cufon-gotham-book %}', {
-					fontFamily : 'GothamBook'
-				});
-			</script>
-		{% endblock cufon %}
+		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+				
 		{% block extrajs %}{% endblock %}
 		<meta name="robots" content="{% block robots %}index,follow{% endblock %}"/>
 	</head>
-	{% block body %}
-		<body {% block angular_hook %}{% endblock %}>
-			<div id="bg">{% block bg %}{% endblock %}</div>
-			{% block footer %}{% endblock footer %}
-			{% block overlays %}{% endblock overlays %}
-		</body>
-	{% endblock body %}
+	<body>
+		<div class="navbar navbar-fixed-top">
+			{% block navbar %}{% endblock navbar %}
+		</div>
+		<div id="body-inner">
+			{% block body-inner %}
+				<div id="content-wrapper">
+					{% block content-wrapper %}
+						<div class="container">
+							{% block container %}{% endblock container %}
+						</div>
+					{% endblock content-wrapper %}
+				</div>
+			{% endblock body-inner %}
+		</div>
+	</body>
 </html>

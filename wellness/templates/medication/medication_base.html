@@ -1,6 +1,6 @@
 {% extends "applicant_base.html" %}
 {% load i18n %}
-{% load uni_form_tags %}
+{% load crispy_forms_tags %}
 
 {% block extracss %}
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
@@ -34,7 +34,7 @@
 	</div>
 	<div id="content">
 		{% block content_details %}
-			{% uni_form form form.helper %}
+			{% crispy form form.helper %}
 		{% endblock content_details %}
 	</div>
 {% endblock %}

@@ -68,7 +68,7 @@ class Country(models.Model):
 	iso = models.CharField(max_length=4)
 	
 	def __unicode__(self):
-		return '%s' % (self.name)
+		return self.name
 	
 	class Meta:
 		verbose_name_plural = 'Countries'
@@ -80,7 +80,7 @@ class Province(models.Model):
 	country = models.ForeignKey(Country)
 	
 	def __unicode__(self):
-		return '%s, %s' % (self.name, self.country)
+		return self.name
 	
 	class Meta:
 		verbose_name_plural = 'Provinces'
@@ -92,7 +92,7 @@ class County(models.Model):
 	province = models.ForeignKey(Province)
 	
 	def __unicode__(self):
-		return '%s, %s' % (self.name, self.province)
+		return self.name
 	
 	class Meta:
 		verbose_name_plural = 'Counties'
@@ -120,9 +120,9 @@ class Person(models.Model):
 	middle_name = models.CharField(max_length=50, null=True, )
 	last_name = models.CharField(max_length=50, null=True, help_text="Family/Sur-name")
 	
-	mobile_phone = models.CharField(max_length=50, null=True, help_text="Format: +2547xxxxxxxx or +254020xxxxxxx")
-	home_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx or +254020xxxxxxx")
-	work_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx or +254020xxxxxxx")
+	mobile_phone = models.CharField(max_length=50, null=True, help_text="Format: +2547xxxxxxxx")
+	home_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx")
+	work_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx")
 
 	photo = models.FileField(upload_to='photos', null=True, blank=True)
 

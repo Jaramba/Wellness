@@ -12,7 +12,8 @@ urlpatterns = patterns('',
 
 #apps
 urlpatterns += patterns('',
-    url(r'^$', 'wellness.views.index', name="index"),
+    url(r'^home/$', 'wellness.views.index', name="landing-page"),
+	url(r'^home/$', 'wellness.views.index', name="index"),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^stats/', include('wellness.stats.urls')),
     url(r'^records/', include('wellness.records.urls')),
@@ -27,29 +28,15 @@ urlpatterns += patterns('',
     url(r'', include('wellness.userprofile.urls')),
 )
 
-#Acccount
-urlpatterns += patterns('',
-    # Registration
-    url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
-        {'template_name': 'userprofile/account/password_reset.html', 'email_template_name': 'userprofile/email/password_reset_email.txt' }, name='password_reset'),
-    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
-        {'template_name': 'userprofile/account/password_reset_done.html'}, name='password_reset_done'),
-    url(r'^password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
-        {'template_name': 'userprofile/account/password_reset_confirm.html'}, name="password_reset_confirm"),
-    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
-        {'template_name': 'userprofile/account/password_reset_complete.html'}, name="password_reset_complete"),
-)
 #The app itself
 urlpatterns += patterns('',
-    url(r'^login/$', 'wellness.userprofile.views.login', {'template_name':'sign_in.html'}, name='login'),
-    url(r'^logout/$','wellness.userprofile.views.logout', name='logout'),
+    url(r'^login/$', 'wellness.userprofile.views.login', {'template_name':'userprofile/login.html'}, name='login'),
+    url(r'^logout/$','wellness.userprofile.views.logout', {'redirect_field_name':'next','template_name':'userprofile/logout.html'}, name='logout'),
 )
 
 urlpatterns += patterns('',
-    url(r'^messages/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="messages"),
+    url(r'^about/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="messages"),
     url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
-    url(r'^product-guide/$', TemplateView.as_view(template_name='website/product_guide.html'), name="product_guide"),
-    url(r'^faqs/$', TemplateView.as_view(template_name='website/faqs.html'), name="faqs"),
     url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
 )
 

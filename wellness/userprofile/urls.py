@@ -1,37 +1,42 @@
 from django.conf.urls.defaults import *
-from views import *
 from django.conf import settings
 from forms import *
-from django.utils.functional import lazy
-from django.contrib.auth.views import password_change
+from wellness.core.forms import UserProfileForm, LocationForm, ContactsForm
 
-reverse_lazy = lazy(reverse, str)
+from django.utils.functional import lazy
+from django.core.urlresolvers import reverse_lazy
+
+urlpatterns = patterns('wellness.userprofile.views',
+    # Private profile
+	url(r'^settings/account/$', 'personal', {'form':UserProfileForm}, name='settings'),
+	url(r'^settings/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
+    url(r'^settings/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
+)
 
 urlpatterns = patterns('',
-    # Private profile
-    url(r'^settings/$', personal, {'selected':'profile'}, name='settings'),
-    url(r'^settings/password/?$', password_change,
+    url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
+        {'template_name': 'userprofile/password_reset.html'}, name='settings-password-reset'),
+    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
+        {'template_name': 'userprofile/password_reset_done.html'}, name='password-reset-done'),
+    url(r'^password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
+        {'template_name': 'userprofile/password_reset_confirm.html'}, name="password-reset-confirm"),
+    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
+        {'template_name': 'userprofile/password_reset_complete.html'}, name="password-reset-complete"),
+)
+
+urlpatterns += patterns('django.contrib.auth.views',
+    url(r'^settings/password/$', 'password_change',
         {
-             'template_name': 'userprofile/account/password_change.html',
+             'template_name': 'userprofile/password_change.html',
              'password_change_form':PasswordChangeForm,
              'post_change_redirect':reverse_lazy('settings-password-done'),
-             'extra_context':{
-                'base_template':'applicant_base.html',
-                'selected':'password', 
-             }
         }, 
         name='settings-password'
     ),
-    url(r'^settings/password/done/$', 
-        password_change,
-        {
-             'template_name': 'userprofile/account/password_change.html',
-             'password_change_form':PasswordChangeForm, 
-             'extra_context':{
-                    'base_template':'applicant_base.html',
-                    'selected':'password',
-            }
-         }, 
+    url(r'^settings/password/done/$', 'password_change_done',
+		{
+			'template_name': 'userprofile/password_change_done.html'
+		}, 
         name='settings-password-done'
     ),
 )

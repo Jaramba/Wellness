@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+	<div class="navbar-inner">
+		<div class="container">
+			{% block navbar-container %}
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="{% url index %}">Uhai <span class="label label-info">Alpha A</span></a>
+				<div class="nav-collapse">
+					{% block navbar-left %}
+						<ul class="nav">
+							{% if request.user.is_authenticated %}
+								<li class="active"><a href="{% url index %}">Home</a></li>
+							{% endif %}
+							{% block navbar-links %}{% endblock navbar-links %}
+						</ul>
+					{% endblock navbar-left %}								
+					<div class="pull-right">
+						{% block navbar-right %}
+							{% if request.user.is_authenticated %}
+								<ul class="nav pull-right">
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="{% url settings %}"><i class="icon-user"></i> Account Settings</a>
+											</li>
+											<li class="divider"></li>
+											<li><a href="{% url logout %}"><i class="icon-off"></i> Log out</a></li>
+										</ul>
+									</li>
+								</ul>
+							{% endif %}
+						{% endblock navbar-right %}
+					</div>				
+				</div><!--/.nav-collapse -->
+			{% endblock navbar-container %}
+		</div>
+	</div>
+{% endblock navbar %}
+
+{% block container %}
+	<div class="row">
+		<div class="span2 columns">
+			{% block container-left %}{% endblock container-left %}
+		</div>
+		<div class="span10 columns">
+			<div class="container">							
+				{% block container-right %}{% endblock container-right %}
+			</div> 
+		</div>
+	</div>
+{% endblock container %}

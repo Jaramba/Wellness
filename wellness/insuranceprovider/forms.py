@@ -1,7 +1,7 @@
 from django import forms
 from models import *
-from uni_form.helper import FormHelper
-from uni_form.layout import *
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import *
 
 class EmployerCompanyForm(forms.ModelForm):
     class Meta:

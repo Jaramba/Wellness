@@ -1,7 +1,7 @@
 from django import forms
 from models import *
-from uni_form.helper import *
-from uni_form.layout import *
+from crispy_forms.helper import *
+from crispy_forms.layout import *
 
 class MedicationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

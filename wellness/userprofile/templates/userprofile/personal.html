@@ -1,0 +1,22 @@
+{% extends "app_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page-title %}Personal profile{% endblock %}
+
+{% block extracss %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
+{% endblock extracss %}
+
+{% block container-left %}
+	<ul class="nav nav-list">
+		<li class="nav-header">Account Settings</li>
+		<li><a href="{% url settings %}">Profile</a></li>
+		<li><a href="{% url settings-contacts %}">Contact</a></li>
+		<li><a href="{% url settings-location %}">Location</a></li>
+		<li><a href="{% url settings-password %}">Password</a></li>
+	</ul>
+{% endblock container-left %}
+
+{% block container-right %}
+	{% crispy form form.helper %}
+{% endblock container-right %}

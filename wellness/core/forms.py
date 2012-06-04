@@ -3,8 +3,8 @@ from django.utils.crypto import get_random_string
 
 from models import *
 
-from uni_form.helper import *
-from uni_form.layout import *
+from crispy_forms.helper import *
+from crispy_forms.layout import *
 
 from utils import perform_raw_sql
 from datetime import datetime
@@ -47,20 +47,17 @@ class UserProfileForm(forms.ModelForm):
         self.helper.form_action = '.'
         
         layout = Layout(
-            HTML('<h2 class="form_title">Personal Profile</h2>'),
-            Row(Column('title')),
-            Row(Column('first_name', css_class='names'), Column('middle_name', css_class='names'), Column('last_name', css_class='names'),), 
-            Row(Column('email')),
-            Row(Column('postal_code'), Column('village'),),
-            Row(Column('province'), Column('home_address')),
-            Row(Column('county'), Column('country')),
-            Row(Column('mobile_phone'), Column('home_phone'), Column('work_phone')),
-            Row(Column('photo')),
+            HTML('<legend>Personal Profile</legend>'),
+            Row(Column(Field('title', css_class='span1'))),
+            Row(Column(Field('first_name', css_class='span3'))),
+			Row(Column(Field('middle_name', css_class='span3'))),
+			Row(Column(Field('last_name', css_class='span3'))),
+			Row(Column(Field('national_id', css_class='span2'))),
             
             Row(
-                ButtonHolder(
-                    Submit('Save', 'Save Changes'),
-                )
+                Div(
+                    Submit('Save', 'Save Changes', css_class='btn-primary'),
+                css_class='form-actions')
             )
         )
         self.helper.add_layout(layout)
@@ -69,15 +66,85 @@ class UserProfileForm(forms.ModelForm):
     
     first_name = forms.CharField()
     last_name = forms.CharField()
-    email = forms.EmailField(help_text="The Email used to send alerts")
     
     class Meta:
         model = UserProfile
-        exclude = ["user", "relationship", "tags", "longitude","latitude",]
-        widgets = {
-            'picture':forms.HiddenInput
-        }
-
+        fields = [
+			'title','first_name','middle_name',
+			'last_name','national_id',
+		]
+		
+class LocationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = 'applicant-settings-form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '.'
+        
+        layout = Layout(
+            HTML('<legend>Location</legend>'),
+            Row(Column(Field('village', css_class='span4'))),
+            Row(Column(Field('county', css_class='span3'))),
+			Row(Column(Field('province', css_class='span3'))),
+			Row(Column(Field('country', css_class='span4'))),
+            
+            Row(
+                Div(
+                    Submit('Save', 'Save Changes', css_class='btn-primary'),
+                css_class='form-actions')
+            )
+        )
+        self.helper.add_layout(layout)
+        
+        return super(LocationForm, self).__init__(*args, **kwargs)
+    
+    class Meta:
+        model = UserProfile
+        fields = [
+			'village',
+            'province',
+			'county',
+			'country',
+		]
+		
+class ContactsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = 'applicant-settings-form'
+        self.helper.form_class = 'form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '.'
+        
+        layout = Layout(
+            HTML('<legend>Personal Contacts</legend>'),
+            Row(Column(Field('email', css_class='span4'))),
+            Row(Column(Field('postal_code', css_class='span2'))),
+            Row(Column(Field('mobile_phone', css_class='span3'))),
+			Row(Column(Field('home_phone', css_class='span3'))),
+			Row(Column(Field('work_phone', css_class='span3'))),
+                        
+            Row(
+                Div(
+                    Submit('Save', 'Save Changes', css_class='btn-primary'),
+                css_class='form-actions')
+            )
+        )
+        self.helper.add_layout(layout)
+        
+        return super(ContactsForm, self).__init__(*args, **kwargs)
+    
+    email = forms.EmailField(help_text="The Email used to send alerts")
+    
+    class Meta:
+		model = UserProfile
+		fields = [
+			"email", 
+			"postal_code", 
+			"mobile_phone",
+			"home_phone",
+			'work_phone'
+		]
+        
 class RelationshipForm(forms.ModelForm):
     class Meta:
         model = Relationship

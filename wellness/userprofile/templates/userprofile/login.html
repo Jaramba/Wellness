@@ -1,0 +1,47 @@
+{% extends "app_base.html" %}
+
+{% block page-title %}Login{% endblock page-title %}
+
+{% block container %}
+	<header class="jumbotron subhead" id="overview">
+		<h1 style="font-size:30px;">Log in</h1>
+		<br/>
+		<p>
+			Provide your login credentials below.
+		</p>
+	</header>
+	<div class="row">
+		<div class="span8">
+			<form method="POST" action="." autocapitalize="off" class="form-horizontal">{% csrf_token %}
+				<legend>
+					Existing account
+				</legend>
+				<div id="div_id_username" class="control-group">
+					<label for="id_username" class="control-label required-field"> Username </label>
+					<div class="controls">
+						<input id="id_username" type="text" name="username" maxlength="30">
+					</div>
+				</div>
+				<div id="div_id_password" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x5ef4990&gt;&gt;">
+					<label for="id_password" class="control-label required-field"> Password </label>
+					<div class="controls">
+						<input type="password" name="password" id="id_password">
+					</div>
+				</div>
+				<div id="div_id_remember" class="control-group">
+					<div class="controls">
+						<label for="id_remember" class="checkbox ">
+							<input type="checkbox" name="remember" id="id_remember">Remember Me 
+						</label>
+					</div>
+				</div>
+				<div class="form-actions">
+					<a href="{% url settings-password-reset %}" class="btn">Forgot your password?</a>
+					<button type="submit" class="btn btn-primary">
+						Log in
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock container %}

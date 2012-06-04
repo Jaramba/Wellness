@@ -19,7 +19,7 @@ INSTALLED_APPS = (
 	'django.contrib.staticfiles',
 	
 	#apps
-	'uni_form',
+	'crispy_forms',
 	'guardian',
 	'permission',
 	'mptt',
@@ -38,6 +38,8 @@ INSTALLED_APPS = (
 	'wellness.userprofile',
 	'wellness.stats',
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
