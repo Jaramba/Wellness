@@ -8,13 +8,18 @@ class ProgramQuestionnaire(models.Model):
 	start_date = models.DateTimeField(null=True, blank=True)
 	finish_date = models.DateTimeField(null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
-
+	
 	@property
 	def length(self): 
 		return self.question_set.count()
-
+	
 	def __unicode__(self):
 		return self.name
+	
+	class Meta:
+	    permissions = ( 
+	        ('view_programquestionnaire', 'View program questionnaire'), 
+	    )
 
 class QuestionSet(models.Model):
 	label = models.CharField(max_length=255, blank=True, null=True)
@@ -23,6 +28,11 @@ class QuestionSet(models.Model):
 
 	def __unicode__(self):
 		return self.label
+	
+	class Meta:
+	    permissions = ( 
+	        ('view_questionset', 'View questionset'), 
+	    )
 	
 class Question(models.Model):
 	TYPES=[
@@ -42,6 +52,11 @@ class Question(models.Model):
 
 	def __unicode__(self):
 		return self.text
+	
+	class Meta:
+	    permissions = ( 
+	        ('view_question', 'View question'), 
+	    )
 
 class PatientProgramQuestionnaire(models.Model):
 	"""
@@ -54,6 +69,11 @@ class PatientProgramQuestionnaire(models.Model):
 	
 	def __unicode__(self):
 		return '%s enrolled for %s' % (self.questionnaire, self.enrolled_program)
+	
+	class Meta:
+	    permissions = ( 
+	        ('view_patientprogramquestionnaire', 'View patient program questionnaire'), 
+	    )
 
 class Response(models.Model):
 	"""
@@ -66,4 +86,9 @@ class Response(models.Model):
 	
 	def __unicode__(self):
 		return self.question.text
+	
+	class Meta:
+	    permissions = ( 
+	        ('view_response', 'View response'), 
+	    )
 		

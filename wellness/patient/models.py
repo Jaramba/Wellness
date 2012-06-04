@@ -48,3 +48,7 @@ class Patient(UserProfile):
 	def __unicode__(self):
 		return '%s [PNo. %s]' % (self.full_name, self.patient_number)
 	
+	class Meta:
+		permissions = ( 
+		    ('view_patient', 'View patient'), 
+		)

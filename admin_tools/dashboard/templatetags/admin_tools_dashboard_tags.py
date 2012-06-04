@@ -58,7 +58,6 @@ def admin_tools_render_dashboard(context, location='index', dashboard=None):
     return context
 admin_tools_render_dashboard = tag_func(admin_tools_render_dashboard)
 
-
 def admin_tools_render_dashboard_module(context, module, index=None, subindex=None):
     """
     Template tag that renders a given dashboard module, it takes a

@@ -1,5 +1,6 @@
 from django.db import models, transaction
 from django.contrib.auth.models import User
+from permission.models import Role
 
 from fields import  *
 
@@ -151,6 +152,9 @@ class Person(models.Model):
 			])
 	class Meta:
 		verbose_name = 'Person'
+        permissions = (
+            ('view_person', 'View person'),
+        )
 
 class UserProfile(Person):
 	user = models.OneToOneField('auth.User')
@@ -161,6 +165,9 @@ class UserProfile(Person):
 	
 	class Meta:
 		verbose_name = 'System User profile'
+        permissions = (
+            ('view_userprofile', 'View User profile'),
+        )
 	
 	@property
 	def full_name(self):
@@ -173,9 +180,9 @@ class UserProfile(Person):
 			])
 
 #User Hacks...
-User.is_healthworker = property(lambda self: self.groups.filter(name='Health workers').count())
-User.is_employer = property(lambda self: self.groups.filter(name='Employers').count())
-User.is_insuranceprovider = property(lambda self: self.groups.filter(name='Insurance agents').count())
+User.is_healthworker = property(lambda self: Role.objects.filter(codename='health_worker').count())
+User.is_employer = property(lambda self: Role.objects.filter(codename='employers'))
+User.is_insuranceprovider = property(lambda self: Role.objects.filter(codename='insurance_agents').count())
 
 User.full_name = property(lambda self: self.profile.full_name)
 User.get_full_name = lambda self: self.full_name
@@ -188,4 +195,3 @@ def get_profile(self):
 
 User.get_profile = get_profile
 User.profile = property(get_profile)
-

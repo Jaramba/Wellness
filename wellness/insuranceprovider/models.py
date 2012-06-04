@@ -19,6 +19,11 @@ class Company(models.Model):
 class HealthInsuranceProvider(Company):
 	contact_person = models.ForeignKey('core.UserProfile', related_name='healthinsurance_contactperson')
 	admins = models.ManyToManyField('core.UserProfile', related_name='healthinsurance_admins')
+	
+	class Meta:
+		permissions = (
+			('view_healthinsuranceprovider', 'View health insurance provider'),
+		)
 
 class EmployerCompany(Company):
 	contact_person = models.ForeignKey('core.UserProfile', related_name='employercompany_contactperson')
@@ -27,6 +32,9 @@ class EmployerCompany(Company):
 	
 	class Meta:
 		verbose_name_plural = 'Employer companies'
+		permissions = (
+			('view_employercompany', 'View Employer company'),
+		)
 
 class InsuranceType(MetaData):pass
 class Insurance(models.Model):
@@ -40,7 +48,12 @@ class Insurance(models.Model):
 	plan_name = models.CharField(max_length=50)
 	type = models.ForeignKey('InsuranceType')
 	policy_provider = models.ForeignKey('HealthInsuranceProvider')
-	notes = models.TextField(null=True, blank=True)	
+	notes = models.TextField(null=True, blank=True)
+	
+	class Meta:
+		permissions = (
+			('view_insurance', 'View insurance'),
+		)
 
 class PatientInsurance(Record):
 	STATUS = (
@@ -54,3 +67,8 @@ class PatientInsurance(Record):
 	insurance = models.ForeignKey('Insurance', help_text='Type of cover')
 	status = models.CharField(max_length=50, choices=STATUS)
 	subscriber_policy_id = models.CharField(max_length=100)
+	
+	class Meta:
+		permissions = (
+			('view_patientinsurance', 'View patient insurance'),
+		)

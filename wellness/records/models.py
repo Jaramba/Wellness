@@ -11,6 +11,12 @@ class Immunization(Record):
 	follow_up_date = models.DateTimeField()
 	expiry_date = models.DateTimeField()
 	practice_date = models.DateTimeField()
+	
+	class Meta:
+	    permissions = ( 
+	        ('view_immunization', 'View immunization'), 
+	    )
+
 
 class Problem(models.Model):
 	name = models.CharField(max_length=30)	
@@ -24,6 +30,11 @@ class Problem(models.Model):
 		message = '%s due to %s' % (self.name, self.cause) if self.cause else self.name
 		message = '%s: %s' % (message, self.detail) if self.detail else message
 		return '%s - %s' % (self.icd10_code, message) if self.icd10_code else message
+	
+	class Meta:
+	    permissions = (
+	        ('view_problem', 'View problem'), 
+	    )
 
 class ICD10Chapter(MetaData):
 	class Meta:		
@@ -36,7 +47,10 @@ class ICD10Block(MetaData):
 	
 	class Meta:
 		verbose_name = 'ICD 10 Chapter Block'
-	
+		permissions = (
+			('view_icd10block', 'View icd10block'), 
+		)
+
 class TrackingField(models.Model):
 	'''
 	Every problem is trackable, and has things that are tracked
@@ -93,7 +107,9 @@ class Order(models.Model):
 	class Meta:
 		verbose_name = "Doctor's Order"
 		verbose_name_plural = "Doctors' Orders"
-		
+		permissions = (
+			('view_order', 'View order'), 
+		)
 class Diagnosis(models.Model):
 	problem = models.ForeignKey('Problem')
 	approved = models.BooleanField(default=False)
@@ -102,6 +118,9 @@ class Diagnosis(models.Model):
 	
 	class Meta:
 		verbose_name_plural = 'Diagnoses'
+		permissions = (
+			('view_diagnosis', 'View diagnosis'), 
+		)
 
 class Test(MetaData):
 	expected_outcomes = models.TextField()

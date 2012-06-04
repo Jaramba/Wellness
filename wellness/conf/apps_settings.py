@@ -36,6 +36,7 @@ INSTALLED_APPS = (
 	'wellness.questions',
 	'wellness.reminders',
 	'wellness.userprofile',
+	'wellness.stats',
 )
 
 AUTHENTICATION_BACKENDS = (

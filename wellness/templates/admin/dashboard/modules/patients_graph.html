@@ -1,0 +1,12 @@
+{% extends "admin_tools/dashboard/module.html" %}
+
+{% block module_content %}
+    {% for child in module.children %}
+	    <h3><a href="{{ child.url }}">{{ child.title }}</a></h3>
+	    <div id="patient">
+		  <div id="chart"></div>
+		  <div class="timeline"></div>
+		  <div class="slider"></div>
+		</div>
+    {% endfor %}
+{% endblock %}

@@ -143,7 +143,7 @@ from apps_settings import *
 # Deployment stage: defaults to 'development', but may be set to
 # 'staging' or 'production' by remote server wsgi file. Determines
 # which settings override will be applied to the project.
-'''
+
 STAGE = os.environ.get('STAGE', 'development')
 
 # Load settings specified by STAGE environment variable
@@ -164,4 +164,3 @@ def override_settings(dottedpath):
 
 dottedpath = '.'.join(['wellness', 'conf', 'settings_overrides', STAGE])
 override_settings(dottedpath)
-'''

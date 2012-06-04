@@ -31,8 +31,15 @@ class HealthCareFacility(EmployerCompany):
 	
 	class Meta:
 		verbose_name_plural = 'Health care facilities'
+        permissions = (
+            ('view_healthcarefacility', 'View health care facility'),
+        )
 
 class HealthWorker(UserProfile):
 	speciality = models.ManyToManyField(Speciality)
 	practice_number = models.CharField(max_length=20, null=True, blank=True)
 	
+	class Meta:
+		permissions = (
+			('view_healthworker', 'View health worker'),
+		)

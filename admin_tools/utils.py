@@ -10,7 +10,6 @@ from django.core.urlresolvers import reverse
 from django.utils.importlib import import_module
 import warnings
 
-
 def get_admin_site(context=None, request=None):
     dashboard_cls = getattr(
         settings,

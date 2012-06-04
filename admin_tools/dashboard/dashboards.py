@@ -109,93 +109,24 @@ class Dashboard(object):
         """
         return 'dashboard'
 
+def dashboard_view(request, dashboard):
+    if request.method == 'GET':
+        dashboard.Media.js.append('js/stats/patients/admin/new.js')
+        dashboard.children.append(modules.DashboardModule(
+            template='admin/dashboard/modules/patients_graph.html',
+            enabled=True,
+            is_empty=False,
+            title='Graph'
+        ))
 
-class AppIndexDashboard(Dashboard):
-    models = None
-    app_title = None
-
-    def __init__(self, app_title, models, **kwargs):
-        kwargs.update({'app_title': app_title, 'models': models})
-        super(AppIndexDashboard, self).__init__(**kwargs)
-
-    def get_app_model_classes(self):
-        """
-        Helper method that returns a list of model classes for the current app.
-        """
-        models = []
-        for m in self.models:
-            mod, cls = m.rsplit('.', 1)
-            mod = import_module(mod)
-            models.append(getattr(mod, cls))
-        return models
-
-    def get_app_content_types(self):
-        """
-        Return a list of all content_types for this app.
-        """
-        return [ContentType.objects.get_for_model(c) for c \
-                in self.get_app_model_classes()]
-
-    def get_id(self):
-        """
-        Internal method used to distinguish different dashboards in js code.
-        """
-        return '%s-dashboard' % slugify(unicode(self.app_title))
-
-
-class DefaultIndexDashboard(Dashboard):
-    """
-    The default dashboard displayed on the admin index page.
-    To change the default dashboard you'll have to type the following from the
-    commandline in your project root directory::
-
-        python manage.py customdashboard
-
-    And then set the ``ADMIN_TOOLS_INDEX_DASHBOARD`` settings variable to
-    point to your custom index dashboard class.
-    """
+class DefaultIndexDashboard(Dashboard):    
     def init_with_context(self, context):
-		site_name = get_admin_site_name(context)
-		# append a link list module for "quick links"
-		'''self.children.append(modules.LinkList(
-			_('Quick links'),
-			layout='inline',
-			draggable=False,
-			deletable=False,
-			collapsible=False,
-			children=[
-				[_('Return to site'), '/'],
-				[_('Change password'),
-				 reverse('%s:password_change' % site_name)],
-				[_('Log out'), reverse('%s:logout' % site_name)],
-			]
-		))
-		'''
+        request = context['request']
+        dashboard_view(request, self)
+ 
+    class Media:
+        css  = ['css/rickshaw.min.css',]
+        js   = ['js/rickshaw.min.js',]
 
-class DefaultAppIndexDashboard(AppIndexDashboard):
-    """
-    The default dashboard displayed on the applications index page.
-    To change the default dashboard you'll have to type the following from the
-    commandline in your project root directory::
-
-        python manage.py customdashboard
-
-    And then set the ``ADMIN_TOOLS_APP_INDEX_DASHBOARD`` settings variable to
-    point to your custom app index dashboard class.
-    """
-
-    # we disable title because its redundant with the model list module
-    title = ''
-
-    def __init__(self, *args, **kwargs):
-        AppIndexDashboard.__init__(self, *args, **kwargs)
-
-        # append a model list module and a recent actions module
-        self.children += [
-            modules.ModelList( self.app_title,self.models),
-            modules.RecentActions(
-                _('Recent Actions'),
-                include_list=self.get_app_content_types(),
-                limit=5
-            )
-        ]
+class AppIndexDashboard(DefaultIndexDashboard):pass
+class DefaultAppIndexDashboard(DefaultIndexDashboard):pass
