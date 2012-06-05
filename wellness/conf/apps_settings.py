@@ -23,7 +23,7 @@ INSTALLED_APPS = (
 	'guardian',
 	'permission',
 	'mptt',
-	'south',
+	#'south',
 	
 	'wellness.userprofile',
 	'wellness.core',	
