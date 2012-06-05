@@ -20,35 +20,15 @@ namespace :deploy do
 
   task :finalize_update, :except => { :no_release => true } do
 
+	django.virtualenv
     django.static
     django.syncdb
-
-  end
-
-end
-
-namespace (:django) do
-
-  desc <<-DESC
-    Run the "python manage.py collectstatic" task
-  DESC
-  task :static do
-    run "mkdir -p #{latest_release}/static_root"
-    run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput" 
-  end
-  
-  desc <<-DESC
-    Run the "python manage.py syncdb" task
-  DESC
-  task :syncdb do
     run "cd #{latest_release} && #{python_command} manage.py syncdb --noinput"
   end
-
   desc <<-DESC
     Run the "python manage.py reset web" task
   DESC
   task :reset do
     run "cd #{latest_release} && #{python_command} manage.py reset core records --noinput"
   end
-
 end

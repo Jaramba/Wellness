@@ -1,0 +1,15 @@
+Django==1.4
+MySQL-python==1.2.3
+PyYAML==3.10
+South==0.7.5
+distribute==0.6.27
+dj-database-url==0.2.0
+django-guardian==1.0.4
+django-mptt==0.5.2
+django-override-settings==1.2
+django-permission==0.4.5
+html5lib==0.95
+mock==0.8.0
+pisa==3.0.33
+setuptools-git==0.4.2
+simplejson==2.2.1
