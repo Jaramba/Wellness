@@ -486,6 +486,15 @@
     }
   },
   {
+    "pk": 229,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "view_healthworker",
+      "name": "View health worker",
+      "content_type": 48
+    }
+  },
+  {
     "pk": 135,
     "model": "auth.permission",
     "fields": {
@@ -567,6 +576,15 @@
     }
   },
   {
+    "pk": 225,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "view_employercompany",
+      "name": "View Employer company",
+      "content_type": 27
+    }
+  },
+  {
     "pk": 72,
     "model": "auth.permission",
     "fields": {
@@ -594,6 +612,15 @@
     }
   },
   {
+    "pk": 226,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "view_healthinsuranceprovider",
+      "name": "View health insurance provider",
+      "content_type": 26
+    }
+  },
+  {
     "pk": 74,
     "model": "auth.permission",
     "fields": {
@@ -617,6 +644,15 @@
     "fields": {
       "codename": "delete_insurance",
       "name": "Can delete insurance",
+      "content_type": 28
+    }
+  },
+  {
+    "pk": 227,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "view_insurance",
+      "name": "View insurance",
       "content_type": 28
     }
   },
@@ -675,6 +711,15 @@
     }
   },
   {
+    "pk": 228,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "view_patientinsurance",
+      "name": "View patient insurance",
+      "content_type": 29
+    }
+  },
+  {
     "pk": 145,
     "model": "auth.permission",
     "fields": {
@@ -725,6 +770,15 @@
     "fields": {
       "codename": "delete_prescription",
       "name": "Can delete prescription",
+      "content_type": 50
+    }
+  },
+  {
+    "pk": 230,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "view_patientinsurance",
+      "name": "View patient insurance",
       "content_type": 50
     }
   },
@@ -1539,6 +1593,367 @@
     }
   },
   {
+    "pk": 222,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_migrationhistory",
+      "name": "Can add migration history",
+      "content_type": 74
+    }
+  },
+  {
+    "pk": 223,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_migrationhistory",
+      "name": "Can change migration history",
+      "content_type": 74
+    }
+  },
+  {
+    "pk": 224,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_migrationhistory",
+      "name": "Can delete migration history",
+      "content_type": 74
+    }
+  },
+  {
+    "pk": 1,
+    "model": "auth.group",
+    "fields": {
+      "name": "Health Workers",
+      "permissions": [
+        41,
+        42,
+        44,
+        45,
+        133,
+        84,
+        80,
+        86,
+        151,
+        152,
+        153,
+        81,
+        87,
+        149,
+        148,
+        130,
+        131,
+        190,
+        191,
+        103,
+        104,
+        118,
+        205,
+        208,
+        206,
+        209,
+        92,
+        106,
+        116,
+        122,
+        193,
+        194,
+        98,
+        112,
+        199
+      ]
+    }
+  },
+  {
+    "pk": 2,
+    "model": "auth.group",
+    "fields": {
+      "name": "Admins",
+      "permissions": [
+        9,
+        12,
+        31,
+        40,
+        49,
+        32,
+        41,
+        50,
+        28,
+        37,
+        46,
+        33,
+        42,
+        51,
+        34,
+        43,
+        52,
+        35,
+        44,
+        53,
+        36,
+        45,
+        54,
+        38,
+        47,
+        133,
+        137,
+        141,
+        138,
+        142,
+        135,
+        139,
+        143,
+        136,
+        140,
+        144,
+        70,
+        76,
+        82,
+        72,
+        78,
+        84,
+        74,
+        80,
+        86,
+        151,
+        152,
+        153,
+        75,
+        81,
+        87,
+        145,
+        147,
+        149,
+        146,
+        148,
+        150,
+        131,
+        132,
+        55,
+        60,
+        65,
+        56,
+        61,
+        66,
+        57,
+        62,
+        67,
+        58,
+        63,
+        68,
+        59,
+        64,
+        69,
+        173,
+        180,
+        187,
+        174,
+        181,
+        188,
+        176,
+        183,
+        190,
+        177,
+        184,
+        191,
+        178,
+        185,
+        192,
+        160,
+        164,
+        168,
+        89,
+        103,
+        117,
+        161,
+        165,
+        169,
+        162,
+        166,
+        170,
+        90,
+        104,
+        118,
+        202,
+        205,
+        208,
+        203,
+        206,
+        209,
+        92,
+        106,
+        120,
+        88,
+        102,
+        116,
+        94,
+        108,
+        122,
+        193,
+        194,
+        195,
+        163,
+        167,
+        171,
+        98,
+        112,
+        126,
+        197,
+        199,
+        201
+      ]
+    }
+  },
+  {
+    "pk": 3,
+    "model": "auth.group",
+    "fields": {
+      "name": "Insurance Agents",
+      "permissions": [
+        34,
+        43,
+        52,
+        35,
+        44,
+        53,
+        70,
+        76,
+        72,
+        78,
+        84,
+        74,
+        80,
+        86,
+        151,
+        152,
+        153,
+        75,
+        81,
+        131,
+        55,
+        60,
+        65,
+        56,
+        61,
+        66,
+        57,
+        62,
+        67,
+        58,
+        63,
+        68,
+        59,
+        64,
+        69,
+        173,
+        180,
+        187,
+        174,
+        181,
+        188,
+        176,
+        183,
+        190,
+        177,
+        184,
+        191,
+        178,
+        185,
+        192
+      ]
+    }
+  },
+  {
+    "pk": 4,
+    "model": "auth.group",
+    "fields": {
+      "name": "Patients",
+      "permissions": [
+        41,
+        50,
+        51,
+        52,
+        44,
+        133,
+        84,
+        80,
+        86,
+        151,
+        152,
+        87,
+        148,
+        130,
+        65,
+        68,
+        181,
+        184,
+        178,
+        103,
+        104,
+        118,
+        208,
+        88,
+        116,
+        193,
+        98,
+        197,
+        199,
+        201
+      ]
+    }
+  },
+  {
+    "pk": 5,
+    "model": "auth.group",
+    "fields": {
+      "name": "Employers",
+      "permissions": [
+        28,
+        37,
+        46,
+        34,
+        43,
+        52,
+        70,
+        76,
+        82,
+        75,
+        81,
+        87,
+        130,
+        55,
+        60,
+        65,
+        56,
+        61,
+        66,
+        57,
+        62,
+        67,
+        58,
+        63,
+        68,
+        59,
+        64,
+        69,
+        173,
+        180,
+        187,
+        174,
+        181,
+        188,
+        176,
+        183,
+        190,
+        177,
+        184,
+        191,
+        178,
+        185,
+        192
+      ]
+    }
+  },
+  {
     "pk": -1,
     "model": "auth.user",
     "fields": {
@@ -1549,6 +1964,7 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-05-30T14:20:11.722",
+      "groups": [],
       "user_permissions": [],
       "password": "",
       "email": "",
@@ -1565,9 +1981,10 @@
       "is_active": true,
       "is_superuser": true,
       "is_staff": true,
-      "last_login": "2012-05-29T23:35:37.278",
+      "last_login": "2012-06-05T05:42:23.444",
+      "groups": [],
       "user_permissions": [],
-      "password": "pbkdf2_sha256$10000$6D3cpabSlLi9$jMxoTiXzTJGF/FXv5/aezcAsbQ0Yhb/iOh3piX1OdSE=",
+      "password": "pbkdf2_sha256$10000$91nOfjzI3ilo$v5hX5BKFXQArZkAVkH2FXugu028albebs8/GhEbfA4M=",
       "email": "kanarelo@gmail.com",
       "date_joined": "2012-04-07T07:26:52"
     }
@@ -1582,7 +1999,10 @@
       "is_active": true,
       "is_superuser": false,
       "is_staff": true,
-      "last_login": "2012-05-29T23:38:37.847",
+      "last_login": "2012-06-05T05:33:56.951",
+      "groups": [
+        2
+      ],
       "user_permissions": [],
       "password": "pbkdf2_sha256$10000$v5ECPNxsrlKz$V2gOxytAIscPrSkKuAB7GpTGg78mDQqahfM8sSPoZTE=",
       "email": "david.simbiri@gmail.com",
@@ -1600,6 +2020,9 @@
       "is_superuser": false,
       "is_staff": true,
       "last_login": "2012-05-21T04:47:50",
+      "groups": [
+        3
+      ],
       "user_permissions": [],
       "password": "sha1$e84dc$b7767c929221184e4beba14eb55d14f40d1d38a0",
       "email": "kanarelo+jkhaemba@gmail.com",
@@ -1617,6 +2040,9 @@
       "is_superuser": false,
       "is_staff": true,
       "last_login": "2012-05-21T04:48:39",
+      "groups": [
+        3
+      ],
       "user_permissions": [],
       "password": "sha1$30281$ec1da8944dccc195226a9954e3ae4a5d57540e43",
       "email": "kanarelo+mnafula@gmail.com",
@@ -1634,6 +2060,9 @@
       "is_superuser": false,
       "is_staff": true,
       "last_login": "2012-05-21T04:49:45",
+      "groups": [
+        5
+      ],
       "user_permissions": [],
       "password": "sha1$ee5d5$c07716618ad64f094a9ca3460df1a95cb947883c",
       "email": "kanarelo+ekhalai@gmail.com",
@@ -1651,6 +2080,10 @@
       "is_superuser": false,
       "is_staff": true,
       "last_login": "2012-05-21T04:50:33",
+      "groups": [
+        4,
+        5
+      ],
       "user_permissions": [],
       "password": "sha1$fc6d0$e3c57694630b6a61c82d15fdf14cdb9d9e83122c",
       "email": "kanarelo+dlitunya@gmail.com",
@@ -1668,6 +2101,9 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-05-21T04:51:10",
+      "groups": [
+        4
+      ],
       "user_permissions": [],
       "password": "sha1$196c3$1b7ddc03089e2e39b49604f1130461ec59fff20b",
       "email": "kanarelo+mmasika@gmail.com",
@@ -1685,6 +2121,9 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-03-09T10:52:28",
+      "groups": [
+        4
+      ],
       "user_permissions": [],
       "password": "pbkdf2_sha256$10000$z28W6mgiSbwS$yKpmyew7t+LWsWQBsD8hiZWEiNx3++YHY9Y5mmZ1VXY=",
       "email": "kanarelo+mluvi@gmail.com",
@@ -1702,6 +2141,9 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-03-07T01:08:17",
+      "groups": [
+        4
+      ],
       "user_permissions": [],
       "password": "sha1$36399$b9348dacc397a6337e2322eff2a08fc64f088b46",
       "email": "kanarelo+jrangi@mail.com",
@@ -1719,6 +2161,9 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-03-07T09:34:23",
+      "groups": [
+        4
+      ],
       "user_permissions": [],
       "password": "sha1$62d9c$9107214b0486cecbcb639b8c850c545eeadba254",
       "email": "kanarelo+mnajimu@gmail.com",
@@ -1736,6 +2181,9 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-03-09T02:56:19",
+      "groups": [
+        4
+      ],
       "user_permissions": [],
       "password": "sha1$e3cc8$da602bb8d05f1f48d2a182f11c1bdac8ebc1535b",
       "email": "kanarelo+kamindi@gmail.com",
@@ -1753,6 +2201,7 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-05-29T20:13:39",
+      "groups": [],
       "user_permissions": [],
       "password": "pbkdf2_sha256$10000$AcEk5JGqi1k2$9UoTnhWkIrkivwmbZL3W0gvqdW92nFt7o6eBFYIP4YI=",
       "email": "kanarelo+mikasa@gmail.com",
@@ -1770,6 +2219,7 @@
       "is_superuser": false,
       "is_staff": false,
       "last_login": "2012-05-29T20:14:49",
+      "groups": [],
       "user_permissions": [],
       "password": "pbkdf2_sha256$10000$w6WSe8kQQl2o$WTyF2xzZymZP110CrwcV2Jxi6ID+qdJczA8oieJaIJ0=",
       "email": "kanarelo+jmikasa@gmail.com",
