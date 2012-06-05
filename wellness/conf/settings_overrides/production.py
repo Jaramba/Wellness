@@ -1,5 +1,4 @@
 #production settings
-
 ROOT_URLCONF = 'wellness.urls'
 
 DEBUG = False
@@ -10,3 +9,14 @@ DEFAULT_FROM_EMAIL = 'noreply@uhai.com'
 EMAIL_HOST = 'smtp.webfaction.com'
 EMAIL_HOST_USER = 'uhai'
 EMAIL_HOST_PASSWORD = 'a79fHH7722!'
+
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3', 
+		'NAME': '/home/uhai/webapp_releases/uhai/shared/database/wellness.db', 
+		'HOST': '', 
+		'USER': '', 
+		'PASSWORD': '', 
+		'PORT': ''
+	}
+}

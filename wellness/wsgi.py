@@ -1,5 +1,6 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wellness.conf.settings'
+os.environ['STAGE'] = 'production'
 
 import sys
 

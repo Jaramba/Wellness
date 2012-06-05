@@ -12,19 +12,33 @@ set :use_sudo, false
 set :python_command, "PYTHONPATH=/home/uhai/webapps/uhai/lib/python2.7:$PYTHONPATH python2.7"
 server "uhai.webfactional.com", :app, :web, :primary => true
 
-namespace :deploy do
-
+namespace (:deploy) do
   task :restart do
     run "~/webapps/uhai/apache2/bin/restart"
   end
 
   task :finalize_update, :except => { :no_release => true } do
-
-	django.virtualenv
-    django.static
+    #django.static
     django.syncdb
+  end
+end
+
+namespace (:django) do
+  desc <<-DESC
+    Run the "python manage.py collectstatic" task
+  DESC
+  task :static do
+    run "mkdir -p #{latest_release}/static"
+    run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput" 
+  end
+  
+  desc <<-DESC
+    Run the "python manage.py syncdb" task
+  DESC
+  task :syncdb do
     run "cd #{latest_release} && #{python_command} manage.py syncdb --noinput"
   end
+
   desc <<-DESC
     Run the "python manage.py reset web" task
   DESC

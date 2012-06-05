@@ -1,6 +1,5 @@
 # Django settings for wellness project.
 import os
-import dj_database_url
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -16,8 +15,6 @@ INTERNAL_IPS = ('127.0.0.1',)
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False
 }
-
-DATABASES = {'default': dj_database_url.config(env='UHAI_DATABASE_URL')}
 
 MANAGERS = ADMINS
 
