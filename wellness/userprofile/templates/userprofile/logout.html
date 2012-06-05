@@ -7,7 +7,7 @@
 		<div class="span12">
 			<form method="POST" action="." class="form-horizontal">{% csrf_token %}
 				<legend>Log out</legend>
-				<input type="hidden" name="next" value="{% url index %}" />
+				<input type="hidden" name="next" value="{% url landing-page %}" />
 				<fieldset>
 					<p>Are you sure you want to log out?</p>
 					<div class="form-actions">

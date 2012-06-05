@@ -112,14 +112,7 @@ def personal(request, selected="profile", form=None):
                 request.user.save()
             form.save()
     else:
-        form = ProfileForm(
-            initial={
-                'first_name':request.user.first_name,
-                'last_name':request.user.last_name,
-                'email': request.user.email
-            },
-            instance=profile
-        )
+        form = ProfileForm(instance=profile)
 
     template = "userprofile/personal.html"
     data.update({ 'section': 'personal', 'form': form, })
