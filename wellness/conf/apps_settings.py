@@ -84,9 +84,3 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 2
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # Whether the session cookie should be secure (https:// only).
 SESSION_COOKIE_SECURE = False
-
-#from util.mj_countries.models import Language
-#LANGUAGES = Language.objects.filter(active=True)
-
-DEFAULT_COMPANY_PACKAGE = 'starter package'
-DEFAULT_USER_PACKAGE = 'starter package'

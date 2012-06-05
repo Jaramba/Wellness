@@ -136,27 +136,21 @@ STATICFILES_FINDERS = (
 
 from apps_settings import *
 
-# Deployment stage: defaults to 'development', but may be set to
-# 'staging' or 'production' by remote server wsgi file. Determines
-# which settings override will be applied to the project.
-
-STAGE = os.environ.get('STAGE', 'development')
-
+STAGE = os.environ.get('STAGE', 'staging')
+SITE_ID = 1
 # Load settings specified by STAGE environment variable
+
 def override_settings(dottedpath):
     try:
-		from django.utils.importlib import import_module
-		_m = import_module(dottedpath)
+        _m = import_module(dottedpath)
     except ImportError:
-		import warnings
-		warnings.warn("Failed to import %s" % dottedpath)
-		print "Path is %s" % os.path.abspath(os.path.dirname(__file__))
+        warnings.warn("Failed to import %s" % dottedpath)
+        print "Path is %s" % os.path.abspath(os.path.dirname(__file__))
     else:
-		import sys
-		_thismodule = sys.modules[__name__]
-		for _k in dir(_m):
-			if _k.isupper() and not _k.startswith('__'): 
-				setattr(_thismodule, _k, getattr(_m, _k))
+        _thismodule = sys.modules[__name__]
+        for _k in dir(_m):
+            if _k.isupper() and not _k.startswith('__'): 
+                setattr(_thismodule, _k, getattr(_m, _k))
 
-dottedpath = '.'.join(['wellness', 'conf', 'settings_overrides', STAGE])
+dottedpath = '.'.join(['config', 'environment', STAGE])
 override_settings(dottedpath)
