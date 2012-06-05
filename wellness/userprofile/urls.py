@@ -13,7 +13,7 @@ urlpatterns = patterns('wellness.userprofile.views',
     url(r'^settings/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
 )
 
-urlpatterns = patterns('',
+urlpatterns += patterns('',
     url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'userprofile/password_reset.html'}, name='settings-password-reset'),
     url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
