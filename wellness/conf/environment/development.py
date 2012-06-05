@@ -8,15 +8,17 @@ EMAIL_HOST = 'smtp.webfaction.com'
 EMAIL_HOST_USER = 'uhai'
 EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 
-from settings import CURRENT_PATH
+from wellness.conf.settings import CURRENT_PATH
 
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': CURRENT_PATH + '../database/wellness.db', 
+		'NAME': CURRENT_PATH + '/../database/wellness.db', 
 		'HOST': '', 
 		'USER': '', 
 		'PASSWORD': '', 
 		'PORT': ''
 	}
 }
+
+print DATABASES
