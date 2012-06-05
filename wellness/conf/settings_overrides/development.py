@@ -8,10 +8,12 @@ EMAIL_HOST = 'smtp.webfaction.com'
 EMAIL_HOST_USER = 'uhai'
 EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 
+from settings import CURRENT_PATH
+
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': 'c:/Users/ian/Documents/GitHub/Wellness/wellness/database/wellness.db', 
+		'NAME': CURRENT_PATH + '../database/wellness.db', 
 		'HOST': '', 
 		'USER': '', 
 		'PASSWORD': '', 
