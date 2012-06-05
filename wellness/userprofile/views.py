@@ -27,7 +27,11 @@ def login(request, *args, **kwargs):
 		if request.method == 'POST':
 			if not request.POST.get('remember', None):
 				request.session.set_expiry(0)
-		return auth_login(request, *args, **kwargs)
+		return auth_login(
+                request, 
+                authentication_form=AuthenticationForm, 
+                *args, **kwargs
+        )
     else:
         return HttpResponseRedirect(reverse('index'))
 
@@ -40,14 +44,6 @@ def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
     else:
         return HttpResponseRedirect(reverse("login"))
 
-class RegistrationCompleteTemplateView(TemplateView):
-    def get_context_data(self, **kwargs):
-        context = super(RegistrationCompleteTemplateView, self).get_context_data(**kwargs)
-        context.update({
-            'email_validation_required': (hasattr(settings, "REQUIRE_EMAIL_CONFIRMATION") and settings.REQUIRE_EMAIL_CONFIRMATION)
-        })
-        return context
-
 @login_required
 @require_GET
 def public(request, user_id=None, template_name="userprofile/public.html"):
@@ -57,14 +53,8 @@ def public(request, user_id=None, template_name="userprofile/public.html"):
     profile, created = UserProfile.objects.get_or_create(user=user)
     
     if not (request.user == profile.user):
-        profile.views+=1
+        profile.views += 1
         profile.save()
-        
-    if is_applicant(request.user) and not is_recruiter(request.user):
-        data['base_template'] = "applicant_base.html"
-        form = ApplicantForm
-    elif is_recruiter(request.user):
-        data['base_template'] = "recruit_base.html"
     else:
         pass
         
@@ -72,20 +62,19 @@ def public(request, user_id=None, template_name="userprofile/public.html"):
     
     return render_to_response(template_name, data, context_instance=RequestContext(request)) 
 
+from wellness.core.views import model_view
 @login_required
-def company(request, company_slug=None, selected="profile"):
+def user_change(request):
     data = {}
-    data["company"] = company = get_object_or_404(Company, pk=request.session.get('current_company', ''))
-    
     if request.method == "POST":
-        form = CompanyForm(request.POST, request.FILES, instance=company)
+        form = UserForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
     else:
-        form = CompanyForm(instance=company)
-        
-    template = "userprofile/company_profile.html"
-    data.update({ 'section': 'personal', 'form': form, 'type':'company', 'selected': 'profile'})
+        form = UserForm(instance=request.user)
+
+    template = "userprofile/personal.html"
+    data['form'] = form
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 @login_required
@@ -105,17 +94,12 @@ def personal(request, selected="profile", form=None):
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            full_name = request.POST.get('full_name')
-            email = request.POST.get('email')
-            if full_name:
-                full_name_to_user(request.user, full_name)
-                request.user.save()
             form.save()
     else:
         form = ProfileForm(instance=profile)
 
     template = "userprofile/personal.html"
-    data.update({ 'section': 'personal', 'form': form, })
+    data['form'] = form
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 @login_required
@@ -123,14 +107,6 @@ def delete(request):
     data = {}
 
     profile, created = UserProfile.objects.get_or_create(user=request.user)
-    #if is_applicant(request.user) and not is_recruiter(request.user):
-    #    data['base_template'] = "applicant_base.html"
-    #    data['student'] = profile
-    #elif is_recruiter(request.user):
-    #    data['base_template'] = "recruit_base.html"
-    #    data['recruiter'] = profile
-    #else:
-    #    pass
     
     if request.method == "POST":
         patch_profile(request.user, profile)

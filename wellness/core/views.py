@@ -42,7 +42,7 @@ def model_view(request, pk=None,
         if action in ['create', 'detail', 'edit', 'delete', 'list']:
             if action in ['create', 'edit', 'delete']:
                 initial = initial_form_data()                
-                data[context_form_name] = model_form_class() if initial else model_form_class(initial=initial) 
+                data[context_form_name] = model_form_class() if initial else model_form_class(initial=initial)
         else:
             extra_action(request, action)
         

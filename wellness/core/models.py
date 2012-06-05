@@ -117,20 +117,21 @@ class Person(models.Model):
 	)
 
 	first_name = models.CharField(max_length=50, null=True)
-	middle_name = models.CharField(max_length=50, null=True, )
+	middle_name = models.CharField(max_length=50, null=True)
 	last_name = models.CharField(max_length=50, null=True, help_text="Family/Sur-name")
 	
-	mobile_phone = models.CharField(max_length=50, null=True, help_text="Format: +2547xxxxxxxx")
-	home_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx")
-	work_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Format: +2547xxxxxxxx")
+	email = models.CharField(max_length=50, null=True)
+	mobile_phone = models.CharField(max_length=50, null=True, help_text="For alerts, (+2547xxxxxxxx)")
+	home_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Emergency purposes (+2547xxxxxxxx)")
+	work_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Emergency purposes (+2547xxxxxxxx)")
 
 	photo = models.FileField(upload_to='photos', null=True, blank=True)
 
 	postal_code = models.CharField(max_length=50, null=True, blank=True)
-	village = models.CharField(max_length=50, null=True, blank=True)
-	province = models.ForeignKey(Province, null=True)
-	county = models.ForeignKey(County, null=True)
-	country = models.ForeignKey(Country, null=True)
+	village = models.CharField(max_length=50, null=True, blank=True, help_text='Your home village')
+	province = models.ForeignKey(Province, null=True, help_text='Your home province')
+	county = models.ForeignKey(County, null=True, help_text='Your home county')
+	country = models.ForeignKey(Country, null=True, help_text='Your home country')
 	
 	latitude = models.CharField(max_length=50, null=True, blank=True, editable=False)
 	longitude = models.CharField(max_length=50, null=True, blank=True, editable=False)
@@ -186,7 +187,7 @@ User.is_insuranceprovider = property(lambda self: Role.objects.filter(codename='
 
 User.full_name = property(lambda self: self.profile.full_name)
 User.get_full_name = lambda self: self.full_name
-User.__unicode__ = lambda self: self.full_name if self.full_name.split() else self.username
+User.__unicode__ = lambda self: self.full_name if self.full_name.split(' ') else self.username
 
 def get_profile(self):
 	if not hasattr(self, '_profile_cache'):

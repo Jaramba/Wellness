@@ -10,6 +10,19 @@
 			Provide your login credentials below.
 		</p>
 	</header>
+	{% if form.errors %}
+		<div class="alert alert-error">
+			<button class="close" data-dismiss="alert">&times;</button>
+			<strong>Warning!</strong><span> Error on login</a>
+			<ul>
+				{% if form.errors.username %}<li>username: {{ form.errors.username|join:', ' }}</li>{% endif %}
+				{% if form.errors.password %}<li>password: {{ form.errors.password|join:', ' }}</li>{% endif %}
+				{% for error in form.non_field_errors  %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
 	<div class="row">
 		<div class="span8">
 			<form method="POST" action="." autocapitalize="off" class="form-horizontal">{% csrf_token %}
@@ -22,7 +35,7 @@
 						<input id="id_username" type="text" name="username" maxlength="30">
 					</div>
 				</div>
-				<div id="div_id_password" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x5ef4990&gt;&gt;">
+				<div id="div_id_password" class="control-group">
 					<label for="id_password" class="control-label required-field"> Password </label>
 					<div class="controls">
 						<input type="password" name="password" id="id_password">

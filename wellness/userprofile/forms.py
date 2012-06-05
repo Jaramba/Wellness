@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm as _PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm as _PasswordChangeForm, AuthenticationForm as _AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from crispy_forms.helper import FormHelper
@@ -7,74 +7,67 @@ from crispy_forms.layout import *
 from models import *
 import re
 
-class RegistrationForm(forms.ModelForm):
-    """
-    A form that creates a user, with no privileges, from the given username and password.
-    """
-    username = forms.CharField(widget=forms.HiddenInput, required=False)
+from django.contrib.auth.hashers import UNUSABLE_PASSWORD, is_password_usable, get_hasher
+
+class UserForm(forms.ModelForm):
+    error_messages = {
+        'duplicate_username': _("A user with that username already exists."),
+    }
+    username = forms.RegexField(label=_("Username"), 
+        regex=r"^[\w.@+-]+$",
+        help_text = _("Assigned username for login. "
+                      "Required. 30 characters or fewer. Letters, digits and "
+                      "@/./+/-/_ only."),
+        error_messages = {
+            'invalid': _("This value may contain only letters, numbers and "
+                         "@/./+/-/_ characters.")
+        }
+    )
     
-    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
-    password1 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput,
-        help_text = _("Enter the same password as above, for verification."))
+    helper = FormHelper()
+    helper.form_id = 'password-change-form'
+    helper.form_method = 'POST'
+    helper.form_action = '.'
     
-    i_am = forms.ChoiceField(error_messages={'invalid':'%(value)s is not one of the available choices.'}, 
-                             choices=(("applicant","Applicant"),("company", "Company")))
+    layout = Layout(
+        Row(HTML('<legend>Profile</legend>')),
+        Row(Column(Field('username', css_class='span6'))),
+        
+        Row(
+            Div(
+                Submit('Save', 'Save Changes', css_class='btn-primary'),
+            css_class='form-actions')
+        )
+    )
+    helper.add_layout(layout)
     
     class Meta:
         model = User
-        fields = ["username","email","i_am", "password", "password1"]
-
-    def clean_email(self):
-        if self.cleaned_data.get("username", ""):
-            return self.cleaned_data.get("username", "")
-    
-    def clean_i_am(self):
-        i_am = self.cleaned_data.get("i_am", "")
-        if not i_am:
-            raise forms.ValidationError(_("Please select your role"))
-        return i_am
-    
-    def clean_password1(self):
-        password1 = self.cleaned_data.get("password", "")
-        password2 = self.cleaned_data["password1"]
-        if password1 != password2:
-            raise forms.ValidationError(_("The two password fields didn't match."))
-        return password2
-    
-    def clean(self):
-        if not self.errors:
-            self.cleaned_data['username'] = self.cleaned_data['email'].split('@')[0]
-        super(RegistrationForm, self).clean()
-        return self.cleaned_data
-    
+        fields = ['username']
+        
     def clean_username(self):
-        """
-        Verify that the email exists
-        """
-        email = self.cleaned_data.get("username", "")
-        if not email:
-            raise forms.ValidationError(_("Please enter an email address."))
-
+        # Since User.username is unique, this check is redundant,
+        # but it sets a nicer error message than the ORM. See #13147.
+        username = self.cleaned_data["username"]
         try:
-            User.objects.get(email__iexact=email)
-            raise forms.ValidationError(_("That e-mail is already used."))
+            User.objects.get(username=username)
         except User.DoesNotExist:
-            pass
+            return username
         
-        return email
-
-    def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
-        user.set_password(self.cleaned_data.get("password",""))
+        if not (username == self.instance.username):
+            raise forms.ValidationError(self.error_messages['duplicate_username'])
+        return username
         
-        full_name = self.cleaned_data.get("full_name","")
-        full_name_to_user(user, full_name)
-        
-        if commit:
-            user.save()
-        return user
+class AuthenticationForm(_AuthenticationForm):
+    remember = forms.BooleanField(required=False)
     
 class PasswordChangeForm(_PasswordChangeForm):
+    old_password = forms.CharField(label=_("Old password"),
+                                    widget=forms.PasswordInput, help_text='Enter your current Password')
+    new_password1 = forms.CharField(label=_("New password confirmation"),
+                                    widget=forms.PasswordInput, help_text='Enter your desired new Password')
+    new_password2 = forms.CharField(label=_("New password confirmation"),
+                                   widget=forms.PasswordInput, help_text='Repeat your new Password')
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'password-change-form'
@@ -83,9 +76,9 @@ class PasswordChangeForm(_PasswordChangeForm):
         
         layout = Layout(
             Row(HTML('<legend>Password Change</legend>')),
-            Row(Column('old_password')),
-            Row(Column('new_password1')),
-            Row(Column('new_password2')),
+            Row(Column(Field('old_password', css_class='span4'))),
+            Row(Column(Field('new_password1', css_class='span4'))),
+            Row(Column(Field('new_password2', css_class='span4'))),
 			
 			Row(
                 Div(

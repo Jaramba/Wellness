@@ -8,7 +8,8 @@ from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('wellness.userprofile.views',
     # Private profile
-	url(r'^settings/account/$', 'personal', {'form':UserProfileForm}, name='settings'),
+	url(r'^settings/account/$', 'user_change', name='settings'),
+    url(r'^settings/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
 	url(r'^settings/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
     url(r'^settings/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
 )
