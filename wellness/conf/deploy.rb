@@ -19,7 +19,7 @@ namespace (:deploy) do
 
   task :finalize_update, :except => { :no_release => true } do
     django.static
-    #django.syncdb
+    django.syncdb
   end
 end
 
