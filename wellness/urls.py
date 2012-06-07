@@ -23,7 +23,7 @@ urlpatterns += patterns('',
     url(r'^medications/', include('wellness.medication.urls')),
 	url(r'^patients/', include('wellness.patient.urls')),
     url(r'^programs/', include('wellness.programs.urls')),
-    url(r'^questions/', include('wellness.questions.urls')),
+    url(r'^questionnaires/', include('wellness.questions.urls')),
     url(r'', include('wellness.core.urls')),
     url(r'', include('wellness.userprofile.urls')),
 )

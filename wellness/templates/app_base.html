@@ -17,9 +17,10 @@
 						<ul class="nav">
 							{% if request.user.is_authenticated %}
 								<li class="active"><a href="{% url index %}"><i class="icon-home icon-white"></i> Home</a></li>
-								<li class="active"><a href="{% url index %}"><i class="icon-envelope icon-white"></i> Messages</a></li>
-								<li class="active"><a href="{% url index %}"><i class="icon-calendar icon-white"></i> Calendar</a></li>
-								<li class="active"><a href="{% url index %}"><i class="icon-folder-open icon-white"></i> Records</a></li>
+								<li><a href="{% url index %}"><i class="icon-envelope icon-white"></i> Messages</a></li>
+								<li><a href="{% url index %}"><i class="icon-calendar icon-white"></i> Calendar</a></li>
+								<li><a href="{% url index %}"><i class="icon-folder-open icon-white"></i> Records</a></li>
+								<li><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i> Questionnaires</a></li>
 							{% endif %}
 							{% block navbar-links %}{% endblock navbar-links %}
 						</ul>
@@ -27,6 +28,15 @@
 					<div class="pull-right">
 						{% block navbar-right %}
 							{% if request.user.is_authenticated %}
+								<form class="navbar-search pull-left" action="/search">
+									<input type="text" class="search-query span2" 
+										placeholder="Search 
+										{% if request.user.is_healthworker %}Patient, Medication
+										{% elif request.user.is_insuranceprovider %}Employee
+										{% elif request.user.is_employer %}Employer, Employee
+										{% endif %}"
+									/>
+								</form>
 								<ul class="nav pull-right">
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>

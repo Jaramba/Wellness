@@ -29,3 +29,7 @@ class PatientProgramQuestionnaireForm(forms.ModelForm):
 		model = PatientProgramQuestionnaire
 		exclude = [
 		]
+
+class ResponseForm(forms.ModelForm):
+	class Meta:
+		model = Response

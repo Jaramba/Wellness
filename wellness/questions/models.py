@@ -4,14 +4,13 @@ from wellness.core.models import MetaData
 
 class ProgramQuestionnaire(models.Model):
 	name = models.CharField(max_length=255)
+	intro = models.CharField('Introduction', max_length=20, null=True, blank=False)
+	detail = models.CharField('Details', max_length=100, null=True, blank=False)
+	notes = models.TextField(max_length=2000, null=True, blank=False)
 	program = models.ForeignKey('programs.Program')
 	start_date = models.DateTimeField(null=True, blank=True)
 	finish_date = models.DateTimeField(null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
-	
-	@property
-	def length(self): 
-		return self.question_set.count()
 	
 	def __unicode__(self):
 		return self.name
@@ -21,14 +20,32 @@ class ProgramQuestionnaire(models.Model):
 	        ('view_programquestionnaire', 'View program questionnaire'), 
 	    )
 
+class PatientQuestionnaireManager(models.Manager):
+	def get_query_set(self):
+		qs = super(PatientQuestionnaireManager, self).get_query_set()
+		return qs.filter(answerable_by='patient')
+		
 class QuestionSet(models.Model):
+	ANSWERABLE_BY = [
+		('patient', 'Patient'),
+		('doctor', 'Doctor'),
+		('employer', 'Employer'),
+	]
 	label = models.CharField(max_length=255, blank=True, null=True)
+	answerable_by = models.CharField(max_length=50, choices=ANSWERABLE_BY, null=True, blank=False, help_text='Questions in this section are answerable by who?')
 	questionnaire = models.ForeignKey(ProgramQuestionnaire, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
-
+		
+	objects = models.Manager()
+	pq_objects = PatientQuestionnaireManager()	
+		
 	def __unicode__(self):
-		return self.label
+		return '%s from %s' % (self.label, self.questionnaire)
 	
+	@property
+	def length(self): 
+		return self.question_set.count()
+		
 	class Meta:
 	    permissions = ( 
 	        ('view_questionset', 'View questionset'), 
@@ -44,19 +61,24 @@ class Question(models.Model):
 	]
 	text = models.CharField(max_length=255)
 	questionset = models.ForeignKey(QuestionSet, blank=True)
-	type = models.CharField(max_length=255, null=True, blank=True, choices=TYPES)
+	type = models.CharField(max_length=255, choices=TYPES)
 	choices = models.CharField(max_length=255, 
 		null=True, blank=True, 
 		help_text='If choices, type here a set of comma-separated choices'
 	)
+	choice_explicit = models.BooleanField(default=False, help_text='If choices, can you choose more than one choices?')
 
 	def __unicode__(self):
 		return self.text
-	
+		
+	@property
+	def choices_list(self):
+		return [c.strip() for c in self.choices.split(',')]
+
 	class Meta:
-	    permissions = ( 
-	        ('view_question', 'View question'), 
-	    )
+		permissions = ( 
+			('view_question', 'View question'), 
+		)
 
 class PatientProgramQuestionnaire(models.Model):
 	"""
@@ -80,10 +102,11 @@ class Response(models.Model):
 	Records a student's response to a given question at a 
 	particular sitting
 	"""
-	patient_program_questionnaire = models.ForeignKey(PatientProgramQuestionnaire)
+	patient = models.ForeignKey('patient.Patient', related_name='reponse_patient')
+	answer_by = models.ForeignKey('core.UserProfile')
 	question = models.ForeignKey(Question)
 	value = models.CharField(max_length=255)
-	
+
 	def __unicode__(self):
 		return self.question.text
 	

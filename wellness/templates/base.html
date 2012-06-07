@@ -10,7 +10,7 @@
 		{% block extrajs %}{% endblock %}
 		<meta name="robots" content="{% block robots %}index,follow{% endblock %}"/>
 	</head>
-	<body>
+	<body {% block body-hook %}{% endblock body-hook %}>
 		<div class="navbar navbar-fixed-top">
 			{% block navbar %}{% endblock navbar %}
 		</div>
@@ -18,32 +18,33 @@
 			{% block body-inner %}
 			<div id="content-wrapper">
 				{% block content-wrapper %}
-				<div class="container">
-					{% block container %}{% endblock container %}
-				</div>
+					<div class="container">
+						{% block container %}{% endblock container %}
+					</div>
 				{% endblock content-wrapper %}
 			</div>
 			{% endblock body-inner %}
 		</div>
-		<footer>
-			{% block footer %}
-				<div class="footer-inner">
-					<div class="container">
-						<div class="row">
-							<div class="span2">
-								<h6>Uhai</h6>
-								<ul class="unstyled navlinks">
-									<li><a href="{% url login %}">Login</a></li>
-								</ul>
-							</div>
-							<div class="span2 pull-right">
-								<h6>Site By</h6>
-								<h4>Synacor</h>
+		{% block footer %}
+			<footer>
+					<div class="footer-inner">
+						<div class="container">
+							<div class="row">
+								<div class="span2">
+									<h6>Uhai</h6>
+									<ul class="unstyled navlinks">
+										<li><a href="{% url login %}">Login</a></li>
+									</ul>
+								</div>
+								<div class="span2 pull-right">
+									<h6>Site By</h6>
+									<h4>Synacor</h>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			{% endblock footer %}
-		</footer>
+					</div>				
+			</footer>
+		{% endblock footer %}
+		{% block modal %}{% endblock modal %}
 	</body>
 </html>

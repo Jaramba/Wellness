@@ -1,0 +1,468 @@
+{% extends "app_base.html" %}
+
+{% block page-title %}Questionnaire Detail{% endblock page-title %}
+
+{% block body-hook %}id="release-detail"{% endblock body-hook %}
+
+{% block container %}
+	<header class="row">
+		<div class="span6">
+			<hgroup class="package-title">
+				<h1>{{ programquestionnaire.intro }}</h1>
+				<h6>{{ programquestionnaire.detail }}</h6>
+			</hgroup>
+		</div>
+		<div class="span6">
+			<div class="action-buttons">
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-list"></i> Lists <span class="caret"></span> </a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#add-to-new-list" data-toggle="modal"><i class="icon-edit" data-toggle="modal"></i> Add to a new List</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="subnav">
+		<ul class="nav nav-pills">
+			<li class="active">
+				<a href="#description" data-toggle="tab">Description</a>
+			</li>
+			<li class="">
+				<a href="#info" data-toggle="tab">Info</a>
+			</li>
+			<li class="">
+				<a href="#files" data-toggle="tab">Files</a>
+			</li>
+			<li class="">
+				<a href="#all-versions" data-toggle="tab">All Versions (21)</a>
+			</li>
+			<li class="">
+				<a href="#history" data-toggle="tab">History</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="span9">
+			<div class="tab-content">
+				<div id="description" class="tab-pane fade active in">
+					<div class="html-description">
+						<p>
+							Django is a high-level Python Web framework that encourages rapid development
+							and clean, pragmatic design.
+						</p>
+						<p>
+							All documentation is in the "docs" directory and online at <a href="http://docs.djangoproject.com/en/dev/" rel="nofollow">http://docs.djangoproject.com/en/dev/</a>. If you're just getting started, here's
+							how we recommend you read the docs:
+						</p>
+						<blockquote>
+							<ul>
+								<li>
+									First, read docs/intro/install.txt for instructions on installing Django.
+								</li>
+								<li>
+									Next, work through the tutorials in order (docs/intro/tutorial01.txt,
+									docs/intro/tutorial02.txt, etc.).
+								</li>
+								<li>
+									If you want to set up an actual deployment server, read
+									docs/howto/deployment/index.txt for instructions.
+								</li>
+								<li>
+									You'll probably want to read through the topical guides (in docs/topics)
+									next; from there you can jump to the HOWTOs (in docs/howto) for specific
+									problems, and check out the reference (docs/ref) for gory details.
+								</li>
+								<li>
+									See docs/README for instructions on building an HTML version of the docs.
+								</li>
+							</ul>
+						</blockquote>
+						<p>
+							Docs are updated rigorously. If you find any problems in the docs, or think they
+							should be clarified in any way, please take 30 seconds to fill out a ticket
+							here:
+						</p>
+						<p>
+							<a href="http://code.djangoproject.com/newticket" rel="nofollow">http://code.djangoproject.com/newticket</a>
+						</p>
+						<p>
+							To get more help:
+						</p>
+						<blockquote>
+							<ul>
+								<li>
+									Join the #django channel on <a href="http://irc.freenode.net" rel="nofollow">irc.freenode.net</a>. Lots of helpful people
+									hang out there. Read the archives at <a href="http://django-irc-logs.com/" rel="nofollow">http://django-irc-logs.com/</a>.
+								</li>
+								<li>
+									Join the django-users mailing list, or read the archives, at <a href="http://groups.google.com/group/django-users" rel="nofollow">http://groups.google.com/group/django-users</a>.
+								</li>
+							</ul>
+						</blockquote>
+						<p>
+							To contribute to Django:
+						</p>
+						<blockquote>
+							<ul>
+								<li>
+									Check out <a href="http://www.djangoproject.com/community/" rel="nofollow">http://www.djangoproject.com/community/</a> for information
+									about getting involved.
+								</li>
+							</ul>
+						</blockquote>
+						<p>
+							To run Django's test suite:
+						</p>
+						<blockquote>
+							<ul>
+								<li>
+									Follow the instructions in the "Unit tests" section of
+									docs/internals/contributing/writing-code/unit-tests.txt, published online at <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/#running-the-unit-tests" rel="nofollow">https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/#running-the-unit-tests</a>
+								</li>
+							</ul>
+						</blockquote>
+					</div>
+				</div>
+				<div id="info" class="tab-pane fade">
+					<div class="author">
+						<h4>Author</h4>
+						Django Software Foundation
+					</div>
+					<div class="links">
+						<h4>Links</h4>
+						<ul class="unstyled">
+							<li>
+								<a href="http://www.djangoproject.com/" title="Home Page">Home Page</a>
+							</li>
+						</ul>
+					</div>
+					<div class="requirements">
+						<h4>Pip</h4>
+						Django==1.4
+					</div>
+					<div id="classifiers">
+						<h4>Classifiers</h4>
+						<ul class="unstyled">
+							<li>
+								Development Status :: 5 - Production/Stable
+							</li>
+							<li>
+								Environment :: Web Environment
+							</li>
+							<li>
+								Framework :: Django
+							</li>
+							<li>
+								Intended Audience :: Developers
+							</li>
+							<li>
+								License :: OSI Approved :: BSD License
+							</li>
+							<li>
+								Operating System :: OS Independent
+							</li>
+							<li>
+								Programming Language :: Python
+							</li>
+							<li>
+								Programming Language :: Python :: 2.5
+							</li>
+							<li>
+								Programming Language :: Python :: 2.6
+							</li>
+							<li>
+								Programming Language :: Python :: 2.7
+							</li>
+							<li>
+								Topic :: Internet :: WWW/HTTP
+							</li>
+							<li>
+								Topic :: Internet :: WWW/HTTP :: Dynamic Content
+							</li>
+							<li>
+								Topic :: Internet :: WWW/HTTP :: WSGI
+							</li>
+							<li>
+								Topic :: Software Development :: Libraries :: Application Frameworks
+							</li>
+							<li>
+								Topic :: Software Development :: Libraries :: Python Modules
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="span3"></div>
+						<div class="span3"></div>
+						<div class="span3"></div>
+					</div>
+				</div>
+				<div id="files" class="tab-pane fade">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>File</th>
+								<th>Type</th>
+								<th>Python Version</th>
+								<th>Uploaded On</th>
+								<th>Size</th>
+								<th>Downloads</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="http://packages.crate-cdn.com/c/0/9/6/c096bafbea10e7d359bc15eb00a9bf11dbf5201a16d62acfa2de61d5a35488e9/Django-1.4.tar.gz">Django-1.4.tar.gz</a> (<a data-toggle="modal" href="#digest-108937">sha256</a>)</td>
+								<td>Source</td>
+								<td></td>
+								<td>March 23, 2012</td>
+								<td>0.0 MB</td>
+								<td>133,526</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="digest-108937" class="modal hide fade">
+						<div class="modal-header">
+							<a href="#" class="close" data-dismiss="modal">�</a>
+							<h3>Django-1.4.tar.gz</h3>
+						</div>
+						<div class="modal-body">
+							<dl>
+								<dt>
+									sha256
+								</dt>
+								<dd>
+									c096bafbea10e7d359bc15eb00a9bf11dbf5201a16d62acfa2de61d5a35488e9
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div id="all-versions" class="tab-pane fade">
+					<table class="table table-striped table-bordered versions">
+						<thead>
+							<tr>
+								<th>Version</th>
+								<th>Release Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a href="/packages/Django/1.4/" title="Django ">1.4</a></td>
+								<td><span class="date">March 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.3.1/" title="Django ">1.3.1</a></td>
+								<td><span class="date">Sept. 10, 2011</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.3/" title="Django ">1.3</a></td>
+								<td><span class="date">March 23, 2011</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.7/" title="Django ">1.2.7</a></td>
+								<td><span class="date">Sept. 11, 2011</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.6/" title="Django ">1.2.6</a></td>
+								<td><span class="date">Sept. 10, 2011</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.5/" title="Django ">1.2.5</a></td>
+								<td><span class="date">Feb. 9, 2011</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.4/" title="Django ">1.2.4</a></td>
+								<td><span class="date">Dec. 23, 2010</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.3/" title="Django ">1.2.3</a></td>
+								<td><span class="date">Sept. 11, 2010</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.2/" title="Django ">1.2.2</a></td>
+								<td><span class="date">Sept. 9, 2010</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2.1/" title="Django ">1.2.1</a></td>
+								<td><span class="date">May 24, 2010</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.2/" title="Django ">1.2</a></td>
+								<td><span class="date">May 17, 2010</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.1.4/" title="Django ">1.1.4</a></td>
+								<td><span class="date">Feb. 9, 2011</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.1.3/" title="Django ">1.1.3</a></td>
+								<td><span class="date">Dec. 23, 2010</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.1.2/" title="Django ">1.1.2</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.1.1/" title="Django ">1.1.1</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.1/" title="Django ">1.1</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.0.4/" title="Django ">1.0.4</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.0.3/" title="Django ">1.0.3</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.0.2/" title="Django ">1.0.2</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.0.1/" title="Django ">1.0.1</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+							<tr>
+								<td><a href="/packages/Django/1.0/" title="Django ">1.0</a></td>
+								<td><span class="date">Jan. 23, 2012</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="history" class="tab-pane fade">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Package</th>
+								<th>Version</th>
+								<th>Action</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>March 23, 2012, 4:59 p.m.</td>
+								<td>Django</td>
+								<td>1.4</td>
+								<td>Release Created</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar">
+				<div class="downloads">
+					<h3 class="visuallyhidden">Downloads</h3>
+					<div class="package">
+						<span class="count">1,084,250</span> total downloads
+					</div>
+					<div class="version">
+						<span class="count">133,526</span> for this version
+					</div>
+				</div>
+				<div id="download-chart">
+					<div class="chart rickshaw_graph">
+					</div>
+					<div class="timeline"></div>
+					<div class="slider"></div>
+				</div>
+				<div id="release-evaluation">
+					<h3>Evaluation <small>mouse over for details</small></h3>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="PEP386 Compatibility" data-content="PEP386 defines a specific allowed syntax for Python package versions.&lt;br /&gt;&lt;br /&gt;Previously it was impossible to accurately determine across any Python package what order the versions should go in, but with PEP386 we can now intelligently sort by version...&lt;br /&gt;&lt;br /&gt;But only if the version numbers are compatible!" data-original-title="">
+							<i class="icon icon-ok"></i> Compatible with <a href="http://www.python.org/dev/peps/pep-0386/">PEP386</a>.
+						</div>
+					</div>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="Package Hosting" data-content="Did you know that packages listed on PyPI aren't required to host there?&lt;br /&gt;&lt;br /&gt;When your package manager tries to install a package from PyPI it looks in number of locations, one such location is an author specified url of where the package can be downloaded from.&lt;br /&gt;&lt;br /&gt;Packages hosted by the author means that installing this package depends on the authors server staying up, adding another link in the chain that can cause your installation to fail" data-original-title="">
+							<i class="icon icon-ok"></i> Package is hosted on PyPI
+						</div>
+					</div>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="Documentation hosted on Read The Docs" data-content="Documentation can be one of the most important parts of any library. Even more important than just having documentation, is making sure that people are able to find it easily.&lt;br /&gt;&lt;br /&gt;Read The Docs is an open source platform for hosting documentation generated by Sphinx.&lt;br /&gt;&lt;br /&gt;Hosting your documentation on Read The Docs is easy (even if it's just an additional copy), and it allows people who want to use your package the ability to locate your documentation in what is quickly becoming a one stop shop for online open source documentation.&lt;br /&gt;&lt;br /&gt;&lt;small&gt;If this says you aren't hosted on Read The Docs and you are please contact &lt;a href='mailto:support@crate.io'&gt;support@crate.io&lt;/a&gt;&lt;/small&gt;" data-original-title="">
+							<i class="icon icon-ok"></i> Available on <a href="http://django.readthedocs.org/">Read The Docs</a>
+						</div>
+					</div>
+				</div>
+				<div class="versions">
+					<h3>Latest Versions</h3>
+					<ul class="unstyled">
+						<li>
+							<a href="/packages/Django/1.4/" title="Django ">1.4</a>
+							<span class="date">March 23, 2012</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.3.1/" title="Django ">1.3.1</a>
+							<span class="date">Sept. 10, 2011</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.3/" title="Django ">1.3</a>
+							<span class="date">March 23, 2011</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.2.7/" title="Django ">1.2.7</a>
+							<span class="date">Sept. 11, 2011</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.2.6/" title="Django ">1.2.6</a>
+							<span class="date">Sept. 10, 2011</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="add-to-new-list">
+		<div class="modal-header">
+			<button class="close" data-dismiss="modal">
+				�
+			</button>
+			<h3>Add Django to a new List</h3>
+		</div>
+		<form method="POST" action="/users/_/Django/new/" class="form-horizontal json-form">
+			<div class="modal-body">
+				<div id="div_id_name" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x4c3fa50&gt;&gt;">
+					<label for="id_name" class="control-label required-field"> Name </label>
+					<div class="controls">
+						<input id="id_name" type="text" name="name" maxlength="50">
+					</div>
+				</div>
+				<div id="div_id_description" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x4c3f6d0&gt;&gt;">
+					<label for="id_description" class="control-label "> Description </label>
+					<div class="controls">
+						<textarea id="id_description" rows="10" cols="40" name="description"></textarea>
+					</div>
+				</div>
+				<div id="div_id_private" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x4c3fa50&gt;&gt;">
+					<div class="controls">
+						<label for="id_private" class="checkbox ">
+							<input type="checkbox" name="private" id="id_private">
+							Private List </label>
+						<p class="help-block">
+							Private lists are visible only to you.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="hide progress progress-striped active">
+					<div class="bar" style="width: 100%;"></div>
+				</div>
+				<a href="#" class="btn">Nevermind</a>
+				<button type="submit" class="btn btn-primary">
+					Create List
+				</button>
+			</div>
+		</form>
+	</div>
+{% endblock container %}
