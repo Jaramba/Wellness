@@ -9,6 +9,8 @@ from crispy_forms.layout import *
 from utils import perform_raw_sql
 from datetime import datetime
 
+from django.contrib.auth.forms import UserChangeForm
+
 class UserProfileInlineForm(forms.ModelForm):
     class Meta:
         model = UserProfile

@@ -13,5 +13,5 @@ def index(request, template_name = ""):
 
 @login_required
 def use_as(request, type):
-	request.session['use-page-as'] = type
+	request.session['use_page_as'] = type
 	return HttpResponseRedirect('/')

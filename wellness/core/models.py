@@ -180,10 +180,10 @@ class UserProfile(Person):
 			])
 
 #User Hacks... But everybody is a patient
-User.is_healthworker = property(lambda self: self.groups.filter(name='Health Workers').count())
-User.is_employer = property(lambda self: self.groups.filter(name='Employers').count())
-User.is_admin = property(lambda self: self.groups.filter(name='Admins').count())
-User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agents').count())
+User.is_healthworker = property(lambda self: self.groups.filter(name='Health Worker').count())
+User.is_employer = property(lambda self: self.groups.filter(name='Employer').count())
+User.is_admin = property(lambda self: self.groups.filter(name='Admin').count())
+User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agent').count())
 
 User.full_name = property(lambda self: self.profile.full_name)
 User.get_full_name = lambda self: self.full_name

@@ -99,9 +99,10 @@ class UserUserProfileAdmin(UserAdmin):
 				)
 	approve_patient_profiles.description = 'Approve Patient'			
 	
-	list_display = ('username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_staff')
+	list_display = ('username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_superuser', 'is_staff')
 	search_fields = ('username', 'first_name', 'last_name', 'email')
 	inlines = (UserProfileAdmin,)
+	form = UserChangeForm
 	
 	actions = [deactivate, approve_patient_profiles, approve_healthworker_profiles]
 
