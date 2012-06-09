@@ -79,14 +79,31 @@
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>
 										<ul class="dropdown-menu">
 											<li>
-												<a href="{% url settings %}"><i class="icon-globe"></i> Use as Patient</a>
+												<a href="{% url use-as 'patient' %}"><i class="icon-globe"></i> Use as Patient</a>
 											</li>
-											{% if request.user.is_superuser or request.user.is_admin or request.user.is_healthworker %}
-												<li>
-													<a href="{% url settings %}"><i class="icon-eye-open"></i> Use as Doctor</a>
-												</li>
-											{% endif %}
-											<li class="divider"></li>
+											{% for group in request.user.groups.all %}
+												{% if not group.name == 'Patient' %}
+													<li>
+														<a href="{% url use-as group.name|slugify %}"><i class="icon-globe"></i> Use as {{ group.name }}</a>
+													</li>
+												{% endif %}
+												{% if forloop.last%}
+													<li class="divider"></li>
+												{% endif %}
+											{% empty %}
+												{% if request.user.is_superuser %}
+													<li>
+														<a href="{% url use-as 'admin' %}"><i class="icon-globe"></i> Use as Admin</a>
+													</li>
+													<li>
+														<a href="{% url use-as 'insurance-agent' %}"><i class="icon-globe"></i> Use as Insurance Agent</a>
+													</li>
+													<li>
+														<a href="{% url use-as 'doctor' %}"><i class="icon-globe"></i> Use as Doctor</a>
+													</li>
+													<li class="divider"></li>
+												{% endif %}
+											{% endfor %}
 											<li>
 												<a href="{% url settings %}"><i class="icon-user"></i> Account Settings</a>
 											</li>

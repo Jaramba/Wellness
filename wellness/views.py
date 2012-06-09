@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response
@@ -11,3 +11,7 @@ def index(request, template_name = ""):
 	data = {}
 	return render_to_response(template_name, data, context_instance= RequestContext(request))
 
+@login_required
+def use_as(request, type):
+	request.session['use-page-as'] = type
+	return HttpResponseRedirect('/')

@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 #apps
 urlpatterns += patterns('',
 	url(r'^$', 'wellness.views.index', {'template_name':'index.html'}, name="index"),
+	url(r'^use-as/(?P<type>patient|insurance-agent|doctor|admin)/$', 'wellness.views.use_as', name="use-as"),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^stats/', include('wellness.stats.urls')),
     url(r'^records/', include('wellness.records.urls')),
