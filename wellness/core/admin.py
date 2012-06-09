@@ -58,7 +58,7 @@ class UserProfileAdmin(admin.StackedInline):
 class UserUserProfileAdmin(UserAdmin):
 	fieldsets = (
 	    (None, {'fields': ('username', 'email', 'password')}),
-	    (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+	    (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
 	    (('Important dates'), {'fields': ('last_login', 'date_joined')}),
 	)
 	#OK, I tried @staticmethod, didnt work, weirdly, this works
@@ -134,6 +134,5 @@ for M in [Country, County, Province, Title]:
         pass
 
 admin.site.unregister(User)
-admin.site.unregister(Group)
 admin.site.register(User, UserUserProfileAdmin)
 admin.site.register(RelationshipType)

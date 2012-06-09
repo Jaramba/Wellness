@@ -1,6 +1,5 @@
 from django.db import models, transaction
-from django.contrib.auth.models import User
-from permission.models import Role
+from django.contrib.auth.models import User, Group
 
 from fields import  *
 
@@ -180,10 +179,11 @@ class UserProfile(Person):
 				) if i
 			])
 
-#User Hacks...
-User.is_healthworker = property(lambda self: Role.objects.filter(codename='health_worker').count())
-User.is_employer = property(lambda self: Role.objects.filter(codename='employers'))
-User.is_insuranceprovider = property(lambda self: Role.objects.filter(codename='insurance_agents').count())
+#User Hacks... But everybody is a patient
+User.is_healthworker = property(lambda self: self.groups.filter(name='Health Workers').count())
+User.is_employer = property(lambda self: self.groups.filter(name='Employers').count())
+User.is_admin = property(lambda self: self.groups.filter(name='Admins').count())
+User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agents').count())
 
 User.full_name = property(lambda self: self.profile.full_name)
 User.get_full_name = lambda self: self.full_name

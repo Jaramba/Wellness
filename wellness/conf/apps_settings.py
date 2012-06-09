@@ -17,12 +17,12 @@ INSTALLED_APPS = (
 	'django.contrib.admin',
 	'django.contrib.markup',	
 	'django.contrib.staticfiles',
+	'django.contrib.humanize',
 	
 	#apps
 	'crispy_forms',
 	'guardian',
-	'permission',
-	'mptt',
+	'messages',
 	#'south',
 	
 	'wellness.userprofile',
@@ -45,8 +45,6 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
 	"guardian.backends.ObjectPermissionBackend",
     "wellness.auth.email.EmailBackend",
-	"permission.backends.RoleBackend",
-    "permission.backends.PermissionBackend",
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

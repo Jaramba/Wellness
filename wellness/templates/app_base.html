@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+{% block extracss %}
+	{% block extracss-links %}
+	{% endblock extracss-links %}
+	<style>
+		.navbar .nav > li > a {
+			line-height: 23px;
+		}
+		{% block extracss-inline %}
+		{% endblock extracss-inline %}
+	</style>
+{% endblock extracss %}
+
+{% block extrajs %}
+	{% block extrajs-javascript %}{% endblock extrajs-javascript %}
+	{% block extrajs-jquery-plugins %}{% endblock extrajs-jquery-plugins %}
+	<script>
+		$(function(){
+			$('.navbar-item').tooltip({animation:true, placement:'bottom'});
+			{% block extrajs-jquery-enclosed %}
+			{% endblock extrajs-jquery-enclosed %}
+		});
+	</script>
+{% endblock extrajs %}
+
 {% block navbar %}
 	<div class="navbar-inner">
 		<div class="container">
@@ -9,18 +33,32 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="{% url index %}">
+				<a class="brand" href="/">
 					<i class="icon-leaf icon-white" style="margin-top: 8px;margin-right: -4px;"> </i> Uhai 
 					<span class="label label-info" style="font-size: 8.899px">Beta</span></a>
 				<div class="nav-collapse">
 					{% block navbar-left %}
 						<ul class="nav">
 							{% if request.user.is_authenticated %}
-								<li class="active"><a href="{% url index %}"><i class="icon-home icon-white"></i> Home</a></li>
-								<li><a href="{% url index %}"><i class="icon-envelope icon-white"></i> Messages</a></li>
-								<li><a href="{% url index %}"><i class="icon-calendar icon-white"></i> Calendar</a></li>
-								<li><a href="{% url index %}"><i class="icon-folder-open icon-white"></i> Records</a></li>
-								<li><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i> Questionnaires</a></li>
+								<li class="navbar-item" title="Home" rel="tooltip" class="active"><a href="{% url index %}"><i class="icon-home icon-white"></i></a></li>
+								{% if request.user.is_healthworker %}									
+									<li class="navbar-item" title="Schedule" rel="tooltip"><a href="{% url index %}"><i class="icon-calendar icon-white"></i></a></li>									
+									<li class="navbar-item" title="Clinical" rel="tooltip">
+										<a href="#"><i class="icon-cog icon-white"></i></a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="{% url settings %}"><i class="icon-globe"></i> Use as Patient</a>
+											</li>
+										</ul>
+									</li>							
+									<li class="navbar-item" title="Patients" rel="tooltip"><a href="{% url index %}"><i class="icon-user icon-white"></i></a></li>
+									<li class="navbar-item" title="Reports" rel="tooltip"><a href="{% url index %}"><i class="icon-file icon-white"></i></a></li>
+								{% else %}
+									<li class="navbar-item" title="Message" rel="tooltip"><a href="{% url index %}"><i class="icon-envelope icon-white"></i></a></li>
+									<li class="navbar-item" title="Schedule" rel="tooltip"><a href="{% url index %}"><i class="icon-calendar icon-white"></i></a></li>
+									<li class="navbar-item" title="Records" rel="tooltip"><a href="{% url index %}"><i class="icon-folder-open icon-white"></i></a></li>
+									<li class="navbar-item" title="Questionnaires" rel="tooltip"><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i></a></li>
+								{% endif %}
 							{% endif %}
 							{% block navbar-links %}{% endblock navbar-links %}
 						</ul>
@@ -30,11 +68,10 @@
 							{% if request.user.is_authenticated %}
 								<form class="navbar-search pull-left" action="/search">
 									<input type="text" class="search-query span2" 
-										placeholder="Search 
-										{% if request.user.is_healthworker %}Patient, Medication
-										{% elif request.user.is_insuranceprovider %}Employee
-										{% elif request.user.is_employer %}Employer, Employee
-										{% endif %}"
+										placeholder="Search {% if request.user.is_healthworker %}Patient, Medication
+										{% elif request.user.is_insuranceagent %}Employer, Employee, Patient, Doctor
+										{% elif request.user.is_employer %}Employee
+										{% else %}Records{% endif %}"
 									/>
 								</form>
 								<ul class="nav pull-right">
@@ -44,16 +81,20 @@
 											<li>
 												<a href="{% url settings %}"><i class="icon-globe"></i> Use as Patient</a>
 											</li>
-											<li>
-												<a href="{% url settings %}"><i class="icon-eye-open"></i> Use as Doctor</a>
-											</li>
+											{% if request.user.is_superuser or request.user.is_admin or request.user.is_healthworker %}
+												<li>
+													<a href="{% url settings %}"><i class="icon-eye-open"></i> Use as Doctor</a>
+												</li>
+											{% endif %}
 											<li class="divider"></li>
 											<li>
 												<a href="{% url settings %}"><i class="icon-user"></i> Account Settings</a>
 											</li>
-											<li>
-												<a href="{% url admin:index %}"><i class="icon-briefcase"></i> Administration</a>
-											</li>
+											{% if request.user.is_superuser or request.user.is_admin %}
+												<li>
+													<a href="{% url admin:index %}"><i class="icon-briefcase"></i> Administration</a>
+												</li>
+											{% endif %}
 											<li class="divider"></li>
 											<li><a href="{% url logout %}"><i class="icon-off"></i> Log out</a></li>
 										</ul>

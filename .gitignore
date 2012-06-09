@@ -11,6 +11,7 @@ database_dev.py
 media/cv/*
 static_root/*
 test.json
+build/*
 
 # Mercurial backup files
 *.orig

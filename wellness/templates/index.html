@@ -7,16 +7,20 @@
 {% endblock extracss %}
 
 {% block navbar-right %}
-	<ul class="nav">
-	    <li class="active">
-	      <a href="{% url landing-page %}"> Home </a>
-	    </li>
-	    <li>
-	      <a style="color: #0BE" href="{% url login %}" title="Log in to Uhai">
-	        Log In
-	      </a>
-	    </li>
-  </ul>
+	{% if not request.user.is_authenticated %}
+		<ul class="nav">
+			<li class="active">
+			  <a href="{% url index %}"> Home </a>
+			</li>
+			<li>
+			  <a style="color: #0BE" href="{% url login %}" title="Log in to Uhai">
+				Log In
+			  </a>
+			</li>
+		</ul>
+	{% else %}
+		{{ block.super }}
+	{% endif %}
 {% endblock navbar-right %}
 
 {% block container %}
@@ -26,9 +30,11 @@
 			<p>
 				The easiest way to improve the patient experience while lowering costly administrative overhead
 			</p>
-			<p class="download-info">
-				<a href="{% url login %}" class="btn btn-primary btn-large">Login To Your Account</a>
-			</p>
+			{% if not request.user.is_authenticated %}
+				<p class="download-info">
+					<a href="{% url login %}" class="btn btn-primary btn-large">Login To Your Account</a>
+				</p>
+			{% endif %}
 		</div>
 	</header>
 	<hr class="soften">

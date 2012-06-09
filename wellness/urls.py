@@ -12,8 +12,7 @@ urlpatterns = patterns('',
 
 #apps
 urlpatterns += patterns('',
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name="landing-page"),
-	url(r'^home/$', 'wellness.views.index', name="index"),
+	url(r'^$', 'wellness.views.index', {'template_name':'index.html'}, name="index"),
     url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^stats/', include('wellness.stats.urls')),
     url(r'^records/', include('wellness.records.urls')),

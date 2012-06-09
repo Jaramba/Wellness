@@ -6,10 +6,11 @@ class ProgramQuestionnaire(models.Model):
 	name = models.CharField(max_length=255)
 	intro = models.CharField('Introduction', max_length=20, null=True, blank=False)
 	detail = models.CharField('Details', max_length=100, null=True, blank=False)
-	notes = models.TextField(max_length=2000, null=True, blank=False)
+	notes = models.TextField(max_length=2000, null=True, blank=False, 
+			help_text=r"Use simple HTML tags &lt;p&gt;&lt;/p&gt; for paragraphs, "
+					"&lt;blockquote&gt;&lt;/blockquote&gt; for lists "
+					"and &lt;li&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/li&gt; to enclose list of things")
 	program = models.ForeignKey('programs.Program')
-	start_date = models.DateTimeField(null=True, blank=True)
-	finish_date = models.DateTimeField(null=True, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
 	
 	def __unicode__(self):

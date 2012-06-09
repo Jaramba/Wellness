@@ -4,12 +4,11 @@
     "model": "questions.programquestionnaire",
     "fields": {
       "name": "HIV/AIDs Follow up",
-      "finish_date": "2012-08-26T19:07:08",
+      "notes": null,
       "detail": "A compulsory questionnaire for diagnosed registered HIV patients",
       "program": 2,
       "date_created": "2012-06-06T16:19:37.058",
-      "intro": "HIV Checkup",
-      "start_date": "2012-05-26T19:07:06"
+      "intro": "HIV Checkup"
     }
   },
   {
@@ -199,7 +198,7 @@
       "text": "Haemoglobin(HB) value g/dl",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 9
     }
   },
@@ -210,7 +209,7 @@
       "text": "Have thrush",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 18
     }
   },
@@ -221,7 +220,7 @@
       "text": "Have TB",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 7
     }
   },
@@ -232,7 +231,7 @@
       "text": "White cell count (WCC) value",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 9
     }
   },
@@ -243,7 +242,7 @@
       "text": "Experience tiredness or weakness",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 5
     }
   },
@@ -254,7 +253,7 @@
       "text": "Red cell count (RCC) value",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 9
     }
   },
@@ -265,7 +264,7 @@
       "text": "Use",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 15
     }
   },
@@ -276,7 +275,7 @@
       "text": "On ART",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 3
     }
   },
@@ -287,7 +286,7 @@
       "text": "On medication",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 7
     }
   },
@@ -298,7 +297,7 @@
       "text": "On Therapy",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 21
     }
   },
@@ -309,7 +308,7 @@
       "text": "Platelet count",
       "choices": "",
       "type": "number",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 9
     }
   },
@@ -320,7 +319,7 @@
       "text": "Problems",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 6
     }
   },
@@ -331,7 +330,7 @@
       "text": "Persistent",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 16
     }
   },
@@ -342,7 +341,7 @@
       "text": "Prg compliant",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 1
     }
   },
@@ -353,7 +352,7 @@
       "text": "Adhere to treatment plan",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 1
     }
   },
@@ -364,7 +363,7 @@
       "text": "Admitted to Hospital",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 1
     }
   },
@@ -375,7 +374,7 @@
       "text": "Alanine Aminotransferase (ALT) value iu/L",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -386,7 +385,7 @@
       "text": "Alkaline Phosphate",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -397,7 +396,7 @@
       "text": "Aspatate Transaminase",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -408,7 +407,7 @@
       "text": "Aspatate Transaminase (AST) (SGOT) value iu/L",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -419,7 +418,7 @@
       "text": "Sputum",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 16
     }
   },
@@ -430,7 +429,7 @@
       "text": "Specify",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 16
     }
   },
@@ -441,7 +440,7 @@
       "text": "Specify",
       "choices": "Infection,Pain,Ulceration,Reduced Sensation,Other",
       "type": "choice",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 19
     }
   },
@@ -452,7 +451,7 @@
       "text": "Specify",
       "choices": "",
       "type": "choice",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 18
     }
   },
@@ -463,7 +462,7 @@
       "text": "Specify",
       "choices": "",
       "type": "choice",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 21
     }
   },
@@ -474,7 +473,7 @@
       "text": "Started",
       "choices": "",
       "type": "datetime",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 7
     }
   },
@@ -485,7 +484,7 @@
       "text": "Started",
       "choices": "",
       "type": "datetime",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 3
     }
   },
@@ -496,7 +495,7 @@
       "text": "Use",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 12
     }
   },
@@ -507,7 +506,7 @@
       "text": "Specify",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 12
     }
   },
@@ -518,7 +517,7 @@
       "text": "Last tested",
       "choices": "",
       "type": "datetime",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 14
     }
   },
@@ -529,7 +528,7 @@
       "text": "Last tested",
       "choices": "",
       "type": "datetime",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 9
     }
   },
@@ -540,7 +539,7 @@
       "text": "Last CD4 count cell/uL",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 14
     }
   },
@@ -551,7 +550,7 @@
       "text": "Last FLU",
       "choices": "",
       "type": "datetime",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 10
     }
   },
@@ -562,7 +561,7 @@
       "text": "Last Pneumococcal",
       "choices": "",
       "type": "datetime",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 10
     }
   },
@@ -573,7 +572,7 @@
       "text": "Gamma-Glutamyl Transpeptide (GTT) value iu/L",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -584,7 +583,7 @@
       "text": "Haemoglobin(HB) value g/dl",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 9
     }
   },
@@ -595,7 +594,7 @@
       "text": "Have TB",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 7
     }
   },
@@ -606,7 +605,7 @@
       "text": "Have thrush",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 18
     }
   },
@@ -617,7 +616,7 @@
       "text": "litres per day",
       "choices": "",
       "type": "number",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 17
     }
   },
@@ -628,7 +627,7 @@
       "text": "Look",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 16
     }
   },
@@ -639,7 +638,7 @@
       "text": "Other drugs",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 21
     }
   },
@@ -650,7 +649,7 @@
       "text": "Bilirubin value UMOL/L",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -661,7 +660,7 @@
       "text": "Neutrophils abs value",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 4
     }
   },
@@ -672,7 +671,7 @@
       "text": "Viral load value copies/ml",
       "choices": "",
       "type": "text",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 13
     }
   },
@@ -683,7 +682,7 @@
       "text": "Complications",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 1
     }
   },
@@ -694,7 +693,7 @@
       "text": "Stage",
       "choices": "1,2,3,4,5",
       "type": "choice",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 1
     }
   },
@@ -705,7 +704,7 @@
       "text": "Experienced Diarrhoea",
       "choices": "",
       "type": "yes-no",
-      "choice_explicit": "0",
+      "choice_explicit": false,
       "questionset": 2
     }
   },

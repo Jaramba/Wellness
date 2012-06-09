@@ -2,8 +2,7 @@
 
 {% block page-title %}Questionnaire List{% endblock page-title %}
 
-{% block extracss %}
-<style>
+{% block extracss-inline %}
 	.modal {
 		left: 45%;
 		width: 50%;
@@ -17,12 +16,10 @@
 	.form-horizontal .control-label {
 		width: 185px;
 		margin-right: 15px;
-	}
-</style>
-{% endblock extracss %}
+	}	
+{% endblock extracss-inline %}
 
-{% block extrajs %}
-<script>
+{% block extrajs-jquery-enclosed %}
 	var $questionnaire_id;
 	var $question_id;
 	var $questionnaire_data = {};
@@ -58,16 +55,14 @@
 			$('#questionnaire-modal').modal();
 		});
 	});
-
-</script>
-{% endblock extrajs %}
+{% endblock extrajs-jquery-enclosed %}
 
 {% block container %} 
 	<a id="launch-questionnaire" data-questionnaire-id='1' class='btn'>Launch Modal</a>
 {% endblock container %}
 
 {% block modal %}
-<div class="modal hide" id="questionnaire-modal">
+<div class="modal hide fade in" id="questionnaire-modal">
 	<div id='questionnaire-modal-body' class="modal-body"></div>
 </div>
 {% endblock modal %} 

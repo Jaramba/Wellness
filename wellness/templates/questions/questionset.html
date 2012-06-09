@@ -44,8 +44,12 @@
 				{% elif question.type == 'datetime' %}
 					<input name='question-{{question.pk}}' type="datetime" class="input-xlarge"/>
 				{% elif question.type == 'choice' %}
-					<select name="question-{{question.pk}}" {% if not question.choice_explicit %} multiple="multiple" {% endif %} id="select01">	
-						<option value="">--</option>
+					<select name="question-{{question.pk}}" 
+						{% if not question.choice_explicit %} 
+							multiple="multiple">
+						{% else %}
+						><option value="">--</option>
+						{% endif %}							
 						{% for item in question.choices_list %}
 							<option value="{{ item|slugify }}">{{ item }}</option>
 						{% endfor %}

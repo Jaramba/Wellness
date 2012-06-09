@@ -1,31 +1,88 @@
 {% extends "app_base.html" %}
+{% load humanize %}
 
 {% block page-title %}Questionnaire Detail{% endblock page-title %}
 
 {% block body-hook %}id="release-detail"{% endblock body-hook %}
 
+{% block extracss %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
+{% endblock extracss %}
+
+{% block extrajs-javascript %}
+	<script src="{{STATIC_URL}}js/d3.v2.min.js"></script>
+	<script src="{{STATIC_URL}}js/date.js"></script>
+	<script src="{{STATIC_URL}}js/rickshaw.js"></script>
+{% endblock extrajs-javascript %}
+	
+{% block extrajs-jquery-enclosed %}
+	var palette = new Rickshaw.Color.Palette({scheme: 'spectrum2000'});
+	data = {
+	  element: $("#download-chart .chart")[0],
+	  renderer: 'area',
+	  height:600,
+	  height:200,
+	  stroke: true,
+	  dataURL: '{% url patient-stats %}',
+	  onData: function(d){
+		$("#download-chart .loading").removeClass("loading");
+		return $.map(d, function(i){ i["color"] = palette.color(); return i; });
+	  },
+	  onComplete: function(s){
+		var hoverDetail = new Rickshaw.Graph.HoverDetail({
+		  graph: s.graph,
+		  xFormatter: function(x) { var d = new Date(x*1000); return "Week of " + d.toString("MMM d"); },
+		  yFormatter: function(y) { return parseInt(y) + " downloads"; }
+		});
+
+		var ticksTreatment = 'glow';
+
+		var xAxis = new Rickshaw.Graph.Axis.Time({
+		  graph: s.graph,
+		  timeUnit: 'week',
+		  ticksTreatment: ticksTreatment
+		});
+
+		var yAxis = new Rickshaw.Graph.Axis.Y({
+		  graph: s.graph,
+		  tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+		  ticksTreatment: ticksTreatment
+		});
+
+		xAxis.render();
+		yAxis.render();
+	  }
+	};
+	var graph = new Rickshaw.Graph.Ajax(data);
+{% endblock extrajs-jquery-enclosed %}
+
 {% block container %}
 	<header class="row">
 		<div class="span6">
 			<hgroup class="package-title">
-				<h1>{{ programquestionnaire.intro }}</h1>
-				<h6>{{ programquestionnaire.detail }}</h6>
+				<h1>{{ programquestionnaire.name }}</h1>
+				<h6>{{ programquestionnaire.intro }}</h6>
 			</hgroup>
 		</div>
 		<div class="span6">
 			<div class="action-buttons">
 				<div class="btn-group">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-list"></i> Lists <span class="caret"></span> </a>
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-cog"></i><span class="caret"></span> </a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="#add-to-new-list" data-toggle="modal"><i class="icon-edit" data-toggle="modal"></i> Add to a new List</a>
+							<a href="#" data-toggle="modal">
+								<i class="icon-edit" data-toggle="modal"></i> Edit
+							</a>
+							<a href="#" data-toggle="modal">
+								<i class="icon-trash" data-toggle="modal"></i> Delete
+							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</header>
-	<div class="subnav">
+	<div class="subnav ">
 		<ul class="nav nav-pills">
 			<li class="active">
 				<a href="#description" data-toggle="tab">Description</a>
@@ -34,13 +91,10 @@
 				<a href="#info" data-toggle="tab">Info</a>
 			</li>
 			<li class="">
-				<a href="#files" data-toggle="tab">Files</a>
+				<a href="#all-questionsets" data-toggle="tab">All Questionsets({{ questionsets.count }})</a>
 			</li>
 			<li class="">
-				<a href="#all-versions" data-toggle="tab">All Versions (21)</a>
-			</li>
-			<li class="">
-				<a href="#history" data-toggle="tab">History</a>
+				<a href="#history" data-toggle="tab">Statistics History</a>
 			</li>
 		</ul>
 	</div>
@@ -50,146 +104,25 @@
 				<div id="description" class="tab-pane fade active in">
 					<div class="html-description">
 						<p>
-							Django is a high-level Python Web framework that encourages rapid development
-							and clean, pragmatic design.
+							{{ programquestionnaire.detail }}
 						</p>
-						<p>
-							All documentation is in the "docs" directory and online at <a href="http://docs.djangoproject.com/en/dev/" rel="nofollow">http://docs.djangoproject.com/en/dev/</a>. If you're just getting started, here's
-							how we recommend you read the docs:
-						</p>
-						<blockquote>
-							<ul>
-								<li>
-									First, read docs/intro/install.txt for instructions on installing Django.
-								</li>
-								<li>
-									Next, work through the tutorials in order (docs/intro/tutorial01.txt,
-									docs/intro/tutorial02.txt, etc.).
-								</li>
-								<li>
-									If you want to set up an actual deployment server, read
-									docs/howto/deployment/index.txt for instructions.
-								</li>
-								<li>
-									You'll probably want to read through the topical guides (in docs/topics)
-									next; from there you can jump to the HOWTOs (in docs/howto) for specific
-									problems, and check out the reference (docs/ref) for gory details.
-								</li>
-								<li>
-									See docs/README for instructions on building an HTML version of the docs.
-								</li>
-							</ul>
-						</blockquote>
-						<p>
-							Docs are updated rigorously. If you find any problems in the docs, or think they
-							should be clarified in any way, please take 30 seconds to fill out a ticket
-							here:
-						</p>
-						<p>
-							<a href="http://code.djangoproject.com/newticket" rel="nofollow">http://code.djangoproject.com/newticket</a>
-						</p>
-						<p>
-							To get more help:
-						</p>
-						<blockquote>
-							<ul>
-								<li>
-									Join the #django channel on <a href="http://irc.freenode.net" rel="nofollow">irc.freenode.net</a>. Lots of helpful people
-									hang out there. Read the archives at <a href="http://django-irc-logs.com/" rel="nofollow">http://django-irc-logs.com/</a>.
-								</li>
-								<li>
-									Join the django-users mailing list, or read the archives, at <a href="http://groups.google.com/group/django-users" rel="nofollow">http://groups.google.com/group/django-users</a>.
-								</li>
-							</ul>
-						</blockquote>
-						<p>
-							To contribute to Django:
-						</p>
-						<blockquote>
-							<ul>
-								<li>
-									Check out <a href="http://www.djangoproject.com/community/" rel="nofollow">http://www.djangoproject.com/community/</a> for information
-									about getting involved.
-								</li>
-							</ul>
-						</blockquote>
-						<p>
-							To run Django's test suite:
-						</p>
-						<blockquote>
-							<ul>
-								<li>
-									Follow the instructions in the "Unit tests" section of
-									docs/internals/contributing/writing-code/unit-tests.txt, published online at <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/#running-the-unit-tests" rel="nofollow">https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/unit-tests/#running-the-unit-tests</a>
-								</li>
-							</ul>
-						</blockquote>
+						{% autoescape off %}
+							{{ programquestionnaire.notes }}
+						{% endautoescape %}
 					</div>
 				</div>
 				<div id="info" class="tab-pane fade">
 					<div class="author">
-						<h4>Author</h4>
-						Django Software Foundation
+						<h4>Program</h4>
+						{{ programquestionnaire.program.name }}
 					</div>
 					<div class="links">
-						<h4>Links</h4>
+						<h4>Program Patient Enrollment</h4>
 						<ul class="unstyled">
 							<li>
-								<a href="http://www.djangoproject.com/" title="Home Page">Home Page</a>
-							</li>
-						</ul>
-					</div>
-					<div class="requirements">
-						<h4>Pip</h4>
-						Django==1.4
-					</div>
-					<div id="classifiers">
-						<h4>Classifiers</h4>
-						<ul class="unstyled">
-							<li>
-								Development Status :: 5 - Production/Stable
-							</li>
-							<li>
-								Environment :: Web Environment
-							</li>
-							<li>
-								Framework :: Django
-							</li>
-							<li>
-								Intended Audience :: Developers
-							</li>
-							<li>
-								License :: OSI Approved :: BSD License
-							</li>
-							<li>
-								Operating System :: OS Independent
-							</li>
-							<li>
-								Programming Language :: Python
-							</li>
-							<li>
-								Programming Language :: Python :: 2.5
-							</li>
-							<li>
-								Programming Language :: Python :: 2.6
-							</li>
-							<li>
-								Programming Language :: Python :: 2.7
-							</li>
-							<li>
-								Topic :: Internet :: WWW/HTTP
-							</li>
-							<li>
-								Topic :: Internet :: WWW/HTTP :: Dynamic Content
-							</li>
-							<li>
-								Topic :: Internet :: WWW/HTTP :: WSGI
-							</li>
-							<li>
-								Topic :: Software Development :: Libraries :: Application Frameworks
-							</li>
-							<li>
-								Topic :: Software Development :: Libraries :: Python Modules
+								{% with enrolledprograms=programquestionnaire.program.enrolledprogram_set.all.count %}
+									{{ enrolledprograms }} Patient{{enrolledprograms|pluralize }}
+								{% endwith %}
 							</li>
 						</ul>
 					</div>
@@ -199,139 +132,23 @@
 						<div class="span3"></div>
 					</div>
 				</div>
-				<div id="files" class="tab-pane fade">
-					<table class="table table-striped table-bordered">
+				<div id="all-questionsets" class="tab-pane fade">
+					<table class="table table-striped table-bordered questionsets">
 						<thead>
 							<tr>
-								<th>File</th>
-								<th>Type</th>
-								<th>Python Version</th>
-								<th>Uploaded On</th>
-								<th>Size</th>
-								<th>Downloads</th>
+								<th>Label</th>
+								<th>Answerable By</th>
+								<th>Date Created</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><a href="http://packages.crate-cdn.com/c/0/9/6/c096bafbea10e7d359bc15eb00a9bf11dbf5201a16d62acfa2de61d5a35488e9/Django-1.4.tar.gz">Django-1.4.tar.gz</a> (<a data-toggle="modal" href="#digest-108937">sha256</a>)</td>
-								<td>Source</td>
-								<td></td>
-								<td>March 23, 2012</td>
-								<td>0.0 MB</td>
-								<td>133,526</td>
-							</tr>
-						</tbody>
-					</table>
-					<div id="digest-108937" class="modal hide fade">
-						<div class="modal-header">
-							<a href="#" class="close" data-dismiss="modal">�</a>
-							<h3>Django-1.4.tar.gz</h3>
-						</div>
-						<div class="modal-body">
-							<dl>
-								<dt>
-									sha256
-								</dt>
-								<dd>
-									c096bafbea10e7d359bc15eb00a9bf11dbf5201a16d62acfa2de61d5a35488e9
-								</dd>
-							</dl>
-						</div>
-					</div>
-				</div>
-				<div id="all-versions" class="tab-pane fade">
-					<table class="table table-striped table-bordered versions">
-						<thead>
-							<tr>
-								<th>Version</th>
-								<th>Release Date</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><a href="/packages/Django/1.4/" title="Django ">1.4</a></td>
-								<td><span class="date">March 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.3.1/" title="Django ">1.3.1</a></td>
-								<td><span class="date">Sept. 10, 2011</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.3/" title="Django ">1.3</a></td>
-								<td><span class="date">March 23, 2011</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.7/" title="Django ">1.2.7</a></td>
-								<td><span class="date">Sept. 11, 2011</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.6/" title="Django ">1.2.6</a></td>
-								<td><span class="date">Sept. 10, 2011</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.5/" title="Django ">1.2.5</a></td>
-								<td><span class="date">Feb. 9, 2011</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.4/" title="Django ">1.2.4</a></td>
-								<td><span class="date">Dec. 23, 2010</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.3/" title="Django ">1.2.3</a></td>
-								<td><span class="date">Sept. 11, 2010</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.2/" title="Django ">1.2.2</a></td>
-								<td><span class="date">Sept. 9, 2010</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2.1/" title="Django ">1.2.1</a></td>
-								<td><span class="date">May 24, 2010</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.2/" title="Django ">1.2</a></td>
-								<td><span class="date">May 17, 2010</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.1.4/" title="Django ">1.1.4</a></td>
-								<td><span class="date">Feb. 9, 2011</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.1.3/" title="Django ">1.1.3</a></td>
-								<td><span class="date">Dec. 23, 2010</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.1.2/" title="Django ">1.1.2</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.1.1/" title="Django ">1.1.1</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.1/" title="Django ">1.1</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.0.4/" title="Django ">1.0.4</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.0.3/" title="Django ">1.0.3</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.0.2/" title="Django ">1.0.2</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.0.1/" title="Django ">1.0.1</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
-							<tr>
-								<td><a href="/packages/Django/1.0/" title="Django ">1.0</a></td>
-								<td><span class="date">Jan. 23, 2012</span></td>
-							</tr>
+							{% for questionset in questionsets%}
+								<tr>
+									<td>{{ questionset.label }}</td>
+									<td>{{ questionset.get_answerable_by_display|default:"Doctor" }}</td>
+									<td><span class="date">{{ questionset.date_created }}</span></td>
+								</tr>
+							{% endfor%}			
 						</tbody>
 					</table>
 				</div>
@@ -364,22 +181,21 @@
 				<div class="downloads">
 					<h3 class="visuallyhidden">Downloads</h3>
 					<div class="package">
-						<span class="count">1,084,250</span> total downloads
+						<span class="count">{{ questionsets.count|intcomma }}</span> total questionsets
 					</div>
 					<div class="version">
-						<span class="count">133,526</span> for this version
+						<span class="count">{{ questions.count|intcomma }}</span> total questions
 					</div>
 				</div>
 				<div id="download-chart">
-					<div class="chart rickshaw_graph">
-					</div>
-					<div class="timeline"></div>
-					<div class="slider"></div>
+				  <div class="chart loading"></div>
+				  <div class="timeline"></div>
+				  <div class="slider"></div>
 				</div>
 				<div id="release-evaluation">
 					<h3>Evaluation <small>mouse over for details</small></h3>
 					<div class="alert alert-success">
-						<div rel="popover" data-placement="left" data-title="PEP386 Compatibility" data-content="PEP386 defines a specific allowed syntax for Python package versions.&lt;br /&gt;&lt;br /&gt;Previously it was impossible to accurately determine across any Python package what order the versions should go in, but with PEP386 we can now intelligently sort by version...&lt;br /&gt;&lt;br /&gt;But only if the version numbers are compatible!" data-original-title="">
+						<div rel="popover" data-placement="left" data-title="PEP386 Compatibility" data-content="PEP386 defines a specific allowed syntax for Python package questionsets.&lt;br /&gt;&lt;br /&gt;Previously it was impossible to accurately determine across any Python package what order the questionsets should go in, but with PEP386 we can now intelligently sort by version...&lt;br /&gt;&lt;br /&gt;But only if the version numbers are compatible!" data-original-title="">
 							<i class="icon icon-ok"></i> Compatible with <a href="http://www.python.org/dev/peps/pep-0386/">PEP386</a>.
 						</div>
 					</div>
@@ -394,7 +210,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="versions">
+				<div class="questionsets">
 					<h3>Latest Versions</h3>
 					<ul class="unstyled">
 						<li>

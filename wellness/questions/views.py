@@ -9,6 +9,14 @@ from django.http import Http404, HttpResponse
 questionaire = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 
 @login_required
+def questionaire_view(request, pk=None, *args, **kwargs):
+	model_obj = get_object_or_404(ProgramQuestionnaire, pk=pk)
+	questionsets = model_obj.questionset_set.all()
+	questions = Question.objects.filter(questionset__in=questionsets)
+	extra_data = locals()
+	return model_view(request, model_obj=model_obj, extra_data=extra_data, *args, **kwargs)
+
+@login_required
 def responses(request, template_name=''):
 	if request.method == 'POST':
 		post = dict(request.POST.copy())
