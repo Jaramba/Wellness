@@ -28,10 +28,10 @@
 	{% block extrajs-javascript %}{% endblock extrajs-javascript %}
 	{% block extrajs-jquery-plugins %}{% endblock extrajs-jquery-plugins %}
 	<script>
+		{% block extrajs-global %}{% endblock extrajs-global %}
 		$(function(){
 			$('.navbar-item').tooltip({animation:true, placement:'bottom'});
-			{% block extrajs-jquery-enclosed %}
-			{% endblock extrajs-jquery-enclosed %}
+			{% block extrajs-jquery-enclosed %}{% endblock extrajs-jquery-enclosed %}
 		});
 	</script>
 {% endblock extrajs %}
@@ -162,7 +162,7 @@
 			{% block container-left %}{% endblock container-left %}
 		</div>
 		<div class="span10 columns">
-			<div class="right-container">
+			<div class="container-right">
 				{% block container-right %}{% endblock container-right %}
 			</div> 
 		</div>

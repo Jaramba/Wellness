@@ -16,11 +16,6 @@ class Patient(UserProfile):
 		('male', 'Male'),
 		('female', 'Female')
 	)
-	SMOKE_TYPE = []
-	SMOKER_TYPE = []
-	DRINKER_TYPE = []
-	DRINK_TYPE = []
-	EXCERCISE_FREQUENCY=[]
 	DIET_TYPE=[]
 	BLOOD_GROUPS = [
 		('a-positive','A+'),

@@ -19,11 +19,13 @@
 	}	
 {% endblock extracss-inline %}
 
-{% block extrajs-jquery-enclosed %}
+{% block extrajs-global %}
 	var $questionnaire_id;
 	var $question_id;
 	var $questionnaire_data = {};
+{% endblock extrajs-global %}
 
+{% block extrajs-jquery-enclosed %}
 	$.fn.serializeObject = function() {
 		var o = {};
 		var a = this.serializeArray();
