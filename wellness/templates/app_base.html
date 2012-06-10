@@ -117,15 +117,13 @@
 												<a href="{% url use-as 'patient' %}"><i class="icon-globe"></i> Use as Patient</a>
 											</li>
 											{% if request.user.is_superuser %}
-												<li>
-													<a href="{% url use-as 'admin' %}"><i class="icon-globe"></i> Use as Admin</a>
-												</li>
-												<li>
-													<a href="{% url use-as 'insurance-agent' %}"><i class="icon-globe"></i> Use as Insurance Agent</a>
-												</li>
-												<li>
-													<a href="{% url use-as 'doctor' %}"><i class="icon-globe"></i> Use as Doctor</a>
-												</li>
+												{% for group in user_groups %}
+													{% if not group.name == 'Patient' %}
+														<li>
+															<a href="{% url use-as group.name|slugify %}"><i class="icon-globe"></i> Use as {{ group.name }}</a>
+														</li>
+													{% endif %}
+												{% endfor %}
 											{% else %}
 												{% for group in request.user.groups.all %}
 													{% if not group.name == 'Patient' %}
