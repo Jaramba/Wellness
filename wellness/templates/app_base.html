@@ -4,23 +4,25 @@
 	{% block extracss-links %}
 	{% endblock extracss-links %}
 	<style>
-		.navbar .nav > li > a {
-			line-height: 23px;
-		}
-		.navbar .dropdown-menu.schedule::after {
-			left: 43px;
-		}
-		.navbar .dropdown-menu.clinicals::after {
-			left: 78px;
-		}
-		.navbar .dropdown-menu.patient::after {
-			left: 112px;
-		}
-		.navbar .dropdown-menu.reports::after {
-			left: 145px;
-		}
-		{% block extracss-inline %}
-		{% endblock extracss-inline %}
+		{% spaceless %}
+			.navbar .nav > li > a {
+				line-height: 23px;
+			}
+			.navbar .dropdown-menu.schedule::after {
+				left: 43px;
+			}
+			.navbar .dropdown-menu.clinicals::after {
+				left: 78px;
+			}
+			.navbar .dropdown-menu.patient::after {
+				left: 112px;
+			}
+			.navbar .dropdown-menu.reports::after {
+				left: 145px;
+			}
+			{% block extracss-inline %}
+			{% endblock extracss-inline %}
+		{% endspaceless %}
 	</style>
 {% endblock extracss %}
 
@@ -57,7 +59,7 @@
 									<li class="navbar-item" title="Schedule" id="schedule-menu" rel="tooltip">
 										<a href="#schedule-menu" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar icon-white"></i></a>
 										<ul class="dropdown-menu schedule">
-											<li><a href="{% url index %}"><i class="icon-globe"></i> Calendar</a></li>
+											<li><a href="{% url calendar %}"><i class="icon-globe"></i> Calendar</a></li>
 											<li><a href="{% url index %}"><i class="icon-globe"></i> Reminder Profiles</a></li>
 											<li><a href="{% url index %}"><i class="icon-globe"></i> Follow up Reminders</a></li>
 											<li><a href="{% url index %}"><i class="icon-globe"></i> Out of office notice</a></li>
