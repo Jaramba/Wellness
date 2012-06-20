@@ -92,29 +92,29 @@ class DefaultMenu(Menu):
             items.AppList(
                 'Medical Records',
                 models=(
-					'wellness.records.*','wellness.medication.*', 					
-					'wellness.patient.*',					
+					'uhai.records.*','uhai.medication.*', 					
+					'uhai.patient.*',					
 				),
             ),
 			items.AppList(
                 'Patient / Employee Programs',
-                models=('wellness.questions.*', 'wellness.programs.*',),
+                models=('uhai.questions.*', 'uhai.programs.*',),
             ),
 			items.AppList(
                 'Providers',
-                models=('wellness.healthprovider.*',),
+                models=('uhai.healthprovider.*',),
             ),
             items.AppList(
                 'Insurance Administration',
-                models=('wellness.insuranceprovider.*',),
+                models=('uhai.insuranceprovider.*',),
             ),
             items.AppList(
                 'Administration',
                 exclude=(
-					'wellness.questions.*','wellness.records.*',
-					'wellness.programs.*', 'wellness.insuranceprovider.*', 
-					'wellness.medication.*', 'wellness.patient.*',
-					'wellness.healthprovider.*'
+					'uhai.questions.*','uhai.records.*',
+					'uhai.programs.*', 'uhai.insuranceprovider.*', 
+					'uhai.medication.*', 'uhai.patient.*',
+					'uhai.healthprovider.*'
 				),
             ),
         ]
