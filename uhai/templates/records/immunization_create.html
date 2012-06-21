@@ -1,0 +1,11 @@
+{% extends "records/records_base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	{% trans "Uhai | Immunizations Create" %}
+{% endblock %}
+
+{% block content_details %}
+	{% crispy form form.helper %}
+{% endblock content_details %}

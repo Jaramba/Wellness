@@ -1,0 +1,10 @@
+{% extends "app_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page-title %}Questionnaire{% endblock page-title %}
+
+{% block container %}
+	<div id="content">
+		{% crispy form form.helper %}
+	</div>
+{% endblock container %}

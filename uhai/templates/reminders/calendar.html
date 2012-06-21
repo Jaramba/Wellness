@@ -1,0 +1,78 @@
+{% extends "app_base.html"%}
+
+{% block extracss-links %}
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/fullcalendar.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/fullcalendar.print.css' type='text/css' media='print' />
+{% endblock extracss-links %}
+
+{% block extrajs-global %}
+	function init_calendar(){
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		if ($('#calendar').size() == 0){
+			return false;
+		}
+	
+		$('#calendar').fullCalendar({ 
+			header: {
+				left: 'title',
+				center: 'month,basicWeek,basicDay',
+				right: 'prev,next'
+			},
+			editable: true,
+			events: [{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},{
+					title: 'Long Event',
+					start: new Date(y, m, d-5),
+					end: new Date(y, m, d-2)
+				},{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false
+				},{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false
+				},{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false
+				},{
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false
+				},{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false
+				},{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					url: 'http://google.com/'
+				}]
+		 });
+	}
+{% endblock extrajs-global %}
+
+{% block extrajs-jquery-enclosed %}
+	init_calendar();
+{% endblock extrajs-jquery-enclosed %}
+
+{% block extrajs-jquery-plugins %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js" ></script>
+	<script type='text/javascript' src='{{ STATIC_URL }}js/fullcalendar.min.js'></script>	
+{% endblock extrajs-jquery-plugins %}
+
+{% block content %}
+	<div id="calendar" class="calendar-wrapper"></div>
+{% endblock content %}

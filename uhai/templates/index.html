@@ -1,0 +1,100 @@
+{% extends "app_base.html" %}
+
+{% block page-title %}Welcome{% endblock page-title %}
+
+{% block extracss %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/landing_page.css" type="text/css" />
+{% endblock extracss %}
+
+{% block navbar-right %}
+	{% if not request.user.is_authenticated %}
+		<ul class="nav">
+			<li class="active">
+			  <a href="{% url index %}"> Home </a>
+			</li>
+			<li>
+			  <a style="color: #0BE" href="{% url login %}" title="Log in to Uhai">
+				Log In
+			  </a>
+			</li>
+		</ul>
+	{% else %}
+		{{ block.super }}
+	{% endif %}
+{% endblock navbar-right %}
+
+{% block container %}
+	<header class="jumbotron masthead">
+		<div class="inner">
+			<h1>Uhai</h1>
+			<p>
+				The easiest way to improve the patient experience while lowering costly administrative overhead
+			</p>
+			{% if not request.user.is_authenticated %}
+				<p class="download-info">
+					<a href="{% url login %}" class="btn btn-primary btn-large">Login To Your Account</a>
+				</p>
+			{% endif %}
+		</div>
+	</header>
+	<hr class="soften">
+	<div class="marketing">
+		<h1>Designed for everyone, everywhere.</h1>
+		<p class="marketing-byline">
+			Care beyond the clinic
+		</p>
+		<div class="row">
+			<div class="span4">
+				<img class="bs-icon" src="{{ STATIC_URL }}images/glyphicons/glyphicons_043_group.png">
+				<h2>Streamline</h2>
+				<p>
+					Streamline your communication with your patients
+				</p>
+			</div>
+			<div class="span4">
+				<img class="bs-icon" src="{{ STATIC_URL }}images/glyphicons/glyphicons_165_iphone_exchange.png">
+				<h2>Communicate</h2>
+				<p>
+					Communicate with patients via secure messaging and a professional website
+				</p>
+			</div>
+			<div class="span4">
+				<img class="bs-icon" src="{{ STATIC_URL }}images/glyphicons/glyphicons_163_iphone.png">
+				<h2>Deliver</h2>
+				<p>
+					Deliver and monitor care plans and protocols.
+				</p>
+			</div>
+		</div><!--/row-->
+		<div class="row">
+			<div class="span4">
+				<img class="bs-icon" src="{{ STATIC_URL }}images/glyphicons/glyphicons_082_roundabout.png">
+				<h2>Custom Health News</h2>
+				<p>
+					Your healthcare providers share relevant health news, office announcements and information on an ongoing basis
+				</p>
+			</div>
+			<div class="span4">
+				<img class="bs-icon" src="{{ STATIC_URL }}images/glyphicons/glyphicons_009_magic.png">
+				<h2>Connected Health Record</h2>
+				<p>
+					One place to consolidate health records from your providers whether or not they are also using Avado
+				</p>
+			</div>
+			<div class="span4">
+				<img class="bs-icon" src="{{ STATIC_URL }}images/glyphicons/glyphicons_045_calendar.png">
+				<h2>Health Calendar</h2>
+				<p>
+					Your health history and upcoming appointments are progressively built as you interact with your healthcare providers
+				</p>
+			</div>
+		</div><!--/row-->
+		<hr class="soften">
+		<h1>Built for Everyone.</h1>
+		<p class="marketing-byline">
+			Uhai is built for tracking wellness and health of everyone, including your employees.
+		</p>
+	</div><!-- /.marketing -->
+{% endblock container %}
+
+{% block footer %}{% endblock footer %}

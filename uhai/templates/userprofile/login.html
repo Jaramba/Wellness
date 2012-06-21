@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+
+{% block page-title %}Login{% endblock page-title %}
+
+{% block container %}
+	<header class="jumbotron subhead" id="overview">
+		<h1 style="font-size:30px;">Log in</h1>
+		<br/>
+		<p>
+			Provide your login credentials below.
+		</p>
+	</header>
+	{% if form.errors %}
+		<div class="alert alert-error">
+			<button class="close" data-dismiss="alert">&times;</button>
+			<strong>Warning!</strong><span> Error on login</a>
+			<ul>
+				{% if form.errors.username %}<li>username: {{ form.errors.username|join:', ' }}</li>{% endif %}
+				{% if form.errors.password %}<li>password: {{ form.errors.password|join:', ' }}</li>{% endif %}
+				{% for error in form.non_field_errors  %}
+					<li>{{ error }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	<div class="row">
+		<div class="span8">
+			<form method="POST" action="." autocapitalize="off" class="form-horizontal">{% csrf_token %}
+				<legend>
+					Existing account
+				</legend>
+				<div id="div_id_username" class="control-group">
+					<label for="id_username" class="control-label required-field"> Username or Email </label>
+					<div class="controls">
+						<input id="id_username" type="text" name="username" maxlength="30">
+					</div>
+				</div>
+				<div id="div_id_password" class="control-group">
+					<label for="id_password" class="control-label required-field"> Password </label>
+					<div class="controls">
+						<input type="password" name="password" id="id_password">
+					</div>
+				</div>
+				<div id="div_id_remember" class="control-group">
+					<div class="controls">
+						<label for="id_remember" class="checkbox ">
+							<input type="checkbox" name="remember" id="id_remember">Remember Me 
+						</label>
+					</div>
+				</div>
+				<div class="form-actions">
+					<a href="{% url settings-password-reset %}" class="btn">Forgot your password?</a>
+					<button type="submit" class="btn btn-primary">
+						Log in
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock container %}
