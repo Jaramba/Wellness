@@ -104,7 +104,7 @@ class Response(models.Model):
 	particular sitting
 	"""
 	patient = models.ForeignKey('patient.Patient', related_name='reponse_patient')
-	answer_by = models.ForeignKey('core.UserProfile')
+	answer_by = models.ForeignKey('userprofile.UserProfile')
 	question = models.ForeignKey(Question)
 	value = models.CharField(max_length=255)
 

@@ -1,5 +1,6 @@
 from django.db import models
 from uhai.core.models import *
+from uhai.userprofile.models import *
 from uhai.insuranceprovider.models import *
 
 class SpecialityCategory(models.Model):

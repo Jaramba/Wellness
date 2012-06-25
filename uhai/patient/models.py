@@ -1,5 +1,6 @@
 from uhai.core.models import *
 from uhai.core.utils import pkgen
+from uhai.userprofile.models import *
 
 from django.contrib.auth.models import User
 from django.db import models, transaction
@@ -37,8 +38,8 @@ class Patient(UserProfile):
 	weight = models.CharField(max_length=5, default=0, null=True, help_text='Enter weight in Kilograms (Kgs)')
 	height = models.CharField(max_length=7, default=0, null=True, help_text='Enter standard height, eg: 5\'9" for 5 foot 9 inch')
 	
-	employer 	= models.ForeignKey('insuranceprovider.EmployerCompany', null=True)
-	insurance	= models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
+	employer  = models.ForeignKey('insuranceprovider.EmployerCompany', null=True)
+	insurance = models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
 	
 	def __unicode__(self):
 		return '%s [PNo. %s]' % (self.full_name, self.patient_number)

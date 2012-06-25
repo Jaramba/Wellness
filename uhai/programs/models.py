@@ -1,5 +1,5 @@
 from django.db import models
-from uhai.core.models import MetaData
+from uhai.core.models import *
 
 class ProgramType(MetaData):
     '''
@@ -7,14 +7,14 @@ class ProgramType(MetaData):
     '''
     pass
 
-class Program(models.Model):
+class Program(OwnerModel):
     '''
     This represents either an Employee Assistance Program (EAP)
     or a Patient Assistance Program (PAP). An example is a program
     to help Alcoholics.
     '''
     name = models.CharField(max_length=100)
-    program_owner = models.ForeignKey('core.UserProfile', null=True, editable=False)
+    program_owner = models.ForeignKey('userprofile.UserProfile', null=True, editable=False)
     type = models.ForeignKey("ProgramType", null=True, editable=False)
     is_public = models.BooleanField(default=False, editable=False, help_text='Can be used by other Patients, Users as a Template. Leave unchecked, to be private')
     problem = models.ForeignKey("records.Problem")
@@ -39,7 +39,7 @@ class EnrolledProgram(models.Model):
     '''
     program = models.ForeignKey("Program")
     enrollee = models.ForeignKey("patient.Patient", related_name='enrollee')
-    enroller = models.ForeignKey("core.UserProfile", related_name='enroller')
+    enroller = models.ForeignKey("userprofile.UserProfile", related_name='enroller')
     date_enrolled = models.DateField(auto_now=True)
     date_completed = models.DateField()
     outcome_notes = models.TextField(null=True, blank=True)

@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from forms import *
-from uhai.core.forms import UserProfileForm, LocationForm, ContactsForm
 
 from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy

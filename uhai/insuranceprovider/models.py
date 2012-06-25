@@ -17,8 +17,8 @@ class Company(models.Model):
 		return self.name
 		
 class HealthInsuranceProvider(Company):
-	contact_person = models.ForeignKey('core.UserProfile', related_name='healthinsurance_contactperson')
-	admins = models.ManyToManyField('core.UserProfile', related_name='healthinsurance_admins')
+	contact_person = models.ForeignKey('userprofile.UserProfile', related_name='healthinsurance_contactperson')
+	admins = models.ManyToManyField('userprofile.UserProfile', related_name='healthinsurance_admins')
 	
 	class Meta:
 		permissions = (
@@ -26,8 +26,8 @@ class HealthInsuranceProvider(Company):
 		)
 
 class EmployerCompany(Company):
-	contact_person = models.ForeignKey('core.UserProfile', related_name='employercompany_contactperson')
-	admins = models.ManyToManyField('core.UserProfile', related_name='employercompany_admins')
+	contact_person = models.ForeignKey('userprofile.UserProfile', related_name='employercompany_contactperson')
+	admins = models.ManyToManyField('userprofile.UserProfile', related_name='employercompany_admins')
 	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')
 	
 	class Meta:

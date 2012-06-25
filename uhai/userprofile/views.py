@@ -19,9 +19,6 @@ from signals import *
 
 import copy
 
-from uhai.core.models import UserProfile
-from uhai.core.forms import UserProfileForm
-
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
 		if request.method == 'POST':

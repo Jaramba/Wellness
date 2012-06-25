@@ -1,7 +1,28 @@
 {% extends "app_base.html"%}
 
+{% block extracss-inline %}
+	#show-in-calendar{
+		margin-top: 10px;
+	}
+	.show legend{
+		margin-bottom: 10px;
+	}
+	.show.label{
+		float: right;		
+		margin-top: 2px;
+	}
+	.show.select input{
+		margin-right: 10px;
+	}
+	.show.select{
+		float: left;
+		clear:both;
+	}
+{% endblock extracss-inline %}
+
 {% block extracss-links %}
 	<link rel='stylesheet' href='{{ STATIC_URL }}css/fullcalendar.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/jquery-ui-1.8.17.custom.css' type='text/css' media='screen' />
 	<link rel='stylesheet' href='{{ STATIC_URL }}css/fullcalendar.print.css' type='text/css' media='print' />
 {% endblock extracss-links %}
 
@@ -66,6 +87,7 @@
 
 {% block extrajs-jquery-enclosed %}
 	init_calendar();
+	$('#pcalendar').datepicker({inline:true});
 {% endblock extrajs-jquery-enclosed %}
 
 {% block extrajs-jquery-plugins %}
@@ -73,6 +95,34 @@
 	<script type='text/javascript' src='{{ STATIC_URL }}js/fullcalendar.min.js'></script>	
 {% endblock extrajs-jquery-plugins %}
 
-{% block content %}
+{% block container-left %}
+	<div id="personal-calendar">
+		<div id="pcalendar" style="font-size: 9.8px;margin-top: 38px;"></div>
+	</div>
+	<div class="show" id="show-in-calendar">
+		<legend>Show</legend>
+		<div class="show select">
+			<label class="show label">Immunizations</label><input type="checkbox" name="immunizations"/>
+		</div>
+		<div class="show select">
+			<label class="show label label-success">Lab Results</label><input type="checkbox" name="lab-results"/>
+		</div>
+		<div class="show select">
+			<label class="show label label-warning">Medications</label><input type="checkbox" name="medications"/>
+		</div>
+		<div class="show select">
+			<label class="show label label-important">Surgeries</label><input type="checkbox" name="surgeries" />
+		</div>
+		<div class="show select">
+			<label class="show label label-info">Tracking Records</label><input type="checkbox" name="tracking-records" />
+		</div>
+	</div>
+	<div class="show" id="reminders">
+		<legend>Reminders</legend>
+		You have no reminders at this time
+	</div>
+{% endblock container-left %}
+
+{% block container-right %}
 	<div id="calendar" class="calendar-wrapper"></div>
-{% endblock content %}
+{% endblock container-right %}

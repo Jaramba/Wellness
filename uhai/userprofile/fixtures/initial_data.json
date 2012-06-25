@@ -605,5 +605,497 @@
       "email": "kanarelo+jmikasa@gmail.com",
       "date_joined": "2012-05-29T20:14:49"
     }
+  },
+  {
+    "pk": 1,
+    "model": "userprofile.title",
+    "fields": {
+      "name": "Mr."
+    }
+  },
+  {
+    "pk": 2,
+    "model": "userprofile.title",
+    "fields": {
+      "name": "Mrs."
+    }
+  },
+  {
+    "pk": 3,
+    "model": "userprofile.title",
+    "fields": {
+      "name": "Miss"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "userprofile.title",
+    "fields": {
+      "name": "Dr."
+    }
+  },
+  {
+    "pk": 5,
+    "model": "userprofile.title",
+    "fields": {
+      "name": "Prof"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Onesmus",
+      "last_name": "Mukewa",
+      "middle_name": "Wekalao",
+      "title": 1,
+      "work_phone": "+254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254736705812",
+      "postal_code": "30177-00100",
+      "home_phone": "+254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21T04:44:26",
+      "country": 1,
+      "date_edited": "2012-05-21T04:18:50"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "David",
+      "last_name": "Simbiri",
+      "middle_name": "Simbiri",
+      "title": 1,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254735199807",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T23:07:36.309",
+      "country": 1,
+      "date_edited": "2012-05-29T23:07:36.309"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Davis",
+      "last_name": "Ambima",
+      "middle_name": "Khaemba",
+      "title": 4,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111234",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21T07:02:16",
+      "country": 1,
+      "date_edited": "2012-05-21T07:02:16"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Mary",
+      "last_name": "Wekasa",
+      "middle_name": "Nafula",
+      "title": 2,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111265",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21T04:55:18",
+      "country": 1,
+      "date_edited": "2012-05-21T04:48:39"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Edth",
+      "last_name": "Khalai",
+      "middle_name": "Wekalao",
+      "title": 3,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111234",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21T04:52:05",
+      "country": 1,
+      "date_edited": "2012-05-21T04:49:45"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Davis",
+      "last_name": "Ambima",
+      "middle_name": "Litunya",
+      "title": 1,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254721111232",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21T04:51:44",
+      "country": 1,
+      "date_edited": "2012-05-21T04:50:33"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Mary",
+      "last_name": "Khaemba",
+      "middle_name": "Masika",
+      "title": 2,
+      "work_phone": "254736705812",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+254735100807",
+      "postal_code": "30177-00100",
+      "home_phone": "254736705812",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-21T04:55:08",
+      "country": 1,
+      "date_edited": "2012-05-21T04:51:10"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Sarah",
+      "last_name": "Muriu",
+      "middle_name": "Madani",
+      "title": 1,
+      "work_phone": "+254736705812",
+      "photo": "",
+      "longitude": null,
+      "county": 1,
+      "mobile_phone": "+254736705812",
+      "postal_code": "30177-00100",
+      "home_phone": "+254736705812",
+      "village": "Kayole",
+      "latitude": null,
+      "date_created": "2012-05-27T10:48:48.106",
+      "country": 1,
+      "date_edited": "2012-05-27T10:48:48.106"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Jane",
+      "last_name": "Wekasa",
+      "middle_name": "Kamindi",
+      "title": 1,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+25476000444",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T17:52:31.811",
+      "country": 1,
+      "date_edited": "2012-05-29T17:52:31.811"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "John",
+      "last_name": "Kimani",
+      "middle_name": "Rangi",
+      "title": 2,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+25473996265",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T17:50:28.702",
+      "country": 1,
+      "date_edited": "2012-05-29T17:50:28.702"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "John",
+      "last_name": "Maisiba",
+      "middle_name": "Mluvi",
+      "title": 1,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+25472666265",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T17:49:14.463",
+      "country": 1,
+      "date_edited": "2012-05-29T17:49:14.463"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Mark",
+      "last_name": "Najimu",
+      "middle_name": "Kisio",
+      "title": 5,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+25476993444",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T17:51:33.049",
+      "country": 1,
+      "date_edited": "2012-05-29T17:51:33.049"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Onesmus",
+      "last_name": "Khalai",
+      "middle_name": "Mluvi",
+      "title": 2,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+25476000444",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T23:46:50.572",
+      "country": 1,
+      "date_edited": "2012-05-29T23:46:50.572"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "userprofile.person",
+    "fields": {
+      "province": 1,
+      "first_name": "Onesmus",
+      "last_name": "Maisiba",
+      "middle_name": "Nafula",
+      "title": 1,
+      "work_phone": "",
+      "photo": "",
+      "longitude": "",
+      "county": 1,
+      "mobile_phone": "+25476000444",
+      "postal_code": "",
+      "home_phone": "",
+      "village": "",
+      "latitude": "",
+      "date_created": "2012-05-29T20:14:49.342",
+      "country": 1,
+      "date_edited": "2012-05-29T20:14:49.342"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "userprofile.person",
+    "fields": {
+      "province": null,
+      "first_name": null,
+      "last_name": null,
+      "middle_name": null,
+      "title": null,
+      "work_phone": null,
+      "photo": "",
+      "longitude": null,
+      "county": null,
+      "mobile_phone": null,
+      "postal_code": null,
+      "home_phone": null,
+      "village": null,
+      "latitude": null,
+      "date_created": "2012-05-30T14:31:09.030",
+      "country": null,
+      "date_edited": "2012-05-30T14:31:09.030"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "2332244",
+      "user": 2
+    }
+  },
+  {
+    "pk": 3,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": 3
+    }
+  },
+  {
+    "pk": 4,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": 4
+    }
+  },
+  {
+    "pk": 5,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": 5
+    }
+  },
+  {
+    "pk": 6,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": 6
+    }
+  },
+  {
+    "pk": 7,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": 7
+    }
+  },
+  {
+    "pk": 9,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "988455",
+      "user": 11
+    }
+  },
+  {
+    "pk": 10,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "873874",
+      "user": 9
+    }
+  },
+  {
+    "pk": 11,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "2323233",
+      "user": 8
+    }
+  },
+  {
+    "pk": 12,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "237232",
+      "user": 10
+    }
+  },
+  {
+    "pk": 13,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "69558476",
+      "user": 12
+    }
+  },
+  {
+    "pk": 14,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "7070676",
+      "user": 13
+    }
+  },
+  {
+    "pk": 15,
+    "model": "userprofile.userprofile",
+    "fields": {
+      "national_id": "",
+      "user": -1
+    }
   }
 ]
