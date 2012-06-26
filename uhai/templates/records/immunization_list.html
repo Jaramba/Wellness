@@ -1,44 +1,38 @@
-{% extends "base.html" %}
+{% extends "records/records_base.html" %}
 
-{% block container %}
-	<div class="row clearfix">
-		<div class="col_12">
-			<div class="widget clearfix" style="min-height: 300px;">
-				<h2>Immunizations</h2>
-				<div class="widget_inside drugs-search">
-					<div id="add" style="width:100%;clear:both"><a href="{% url immunization-create %}" class="button blue" style="float:right">Add Immunization</a></div>
-					{% if immunizations %} 
-						<table class='regular'>
-							<tr>
-								<th>Code</th>
-								<th>Vaccine</th>
-								<th>Brand name</th>
-								<th>Lot number</th>
-								<th>Site</th>
-								<th>Date</th>
-							</tr>
-							{% for immunization in immunizations %}
-								<tr>	
-									<td>{{immunization.code}}</td>
-									<td>{{immunization.vaccine}}</td>
-									<td>{{immunization.brand_name}}</td>
-									<td>{{immunization.lot_number}}</td>
-									<td>{{immunization.site}}</td>
-									<td>{{immunization.practice_date}}</td>
-									<td>
-										<a href="{% url immunization-edit immunization.pk %}">Edit</a> |
-										<a href="{% url immunization-delete immunization.pk %}">Delete</a>
-									</td>
-								</tr>
-							{% empty %}
-								<tr><td colspan="2">No Immunizations Found</td></tr>
-							{% endfor %}
-						</table>
-					{% else %}
-						No Immunizations Found
-					{% endif %}
-				</div>
-			</div>
-		</div>
+{% block container-right %}
+	<legend>Immunizations</legend>
+	<div class="widget_inside drugs-search">
+		<div id="add" style="width:100%;clear:both"><a href="{% url immunization-create %}" class="button blue" style="float:right">Add Immunization</a></div>
+		{% if immunizations %} 
+			<table class='table'>
+				<tr>
+					<th>Code</th>
+					<th>Vaccine</th>
+					<th>Brand name</th>
+					<th>Lot number</th>
+					<th>Site</th>
+					<th>Date</th>
+				</tr>
+				{% for immunization in immunizations %}
+					<tr>	
+						<td>{{immunization.code}}</td>
+						<td>{{immunization.vaccine}}</td>
+						<td>{{immunization.brand_name}}</td>
+						<td>{{immunization.lot_number}}</td>
+						<td>{{immunization.site}}</td>
+						<td>{{immunization.practice_date}}</td>
+						<td>
+							<a href="{% url immunization-edit immunization.pk %}">Edit</a> |
+							<a href="{% url immunization-delete immunization.pk %}">Delete</a>
+						</td>
+					</tr>
+				{% empty %}
+					<tr><td colspan="2">No Immunizations Found</td></tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			No Immunizations Found
+		{% endif %}
 	</div>
-{% endblock container %}
+{% endblock container-right %}

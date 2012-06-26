@@ -92,7 +92,7 @@
 								{% elif request.session.use_page_as == 'patient' %}
 									<li class="navbar-item" title="Schedule" rel="tooltip"><a href="{% url index %}"><i class="icon-calendar icon-white"></i></a></li>
 								{% else%}									
-									<li class="navbar-item" title="Records" rel="tooltip"><a href="{% url index %}"><i class="icon-folder-open icon-white"></i></a></li>
+									<li class="navbar-item" title="Records" rel="tooltip"><a href="{% url records %}"><i class="icon-folder-open icon-white"></i></a></li>
 									<li class="navbar-item" title="Questionnaires" rel="tooltip"><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i></a></li>
 								{% endif %}
 								<li class="navbar-item" title="Messages" rel="tooltip"><a href="{% url index %}"><i class="icon-envelope icon-white"></i></a></li>

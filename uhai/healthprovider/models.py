@@ -38,7 +38,7 @@ class HealthCareFacility(EmployerCompany):
 
 class HealthWorker(UserProfile):
 	speciality = models.ManyToManyField(Speciality)
-	practice_number = models.CharField(max_length=20, null=True, blank=True)
+	practice_number = models.CharField(max_length=20, null=True, blank=False)
 	
 	class Meta:
 		permissions = (

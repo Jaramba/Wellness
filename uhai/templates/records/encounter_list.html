@@ -1,41 +1,30 @@
 {% extends "records/immunization_create.html" %}
 
-{% block container %}
-	<div class="row clearfix">
-		<div class="col_12">
-			<div class="widget clearfix" style="min-height: 300px;">
-				<h2>Encounters</h2>
-				<div class="widget_inside drugs-search">
-					<div id="add" style="width:100%;clear:both"><a href="/admin/staff/encounters/add/" class="button blue" style="float:right">Add Encounter</a></div>
-					{% if encounters %}
-						<table class='regular'>
-							<tr>
-								<th>Patient</th>
-								<th>Encounter Date</th>
-								<th>Type</th>
-								<th>Visit</th>
-								<th>Actions</th>
-							</tr>
-							{% for encounter in encounters %}
-								<tr>	
-									<td>{{encounter.patient.full_name}}</td>
-									<td>{{encounter.encounter_date}}</td>
-									<td>{{encounter.type}}</td>
-									<td>{{encounter.visit}}</td>
-									<td>
-										<a href="{% url encounter-edit encounter.pk %}">Edit</a> |
-										<a href="{% url encounter-delete encounter.pk %}">Delete</a>
-									</td>
-								</tr>
-							{% empty %}
-								<tr><td colspan="2">No Encounters Found</td></tr>
-							{% endfor %}
-						</table>
-					{% else %}
-						No Encounters Found
-					{% endif %}
-				</div>
-			</div>
-		</div>
-	</div>
-{% endblock container %}
+{% block container-right %}
+	<legend>Encounters</legend>
+	{% if encounters %}
+		<table class='table table-stripped table-bordered'>
+			<tr>
+				<th>Patient</th>
+				<th>Encounter Date</th>
+				<th>Type</th>
+				<th>Actions</th>
+			</tr>
+			{% for encounter in encounters %}
+				<tr>	
+					<td>{{encounter.patient.full_name}}</td>
+					<td>{{encounter.encounter_date}}</td>
+					<td>{{encounter.type}}</td>
+					<td>
+						<a class="btn btn-primary" href="{% url encounter-edit encounter.pk %}">Edit</a>
+						<a class="btn btn-primary" href="{% url encounter-delete encounter.pk %}">Delete</a>
+					</td>
+				</tr>
+			{% empty %}
+				<tr><td colspan="2">No Encounters Found</td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		No Encounters Found
+	{% endif %}
+{% endblock container-right %}

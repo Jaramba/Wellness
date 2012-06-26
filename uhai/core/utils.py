@@ -23,24 +23,23 @@ def perform_raw_sql(sql, data=[]):
 	cursor.execute(sql, data)
 	transaction.commit_unless_managed()
 
-def get_crud_urls(views_module='', models=[], forms=[], data=globals()):
-    url_patterns = []  
-    for M in models:
-        model_name = M.__name__.lower()
-        form_class = data[M.__name__+'Form'] 
-        url_patterns += patterns(views_module,
-            url(r'^%s/list/$' % model_name, model_name, {'action' : 'list', 'model_class':M}, name='%s-list' % model_name),
-            url(r'^%s/create/$' % model_name, model_name, {
-                'action' : 'create',
-                'model_class':M,
-                'model_form_class': form_class,
-            }, name='%s-create' % model_name),
-            url(r'^%s/(?P<pk>[-\w]+)/edit/$' % model_name, model_name, {
-                'action' : 'edit',
-                'model_class':M,
-                'model_form_class': form_class,
-            }, name='%s-edit' % model_name),
-            url(r'^%s/(?P<pk>[-\w]+)/delete/$' % model_name, model_name, {'action' : 'delete', 'model_class':M}, name='%s-delete' % model_name),
-            url(r'^%s/(?P<pk>[-\w]+)/$' % model_name, model_name, {'action' : 'detail', 'model_class':M}, name=' %s-detail' % model_name),
-        )
+def get_crud_urls(views_module='', preurl='', posturl='', models=[], forms=[], data=globals()):
+    url_patterns = []
+    for i,M in enumerate(models):
+		qs = M.objects.all()
+		model_name = M.__name__.lower()
+		form_class = forms[i] 
+		url_patterns += patterns(views_module,
+			url(r'^%s%s/list/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'list', 'queryset':qs}, name='%s-list' % model_name),
+			url(r'^%s%s/create/%s$' % (preurl, model_name, posturl), model_name, {
+				'action' : 'create','queryset':qs,'model_form_class': form_class,
+			}, name='%s-create' % model_name),
+			url(r'^%s%s/(?P<pk>[-\w]+)/edit/%s$' % (preurl, model_name, posturl), model_name, {
+				'action' : 'edit',
+				'queryset':qs,
+				'model_form_class': form_class,
+			}, name='%s-edit' % model_name),
+			url(r'^%s%s/(?P<pk>[-\w]+)/delete/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'delete', 'queryset':qs}, name='%s-delete' % model_name),
+			url(r'^%s%s/(?P<pk>[-\w]+)/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'detail', 'queryset':qs}, name=' %s-detail' % model_name),
+		)
     return url_patterns

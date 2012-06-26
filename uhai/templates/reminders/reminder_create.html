@@ -1,0 +1,11 @@
+{% extends "records/immunization_create.html" %}
+{% load i18n %}
+
+{% block extrajs-jquery-enclosed %}
+	$('#id_start_date').datepicker();
+	$('#id_end_date').datepicker();
+{% endblock extrajs-jquery-enclosed %}
+
+{% block page-title %}
+	Reminder Create
+{% endblock page-title %}

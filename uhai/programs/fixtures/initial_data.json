@@ -15,7 +15,7 @@
     "model": "programs.program",
     "fields": {
       "name": "Weight Gain",
-      "program_owner": 1,
+      "owner": 1,
       "concept_notes": "",
       "is_public": false,
       "problem": 2,
@@ -28,7 +28,7 @@
     "model": "programs.program",
     "fields": {
       "name": "HIV/AIDS Improvement",
-      "program_owner": 1,
+      "owner": 1,
       "concept_notes": "",
       "is_public": false,
       "problem": 1,

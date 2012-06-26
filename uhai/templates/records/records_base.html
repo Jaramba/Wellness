@@ -1,43 +1,45 @@
-{% extends "applicant_base.html" %}
+{% extends "app_base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block extracss %}
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/forms.css">
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/enhanced.css">
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css">
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/tagit.ui-zendesk.css">
-{% endblock extracss %}
+{% block extracss-links %}
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/jquery-ui-1.8.17.custom.css' type='text/css' media='screen' />
+{% endblock extracss-links %}
 
-{% block extrajs %}
-	<script type="text/javascript">
-		$(function() {
-			$(":text, textarea").addClass("text");
-		});
-	</script>
-{% endblock extrajs %}
+{% block extrajs-jquery-plugins %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js" ></script>
+{% endblock extrajs-jquery-plugins %}
 
-{% block pitch %}
-	<div id="side_nav" class="left clearfix">
-		<label><u>Medication</u></label>
-		<ul class="profile_nav">
-			<li>
-				<a href="{% url immunization-create %}">Add Immunization {%if selected == 'profile'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
-			</li> 
-			<li>
-				<a href="{% url encounter-create %}">Add Encounter {%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
-			</li>
-			<li>
-				<a href="{% url order-create %}">Add Doctor Order{%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
-			</li>
-			<li>
-				<a href="{% url order-create %}">Medication List{%if selected == 'password'%}<span style="float: right; margin-right: 10px;">&gt;</span>{% endif %}</a>
-			</li>
-		</ul>
-	</div>
-	<div id="content">
-		{% block content_details %}
-			{% crispy form form.helper %}
-		{% endblock content_details %}
-	</div>
-{% endblock %}
+{% block container-left %}
+	<ul class="nav nav-list">
+		<li class="nav-header">Records</li>
+		<li class="records">
+			<a id="TabTrackingRecords" href="{% url encounter-list %}"><span>Encounters</span></a>
+		</li>
+		<li class="records">
+			<a id="TabConditions" href="{% url encounter-list %}"><span>Conditions / Problems</span></a>
+		</li>
+		<li class="records">
+			<a id="TabImmunizations" href="{% url immunization-list %}"><span>Immunizations</span></a>
+		</li>
+		<li class="records">
+			<a id="TabMedications" href="{% url prescription-list %}"><span>Medications</span></a>
+		</li>
+		<li class="records">
+			<a id="TabProcedures" href="{% url encounter-list %}"><span>Surgical History</span></a>
+		</li>
+		<li class="records">
+			<a id="TabLabResults" href="{% url encounter-list %}"><span>Lab Results</span></a>
+		</li>
+		<li class="records">
+			<a id="TabEmergencyContacts" href="{% url encounter-list %}"><span>Emergency Contacts</span></a>
+		</li>
+		<li class="records">
+			<a id="TabInsurance" href="{% url encounter-list %}"><span>Insurance</span></a>
+		</li>
+	</ul>
+{% endblock container-left %}
+
+{% block container-right %}
+	{% crispy form form.helper %}
+{% endblock container-right %}

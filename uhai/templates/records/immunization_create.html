@@ -2,10 +2,15 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-{% block title %}
-	{% trans "Uhai | Immunizations Create" %}
-{% endblock %}
+{% block page-title %}
+	Immunization Create
+{% endblock page-title %}
 
-{% block content_details %}
+{% block extracss-links %}
+	{{ block.super }}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
+{% endblock extracss-links %}
+
+{% block container-right %}
 	{% crispy form form.helper %}
-{% endblock content_details %}
+{% endblock container-right %}

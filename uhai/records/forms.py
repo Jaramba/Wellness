@@ -11,11 +11,10 @@ class EncounterForm(forms.ModelForm):
         self.helper.form_method = 'POST'
         self.helper.form_action = '#'
         
-        layout = Layout(
-            Div(HTML('<h2 class="form_title">Create Encounter</h2>'), css_class="form_title_div"),
+        self.layout = Layout(
+            Div(HTML('<legend class="form_title">Create Encounter</legend>'), css_class="form_title_div"),
             Row(Column('patient'), Column('patient_complience')),       
-            Row(Column('type')),   
-            Row(Column('provider')),
+            Row(Column('type')),
             Row(Column('location')),
             Row(Column('encounter_date')),
             Row(Column('start_time'), Column('end_time')),
@@ -27,15 +26,47 @@ class EncounterForm(forms.ModelForm):
                 )
             )
         )
-        self.helper.add_layout(layout)
+        self.helper.add_layout(self.layout)
         super(EncounterForm, self).__init__(*args, **kwargs)
         
     class Meta:
-        model = Encounter
-        widgets = {
-            'observation_notes' : forms.Textarea
-        }
-        
+		model = Encounter
+		exclude = ['provider']
+		widgets = {
+			'observation_notes' : forms.Textarea,
+			'start_time' : forms.TimeInput,
+			'end_time' : forms.TimeInput
+		}
+		
+class EncounterPatientForm(EncounterForm):
+	def __init__(self, *args, **kwargs):
+		super(EncounterPatientForm, self).__init__(*args, **kwargs)
+		self.layout = Layout(
+			Div(HTML('<legend class="form_title">Enter Encounter</legend>'), css_class="form_title_div"),
+			Row(Column('type')),
+			Row(Column('provider')),
+			Row(Column('location')),
+			Row(Column('encounter_date')),
+			Row(Column('start_time'), Column('end_time')),
+			Row('observation_notes'),
+			
+			Row(
+				ButtonHolder(
+					Submit('Save', 'Save Changes'),
+				)
+			)
+		)        
+		self.helper.add_layout(self.layout)
+    
+	class Meta:
+		model = Encounter
+		exclude = ['patient', 'patient_complience']
+		widgets = {
+			'observation_notes' : forms.Textarea,
+			'start_time' : forms.SplitDateTimeWidget,
+			'end_time' : forms.SplitDateTimeWidget
+		}
+
 class OrderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -45,7 +76,7 @@ class OrderForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Add Order</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Add Order</legend>'), css_class="form_title_div"),
             Row(Column('encounter')),
             Row(Column('discontinued')),
             Row('instructions'),
@@ -76,7 +107,7 @@ class ProblemForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Create Problem</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Create Problem</legend>'), css_class="form_title_div"),
             Row(Column('code')),
             Row(Column('type')),
             Row(Column('source')),
@@ -98,7 +129,7 @@ class ProblemForm(forms.ModelForm):
         widgets = {
             'side_effects' : forms.Textarea
         }
-
+		
 class TrackingFieldForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -125,7 +156,7 @@ class ImmunizationForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Create Immunization</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Create Immunization</legend>'), css_class="form_title_div"),
             Row(Column('name')),
             Row(Column('code')),
             Row(Column('vaccine')),
@@ -162,7 +193,7 @@ class DiagnosisForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Add Diagnosis</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Add Diagnosis</legend>'), css_class="form_title_div"),
             Row(Column('problem')),
             Row(Column('approved')),
             Row(Column('encounter')),
@@ -193,7 +224,7 @@ class ProblemTestForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Add Diagnosis</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Add Diagnosis</legend>'), css_class="form_title_div"),
             Row(Column('name')),
             Row(Column('problem')),
             Row(Column('expected_outcomes')),
@@ -225,7 +256,7 @@ class EncounterTestForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Add Diagnosis</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Add Diagnosis</legend>'), css_class="form_title_div"),
             Row(Column('name')),
             Row(Column('encounter')),
             Row(Column('test')),
@@ -256,7 +287,7 @@ class EncounterTestResultForm(forms.ModelForm):
         self.helper.form_action = '#'
         
         self.layout = Layout(
-            Div(HTML('<h2 class="form_title">Add Diagnosis</h2>'), css_class="form_title_div"),
+            Div(HTML('<legend class="form_title">Add Diagnosis</legend>'), css_class="form_title_div"),
             Row(Column('name')),
             Row(Column('encounter_test')),
             Row(Column('inference')),
@@ -277,3 +308,5 @@ class EncounterTestResultForm(forms.ModelForm):
         widgets = {
             'notes': forms.Textarea
         }
+
+		

@@ -17,6 +17,6 @@ class Reminder(models.Model):
     patient  = models.ForeignKey('patient.Patient')
     message = models.CharField(max_length=140)
     frequency = models.CharField(choices=PERIODS, max_length=50)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField('Start Time')
+    end_date = models.DateTimeField('End Time')
     
