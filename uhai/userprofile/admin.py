@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Group
 
+from uhai.core.utils import *
+
 from forms import *
 from models import *
 

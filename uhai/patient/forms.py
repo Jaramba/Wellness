@@ -50,3 +50,32 @@ class PatientForm(forms.ModelForm):
 			'latitude', 'longitude', 'photo',
 			'user', 'patient_number'
 		]
+
+class RelationshipForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_id = 'patient-form'
+		self.helper.form_class = 'general_form'
+		self.helper.form_method = 'POST'
+		self.helper.form_action = '.'
+		
+		layout = Layout(
+			Row(Column('title')),
+			Row(Column('first_name')),
+			Row(Column('national_id')),
+			Row(Column('postal_code')),
+			Row(Column('employer')),
+			Row(Column('doctor')),       
+			Row(
+				ButtonHolder(
+					Submit('Save', 'Save Changes'),
+				)
+			)
+		)
+		self.helper.add_layout(layout)
+		
+		return super(RelationshipForm, self).__init__(*args, **kwargs)
+
+	class Meta:
+		model = Relationship
+		exclude = ['person_a']

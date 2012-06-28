@@ -1,6 +1,8 @@
 from django.contrib import admin
+
 from forms import *
 from models import *
+
 
 class EmployerCompanyAdmin(admin.ModelAdmin):
     model = EmployerCompany
@@ -17,3 +19,7 @@ class HealthInsuranceProviderAdmin(admin.ModelAdmin):
     list_display = [f.name for f in HealthInsuranceProvider._meta.fields]
     inlines = [InsuranceTabularAdmin]
 admin.site.register(HealthInsuranceProvider, HealthInsuranceProviderAdmin)
+
+class InsuranceTypeAdmin(admin.ModelAdmin):
+    model = InsuranceType
+admin.site.register(InsuranceType, InsuranceTypeAdmin)

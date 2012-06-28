@@ -1,0 +1,35 @@
+{% extends "records/records_base.html" %}
+
+{% block container-right %}
+	<legend>Diagnoses</legend>
+	<div class="widget_inside drugs-search">
+		{% if request.session.use_page_as == 'health-worker' %}
+			<div id="add" style="width:100%;clear:both"><a href="{% url diagnosis-create %}" class="button blue" style="float:right">Add Diagnosis</a></div>
+		{% endif %}
+		
+		{% if diagnoses %} 
+			<table class='table'>
+				<tr>
+					<th>Problem</th>
+					<th>Approved</th>
+					<th>Encounter</th>
+				</tr>
+				{% for diagnosis in diagnoses %}
+					<tr>
+						<td>{{diagnosis.problem}}</td>
+						<td>{{diagnosis.approved}}</td>
+						<td>{{diagnosis.encounter}}</td>
+						<td>
+							<a href="{% url diagnosis-edit diagnosis.pk %}">Edit</a> |
+							<a href="{% url diagnosis-delete diagnosis.pk %}">Delete</a>
+						</td>
+					</tr>
+				{% empty %}
+					<tr><td colspan="2">No Diagnoses Found</td></tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			No Diagnoses Found
+		{% endif %}
+	</div>
+{% endblock container-right %}

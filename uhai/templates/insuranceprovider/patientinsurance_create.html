@@ -1,8 +1,3 @@
-{% extends "app_base.html" %}
-{% load i18n %}
-{% load crispy_forms_tags %}
-{% comment %}{% load thumbnail %}{% endcomment %}
+{% extends "records/immunization_create.html" %}
 
-{% block pitch %}
-	{% crispy form form.helper %}
-{% endblock %}
+{% block title %}Create Patient Insurance{% endblock %}

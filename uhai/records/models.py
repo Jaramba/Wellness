@@ -5,8 +5,8 @@ class Immunization(Record):
 	code = models.CharField(max_length=50)
 	vaccine = models.ForeignKey('medication.Medication')
 	brand_name = models.CharField(max_length=100)
-	lot_number = models.CharField(max_length=100)
-	route = models.CharField(max_length=100)
+	duration_of_protection = models.CharField(max_length=100, help_text='duration time, in years')
+	mode_of_delivery = models.CharField(max_length=100)
 	site = models.CharField(max_length=100)
 	follow_up_date = models.DateTimeField()
 	expiry_date = models.DateTimeField()
@@ -17,9 +17,10 @@ class Immunization(Record):
 	        ('view_immunization', 'View immunization'), 
 	    )
 
-
+class ProblemType(MetaData):pass
 class Problem(models.Model):
 	name = models.CharField(max_length=30)	
+	type = models.ForeignKey(ProblemType, null=True)
 	icd10_code = models.CharField(max_length=10, verbose_name='ICD Code', null=True, blank=True)
 	icd10_block = models.ForeignKey('ICD10Block', verbose_name='ICD Block', editable=False, null=True)
 	detail = models.CharField(max_length=150, null=True, blank=True)
@@ -67,7 +68,7 @@ class TrackingField(models.Model):
 	lower_normal = models.CharField(max_length=5)
 
 	upper_severe = models.CharField(max_length=5)
-	severe = models.CharField(max_length=5)	
+	severe = models.CharField(max_length=5)
 	lower_severe = models.CharField(max_length=5)
 
 	upper_moderate = models.CharField(max_length=5)	
@@ -80,13 +81,13 @@ class TrackingField(models.Model):
 class EncounterType(MetaData):pass
 class Encounter(models.Model):
 	patient = models.ForeignKey("patient.Patient")
-	provider = models.ForeignKey('healthprovider.HealthWorker')	
+	provider = models.ForeignKey('healthprovider.HealthWorker')
 	type = models.ForeignKey('EncounterType')
 	patient_complience = models.BooleanField(default=False)
 	location = models.CharField(max_length=50, null=True)
-	encounter_date = models.DateTimeField()
-	start_time = models.DateTimeField()
-	end_time = models.DateTimeField()
+	encounter_date = models.DateField()
+	start_time = models.TimeField()
+	end_time = models.TimeField()
 	observation_notes = models.TextField()
 	
 	def __unicode__(self):
@@ -107,6 +108,7 @@ class Order(models.Model):
 		permissions = (
 			('view_order', 'View order'), 
 		)
+
 class Diagnosis(models.Model):
 	problem = models.ForeignKey('Problem')
 	approved = models.BooleanField(default=False)

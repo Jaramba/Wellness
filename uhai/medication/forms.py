@@ -12,18 +12,18 @@ class MedicationForm(forms.ModelForm):
         self.helper.form_action = '.'
         
         layout = Layout(
-            Row(HTML('<h2 class="form_title">Enter Medication</h2>')),
+            Row(HTML('<legend>Enter Medication</legend>')),
             Row(Column('name')),
             Row(Column('medication_type'), Column('way_taken')),
             Row(Column('min_daily_dose'), Column('max_daily_dose')),
             Row(Column('strength'), Column('strength_unit')),
-            Row('side_effects'),
+            Row(Column('side_effects', css_class="textarea")),
             
             Row(
-                ButtonHolder(
-                    Submit('Save', 'Save Changes'),
-                )
-            )
+				Div(
+					Submit('Save', 'Save Changes', css_class='btn-primary'),
+				css_class='form-actions')
+			)
         )
         self.helper.add_layout(layout)
 
@@ -47,21 +47,21 @@ class PrescriptionForm(forms.ModelForm):
         self.helper.form_action = '.'
         
         layout = Layout(
-            Row(HTML('<h2 class="form_title">Add Prescription</h2>')),
+            Row(HTML('<legend>Add Prescription</legend>')),
             Row(Column('medication')),
             Row(Column('quantity'), Column('unit')),
             Row(Column('frequency'), Column('period')),
             Row(Column('reminder_type')),
             Row(Column('date_prescribed'), Column('date_started')),
             Row(Column('next_prescription_date')),
-            Row('reason'),
-            Row('notes'),
+            Row(Column('reason', css_class="textarea")),
+            Row(Column('notes', css_class="textarea")),
             
             Row(
-                ButtonHolder(
-                    Submit('Save', 'Save Changes'),
-                )
-            )
+				Div(
+					Submit('Save', 'Save Changes', css_class='btn-primary'),
+				css_class='form-actions')
+			)
         )
         self.helper.add_layout(layout)
 

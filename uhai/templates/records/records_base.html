@@ -6,6 +6,10 @@
 	<link rel='stylesheet' href='{{ STATIC_URL }}css/jquery-ui-1.8.17.custom.css' type='text/css' media='screen' />
 {% endblock extracss-links %}
 
+{% block extrajs-jquery-enclosed %}
+	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
+{% endblock extrajs-jquery-enclosed %}
+
 {% block extrajs-jquery-plugins %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js" ></script>
 {% endblock extrajs-jquery-plugins %}
@@ -13,29 +17,29 @@
 {% block container-left %}
 	<ul class="nav nav-list">
 		<li class="nav-header">Records</li>
-		<li class="records">
+		<li>
 			<a id="TabTrackingRecords" href="{% url encounter-list %}"><span>Encounters</span></a>
 		</li>
-		<li class="records">
-			<a id="TabConditions" href="{% url encounter-list %}"><span>Conditions / Problems</span></a>
+		<li>
+			<a id="TabConditions" href="{% url diagnosis-list 'condition' %}"><span>Conditions / Problems</span></a>
 		</li>
-		<li class="records">
+		<li>
 			<a id="TabImmunizations" href="{% url immunization-list %}"><span>Immunizations</span></a>
 		</li>
-		<li class="records">
+		<li>
 			<a id="TabMedications" href="{% url prescription-list %}"><span>Medications</span></a>
 		</li>
-		<li class="records">
-			<a id="TabProcedures" href="{% url encounter-list %}"><span>Surgical History</span></a>
+		<li>
+			<a id="TabProcedures" href="{% url encounter-list 'surgery' %}"><span>Surgical History</span></a>
 		</li>
-		<li class="records">
-			<a id="TabLabResults" href="{% url encounter-list %}"><span>Lab Results</span></a>
+		<li>
+			<a id="TabLabResults" href="{% url encountertestresult-list %}"><span>Lab Results</span></a>
 		</li>
-		<li class="records">
-			<a id="TabEmergencyContacts" href="{% url encounter-list %}"><span>Emergency Contacts</span></a>
+		<li>
+			<a id="TabEmergencyContacts" href="{% url relationship-list %}"><span>Emergency Contacts</span></a>
 		</li>
-		<li class="records">
-			<a id="TabInsurance" href="{% url encounter-list %}"><span>Insurance</span></a>
+		<li>
+			<a id="TabInsurance" href="{% url patientinsurance-list %}"><span>Insurance</span></a>
 		</li>
 	</ul>
 {% endblock container-left %}

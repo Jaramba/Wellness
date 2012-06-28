@@ -1,6 +1,10 @@
 {% extends "records/immunization_create.html" %}
-{% load i18n %}
 
-{% block title %}
-	{% trans "Uhai | Encounter Create" %}
+{% block page-title %}
+	Encounter Create
 {% endblock %}
+
+{% block extrajs-jquery-enclosed %}
+	{{block.super}}
+	$('#id_encounter_date').datepicker();
+{% endblock extrajs-jquery-enclosed %}

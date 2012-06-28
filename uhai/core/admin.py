@@ -59,4 +59,3 @@ for M in [Country, County, Province]:
     except admin.sites.AlreadyRegistered:
         pass
 		
-admin.site.register(RelationshipType)

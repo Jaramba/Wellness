@@ -19,14 +19,15 @@ urlpatterns += get_crud_urls(
     models=[
        Encounter, Order, 
        Immunization,  
-       TrackingField, Diagnosis,
-       ProblemTest, EncounterTest, 
+       TrackingField,
+       Diagnosis, ProblemTest, 
+	   EncounterTest, 
        EncounterTestResult
     ],
     forms=[
        EncounterPatientForm, OrderForm,
 	   ImmunizationForm,
-       ProblemForm, TrackingFieldForm,
+       TrackingFieldForm,
        DiagnosisForm, ProblemTestForm, 
        EncounterTestForm, EncounterTestResultForm,
     ],
@@ -35,17 +36,42 @@ urlpatterns += get_crud_urls(
 
 urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
+	posturl='type/(?P<problem_type>[-\w]+)/',
+    models=[
+       Diagnosis,
+    ],
+    forms=[
+       DiagnosisForm
+    ],
+    data=globals()
+)
+
+urlpatterns += get_crud_urls(
+    '.'.join(__name__.split('.')[:-1]+['views']),
+	posturl='type/(?P<encounter_type>[-\w]+)/',
+    models=[
+       Encounter,
+    ],
+    forms=[
+       EncounterForm
+    ],
+    data=globals()
+)
+
+urlpatterns += get_crud_urls(
+    '.'.join(__name__.split('.')[:-1]+['views']),
     models=[
        Encounter, Order, 
        Immunization,  
-       TrackingField, Diagnosis, 
-       ProblemTest, EncounterTest, 
+       TrackingField,
+       Diagnosis, ProblemTest, 
+	   EncounterTest, 
        EncounterTestResult
     ],
     forms=[
-       EncounterForm, OrderForm,
+       EncounterPatientForm, OrderForm,
 	   ImmunizationForm,
-       ProblemForm, TrackingFieldForm,
+       TrackingFieldForm,
        DiagnosisForm, ProblemTestForm, 
        EncounterTestForm, EncounterTestResultForm,
     ],

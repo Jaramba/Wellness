@@ -1,0 +1,31 @@
+{% extends "records/immunization_list.html" %}
+
+{% block container-right %}
+	<legend>Program Questionnaires</legend>
+	{% if questionnaires %}
+		<table class='table table-stripped table-bordered'>
+			<tr>
+				<th>Patient</th>
+				<th>Questionnaire Date</th>
+				<th>Type</th>
+				<th>Actions</th>
+			</tr>
+			{% for questionnaire in questionnaires %}
+				<tr>	
+					<td>{{questionnaire.patient.full_name}}</td>
+					<td>{{questionnaire.questionnaire_date}}</td>
+					<td>{{questionnaire.type}}</td>
+					<td>
+						<a class="btn btn-primary" href="{% url questionnaire-edit questionnaire.pk %}">Edit</a>
+					</td>
+				</tr>
+			{% empty %}
+				<tr><td colspan="2">No Questionnaires Found</td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<div>
+			No Questionnaires Found
+		</div>
+	{% endif %}
+{% endblock container-right %}

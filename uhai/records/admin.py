@@ -1,6 +1,7 @@
 from django.contrib import admin
-import models
 from django.db.models.base import ModelBase
+
+import models
 
 class DiagnosisInline(admin.TabularInline):
 	model = models.Diagnosis

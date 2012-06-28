@@ -1,7 +1,6 @@
 from django.contrib import admin
 from models import *
 from uhai.insuranceprovider.models import PatientInsurance
-from uhai.core.models import Relationship
 
 class PatientInsuranceAdmin(admin.TabularInline):
     model = PatientInsurance
@@ -16,5 +15,6 @@ class PatientAdmin(admin.ModelAdmin):
     model = Patient
     list_display = ['first_name','middle_name','last_name','gender','mobile_phone','country','employer','blood_group']
     inlines = [PatientInsuranceAdmin, RelationshipInline]
-
+	
 admin.site.register(Patient, PatientAdmin)
+admin.site.register(RelationshipType)

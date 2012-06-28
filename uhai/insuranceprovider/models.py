@@ -38,12 +38,6 @@ class EmployerCompany(Company):
 
 class InsuranceType(MetaData):pass
 class Insurance(models.Model):
-	TYPES = [
-		('health', 'Health'),
-		('dental', 'Dental'),
-		('vision', 'Life'),
-		('other', 'Other'),
-	]
 	plan_id = models.CharField('Policy/Plan ID', max_length=70)
 	plan_name = models.CharField(max_length=50)
 	type = models.ForeignKey('InsuranceType')

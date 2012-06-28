@@ -12,7 +12,7 @@
 						<div style="clear:both; margin-bottom:20px">
 							Manage and keep track of your list of allergies
 						</div>
-						<a class="btn btn-success pull-right">Edit Allergies</a>
+						<a class="btn btn-success pull-right" href="{% url diagnosis-list 'allergy' %}">Edit Allergies</a>
 					</div></td>
 					<td style="vertical-align: top">
 						<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
@@ -20,7 +20,7 @@
 							<div style="clear:both; margin-bottom:20px">
 								Track any acute, chronic or recurrent medical conditions you have
 							</div>
-							<a class="btn btn-success pull-right">Edit Conditions</a>
+							<a class="btn btn-success pull-right" href="{% url diagnosis-list 'condition' %}">Edit Conditions</a>
 						</div>
 					</td>
 				</tr>
@@ -31,7 +31,7 @@
 						<div style="clear:both; margin-bottom:20px">
 							Track what immunizations you recently where given, when you had them and when you are due for more
 						</div>
-						<a class="btn btn-success pull-right">Edit Immunizations</a>
+						<a class="btn btn-success pull-right" href="{% url immunization-list %}">Edit Immunizations</a>
 					</div></td>
 					<td style="vertical-align: top">
 						<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
@@ -39,7 +39,7 @@
 							<div style="clear:both; margin-bottom:20px">
 								Track any medications you've taken and the reasons for taking them
 							</div>
-							<a class="btn btn-success pull-right">Edit Medications</a>
+							<a class="btn btn-success pull-right" href="{% url prescription-list %}">Edit Medications</a>
 						</div>
 					</td>
 				</tr>
@@ -50,7 +50,7 @@
 							<div style="clear:both; margin-bottom:20px">
 								Track any surgeries or procedures you've had
 							</div>
-							<a class="btn btn-success pull-right">Edit Surgeries</a>
+							<a class="btn btn-success pull-right" href="{% url encounter-list 'surgery' %}">Edit Surgeries</a>
 						</div>
 					</td>
 					<td style="vertical-align: top">
@@ -59,7 +59,7 @@
 							<div style="clear:both; margin-bottom:20px">
 								Track all your lab and test results
 							</div>
-							<a class="btn btn-success pull-right">Edit Lab Results</a>
+							<a class="btn btn-success pull-right" href="{% url encountertestresult-list %}">Edit Lab Results</a>
 						</div>
 					</td>
 				</tr>

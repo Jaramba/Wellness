@@ -13,12 +13,7 @@ class Person(models.Model):
 	gets an account.... hmmm, should we create an inactive user or just this?
 	'''
 	title = models.ForeignKey(Title, null=True)
-	relationship = models.ManyToManyField(
-		'self',
-		through='core.Relationship',
-		symmetrical=False,
-	)
-
+	
 	first_name = models.CharField(max_length=50, null=True)
 	middle_name = models.CharField(max_length=50, null=True)
 	last_name = models.CharField(max_length=50, null=True, help_text="Family/Sur-name")

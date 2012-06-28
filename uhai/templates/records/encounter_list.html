@@ -1,7 +1,8 @@
-{% extends "records/immunization_create.html" %}
+{% extends "records/immunization_list.html" %}
 
 {% block container-right %}
 	<legend>Encounters</legend>
+	<div id="add" style="clear:both"><a href="{% url encounter-create %}" class="btn btn-info pull-right">Add Encounter</a></div>
 	{% if encounters %}
 		<table class='table table-stripped table-bordered'>
 			<tr>
@@ -17,7 +18,6 @@
 					<td>{{encounter.type}}</td>
 					<td>
 						<a class="btn btn-primary" href="{% url encounter-edit encounter.pk %}">Edit</a>
-						<a class="btn btn-primary" href="{% url encounter-delete encounter.pk %}">Delete</a>
 					</td>
 				</tr>
 			{% empty %}
@@ -25,6 +25,8 @@
 			{% endfor %}
 		</table>
 	{% else %}
-		No Encounters Found
+		<div>
+			No Encounters Found
+		</div>
 	{% endif %}
 {% endblock container-right %}

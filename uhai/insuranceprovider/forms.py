@@ -24,7 +24,7 @@ class PatientInsuranceForm(forms.ModelForm):
         self.helper.form_action = '.'
         
         layout = Layout(
-            Row(HTML('<h2 class="form_title">Patient Insurance</h2>')),
+            Row(HTML('<legend>Patient Insurance</legend>')),
             Row(Column('name')),
             Row(Column('insurance')),
             Row(Column('subscriber_policy_id')),
@@ -33,10 +33,10 @@ class PatientInsuranceForm(forms.ModelForm):
             Row(Column('coverage_end_date')),
             Row(Column('notes')),
             Row(
-                ButtonHolder(
-                    Submit('Save', 'Save Changes'),
-                )
-            )
+				Div(
+					Submit('Save', 'Save Changes', css_class='btn-primary'),
+				css_class='form-actions')
+			)
         )
         self.helper.add_layout(layout)
 
@@ -46,4 +46,4 @@ class PatientInsuranceForm(forms.ModelForm):
     
     class Meta:
         model = PatientInsurance
-        exclude = ['patient','attachments']
+        exclude = ['patient']
