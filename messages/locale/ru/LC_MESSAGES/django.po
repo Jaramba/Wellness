@@ -1,13 +1,13 @@
-# Russian translation of django-postman.
+# Russian translation of django-messages.
 # Copyright (C) 2011 Patrick Samson
-# This file is distributed under the same license as the django-postman package.
+# This file is distributed under the same license as the django-messages package.
 # Patrick Samson <maxcom@laposte.net>, 2011.
 # Vasiliy  <vasiliy.korchagin@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: django-postman 1.0.x\n"
-"Report-Msgid-Bugs-To: http://bitbucket.org/psam/django-postman/issues\n"
+"Project-Id-Version: django-messages 1.0.x\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/psam/django-messages/issues\n"
 "POT-Creation-Date: 2011-02-07 09:30+0100\n"
 "PO-Revision-Date: 2011-02-07 09:30+0100\n"
 "Last-Translator: Vasiliy <vasiliy.korchagin@gmail.com>\n"
@@ -62,7 +62,7 @@ msgstr "Дата ответа не может быть установлена б
 msgid "The message cannot be replied without being in a conversation."
 msgstr "Нельзя ответить на сообщение, не находясь в беседе."
 
-#: .\admin.py:88 .\admin.py:164 .\templates\postman\view.html.py:5
+#: .\admin.py:88 .\admin.py:164 .\templates\messages\view.html.py:5
 msgid "Message"
 msgstr "Сообщение"
 
@@ -114,8 +114,8 @@ msgstr "Нельзя написать некоторым пользовател�
 msgid "Recipients"
 msgstr "Получатели"
 
-#: .\forms.py:148 .\forms.py:160 .\templates\postman\base_folder.html.py:26
-#: .\templates\postman\reply.html.py:4
+#: .\forms.py:148 .\forms.py:160 .\templates\messages\base_folder.html.py:26
+#: .\templates\messages\reply.html.py:4
 msgid "Recipient"
 msgstr "Получатель"
 
@@ -143,7 +143,7 @@ msgstr "В ожидании"
 msgid "Accepted"
 msgstr "Принято"
 
-#: .\models.py:21 .\templates\postman\view.html.py:13
+#: .\models.py:21 .\templates\messages\view.html.py:13
 msgid "Rejected"
 msgstr "Отклонено"
 
@@ -307,26 +307,26 @@ msgstr "Получен ответ"
 msgid "You have received a reply"
 msgstr "Вы получили ответ"
 
-#: .\templates\admin\postman\pendingmessage\change_form.html.py:17
+#: .\templates\admin\messages\pendingmessage\change_form.html.py:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "Пожалуйста, исправьте ошибку ниже."
 msgstr[1] "Пожалуйста, исправьте ошибки ниже."
 msgstr[2] "Пожалуйста, исправьте ошибки ниже."
 
-#: .\templates\admin\postman\pendingmessage\submit_line.html.py:6
+#: .\templates\admin\messages\pendingmessage\submit_line.html.py:6
 msgid "Accept"
 msgstr "Принять"
 
-#: .\templates\admin\postman\pendingmessage\submit_line.html.py:7
+#: .\templates\admin\messages\pendingmessage\submit_line.html.py:7
 msgid "Reject"
 msgstr "Отклонить"
 
-#: .\templates\postman\archives.html.py:3
+#: .\templates\messages\archives.html.py:3
 msgid "Archived Messages"
 msgstr "Архивированные сообщения"
 
-#: .\templates\postman\archives.html.py:7
+#: .\templates\messages\archives.html.py:7
 msgid ""
 "Messages in this folder will never be removed. You can use this folder for "
 "long term storage."
@@ -334,137 +334,137 @@ msgstr ""
 "Сообщения в этой папке никогда не будут удалены. Вы можете использовать эту "
 "папку как длительное хранилище сообщений."
 
-#: .\templates\postman\base.html.py:3
+#: .\templates\messages\base.html.py:3
 msgid "Messaging"
 msgstr "Обмен сообщениями"
 
-#: .\templates\postman\base.html.py:6
+#: .\templates\messages\base.html.py:6
 msgid "Inbox"
 msgstr "Входящие"
 
-#: .\templates\postman\base.html.py:7 .\templates\postman\sent.html.py:3
+#: .\templates\messages\base.html.py:7 .\templates\messages\sent.html.py:3
 msgid "Sent Messages"
 msgstr "Посланные сообщения"
 
-#: .\templates\postman\base.html.py:8 .\templates\postman\write.html.py:3
+#: .\templates\messages\base.html.py:8 .\templates\messages\write.html.py:3
 msgid "Write"
 msgstr "Написать"
 
-#: .\templates\postman\base.html.py:9
+#: .\templates\messages\base.html.py:9
 msgid "Archives"
 msgstr "Архивы"
 
-#: .\templates\postman\base.html.py:10
+#: .\templates\messages\base.html.py:10
 msgid "Trash"
 msgstr "Удалённые"
 
-#: .\templates\postman\base_folder.html.py:9
+#: .\templates\messages\base_folder.html.py:9
 msgid "Sorry, this page number is invalid."
 msgstr "Извините, страницы с таким номером не существует."
 
-#: .\templates\postman\base_folder.html.py:12
+#: .\templates\messages\base_folder.html.py:12
 msgid "by conversation"
 msgstr "по беседам"
 
-#: .\templates\postman\base_folder.html.py:13
+#: .\templates\messages\base_folder.html.py:13
 msgid "by message"
 msgstr "по сообщениям"
 
-#: .\templates\postman\base_folder.html.py:17
-#: .\templates\postman\view.html.py:22
+#: .\templates\messages\base_folder.html.py:17
+#: .\templates\messages\view.html.py:22
 msgid "Delete"
 msgstr "Удалить"
 
-#: .\templates\postman\base_folder.html.py:18
-#: .\templates\postman\view.html.py:23
+#: .\templates\messages\base_folder.html.py:18
+#: .\templates\messages\view.html.py:23
 msgid "Archive"
 msgstr "Архивировать"
 
-#: .\templates\postman\base_folder.html.py:19
+#: .\templates\messages\base_folder.html.py:19
 msgid "Undelete"
 msgstr "Восстановить"
 
-#: .\templates\postman\base_folder.html.py:24
+#: .\templates\messages\base_folder.html.py:24
 msgid "Action"
 msgstr "Действий"
 
-#: .\templates\postman\base_folder.html.py:25
+#: .\templates\messages\base_folder.html.py:25
 msgid "Sender"
 msgstr "Отправителя"
 
-#: .\templates\postman\base_folder.html.py:27
+#: .\templates\messages\base_folder.html.py:27
 msgid "Subject"
 msgstr "Тема"
 
-#: .\templates\postman\base_folder.html.py:28
+#: .\templates\messages\base_folder.html.py:28
 msgid "Date"
 msgstr "Дата"
 
-#: .\templates\postman\base_folder.html.py:43
+#: .\templates\messages\base_folder.html.py:43
 msgid "g:i A,M j,n/j/y"
 msgstr "g:i A,M j,n/j/y"
 
-#: .\templates\postman\base_folder.html.py:51
+#: .\templates\messages\base_folder.html.py:51
 msgid "No messages."
 msgstr "Сообщений нет."
 
-#: .\templates\postman\base_write.html.py:20
+#: .\templates\messages\base_write.html.py:20
 msgid "Send"
 msgstr "Отправить"
 
-#: .\templates\postman\email_user.txt.py:1
+#: .\templates\messages\email_user.txt.py:1
 msgid "Dear user,"
 msgstr "Уважаемый пользователь,"
 
-#: .\templates\postman\email_user.txt.py:3
-#: .\templates\postman\email_visitor.txt.py:3
+#: .\templates\messages\email_user.txt.py:3
+#: .\templates\messages\email_visitor.txt.py:3
 #, python-format
 msgid "On %(date)s, you asked to send a message to the user '%(recipient)s'."
 msgstr ""
 "В %(date)s вы просили отправить сообщение пользователю '%(recipient)s'."
 
-#: .\templates\postman\email_user.txt.py:5
-#: .\templates\postman\email_visitor.txt.py:5
+#: .\templates\messages\email_user.txt.py:5
+#: .\templates\messages\email_visitor.txt.py:5
 msgid "Your message has been rejected by the moderator"
 msgstr "Ваше сообщение было отклонено модератором"
 
-#: .\templates\postman\email_user.txt.py:5
-#: .\templates\postman\email_visitor.txt.py:5
+#: .\templates\messages\email_user.txt.py:5
+#: .\templates\messages\email_visitor.txt.py:5
 msgid ", for the following reason:"
 msgstr ", по следующей причине:"
 
-#: .\templates\postman\email_user.txt.py:9
-#: .\templates\postman\email_visitor.txt.py:10
+#: .\templates\messages\email_user.txt.py:9
+#: .\templates\messages\email_visitor.txt.py:10
 #, python-format
 msgid "On %(date)s, you sent a message to the user '%(sender)s'."
 msgstr "В %(date)s, вы послали сообщение пользователю '%(sender)s'."
 
-#: .\templates\postman\email_user.txt.py:10
+#: .\templates\messages\email_user.txt.py:10
 msgid "Your correspondent has given you an answer."
 msgstr "Ваш собеседник дал вам ответ."
 
-#: .\templates\postman\email_user.txt.py:11
+#: .\templates\messages\email_user.txt.py:11
 #, python-format
 msgid "You have received a copy of a response from the user '%(sender)s'."
 msgstr "Вы получили копию ответа от пользователя '%(sender)s'."
 
-#: .\templates\postman\email_user.txt.py:13
+#: .\templates\messages\email_user.txt.py:13
 #, python-format
 msgid "You have received a message from the user '%(sender)s'."
 msgstr "Вы получили сообщение от пользователя '%(sender)s'."
 
-#: .\templates\postman\email_user.txt.py:16
-#: .\templates\postman\email_visitor.txt.py:14
+#: .\templates\messages\email_user.txt.py:16
+#: .\templates\messages\email_visitor.txt.py:14
 msgid "Thank you again for your interest in our services."
 msgstr "Спасибо вам за интерес к нашим услугам."
 
-#: .\templates\postman\email_user.txt.py:17
-#: .\templates\postman\email_visitor.txt.py:16
+#: .\templates\messages\email_user.txt.py:17
+#: .\templates\messages\email_visitor.txt.py:16
 msgid "The site administrator"
 msgstr "Администратор сайта"
 
-#: .\templates\postman\email_user.txt.py:19
-#: .\templates\postman\email_visitor.txt.py:18
+#: .\templates\messages\email_user.txt.py:19
+#: .\templates\messages\email_visitor.txt.py:18
 msgid ""
 "Note: This message is issued by an automated system.\n"
 "Do not reply, this would not be taken into account."
@@ -472,51 +472,51 @@ msgstr ""
 "Примечание: Это сообщение выдается автоматической системой.\n"
 "Не отвечайте, это не будет приниматься во внимание."
 
-#: .\templates\postman\email_user_subject.txt.py:1
-#: .\templates\postman\email_visitor_subject.txt.py:1
+#: .\templates\messages\email_user_subject.txt.py:1
+#: .\templates\messages\email_visitor_subject.txt.py:1
 #, python-format
 msgid "Message \"%(subject)s\" on the site %(sitename)s"
 msgstr "Сообщение \"%(subject)s\" на сайте %(sitename)s"
 
-#: .\templates\postman\email_visitor.txt.py:1
+#: .\templates\messages\email_visitor.txt.py:1
 msgid "Dear visitor,"
 msgstr "Уважаемый посетитель,"
 
-#: .\templates\postman\email_visitor.txt.py:8
+#: .\templates\messages\email_visitor.txt.py:8
 msgid "As a reminder, please find below the content of your message."
 msgstr "Найдите, пожалуйста, ниже содержание вашего сообщения."
 
-#: .\templates\postman\email_visitor.txt.py:11
+#: .\templates\messages\email_visitor.txt.py:11
 msgid "Please find below the answer from your correspondent."
 msgstr "Ниже вы найдете ответ от вашего собеседника."
 
-#: .\templates\postman\email_visitor.txt.py:15
+#: .\templates\messages\email_visitor.txt.py:15
 msgid "For more comfort, we encourage you to open an account on the site."
 msgstr ""
 "Для большего удобства, мы рекомендуем вам зарегистрироваться на сайте."
 
-#: .\templates\postman\inbox.html.py:3
+#: .\templates\messages\inbox.html.py:3
 msgid "Received Messages"
 msgstr "Полученные сообщения"
 
-#: .\templates\postman\inbox.html.py:6
+#: .\templates\messages\inbox.html.py:6
 msgid "Received"
 msgstr "Получено"
 
-#: .\templates\postman\reply.html.py:3 .\templates\postman\view.html.py:25
-#: .\templates\postman\view.html.py:28 .\templates\postman\view.html.py:31
+#: .\templates\messages\reply.html.py:3 .\templates\messages\view.html.py:25
+#: .\templates\messages\view.html.py:28 .\templates\messages\view.html.py:31
 msgid "Reply"
 msgstr "Ответить"
 
-#: .\templates\postman\sent.html.py:6
+#: .\templates\messages\sent.html.py:6
 msgid "Sent"
 msgstr "Отправлено"
 
-#: .\templates\postman\trash.html.py:3
+#: .\templates\messages\trash.html.py:3
 msgid "Deleted Messages"
 msgstr "Удаленные сообщения"
 
-#: .\templates\postman\trash.html.py:10
+#: .\templates\messages\trash.html.py:10
 msgid ""
 "Messages in this folder can be removed from time to time. For long term "
 "storage, use instead the archive folder."
@@ -524,18 +524,18 @@ msgstr ""
 "Сообщения в этой папке могут быть удалены время от времени. Для длительного "
 "хранения сообщения используйте архив."
 
-#: .\templates\postman\view.html.py:5
+#: .\templates\messages\view.html.py:5
 msgid "Conversation"
 msgstr "Беседа"
 
-#: .\templates\postman\view.html.py:13
+#: .\templates\messages\view.html.py:13
 msgid ":"
 msgstr ": "
 
-#: .\templates\postman\view.html.py:20
+#: .\templates\messages\view.html.py:20
 msgid "Back"
 msgstr "Назад"
 
-#: .\templatetags\postman_tags.py:35
+#: .\templatetags\messages_tags.py:35
 msgid "<me>"
 msgstr "<me>"

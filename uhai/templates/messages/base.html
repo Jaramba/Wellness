@@ -1,0 +1,15 @@
+{% extends "app_base.html" %}
+{% load url from future %}
+{% load i18n %}{% load messages_tags %}
+{% block page-title %}{% trans "Messaging" %}{% endblock page-title %}
+
+{% block container-left %}
+	<ul id="messages_menu" class="nav nav-list">{% messages_unread as unread_count %}
+		<li class="nav-header">Messages</li>
+		<li><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}{% if unread_count %} <strong>({{ unread_count }})</strong>{% endif %}</a></li>
+		<li><a href="{% url 'messages_sent' %} ">{% trans "Sent Messages" %}</a></li>
+		<li><a href="{% url 'messages_write' %} ">{% trans "Compose" %}</a></li>
+		<li><a href="{% url 'messages_archives' %} ">{% trans "Archives" %}</a></li>
+		<li><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
+	</ul>
+{% endblock container-left %}

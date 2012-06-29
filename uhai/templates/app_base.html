@@ -29,7 +29,7 @@
 {% block extrajs %}
 	{% block extrajs-javascript %}{% endblock extrajs-javascript %}
 	{% block extrajs-jquery-plugins %}{% endblock extrajs-jquery-plugins %}
-	<script>
+	<script type="text/javascript">
 		{% block extrajs-global %}{% endblock extrajs-global %}
 		$(function(){
 			$('.navbar-item').tooltip({animation:true, placement:'bottom'});
@@ -54,24 +54,14 @@
 					{% block navbar-left %}
 						<ul class="nav">
 							{% if request.user.is_authenticated %}
-								<li class="navbar-item" title="Home" rel="tooltip" class="active"><a href="{% url index %}"><i class="icon-home icon-white"></i></a></li>								
+								<li class="navbar-item" title="Home" rel="tooltip" class="active">
+									<a href="{% url index %}"><i class="icon-home icon-white"></i></a>
+								</li>
+								<li class="navbar-item" title="Messages" rel="tooltip"><a href="{% url messages_inbox %}"><i class="icon-envelope icon-white"></i></a></li>
 								{% if request.session.use_page_as == 'health-worker' %}
 									<li class="navbar-item" title="Schedule" id="schedule-menu" rel="tooltip">
-										<a href="#schedule-menu" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-calendar icon-white"></i></a>
-										<ul class="dropdown-menu schedule">
-											<li><a href="{% url calendar %}"><i class="icon-globe"></i> Calendar</a></li>
-											<li><a href="{% url index %}"><i class="icon-globe"></i> Reminder Profiles</a></li>
-											<li><a href="{% url index %}"><i class="icon-globe"></i> Follow up Reminders</a></li>
-											<li><a href="{% url index %}"><i class="icon-globe"></i> Out of office notice</a></li>
-											<li><a href="{% url index %}"><i class="icon-globe"></i> Manage recurring events</a></li>
-										</ul>
+										<a href="{% url calendar %}"><i class="icon-calendar icon-white"></i></a>
 									</li>
-									<li class="navbar-item" title="Clinical" id="clinical-menu" rel="tooltip">
-										<a href="#clinical-menu" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white"></i></a>
-										<ul class="dropdown-menu clinicals">
-											
-										</ul>
-									</li>							
 									<li class="navbar-item" title="Patients" id="patient-menu" rel="tooltip">
 										<a href="#patient-menu" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i></a>
 										<ul class="dropdown-menu patient">
@@ -81,6 +71,12 @@
 											<li><a href="{% url index %}"><i class="icon-globe"></i> Reminders</a></li>
 										</ul>
 									</li>
+								{% elif request.session.use_page_as == 'patient' %}
+									<li class="navbar-item" title="Schedule" rel="tooltip"><a href="{% url calendar %}"><i class="icon-calendar icon-white"></i></a></li>
+									<li class="navbar-item" title="Records" rel="tooltip"><a href="{% url records %}"><i class="icon-folder-open icon-white"></i></a></li>
+									<li class="navbar-item" title="Questionnaires" rel="tooltip"><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i></a></li>
+								{% endif %}								
+								{% if request.session.use_page_as == 'health-worker' %}
 									<li class="navbar-item" title="Reports" id="report-menu" rel="tooltip">
 										<a href="#report-menu" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-file icon-white"></i></a>
 										<ul class="dropdown-menu reports">
@@ -89,13 +85,7 @@
 											</li>
 										</ul>
 									</li>
-								{% elif request.session.use_page_as == 'patient' %}
-									<li class="navbar-item" title="Schedule" rel="tooltip"><a href="{% url index %}"><i class="icon-calendar icon-white"></i></a></li>
-								{% else%}									
-									<li class="navbar-item" title="Records" rel="tooltip"><a href="{% url records %}"><i class="icon-folder-open icon-white"></i></a></li>
-									<li class="navbar-item" title="Questionnaires" rel="tooltip"><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i></a></li>
 								{% endif %}
-								<li class="navbar-item" title="Messages" rel="tooltip"><a href="{% url index %}"><i class="icon-envelope icon-white"></i></a></li>
 							{% endif %}
 							{% block navbar-links %}{% endblock navbar-links %}
 						</ul>
@@ -120,7 +110,7 @@
 											</li>
 											{% if request.user.is_superuser %}
 												{% for group in user_groups %}
-													{% if not group.name == 'Patient' %}
+													{% if not group.name == 'Patient' and not group.name == 'Admin' %}
 														<li>
 															<a href="{% url use-as group.name|slugify %}"><i class="icon-globe"></i> Use as {{ group.name }}</a>
 														</li>

@@ -22,6 +22,9 @@ from messages.fields import CommaSeparatedUserField
 from messages.models import Message
 from messages.utils import WRAP_WIDTH
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import *
+
 class BaseWriteForm(forms.ModelForm):
     """The base class for other forms."""
     class Meta:
@@ -144,11 +147,33 @@ class BaseWriteForm(forms.ModelForm):
         return is_successful
 
 class WriteForm(BaseWriteForm):
-    """The form for an authenticated user, to compose a message."""
-    recipients = CommaSeparatedUserField(label=(_("Recipients"), _("Recipient")))
+	"""The form for an authenticated user, to compose a message."""
+	recipients = CommaSeparatedUserField(label=(_("Recipients"), _("Recipient")))
 
-    class Meta(BaseWriteForm.Meta):
-        fields = ('recipients', 'subject', 'body')
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
+		self.helper.form_class = 'general_form'
+		self.helper.form_method = 'POST'
+		self.helper.form_action = '#'
+		
+		self.layout = Layout(
+			Row(HTML('<legend>{% block pm_write_title %}Compose Message{% endblock %}</legend>')),
+			Row(Column(Field('recipients', css_class='span6'))),
+			Row(Column(Field('subject', css_class='span8'))),
+			Row(Field('body'), css_class='textarea-column'),
+			
+			Row(
+				Div(
+					Submit('Send', 'Send Message', css_class='btn-primary'),
+				css_class='form-actions')
+			)
+		)
+		self.helper.add_layout(self.layout)
+		super(WriteForm, self).__init__(*args, **kwargs)
+
+	class Meta(BaseWriteForm.Meta):
+		fields = ('recipients', 'subject', 'body')
 
 class AnonymousWriteForm(BaseWriteForm):
     """The form for an anonymous user, to compose a message."""

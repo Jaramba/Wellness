@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 
 #apps
 urlpatterns += patterns('',
+	#app level
 	url(r'^$', 'uhai.views.index', {'template_name':'index.html'}, name="index"),
 	url(r'^use-as/(?P<type>patient|insurance-agent|health-worker|admin|employer)/$', 'uhai.views.use_as', name="use-as"),
 	url(r'^admin_tools/', include('admin_tools.urls')),
@@ -26,18 +27,19 @@ urlpatterns += patterns('',
 	url(r'^programs/', include('uhai.programs.urls')),
 	url(r'^reminders/', include('uhai.reminders.urls')),
 	url(r'^questionnaires/', include('uhai.questions.urls')),
+	
+	url(r'^messages/', include('messages.urls')),
+	
 	url(r'', include('uhai.core.urls')),
 	url(r'', include('uhai.userprofile.urls')),
-)
-
-#The app itself
-urlpatterns += patterns('',
+	
+	#view level
     url(r'^login/$', 'uhai.userprofile.views.login', {'template_name':'userprofile/login.html'}, name='login'),
     url(r'^logout/$','uhai.userprofile.views.logout', {'redirect_field_name':'next','template_name':'userprofile/logout.html'}, name='logout'),
 )
 
 urlpatterns += patterns('',
-    url(r'^about/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="messages"),
+    url(r'^about/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="about"),
     url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
     url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
 )

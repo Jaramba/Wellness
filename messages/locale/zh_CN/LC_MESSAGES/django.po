@@ -1,12 +1,12 @@
-# Chinese translation of django-postman.
+# Chinese translation of django-messages.
 # Copyright (C) 2011 Patrick Samson
-# This file is distributed under the same license as the django-postman package.
+# This file is distributed under the same license as the django-messages package.
 # mikecool <genewoo@gmail.com>, 2011.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: django-postman 1.0.x\n"
-"Report-Msgid-Bugs-To: http://bitbucket.org/psam/django-postman/issues\n"
+"Project-Id-Version: django-messages 1.0.x\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/psam/django-messages/issues\n"
 "POT-Creation-Date: 2010-12-27 14:21+0100\n"
 "PO-Revision-Date: 2011-02-03 08:41+0000\n"
 "Last-Translator: mikecool <genewoo@gmail.com>\n"
@@ -61,7 +61,7 @@ msgstr "设置回应日期时至少需要有一个答复。"
 msgid "The message cannot be replied without being in a conversation."
 msgstr "该消息未在对话中所以不能被回复。"
 
-#: .\admin.py:88 .\admin.py:157 .\templates\postman\view.html.py:5
+#: .\admin.py:88 .\admin.py:157 .\templates\messages\view.html.py:5
 msgid "Message"
 msgstr "消息"
 
@@ -105,8 +105,8 @@ msgstr "不可能写给一些用户：{users}。"
 msgid "Recipients"
 msgstr "收件人"
 
-#: .\forms.py:148 .\forms.py:160 .\templates\postman\base_folder.html.py:26
-#: .\templates\postman\reply.html.py:4
+#: .\forms.py:148 .\forms.py:160 .\templates\messages\base_folder.html.py:26
+#: .\templates\messages\reply.html.py:4
 msgid "Recipient"
 msgstr "收件人"
 
@@ -134,7 +134,7 @@ msgstr "未决"
 msgid "Accepted"
 msgstr "接受"
 
-#: .\models.py:21 .\templates\postman\view.html.py:13
+#: .\models.py:21 .\templates\messages\view.html.py:13
 msgid "Rejected"
 msgstr "被拒绝"
 
@@ -298,157 +298,157 @@ msgstr "收到答复"
 msgid "You have received a reply"
 msgstr "您已收到答复"
 
-#: .\templates\admin\postman\pendingmessage\change_form.html.py:17
+#: .\templates\admin\messages\pendingmessage\change_form.html.py:17
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] "请更正下列错误。"
 
-#: .\templates\admin\postman\pendingmessage\submit_line.html.py:6
+#: .\templates\admin\messages\pendingmessage\submit_line.html.py:6
 msgid "Accept"
 msgstr "接受"
 
-#: .\templates\admin\postman\pendingmessage\submit_line.html.py:7
+#: .\templates\admin\messages\pendingmessage\submit_line.html.py:7
 msgid "Reject"
 msgstr "拒绝"
 
-#: .\templates\postman\archives.html.py:3
+#: .\templates\messages\archives.html.py:3
 msgid "Archived Messages"
 msgstr "归档的邮件"
 
-#: .\templates\postman\archives.html.py:7
+#: .\templates\messages\archives.html.py:7
 msgid "Messages in this folder will never be removed. You can use this folder for long term storage."
 msgstr "此文件夹中的信息将永远不会被删除。你可以使用此文件夹为长期贮存。"
 
-#: .\templates\postman\base.html.py:3
+#: .\templates\messages\base.html.py:3
 msgid "Messaging"
 msgstr "消息"
 
-#: .\templates\postman\base.html.py:6
+#: .\templates\messages\base.html.py:6
 msgid "Inbox"
 msgstr "收件箱"
 
-#: .\templates\postman\base.html.py:7 .\templates\postman\sent.html.py:3
+#: .\templates\messages\base.html.py:7 .\templates\messages\sent.html.py:3
 msgid "Sent Messages"
 msgstr "发送的邮件"
 
-#: .\templates\postman\base.html.py:8 .\templates\postman\write.html.py:3
+#: .\templates\messages\base.html.py:8 .\templates\messages\write.html.py:3
 msgid "Write"
 msgstr "写"
 
-#: .\templates\postman\base.html.py:9
+#: .\templates\messages\base.html.py:9
 msgid "Archives"
 msgstr "归档"
 
-#: .\templates\postman\base.html.py:10
+#: .\templates\messages\base.html.py:10
 msgid "Trash"
 msgstr "垃圾"
 
-#: .\templates\postman\base_folder.html.py:9
+#: .\templates\messages\base_folder.html.py:9
 msgid "Sorry, this page number is invalid."
 msgstr "对不起，此页号无效。"
 
-#: .\templates\postman\base_folder.html.py:12
+#: .\templates\messages\base_folder.html.py:12
 msgid "by conversation"
 msgstr "在对话"
 
-#: .\templates\postman\base_folder.html.py:13
+#: .\templates\messages\base_folder.html.py:13
 msgid "by message"
 msgstr "通过消息"
 
-#: .\templates\postman\base_folder.html.py:17
-#: .\templates\postman\view.html.py:22
+#: .\templates\messages\base_folder.html.py:17
+#: .\templates\messages\view.html.py:22
 msgid "Delete"
 msgstr "删除"
 
-#: .\templates\postman\base_folder.html.py:18
-#: .\templates\postman\view.html.py:23
+#: .\templates\messages\base_folder.html.py:18
+#: .\templates\messages\view.html.py:23
 msgid "Archive"
 msgstr "归档"
 
-#: .\templates\postman\base_folder.html.py:19
+#: .\templates\messages\base_folder.html.py:19
 msgid "Undelete"
 msgstr "取消删除"
 
-#: .\templates\postman\base_folder.html.py:24
+#: .\templates\messages\base_folder.html.py:24
 msgid "Action"
 msgstr "动作"
 
-#: .\templates\postman\base_folder.html.py:25
+#: .\templates\messages\base_folder.html.py:25
 msgid "Sender"
 msgstr "寄件人"
 
-#: .\templates\postman\base_folder.html.py:27
+#: .\templates\messages\base_folder.html.py:27
 msgid "Subject"
 msgstr "主体"
 
-#: .\templates\postman\base_folder.html.py:28
+#: .\templates\messages\base_folder.html.py:28
 msgid "Date"
 msgstr "日期"
 
-#: .\templates\postman\base_folder.html.py:43
+#: .\templates\messages\base_folder.html.py:43
 msgid "g:i A,M j,n/j/y"
 msgstr "G:i,M j,y/n/j"
 
-#: .\templates\postman\base_folder.html.py:51
+#: .\templates\messages\base_folder.html.py:51
 msgid "No messages."
 msgstr "没有邮件。"
 
-#: .\templates\postman\base_write.html.py:20
+#: .\templates\messages\base_write.html.py:20
 msgid "Send"
 msgstr "发送"
 
-#: .\templates\postman\email_user.txt.py:1
+#: .\templates\messages\email_user.txt.py:1
 msgid "Dear user,"
 msgstr "尊敬的用户，"
 
-#: .\templates\postman\email_user.txt.py:3
-#: .\templates\postman\email_visitor.txt.py:3
+#: .\templates\messages\email_user.txt.py:3
+#: .\templates\messages\email_visitor.txt.py:3
 #, python-format
 msgid "On %(date)s, you asked to send a message to the user '%(recipient)s'."
 msgstr "于 %(date)s, 你向 '%(recipient)s' 发出了一条消息。"
 
-#: .\templates\postman\email_user.txt.py:5
-#: .\templates\postman\email_visitor.txt.py:5
+#: .\templates\messages\email_user.txt.py:5
+#: .\templates\messages\email_visitor.txt.py:5
 msgid "Your message has been rejected by the moderator"
 msgstr "您的邮件被主持人拒绝"
 
-#: .\templates\postman\email_user.txt.py:5
-#: .\templates\postman\email_visitor.txt.py:5
+#: .\templates\messages\email_user.txt.py:5
+#: .\templates\messages\email_visitor.txt.py:5
 msgid ", for the following reason:"
 msgstr "基于以下原因："
 
-#: .\templates\postman\email_user.txt.py:9
-#: .\templates\postman\email_visitor.txt.py:10
+#: .\templates\messages\email_user.txt.py:9
+#: .\templates\messages\email_visitor.txt.py:10
 #, python-format
 msgid "On %(date)s, you sent a message to the user '%(sender)s'."
 msgstr "于 %(date)s, 你向 '%(sender)s' 发出了一条消息。"
 
-#: .\templates\postman\email_user.txt.py:10
+#: .\templates\messages\email_user.txt.py:10
 msgid "Your correspondent has given you an answer."
 msgstr "你的联络人给你一个答案。"
 
-#: .\templates\postman\email_user.txt.py:11
+#: .\templates\messages\email_user.txt.py:11
 #, python-format
 msgid "You have received a copy of a response from the user '%(sender)s'."
 msgstr "您收到的用户 '%(sender)s'的一个回应的副本。"
 
-#: .\templates\postman\email_user.txt.py:13
+#: .\templates\messages\email_user.txt.py:13
 #, python-format
 msgid "You have received a message from the user '%(sender)s'."
 msgstr "您收到的从用户 '%(sender)s'来的消息。"
 
-#: .\templates\postman\email_user.txt.py:16
-#: .\templates\postman\email_visitor.txt.py:14
+#: .\templates\messages\email_user.txt.py:16
+#: .\templates\messages\email_visitor.txt.py:14
 msgid "Thank you again for your interest in our services."
 msgstr "再次感谢您对我们服务的兴趣。"
 
-#: .\templates\postman\email_user.txt.py:17
-#: .\templates\postman\email_visitor.txt.py:16
+#: .\templates\messages\email_user.txt.py:17
+#: .\templates\messages\email_visitor.txt.py:16
 msgid "The site administrator"
 msgstr "该网站管理员"
 
-#: .\templates\postman\email_user.txt.py:19
-#: .\templates\postman\email_visitor.txt.py:18
+#: .\templates\messages\email_user.txt.py:19
+#: .\templates\messages\email_visitor.txt.py:18
 msgid ""
 "Note: This message is issued by an automated system.\n"
 "Do not reply, this would not be taken into account."
@@ -456,65 +456,65 @@ msgstr ""
 "注：此消息是由自动系统发出。\n"
 "请不要回复，这将不会被带入帐号。"
 
-#: .\templates\postman\email_user_subject.txt.py:1
-#: .\templates\postman\email_visitor_subject.txt.py:1
+#: .\templates\messages\email_user_subject.txt.py:1
+#: .\templates\messages\email_visitor_subject.txt.py:1
 #, python-format
 msgid "Message \"%(subject)s\" on the site %(sitename)s"
 msgstr "消息\"%(subject)s\" 在网站 - %(sitename)s"
 
-#: .\templates\postman\email_visitor.txt.py:1
+#: .\templates\messages\email_visitor.txt.py:1
 msgid "Dear visitor,"
 msgstr "亲爱的游客，"
 
-#: .\templates\postman\email_visitor.txt.py:8
+#: .\templates\messages\email_visitor.txt.py:8
 msgid "As a reminder, please find below the content of your message."
 msgstr "在此提醒您，请找到以下的邮件内容。"
 
-#: .\templates\postman\email_visitor.txt.py:11
+#: .\templates\messages\email_visitor.txt.py:11
 msgid "Please find below the answer from your correspondent."
 msgstr "请从下面找到你的联络人的答案。"
 
-#: .\templates\postman\email_visitor.txt.py:15
+#: .\templates\messages\email_visitor.txt.py:15
 msgid "For more comfort, we encourage you to open an account on the site."
 msgstr "我们鼓励您在网站上开设一个帐户一边更舒适的使用系统。"
 
-#: .\templates\postman\inbox.html.py:3
+#: .\templates\messages\inbox.html.py:3
 msgid "Received Messages"
 msgstr "收到的邮件"
 
-#: .\templates\postman\inbox.html.py:6
+#: .\templates\messages\inbox.html.py:6
 msgid "Received"
 msgstr "收到的"
 
-#: .\templates\postman\reply.html.py:3 .\templates\postman\view.html.py:25
-#: .\templates\postman\view.html.py:28 .\templates\postman\view.html.py:31
+#: .\templates\messages\reply.html.py:3 .\templates\messages\view.html.py:25
+#: .\templates\messages\view.html.py:28 .\templates\messages\view.html.py:31
 msgid "Reply"
 msgstr "回复的"
 
-#: .\templates\postman\sent.html.py:6
+#: .\templates\messages\sent.html.py:6
 msgid "Sent"
 msgstr "发送的"
 
-#: .\templates\postman\trash.html.py:3
+#: .\templates\messages\trash.html.py:3
 msgid "Deleted Messages"
 msgstr "已删除邮件"
 
-#: .\templates\postman\trash.html.py:10
+#: .\templates\messages\trash.html.py:10
 msgid "Messages in this folder can be removed from time to time. For long term storage, use instead the archive folder."
 msgstr "此文件夹中的邮件可时不时被删除。为了长期保存，使用规档文件夹作为取代。"
 
-#: .\templates\postman\view.html.py:5
+#: .\templates\messages\view.html.py:5
 msgid "Conversation"
 msgstr "对话"
 
-#: .\templates\postman\view.html.py:13
+#: .\templates\messages\view.html.py:13
 msgid ":"
 msgstr ":"
 
-#: .\templates\postman\view.html.py:20
+#: .\templates\messages\view.html.py:20
 msgid "Back"
 msgstr "返回"
 
-#: .\templatetags\postman_tags.py:35
+#: .\templatetags\messages_tags.py:35
 msgid "<me>"
 msgstr "<我>"

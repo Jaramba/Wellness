@@ -11,7 +11,6 @@ from django.contrib.contenttypes.models import ContentType
 from admin_tools.dashboard import modules
 from admin_tools.utils import get_admin_site_name
 
-
 class Dashboard(object):
     """
     Base class for dashboards.
@@ -109,24 +108,54 @@ class Dashboard(object):
         """
         return 'dashboard'
 
-def dashboard_view(request, dashboard):
-    if request.method == 'GET':
-        dashboard.Media.js.append('js/stats/patients/admin/new.js')
-        dashboard.children.append(modules.DashboardModule(
-            template='admin/dashboard/modules/patients_graph.html',
-            enabled=True,
-            is_empty=False,
-            title='Graph'
+class DefaultIndexDashboard(Dashboard):
+    """
+    The default dashboard displayed on the admin index page.
+    To change the default dashboard you'll have to type the following from the
+    commandline in your project root directory::
+
+        python manage.py customdashboard
+
+    And then set the ``ADMIN_TOOLS_INDEX_DASHBOARD`` settings variable to
+    point to your custom index dashboard class.
+    """
+    def init_with_context(self, context):
+        site_name = get_admin_site_name(context)
+        # append a link list module for "quick links"
+        self.children.append(modules.LinkList(
+            _('Quick links'),
+            layout='inline',
+            draggable=False,
+            deletable=False,
+            collapsible=False,
+            children=[
+                [_('Return to site'), '/'],
+                [_('Change password'),
+                 reverse('%s:password_change' % site_name)],
+                [_('Log out'), reverse('%s:logout' % site_name)],
+            ]
         ))
 
-class DefaultIndexDashboard(Dashboard):    
-    def init_with_context(self, context):
-        request = context['request']
-        dashboard_view(request, self)
- 
-    class Media:
-        css  = ['css/rickshaw.min.css',]
-        js   = ['js/rickshaw.min.js',]
+        self.children.append(modules.AppList(
+            'Sections',
+            exclude=('django.contrib.*','records.*','programs.*'),
+        ))
+        
+        self.children.append(modules.AppList(
+            'Records',
+            models=('records.*',),
+        ))
+        
+        self.children.append(modules.AppList(
+            'Employee/Patient Programs',
+            models=('programs.*',),
+        ))
+
+        # append an app list module for "Administration"
+        self.children.append(modules.AppList(
+            _('Administration'),
+            models=('django.contrib.*',),
+        ))
 
 class AppIndexDashboard(Dashboard):
     """
@@ -215,7 +244,7 @@ class AppIndexDashboard(Dashboard):
         Internal method used to distinguish different dashboards in js code.
         """
         return '%s-dashboard' % slugify(unicode(self.app_title))
-		
+
 class DefaultAppIndexDashboard(AppIndexDashboard):
     """
     The default dashboard displayed on the applications index page.

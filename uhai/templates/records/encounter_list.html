@@ -2,7 +2,9 @@
 
 {% block container-right %}
 	<legend>Encounters</legend>
-	<div id="add" style="clear:both"><a href="{% url encounter-create %}" class="btn btn-info pull-right">Add Encounter</a></div>
+	{% if request.session.use_page_as == 'health-worker' %}
+		<div id="add" style="clear:both"><a href="{% url encounter-create %}" class="btn btn-info pull-right">Add Encounter</a></div>
+	{% endif %}
 	{% if encounters %}
 		<table class='table table-stripped table-bordered'>
 			<tr>

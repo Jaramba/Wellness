@@ -22,7 +22,7 @@ class EncounterForm(forms.ModelForm):
             
             Row(
 				Div(
-					Submit('Save', 'Save Changes', css_class='btn-primary'),
+					Submit('send', 'Send', css_class='btn-primary'),
 				css_class='form-actions')
 			)
         )

@@ -23,6 +23,7 @@ INSTALLED_APPS = (
 	'crispy_forms',
 	'guardian',
 	'messages',
+	'pagination',
 	#'south',
 	
 	'uhai.userprofile',
@@ -66,6 +67,7 @@ MIDDLEWARE_CLASSES = (
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'pagination.middleware.PaginationMiddleware',
 )
 
 ANONYMOUS_USER_ID = -1
