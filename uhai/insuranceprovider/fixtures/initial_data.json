@@ -6,8 +6,6 @@
       "name": "AON", 
       "phone": "254736705812", 
       "location": "Kenya", 
-	  "contact_person":1,
-	  "admins":[1],
       "date_added": "2012-04-07 10:10:34", 
       "email": "info@aon.com", 
       "date_edited": "2012-04-07 10:10:34"
@@ -21,30 +19,11 @@
       "insurance_providers": [
         1
       ], 
-	  "contact_person":1,
-	  "admins":[1],
       "phone": "254736705812", 
       "location": "Kenya", 
       "date_added": "2012-04-07 10:12:41", 
       "email": "kanarelo@gmail.com", 
       "date_edited": "2012-04-07 10:12:41"
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "insuranceprovider.employercompany", 
-    "fields": {
-      "name": "Komarock Medical centre",
-      "insurance_providers": [
-        1
-      ], 
-	  "contact_person":1,
-	  "admins":[1],
-      "phone": "+254736705845", 
-      "location": "Nairobi. Kenya", 
-      "date_added": "2012-04-07 11:22:30", 
-      "email": "kanarelo+kmc@gmail.com", 
-      "date_edited": "2012-04-07 11:22:30"
     }
   }
 ]

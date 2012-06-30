@@ -5,10 +5,10 @@ from uhai.insuranceprovider.models import *
 
 class SpecialityCategory(models.Model):
 	name = models.CharField(max_length=150)
-	
+
 	def __unicode__(self):
 		return self.name
-	
+
 	class Meta:
 		verbose_name_plural = 'Speciality Categories'
 
@@ -23,24 +23,31 @@ class Speciality(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Specialities'
-	
-class HealthCareFacility(EmployerCompany):
+
+class HealthCareFacility(Company):
+	official_hospital_number = models.CharField(max_length=20, null=True, blank=False)
 	speciality = models.ManyToManyField(Speciality)
-	
+
 	def __unicode__(self):
 		return self.name
-	
+
 	class Meta:
 		verbose_name_plural = 'Health care facilities'
         permissions = (
             ('view_healthcarefacility', 'View health care facility'),
         )
 
-class HealthWorker(UserProfile):
+class HealthWorker(models.Model):
+	user = models.OneToOneField('auth.User')
+	facility = models.ForeignKey(HealthCareFacility)
 	speciality = models.ManyToManyField(Speciality)
 	practice_number = models.CharField(max_length=20, null=True, blank=False)
+
+	def __unicode__(self):
+		return self.practice_number
 	
 	class Meta:
 		permissions = (
 			('view_healthworker', 'View health worker'),
 		)
+		verbose_name_plural = 'Health Worker Profile'

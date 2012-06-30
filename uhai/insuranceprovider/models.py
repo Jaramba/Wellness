@@ -16,20 +16,14 @@ class Company(models.Model):
 	def __unicode__(self):
 		return self.name
 		
-class HealthInsuranceProvider(Company):
-	contact_person = models.ForeignKey('userprofile.UserProfile', related_name='healthinsurance_contactperson')
-	admins = models.ManyToManyField('userprofile.UserProfile', related_name='healthinsurance_admins')
-	
+class HealthInsuranceProvider(Company):	
 	class Meta:
 		permissions = (
 			('view_healthinsuranceprovider', 'View health insurance provider'),
 		)
 
 class EmployerCompany(Company):
-	contact_person = models.ForeignKey('userprofile.UserProfile', related_name='employercompany_contactperson')
-	admins = models.ManyToManyField('userprofile.UserProfile', related_name='employercompany_admins')
-	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')
-	
+	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')	
 	class Meta:
 		verbose_name_plural = 'Employer companies'
 		permissions = (

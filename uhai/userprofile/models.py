@@ -30,10 +30,7 @@ class Person(models.Model):
 	province = models.ForeignKey('core.Province', null=True, help_text='Your home province')
 	county = models.ForeignKey('core.County', null=True, help_text='Your home county')
 	country = models.ForeignKey('core.Country', null=True, help_text='Your home country')
-	
-	latitude = models.CharField(max_length=50, null=True, blank=True, editable=False)
-	longitude = models.CharField(max_length=50, null=True, blank=True, editable=False)
-	
+		
 	date_edited = models.DateTimeField(auto_now=True)
 	date_created = models.DateTimeField(auto_now=True)
 
@@ -85,7 +82,6 @@ User.is_admin = property(lambda self: self.groups.filter(name='Admin').count())
 User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agent').count())
 
 User.full_name = property(lambda self: self.profile.full_name)
-User.get_full_name = lambda self: self.full_name
 User.__unicode__ = lambda self: self.full_name if self.full_name.split(' ') else self.username
 
 def get_profile(self):

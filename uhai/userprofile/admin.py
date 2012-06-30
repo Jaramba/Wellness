@@ -3,14 +3,26 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Group
 
 from uhai.core.utils import *
+from uhai.patient.models import Patient
+from uhai.healthprovider.models import HealthWorker
 
 from forms import *
 from models import *
 
 class UserProfileAdmin(admin.StackedInline):
     model = UserProfile
-    form = UserProfileInlineForm
     extra = 1
+
+class HealthWorkerAdmin(admin.StackedInline):
+    model = HealthWorker
+    extra = 0
+	
+class PatientInlineAdmin(admin.StackedInline):
+	model = Patient
+	readonly_fields = ['patient_number']
+	extra = 0
+
+'''[profile.id, 'PAT-%s-%s' % (datetime.now().strftime('%Y'), get_random_string(4))]'''
 
 class UserUserProfileAdmin(UserAdmin):
 	fieldsets = (
@@ -24,44 +36,19 @@ class UserUserProfileAdmin(UserAdmin):
 	def middle_name(self, user):return user.profile.middle_name or ''
 	def last_name(self):return self.profile.last_name or ''
 	def mobile_phone(self, user):return user.profile.mobile_phone or ''
-		
-	def approve_healthworker_profiles(self, request, queryset):
-		for user in queryset:   
-			profile = user.profile
-			if profile.user.is_healthworker:
-				try:
-					profile.healthworker
-					profile.user.is_staff = True
-					profile.user.save()
-				except:
-					perform_raw_sql("INSERT INTO healthprovider_healthworker (userprofile_ptr_id) VALUES (%s)", [profile.id])
-	approve_healthworker_profiles.description = 'Approve Health Worker'
-
+	
 	def deactivate(self, request, queryset):
 		for user in queryset:
 			user.is_active = False
 			user.save()
 	deactivate.description = 'Deactivate User'
 
-	def approve_patient_profiles(self, request, queryset):
-		for user in queryset:   
-			profile = user.profile
-			try:
-				profile.patient
-			except:
-				perform_raw_sql(
-					"INSERT INTO patient_patient (userprofile_ptr_id, patient_number) VALUES (%s, %s)", 
-					[profile.id, 'PAT-%s-%s' % 
-					(datetime.now().strftime('%Y'), get_random_string(4))]
-				)
-	approve_patient_profiles.description = 'Approve Patient'			
-	
 	list_display = ('username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_superuser', 'is_staff')
 	search_fields = ('username', 'first_name', 'last_name', 'email')
-	inlines = (UserProfileAdmin,)
+	inlines = [UserProfileAdmin, PatientInlineAdmin, HealthWorkerAdmin]
 	form = UserChangeForm
 	
-	actions = [deactivate, approve_patient_profiles, approve_healthworker_profiles]
+	actions = [deactivate]
 
 class PersonAdmin(admin.ModelAdmin):
     model = Person

@@ -1,0 +1,285 @@
+{% extends "app_base.html" %}
+{% load humanize %}
+
+{% block page-title %}Questionnaire Detail{% endblock page-title %}
+
+{% block body-hook %}id="release-detail"{% endblock body-hook %}
+
+{% block extracss-links %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
+{% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	<script src="{{STATIC_URL}}js/d3.v2.min.js"></script>
+	<script src="{{STATIC_URL}}js/date.js"></script>
+	<script src="{{STATIC_URL}}js/rickshaw.js"></script>
+{% endblock extrajs-jquery-plugins %}
+	
+{% block extrajs-jquery-enclosed %}
+	var palette = new Rickshaw.Color.Palette({scheme: 'spectrum2000'});
+	data = {
+	  element: $("#download-chart .chart")[0],
+	  renderer: 'area',
+	  height:600,
+	  height:200,
+	  stroke: true,
+	  dataURL: '{% url patient-stats %}',
+	  onData: function(d){
+		$("#download-chart .loading").removeClass("loading");
+		return $.map(d, function(i){ i["color"] = palette.color(); return i; });
+	  },
+	  onComplete: function(s){
+		var hoverDetail = new Rickshaw.Graph.HoverDetail({
+		  graph: s.graph,
+		  xFormatter: function(x) { var d = new Date(x*1000); return "Week of " + d.toString("MMM d"); },
+		  yFormatter: function(y) { return parseInt(y) + " downloads"; }
+		});
+
+		var ticksTreatment = 'glow';
+
+		var xAxis = new Rickshaw.Graph.Axis.Time({
+		  graph: s.graph,
+		  timeUnit: 'week',
+		  ticksTreatment: ticksTreatment
+		});
+
+		var yAxis = new Rickshaw.Graph.Axis.Y({
+		  graph: s.graph,
+		  tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+		  ticksTreatment: ticksTreatment
+		});
+
+		xAxis.render();
+		yAxis.render();
+	  }
+	};
+	var graph = new Rickshaw.Graph.Ajax(data);
+{% endblock extrajs-jquery-enclosed %}
+
+{% block container %}
+	<header class="row">
+		<div class="span6">
+			<hgroup class="package-title">
+				<h1>{{ patient.name }}</h1>
+				<h6>{{ patient.intro }}</h6>
+			</hgroup>
+		</div>
+		<div class="span6">
+			<div class="action-buttons">
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-cog"></i><span class="caret"></span> </a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#" data-toggle="modal">
+								<i class="icon-edit" data-toggle="modal"></i> Edit
+							</a>
+							<a href="#" data-toggle="modal">
+								<i class="icon-trash" data-toggle="modal"></i> Delete
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="subnav ">
+		<ul class="nav nav-pills">
+			<li class="active">
+				<a href="#description" data-toggle="tab">Details</a>
+				{# put in details on doctors, schemes#}
+			</li>
+			<li class="">
+				<a href="#info" data-toggle="tab">Vitals Tracking</a>
+			</li>
+			<li class="">
+				<a href="#all-questionsets" data-toggle="tab">Vital </a>
+			</li>
+			<li class="">
+				<a href="#history" data-toggle="tab">Encounters</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="span9">
+			<div class="tab-content">
+				<div id="description" class="tab-pane fade active in">
+					<div class="html-description">
+						<p>
+							{{ patient.detail }}
+						</p>
+						{% autoescape off %}
+							{{ patient.notes }}
+						{% endautoescape %}
+					</div>
+				</div>
+				<div id="info" class="tab-pane fade">
+					<div class="author">
+						<h4>Program</h4>
+						{{ patient.program.name }}
+					</div>
+					<div class="links">
+						<h4>Program Patient Enrollment</h4>
+						<ul class="unstyled">
+							<li>
+								{% with enrolledprograms=patient.program.enrolledprogram_set.all.count %}
+									{{ enrolledprograms }} Patient{{enrolledprograms|pluralize }}
+								{% endwith %}
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="span3"></div>
+						<div class="span3"></div>
+						<div class="span3"></div>
+					</div>
+				</div>
+				<div id="all-questionsets" class="tab-pane fade">
+					<table class="table table-striped table-bordered questionsets">
+						<thead>
+							<tr>
+								<th>Label</th>
+								<th>Answerable By</th>
+								<th>Date Created</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for questionset in questionsets%}
+								<tr>
+									<td>{{ questionset.label }}</td>
+									<td>{{ questionset.get_answerable_by_display|default:"Doctor" }}</td>
+									<td><span class="date">{{ questionset.date_created }}</span></td>
+								</tr>
+							{% endfor%}			
+						</tbody>
+					</table>
+				</div>
+				<div id="history" class="tab-pane fade">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Package</th>
+								<th>Version</th>
+								<th>Action</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>March 23, 2012, 4:59 p.m.</td>
+								<td>Django</td>
+								<td>1.4</td>
+								<td>Release Created</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar">
+				<div class="downloads">
+					<h3 class="visuallyhidden">Downloads</h3>
+					<div class="package">
+						<span class="count">{{ questionsets.count|intcomma }}</span> total questionsets
+					</div>
+					<div class="version">
+						<span class="count">{{ questions.count|intcomma }}</span> total questions
+					</div>
+				</div>
+				<div id="download-chart">
+				  <div class="chart loading"></div>
+				  <div class="timeline"></div>
+				  <div class="slider"></div>
+				</div>
+				<div id="release-evaluation">
+					<h3>Evaluation <small>mouse over for details</small></h3>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="PEP386 Compatibility" data-content="PEP386 defines a specific allowed syntax for Python package questionsets.&lt;br /&gt;&lt;br /&gt;Previously it was impossible to accurately determine across any Python package what order the questionsets should go in, but with PEP386 we can now intelligently sort by version...&lt;br /&gt;&lt;br /&gt;But only if the version numbers are compatible!" data-original-title="">
+							<i class="icon icon-ok"></i> Compatible with <a href="http://www.python.org/dev/peps/pep-0386/">PEP386</a>.
+						</div>
+					</div>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="Package Hosting" data-content="Did you know that packages listed on PyPI aren't required to host there?&lt;br /&gt;&lt;br /&gt;When your package manager tries to install a package from PyPI it looks in number of locations, one such location is an author specified url of where the package can be downloaded from.&lt;br /&gt;&lt;br /&gt;Packages hosted by the author means that installing this package depends on the authors server staying up, adding another link in the chain that can cause your installation to fail" data-original-title="">
+							<i class="icon icon-ok"></i> Package is hosted on PyPI
+						</div>
+					</div>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="Documentation hosted on Read The Docs" data-content="Documentation can be one of the most important parts of any library. Even more important than just having documentation, is making sure that people are able to find it easily.&lt;br /&gt;&lt;br /&gt;Read The Docs is an open source platform for hosting documentation generated by Sphinx.&lt;br /&gt;&lt;br /&gt;Hosting your documentation on Read The Docs is easy (even if it's just an additional copy), and it allows people who want to use your package the ability to locate your documentation in what is quickly becoming a one stop shop for online open source documentation.&lt;br /&gt;&lt;br /&gt;&lt;small&gt;If this says you aren't hosted on Read The Docs and you are please contact &lt;a href='mailto:support@crate.io'&gt;support@crate.io&lt;/a&gt;&lt;/small&gt;" data-original-title="">
+							<i class="icon icon-ok"></i> Available on <a href="http://django.readthedocs.org/">Read The Docs</a>
+						</div>
+					</div>
+				</div>
+				<div class="questionsets">
+					<h3>Latest Versions</h3>
+					<ul class="unstyled">
+						<li>
+							<a href="/packages/Django/1.4/" title="Django ">1.4</a>
+							<span class="date">March 23, 2012</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.3.1/" title="Django ">1.3.1</a>
+							<span class="date">Sept. 10, 2011</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.3/" title="Django ">1.3</a>
+							<span class="date">March 23, 2011</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.2.7/" title="Django ">1.2.7</a>
+							<span class="date">Sept. 11, 2011</span>
+						</li>
+						<li>
+							<a href="/packages/Django/1.2.6/" title="Django ">1.2.6</a>
+							<span class="date">Sept. 10, 2011</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="add-to-new-list">
+		<div class="modal-header">
+			<button class="close" data-dismiss="modal">
+				?
+			</button>
+			<h3>Add Django to a new List</h3>
+		</div>
+		<form method="POST" action="/users/_/Django/new/" class="form-horizontal json-form">
+			<div class="modal-body">
+				<div id="div_id_name" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x4c3fa50&gt;&gt;">
+					<label for="id_name" class="control-label required-field"> Name </label>
+					<div class="controls">
+						<input id="id_name" type="text" name="name" maxlength="50">
+					</div>
+				</div>
+				<div id="div_id_description" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x4c3f6d0&gt;&gt;">
+					<label for="id_description" class="control-label "> Description </label>
+					<div class="controls">
+						<textarea id="id_description" rows="10" cols="40" name="description"></textarea>
+					</div>
+				</div>
+				<div id="div_id_private" class="control-group   &lt;bound method BoundField.css_classes of &lt;django.forms.forms.BoundField object at 0x4c3fa50&gt;&gt;">
+					<div class="controls">
+						<label for="id_private" class="checkbox ">
+							<input type="checkbox" name="private" id="id_private">
+							Private List </label>
+						<p class="help-block">
+							Private lists are visible only to you.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="hide progress progress-striped active">
+					<div class="bar" style="width: 100%;"></div>
+				</div>
+				<a href="#" class="btn">Nevermind</a>
+				<button type="submit" class="btn btn-primary">
+					Create List
+				</button>
+			</div>
+		</form>
+	</div>
+{% endblock container %}

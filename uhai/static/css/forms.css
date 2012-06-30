@@ -11,10 +11,6 @@ form .column.textarea{
 	width: 50%;
 }
 
-form legend{
-	margin-left:10px;
-}
-
 form{
 	margin: 0 0 18px -20px;
 }

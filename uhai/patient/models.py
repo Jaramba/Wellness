@@ -7,12 +7,7 @@ from django.db import models, transaction
 
 from uhai.healthprovider.models import HealthWorker
 
-class Patient(Person):
-	'''
-	A patient with auth.User field empty is thought to have been under guardianship.
-	thus, they will inherit the nearest family members' doctor and entrustment
-	Everyone is a patient, and or whoever they choose to be.
-	'''
+class Patient(models.Model):
 	GENDER = (
 		('male', 'Male'),
 		('female', 'Female')
@@ -28,33 +23,35 @@ class Patient(Person):
 		('o-positive','O+'),
 		('o-negative','O-'),
 	]
-	
-	patient_number = models.CharField(unique=True, max_length=15)
-	
+
+	patient_number = models.CharField(primary_key=True, unique=True, max_length=15)
+	user = models.OneToOneField('auth.User')
+
 	relationship = models.ManyToManyField(
 		'userprofile.Person',
 		related_name='patient_relationship',
 		through='patient.Relationship',
 		symmetrical=False,
 	)
-	
+
 	gender = models.CharField(max_length=20, choices=GENDER, null=True)
 	date_of_birth = models.DateField(null=True, help_text='The Patient\'s indicated date of birth')
-	
+
 	blood_group = models.CharField(max_length=20, choices=BLOOD_GROUPS, null=True)
 	weight = models.CharField(max_length=5, default=0, null=True, help_text='Enter weight in Kilograms (Kgs)')
 	height = models.CharField(max_length=7, default=0, null=True, help_text='Enter standard height, eg: 5\'9" for 5 foot 9 inch')
-	
+
 	employer  = models.ForeignKey('insuranceprovider.EmployerCompany', null=True)
 	insurance = models.ManyToManyField('insuranceprovider.Insurance', through='insuranceprovider.PatientInsurance')
-	
+
 	def __unicode__(self):
-		return '%s [PNo. %s]' % (self.full_name, self.patient_number)
+		return '[PNo. %s]' % (self.patient_number)
 	
 	class Meta:
 		permissions = ( 
 		    ('view_patient', 'View patient'), 
 		)
+		verbose_name_plural = 'Patient Profile'
 		
 class RelationshipType(models.Model):
 	a_is_to_b = models.CharField(max_length=50)

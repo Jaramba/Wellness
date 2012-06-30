@@ -13,12 +13,14 @@ class EncounterForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Create Encounter</legend>')),
-            Row(Column('patient'), Column('patient_complience')),       
-            Row(Column('type')),
-            Row(Column('location')),
-            Row(Column('encounter_date')),
-            Row(Column('start_time'), Column('end_time')),
-            Row(Column('observation_notes')),
+            Row(Column(Field('patient'))),       
+			Row(Column(Field('patient_complience'))),
+            Row(Column(Field('type'))),
+            Row(Column(Field('location'))),
+            Row(Column(Field('encounter_date'))),
+            Row(Column(Field('start_time'))),
+			Row(Column(Field('end_time'))),
+            Row(Column('observation_notes'), css_class='textarea-column'),
             
             Row(
 				Div(
@@ -46,19 +48,21 @@ class EncounterPatientForm(forms.ModelForm):
 
 		self.layout = Layout(
 			Div(HTML('<legend>Enter Encounter</legend>')),
-			Row(Column('type')),
-			Row(Column('provider')),
-			Row(Column('location')),
-			Row(Column('encounter_date')),
-			Row(Column('start_time'), Column('end_time')),
-			Row(Column('observation_notes'), css_class="textarea"),
+			Row(Column(Field('type', css_class='span3'))),
+			Row(Column(Field('provider', css_class='span4'))),
+			Row(Column(Field('location', css_class='span4'))),
+			Row(Column(Field('encounter_date'))),
+			Row(Column(Field('start_time'))),
+			Row(Column(Field('end_time'))),
+			Row(Field('observation_notes'), css_class="textarea-column"),
 			
 			Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
-				css_class='form-actions')
+				css_class='form-actions'
+				)
 			)
-		)        
+		)
 		self.helper.add_layout(self.layout)
 		super(EncounterPatientForm, self).__init__(*args, **kwargs)
     
@@ -79,10 +83,10 @@ class OrderForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Add Order</legend>')),
-            Row(Column('encounter')),
-            Row(Column('discontinued')),
-            Row(Column('instructions')),
-            Row(Column('concept_notes')),
+            Row(Column(Field('encounter'))),
+            Row(Column(Field('discontinued'))),
+            Row(Column('instructions', css_class='textarea-column')),
+            Row(Column('concept_notes'), css_class='textarea-column'),
 			Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -110,11 +114,11 @@ class ProblemForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Create Problem</legend>')),
-            Row(Column('code')),
-            Row(Column('type')),
-            Row(Column('source')),
-            Row(Column('status')),
-            Row(Column('notes')),
+            Row(Column(Field('code'))),
+            Row(Column(Field('type'))),
+            Row(Column(Field('source'))),
+            Row(Column(Field('status'))),
+            Row(Column('notes'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -159,15 +163,17 @@ class ImmunizationForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Create Immunization</legend>')),
-            Row(Column('name')),
-            Row(Column('code')),
-            Row(Column('vaccine'), Column('brand_name')),
-            Row(Column('duration_of_protection')),
-            Row(Column('mode_of_delivery')),
-            Row(Column('site')),
-            Row(Column('expiry_date'), Column('practice_date')),
-            Row(Column('follow_up_date')),
-            Row(Column('notes')),
+            Row(Column(Field('name', css_class="span4"))),
+            Row(Column(Field('code'))),
+            Row(Column(Field('vaccine', css_class="span3"))),
+			Row(Column(Field('brand_name', css_class="span5"))),
+            Row(Column(Field('duration_of_protection'))),
+            Row(Column(Field('mode_of_delivery', css_class="span4"))),
+            Row(Column(Field('site', css_class="span5"))),
+			Row(Column(Field('practice_date'))),
+            Row(Column(Field('expiry_date'))),
+            Row(Column(Field('follow_up_date'))),
+            Row(Field('notes'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -194,10 +200,10 @@ class DiagnosisForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Add Diagnosis</legend>')),
-            Row(Column('problem')),
-            Row(Column('approved')),
-            Row(Column('encounter')),
-            Row(Column('notes')),
+            Row(Column(Field('problem'))),
+            Row(Column(Field('approved'))),
+            Row(Column(Field('encounter'))),
+            Row(Column('notes'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -225,10 +231,10 @@ class ProblemTestForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Add Diagnosis</legend>')),
-            Row(Column('name')),
-            Row(Column('problem')),
-            Row(Column('expected_outcomes')),
-            Row(Column('details')),
+            Row(Column(Field('name'))),
+            Row(Column(Field('problem'))),
+            Row(Column(Field('expected_outcomes'))),
+            Row(Column('details'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -257,11 +263,11 @@ class EncounterTestForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Add Diagnosis</legend>')),
-            Row(Column('name')),
-            Row(Column('encounter')),
-            Row(Column('test')),
-            Row(Column('date_administered')),
-            Row(Column('notes')),
+            Row(Column(Field('name'))),
+            Row(Column(Field('encounter'))),
+            Row(Column(Field('test'))),
+            Row(Column(Field('date_administered'))),
+            Row(Column('notes'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -288,11 +294,10 @@ class EncounterTestResultForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Add Diagnosis</legend>')),
-            Row(Column('name')),
-            Row(Column('encounter_test')),
-            Row(Column('inference')),
-            Row(Column('notes')),
-            Row(Column('notes')),
+            Row(Column(Field('name'))),
+            Row(Column(Field('encounter_test'))),
+            Row(Column(Field('inference'))),
+            Row(Column('notes'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -308,5 +313,3 @@ class EncounterTestResultForm(forms.ModelForm):
         widgets = {
             'notes': forms.Textarea
         }
-
-		

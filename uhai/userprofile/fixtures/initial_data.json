@@ -334,24 +334,6 @@
     }
   },
   {
-    "pk": -1,
-    "model": "auth.user",
-    "fields": {
-      "username": "AnonymousUser",
-      "first_name": "",
-      "last_name": "",
-      "is_active": true,
-      "is_superuser": false,
-      "is_staff": false,
-      "last_login": "2012-05-30T14:20:11.722",
-      "groups": [],
-      "user_permissions": [],
-      "password": "",
-      "email": "",
-      "date_joined": "2012-05-30T14:20:11.722"
-    }
-  },
-  {
     "pk": 1,
     "model": "auth.user",
     "fields": {
@@ -652,13 +634,11 @@
       "title": 1,
       "work_phone": "+254736705812",
       "photo": "",
-      "longitude": "",
       "county": 1,
       "mobile_phone": "+254736705812",
       "postal_code": "30177-00100",
       "home_phone": "+254736705812",
       "village": "",
-      "latitude": "",
       "date_created": "2012-05-21T04:44:26",
       "country": 1,
       "date_edited": "2012-05-21T04:18:50"
@@ -675,13 +655,13 @@
       "title": 1,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+254735199807",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-29T23:07:36.309",
       "country": 1,
       "date_edited": "2012-05-29T23:07:36.309"
@@ -698,13 +678,13 @@
       "title": 4,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+254721111234",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-21T07:02:16",
       "country": 1,
       "date_edited": "2012-05-21T07:02:16"
@@ -721,13 +701,13 @@
       "title": 2,
       "work_phone": "254736705812",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+254721111265",
       "postal_code": "30177-00100",
       "home_phone": "254736705812",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-21T04:55:18",
       "country": 1,
       "date_edited": "2012-05-21T04:48:39"
@@ -744,13 +724,13 @@
       "title": 3,
       "work_phone": "254736705812",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+254721111234",
       "postal_code": "30177-00100",
       "home_phone": "254736705812",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-21T04:52:05",
       "country": 1,
       "date_edited": "2012-05-21T04:49:45"
@@ -767,13 +747,13 @@
       "title": 1,
       "work_phone": "254736705812",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+254721111232",
       "postal_code": "30177-00100",
       "home_phone": "254736705812",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-21T04:51:44",
       "country": 1,
       "date_edited": "2012-05-21T04:50:33"
@@ -790,13 +770,13 @@
       "title": 2,
       "work_phone": "254736705812",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+254735100807",
       "postal_code": "30177-00100",
       "home_phone": "254736705812",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-21T04:55:08",
       "country": 1,
       "date_edited": "2012-05-21T04:51:10"
@@ -813,13 +793,11 @@
       "title": 1,
       "work_phone": "+254736705812",
       "photo": "",
-      "longitude": null,
       "county": 1,
       "mobile_phone": "+254736705812",
       "postal_code": "30177-00100",
       "home_phone": "+254736705812",
       "village": "Kayole",
-      "latitude": null,
       "date_created": "2012-05-27T10:48:48.106",
       "country": 1,
       "date_edited": "2012-05-27T10:48:48.106"
@@ -836,13 +814,11 @@
       "title": 1,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
       "county": 1,
       "mobile_phone": "+25476000444",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
       "date_created": "2012-05-29T17:52:31.811",
       "country": 1,
       "date_edited": "2012-05-29T17:52:31.811"
@@ -859,13 +835,11 @@
       "title": 2,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
       "county": 1,
       "mobile_phone": "+25473996265",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
       "date_created": "2012-05-29T17:50:28.702",
       "country": 1,
       "date_edited": "2012-05-29T17:50:28.702"
@@ -882,13 +856,11 @@
       "title": 1,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
       "county": 1,
       "mobile_phone": "+25472666265",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
       "date_created": "2012-05-29T17:49:14.463",
       "country": 1,
       "date_edited": "2012-05-29T17:49:14.463"
@@ -905,13 +877,13 @@
       "title": 5,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+25476993444",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-29T17:51:33.049",
       "country": 1,
       "date_edited": "2012-05-29T17:51:33.049"
@@ -928,13 +900,13 @@
       "title": 2,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+25476000444",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-29T23:46:50.572",
       "country": 1,
       "date_edited": "2012-05-29T23:46:50.572"
@@ -951,13 +923,13 @@
       "title": 1,
       "work_phone": "",
       "photo": "",
-      "longitude": "",
+      
       "county": 1,
       "mobile_phone": "+25476000444",
       "postal_code": "",
       "home_phone": "",
       "village": "",
-      "latitude": "",
+      
       "date_created": "2012-05-29T20:14:49.342",
       "country": 1,
       "date_edited": "2012-05-29T20:14:49.342"
@@ -974,13 +946,13 @@
       "title": null,
       "work_phone": null,
       "photo": "",
-      "longitude": null,
+      
       "county": null,
       "mobile_phone": null,
       "postal_code": null,
       "home_phone": null,
       "village": null,
-      "latitude": null,
+      
       "date_created": "2012-05-30T14:31:09.030",
       "country": null,
       "date_edited": "2012-05-30T14:31:09.030"

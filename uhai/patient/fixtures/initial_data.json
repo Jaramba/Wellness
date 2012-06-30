@@ -9,7 +9,8 @@
       "height": "159",
       "date_of_birth": "1990-04-07",
       "patient_number": "PAT-2001-89SE",
-      "employer": 1
+      "employer": 1,
+	  "user":1	  
     }
   },
   {
@@ -22,7 +23,8 @@
       "height": null,
       "date_of_birth": null,
       "patient_number": "PAT-2012-rq7O",
-      "employer": null
+      "employer": null,
+	  "user":2
     }
   },
   {
@@ -35,7 +37,8 @@
       "height": null,
       "date_of_birth": null,
       "patient_number": "PAT-2012-YJXA",
-      "employer": null
+      "employer": null,
+	  "user":4
     }
   },
   {
@@ -48,33 +51,8 @@
       "height": null,
       "date_of_birth": null,
       "patient_number": "PAT-2012-MDJV",
-      "employer": null
-    }
-  },
-  {
-    "pk": 7,
-    "model": "patient.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "patient_number": "PAT-2012-TDA8",
-      "employer": null
-    }
-  },
-  {
-    "pk": 9,
-    "model": "patient.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "patient_number": "PAT-2012-d9Ru",
-      "employer": null
+      "employer": null,
+	  "user":5
     }
   },
   {
@@ -87,33 +65,8 @@
       "height": null,
       "date_of_birth": null,
       "patient_number": "PAT-2012-ihcm",
-      "employer": null
-    }
-  },
-  {
-    "pk": 11,
-    "model": "patient.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "patient_number": "PAT-2012-a9p7",
-      "employer": null
-    }
-  },
-  {
-    "pk": 12,
-    "model": "patient.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "patient_number": "PAT-2012-l18a",
-      "employer": null
+      "employer": null,
+	  "user":10
     }
   },
   {
@@ -126,23 +79,10 @@
       "height": null,
       "date_of_birth": null,
       "patient_number": "PAT-2012-c1st",
-      "employer": null
+      "employer": null,
+	  "user":13
     }
-  },
-  {
-    "pk": 14,
-    "model": "patient.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "patient_number": "PAT-2012-rUuU",
-      "employer": null
-    }
-  },
-  
+  },  
   {
     "pk": 1,
     "model": "patient.relationshiptype",

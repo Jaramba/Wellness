@@ -826,9 +826,12 @@
     "pk": 2,
     "model": "healthprovider.healthcarefacility",
     "fields": {
-      "insurance_providers": [
-        1
-      ],
+	  "name": "Komarock Medical centre",
+      "phone": "+254736705845", 
+      "location": "Nairobi. Kenya", 
+      "date_added": "2012-04-07 11:22:30", 
+      "email": "kanarelo+kmc@gmail.com", 
+      "date_edited": "2012-04-07 11:22:30",
       "speciality": [
         1,
         2

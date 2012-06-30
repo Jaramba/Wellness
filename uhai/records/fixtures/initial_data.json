@@ -149703,13 +149703,13 @@
     "fields": {
       "patient": 4,
       "patient_complience": false,
-      "start_time": "2012-05-26T18:03:35.027",
+      "start_time": "18:03:35.027",
       "observation_notes": "Nothing much",
-      "encounter_date": "2012-05-26T18:03:35.027",
+      "encounter_date": "2012-05-26",
       "location": null,
       "provider": 7,
       "type": 1,
-      "end_time": "2012-05-26T18:03:35.027"
+      "end_time": "18:03:35.027"
     }
   },
   {
@@ -149718,13 +149718,13 @@
     "fields": {
       "patient": 5,
       "patient_complience": false,
-      "start_time": "2012-05-26T18:07:32.345",
+      "start_time": "18:07:32.345",
       "observation_notes": "Wew",
-      "encounter_date": "2012-05-26T18:07:32.345",
+      "encounter_date": "2012-05-26",
       "location": null,
       "provider": 3,
       "type": 2,
-      "end_time": "2012-05-26T18:07:32.345"
+      "end_time": "18:07:32.345"
     }
   },
   {
