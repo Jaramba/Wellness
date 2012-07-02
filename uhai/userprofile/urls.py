@@ -7,10 +7,10 @@ from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('uhai.userprofile.views',
     # Private profile
-	url(r'^settings/account/$', 'user_change', name='settings'),
-    url(r'^settings/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
-	url(r'^settings/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
-    url(r'^settings/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
+	url(r'^account/settings/$', 'user_change', name='settings'),
+    url(r'^account/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
+	url(r'^account/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
+    url(r'^account/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
 )
 
 urlpatterns += patterns('',
@@ -25,7 +25,7 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^settings/password/$', 'password_change',
+    url(r'^account/password/$', 'password_change',
         {
              'template_name': 'userprofile/password_change.html',
              'password_change_form':PasswordChangeForm,
@@ -33,7 +33,7 @@ urlpatterns += patterns('django.contrib.auth.views',
         }, 
         name='settings-password'
     ),
-    url(r'^settings/password/done/$', 'password_change_done',
+    url(r'^account/password/done/$', 'password_change_done',
 		{
 			'template_name': 'userprofile/password_change_done.html'
 		}, 

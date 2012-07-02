@@ -19,10 +19,12 @@ urlpatterns += get_crud_urls(
     models=[
         Program, 
         EnrolledProgram,
+		ProgramQuestionnaire
     ],
     forms=[
         ProgramForm, 
-        EnrolledProgramForm
+        EnrolledProgramForm,
+		ProgramQuestionnaire
     ],
     data=globals()                            
 )   

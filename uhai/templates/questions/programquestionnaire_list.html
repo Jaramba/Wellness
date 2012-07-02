@@ -1,6 +1,6 @@
-{% extends "medication/immunization_list.html" %}
+{% extends "programs/programs_base.html" %}
 
-{% block container %}
+{% block container-right %}
 	<legend>Program Questionnaires</legend>
 	{% if questionnaires %}
 		<table class='table table-stripped table-bordered'>
@@ -28,4 +28,4 @@
 			No Questionnaires Found
 		</div>
 	{% endif %}
-{% endblock container %}
+{% endblock container-right %}

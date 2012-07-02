@@ -12,7 +12,7 @@ programtype = login_required(lambda request, *args, **kwargs: model_view(request
 programworkflow = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 programworkflowstate = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 enrolledprogram = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-
+programquestionnaire = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 @login_required
 def index(request, problem_type='', template_name = "programs/index.html", *args, **kwargs):
     data = {}

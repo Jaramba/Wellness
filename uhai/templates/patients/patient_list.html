@@ -1,0 +1,47 @@
+{% extends "patients/patients_base.html" %}
+
+{% block page-title %}Patient List{% endblock page-title %}
+
+{% block container-right %}
+	<legend>Patient List</legend>
+
+	{% if patients %} 
+		<table class='table'>			
+			{% for patient in patients %}
+				<tr>
+					<td>
+						<div id="image-holder" class="pull-left" data-image-holder="{{patient.pk}}" style="margin-right:10px">
+							<img width="110px" height="110px" src="{{MEDIA_URL}}{{ patient.user.profile.photo }}"/>
+						</div>
+						<div id="detail-holder" data-detail-holder="{{patient.pk}}" class="pull-left">
+							<h4><a href="{% url patient-detail patient.pk %}">{{patient.user}}</a></h4>
+							<div>
+								Age: {{patient.date_of_birth|timesince}}
+							</div>
+							<div>
+								Sex: {{patient.get_gender_display|default:""}}
+							</div>
+							<div>
+								Height: {{patient.height|default:""}}
+							</div>
+							<div>
+								Weight: {{patient.weight|default:""}}
+							</div>
+							<div>
+								Employer: {{patient.employer|default:""}}
+							</div>
+						</div>
+					</td>
+				</tr>
+			{% empty %}
+				<tr colspan="6">
+					<td colspan="2">No Patients Found</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<div>
+			No Patients Found
+		<div>
+	{% endif %}
+{% endblock container-right %}

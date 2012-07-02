@@ -1,0 +1,33 @@
+{% extends "medication/immunization_list.html" %}
+
+{% block container-right %}
+	<legend>Encounter Tests</legend>
+	{% if encountertesttests %}
+		<table class='table table-stripped table-bordered'>
+			<tr>
+				<th>Name</th>
+				<th>Encounter</th>
+				<th>Test</th>
+				<th>Date Administered</th>
+			</tr>
+			{% for encountertest in encountertesttests %}
+				<tr>	
+					<td>{{encountertest.name}}</td>
+					<td>{{encountertest.encounter}}</td>
+					<td>{{encountertest.test}}</td>
+					<td>{{encountertest.date_administered}}</td>
+					<td>
+						<a class="btn btn-primary" href="{% url encountertest-edit encountertest.pk %}">Edit</a>
+						<a class="btn btn-primary" href="{% url encountertest-delete encountertest.pk %}">Delete</a>
+					</td>
+				</tr>
+			{% empty %}
+				<tr><td colspan="2"><div class="well">No Encounters Found</div></td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<div class="well">
+			No Encounters Found
+		</div>
+	{% endif %}
+{% endblock container-right %}

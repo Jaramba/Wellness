@@ -1,5 +1,6 @@
 from django.db import models
 from uhai.core.models import Record, MetaData
+from uhai.reminders.models import Event
 
 class Medication(models.Model):
     MEDICATION_TYPE=[
@@ -29,8 +30,7 @@ class Medication(models.Model):
         ('milligram', 'Milligram (mg)'),
         ('microgram', 'Microgram (mcg)'),
         ('percent', 'Percent (%)'),
-    ]
-	
+    ]	
     name = models.CharField(max_length=50)
     medication_type = models.CharField(max_length=10, choices=MEDICATION_TYPE)
     way_taken = models.CharField(max_length=20, choices=WAY_TAKEN)
@@ -45,7 +45,7 @@ class Medication(models.Model):
     def __unicode__(self):
         return self.name
 
-class Prescription(models.Model):
+class Prescription(Event):
     UNIT = [
     	('tablet', 'Tablet(s)'),         
     	('capsule', 'Capsule(s)'),
@@ -64,24 +64,14 @@ class Prescription(models.Model):
     	('per-week', 'Per week'),
     	('per-month', 'Per month'),
     	('per-year', 'Per year')
-    ]
-	
-    encounter = models.ForeignKey("records.Encounter")
-    medication = models.ForeignKey('Medication')
-    
+    ]	
+    medication = models.ForeignKey('Medication')    
     reason = models.CharField(max_length=300)
     
     quantity = models.SmallIntegerField()
-    frequency = models.CharField(max_length=50, choices=[(u'%s'%n, '%s time%s' % (n, 's' if n > 1 else '')) for n in range(1,13)])
     unit = models.CharField(max_length=50, choices=UNIT)
     period = models.CharField(max_length=50, choices=PERIODS)
-    reminder_type = models.ForeignKey('reminders.ReminderType')
-    notes = models.CharField(max_length=2000)	
-    
-    date_started = models.DateField()
-    date_ended = models.DateField()
-    date_prescribed = models.DateField()
-    next_prescription_date = models.DateField()
+    notes = models.CharField(max_length=2000)
     
     def __unicode__(self):
     	return '%s, %s %s taken %s %s for %s, prescribed by %s' % (
@@ -95,8 +85,8 @@ class Prescription(models.Model):
             ('view_prescription', 'View prescription'), 
         )
 
-class Immunization(Record):
-	WAY_TAKEN = [
+class Immunization(Event):
+	MODE_OF_DELIVERY = [
 		('by-mouth', 'By mouth'),
 		('in-right-ear', 'In Right ear'),
 		('in-both-ears', 'In Both ears'),
@@ -117,10 +107,9 @@ class Immunization(Record):
 	vaccine = models.ForeignKey(Medication)
 	brand_name = models.CharField(max_length=100)
 	duration_of_protection = models.CharField(max_length=3, help_text='duration time, in years')
-	mode_of_delivery = models.CharField(choices=WAY_TAKEN, max_length=100)
+	mode_of_delivery = models.CharField(choices=MODE_OF_DELIVERY, max_length=100)
 	follow_up_date = models.DateTimeField()
 	expiry_date = models.DateTimeField()
-	practice_date = models.DateTimeField()
 
 	class Meta:
 		permissions = ( 

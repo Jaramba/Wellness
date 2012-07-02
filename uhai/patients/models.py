@@ -37,7 +37,7 @@ class Patient(models.Model):
 	insurance = models.ManyToManyField('insurance.Insurance', through='insurance.PatientInsurance')
 
 	def __unicode__(self):
-		return '[PNo. %s]' % (self.patient_number)
+		return '%s' % self.user
 	
 	class Meta:
 		permissions = ( 

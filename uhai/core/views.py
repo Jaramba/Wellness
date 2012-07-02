@@ -21,7 +21,7 @@ def model_view(request, pk=None,
          extra_data={}):
 	
 	success = False
-	if action in ('view','edit','delete', 'create'):
+	if action in ('detail','edit','delete', 'create', 'view'):
 		try:
 			model_obj = queryset.filter(pk=pk).get() if pk else queryset.model()
 		except queryset.model.DoesNotExist:
@@ -29,6 +29,7 @@ def model_view(request, pk=None,
 		except AssertionError, e:
 			raise e
 		data[context_object_name(model_obj)] = model_obj
+		print data
 	else:
 		data[context_object_name_plural(queryset.model)] = queryset
 

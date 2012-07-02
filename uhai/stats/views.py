@@ -1,4 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render_to_response
+
+from django.template.context import RequestContext
 
 def patient_delta(request):
     data = '''
@@ -23,3 +28,7 @@ def patient_delta(request):
     '''
     
     return HttpResponse(data, mimetype="application/json")
+
+@login_required
+def index(request, problem_type='', data = {}, template_name="stats/index.html", *args, **kwargs):    
+    return render_to_response(template_name, data, context_instance= RequestContext(request))

@@ -1,5 +1,6 @@
 from django.db import models
 from uhai.core.models import Record, MetaData 
+from uhai.reminders.models import Event
 
 class ProblemType(MetaData):pass
 class Problem(models.Model):
@@ -37,15 +38,11 @@ class ICD10Block(MetaData):
 		)
 
 class EncounterType(MetaData):pass
-class Encounter(models.Model):
-	user = models.ForeignKey("auth.User", verbose_name="Patient")
+class Encounter(Event):	
 	provider = models.ForeignKey('providers.HealthWorker')
 	type = models.ForeignKey('EncounterType')
 	patient_complience = models.BooleanField(default=False)
-	location = models.CharField(max_length=50, null=True)
-	encounter_date = models.DateField()
-	start_time = models.TimeField()
-	end_time = models.TimeField()
+	location = models.CharField(max_length=50, null=True)	
 	observation_notes = models.TextField()
 	
 	def __unicode__(self):
@@ -106,7 +103,7 @@ class TrackingField(models.Model):
 	def __unicode__(self):
 		return '%s in %s' % (self.name, self.unit)
 
-class TrackingEntry(models.Model):
+class TrackingEntry(Event):
 	field = models.ForeignKey(TrackingField)
 	value = models.CharField(max_length=5)
 	
@@ -122,16 +119,14 @@ class Test(MetaData):
 class ProblemTest(Test):
 	problem = models.ForeignKey('Problem')
 
-class EncounterTest(models.Model):
+class EncounterTest(Event):
 	name = models.CharField(max_length=30)
 	encounter = models.ForeignKey('Encounter')
 	test = models.ForeignKey('Test')
 	notes = models.TextField(null=True, blank=True)
-	date_administered = models.DateTimeField()
 	
-class EncounterTestResult(models.Model):
+class EncounterTestResult(Event):
 	name = models.CharField(max_length=30)
 	encounter_test = models.ForeignKey(EncounterTest)
 	inference = models.TextField(null=True, blank=True)
 	notes = models.TextField(null=True, blank=True)
-	date_added = models.DateTimeField(auto_now=True)
