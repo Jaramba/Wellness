@@ -74,7 +74,7 @@
 								{% elif request.session.use_page_as == 'patient' %}
 									<li class="navbar-item" title="Schedule" rel="tooltip"><a href="{% url calendar %}"><i class="icon-calendar icon-white"></i></a></li>
 									<li class="navbar-item" title="Records" rel="tooltip"><a href="{% url records %}"><i class="icon-folder-open icon-white"></i></a></li>
-									<li class="navbar-item" title="Questionnaires" rel="tooltip"><a href="{% url questionnaire-list %}"><i class="icon-th-list icon-white"></i></a></li>
+									<li class="navbar-item" title="Questionnaires" rel="tooltip"><a href="{% url programs %}"><i class="icon-th-list icon-white"></i></a></li>
 								{% endif %}								
 								{% if request.session.use_page_as == 'health-worker' %}
 									<li class="navbar-item" title="Reports" id="report-menu" rel="tooltip">

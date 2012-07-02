@@ -1,4 +1,4 @@
-{% extends "records/records_base.html" %}
+{% extends "programs/programs_base.html" %}
 
 {% block container %}
 	<legend style="border-bottom: None;">Your Personal Records</legend>
@@ -8,19 +8,19 @@
 				<tr>
 					<td style="vertical-align: top">
 					<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
-						<h3>Allergies</h3>
+						<h3>Programs</h3>
 						<div style="clear:both; margin-bottom:20px">
-							Manage and keep track of your list of allergies
+							Manage and keep track of your programs
 						</div>
-						<a class="btn btn-success pull-right" href="{% url diagnosis-list 'allergy' %}">Edit Allergies</a>
+						<a class="btn btn-success pull-right" href="{% url program-list %}">View Programs</a>
 					</div></td>
 					<td style="vertical-align: top">
 						<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
-							<h3>Conditions</h3>
+							<h3>Questionnaires</h3>
 							<div style="clear:both; margin-bottom:20px">
-								Track any acute, chronic or recurrent medical conditions you have
+								View all the available questionnaires for the employer
 							</div>
-							<a class="btn btn-success pull-right" href="{% url diagnosis-list 'condition' %}">Edit Conditions</a>
+							<a class="btn btn-success pull-right" href="{% url questionnaire-list %}">View Questionnaires</a>
 						</div>
 					</td>
 				</tr>

@@ -1,0 +1,20 @@
+{% extends "records/records_base.html" %}
+{% load i18n %}
+
+{% block container-left %}
+	<ul class="nav nav-list">
+		<li class="nav-header">Programs</li>
+		<li>
+			<a href="{% url encounter-list %}"><span>Programs</span></a>
+		</li>
+		<li>
+			<a href="{% url encounter-list %}"><span>Enrolled Programs</span></a>
+		</li>
+		<li>
+			<a href="{% url diagnosis-list 'condition' %}"><span>Questionnaires</span></a>
+		</li>
+		<li>
+			<a href="{% url immunization-list %}"><span>Patient Questionnaires</span></a>
+		</li>
+	</ul>
+{% endblock container-left %}
