@@ -1,0 +1,10 @@
+{% extends "medication/immunization_create.html" %}
+
+{% block page-title %}
+	Encounter Create
+{% endblock %}
+
+{% block extrajs-jquery-enclosed %}
+	{{block.super}}
+	$('#id_encounter_date').datepicker();
+{% endblock extrajs-jquery-enclosed %}

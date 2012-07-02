@@ -1,7 +1,7 @@
 [
   {
     "pk": 1, 
-    "model": "insuranceprovider.healthinsuranceprovider", 
+    "model": "insurance.healthinsuranceprovider", 
     "fields": {
       "name": "AON", 
       "phone": "254736705812", 
@@ -13,7 +13,7 @@
   }, 
   {
     "pk": 1, 
-    "model": "insuranceprovider.employercompany", 
+    "model": "insurance.employercompany", 
     "fields": {
       "name": "Kenya Power", 
       "insurance_providers": [

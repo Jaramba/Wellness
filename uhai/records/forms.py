@@ -20,7 +20,7 @@ class EncounterForm(forms.ModelForm):
             Row(Column(Field('encounter_date'))),
             Row(Column(Field('start_time'))),
 			Row(Column(Field('end_time'))),
-            Row(Column('observation_notes'), css_class='textarea-column'),
+            Row(Field('observation_notes'), css_class='textarea-column'),
             
             Row(
 				Div(
@@ -152,44 +152,7 @@ class TrackingFieldForm(forms.ModelForm):
         
     class Meta:
         model = TrackingField
-        
-class ImmunizationForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_id = 'problem-form'
-        self.helper.form_class = 'general_form'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = '#'
-        
-        self.layout = Layout(
-            Div(HTML('<legend>Create Immunization</legend>')),
-            Row(Column(Field('name', css_class="span4"))),
-            Row(Column(Field('code'))),
-            Row(Column(Field('vaccine', css_class="span3"))),
-			Row(Column(Field('brand_name', css_class="span5"))),
-            Row(Column(Field('duration_of_protection'))),
-            Row(Column(Field('mode_of_delivery', css_class="span4"))),
-            Row(Column(Field('site', css_class="span5"))),
-			Row(Column(Field('practice_date'))),
-            Row(Column(Field('expiry_date'))),
-            Row(Column(Field('follow_up_date'))),
-            Row(Field('notes'), css_class='textarea-column'),
-            Row(
-				Div(
-					Submit('Save', 'Save Changes', css_class='btn-primary'),
-				css_class='form-actions')
-			)
-        )
-        self.helper.add_layout(self.layout)
-        super(ImmunizationForm, self).__init__(*args, **kwargs)
-        
-    class Meta:
-        model = Immunization
-        exclude = ['patient']
-        widgets = {
-            'notes': forms.Textarea
-        }
-        
+               
 class DiagnosisForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
@@ -203,7 +166,7 @@ class DiagnosisForm(forms.ModelForm):
             Row(Column(Field('problem'))),
             Row(Column(Field('approved'))),
             Row(Column(Field('encounter'))),
-            Row(Column('notes'), css_class='textarea-column'),
+            Row(Field('notes'), css_class='textarea-column'),
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),

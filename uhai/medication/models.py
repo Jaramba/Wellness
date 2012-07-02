@@ -43,7 +43,7 @@ class Medication(models.Model):
     side_effects = models.CharField(max_length=200)
     
     def __unicode__(self):
-        return '%s type: %s' % (self.name, self.get_medication_type_display()) 
+        return self.name
 
 class Prescription(models.Model):
     UNIT = [
@@ -65,6 +65,7 @@ class Prescription(models.Model):
     	('per-month', 'Per month'),
     	('per-year', 'Per year')
     ]
+	
     encounter = models.ForeignKey("records.Encounter")
     medication = models.ForeignKey('Medication')
     
@@ -93,3 +94,35 @@ class Prescription(models.Model):
         permissions = ( 
             ('view_prescription', 'View prescription'), 
         )
+
+class Immunization(Record):
+	WAY_TAKEN = [
+		('by-mouth', 'By mouth'),
+		('in-right-ear', 'In Right ear'),
+		('in-both-ears', 'In Both ears'),
+		('in-left-ear', 'In Left ear'),
+		('in-right-eye', 'In Right eye'),
+		('in-both-eyes', 'In Both eyes'),
+		('in-left-eye', 'In Left eye'),
+		('in-nose', 'In Nose'),
+		('inhalation', 'Inhalation'),
+		('intravenous', 'Intravenous'),
+		('topical', 'Topical'),
+		('rectal', 'Rectal'),
+		('vaginal', 'Vaginal'),
+		('under-tongue', 'Under tongue'),
+		('subcataneous', 'Subcataneous'),
+	]
+	code = models.CharField(max_length=50)
+	vaccine = models.ForeignKey(Medication)
+	brand_name = models.CharField(max_length=100)
+	duration_of_protection = models.CharField(max_length=3, help_text='duration time, in years')
+	mode_of_delivery = models.CharField(choices=WAY_TAKEN, max_length=100)
+	follow_up_date = models.DateTimeField()
+	expiry_date = models.DateTimeField()
+	practice_date = models.DateTimeField()
+
+	class Meta:
+		permissions = ( 
+			('view_immunization', 'View immunization'), 
+		)

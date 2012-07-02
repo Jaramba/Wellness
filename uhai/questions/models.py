@@ -103,8 +103,7 @@ class Response(models.Model):
 	Records a student's response to a given question at a 
 	particular sitting
 	"""
-	patient = models.ForeignKey('patient.Patient', related_name='reponse_patient')
-	answer_by = models.ForeignKey('userprofile.UserProfile')
+	user = models.ForeignKey('auth.User', related_name='reponse_patient')
 	question = models.ForeignKey(Question)
 	value = models.CharField(max_length=255)
 

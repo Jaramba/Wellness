@@ -9,12 +9,6 @@ class HealthCareFacilityAdmin(admin.ModelAdmin):
     inlines = []
 admin.site.register(HealthCareFacility, HealthCareFacilityAdmin)
     
-class HealthWorkerAdmin(admin.ModelAdmin):
-    model = HealthWorker
-    list_display = []
-
-admin.site.register(HealthWorker, HealthWorkerAdmin)
-
 class SpecialityAdmin(admin.ModelAdmin):
 	model = Speciality
 

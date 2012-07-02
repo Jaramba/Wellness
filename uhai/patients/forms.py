@@ -51,7 +51,7 @@ class PatientForm(forms.ModelForm):
 			'user', 'patient_number'
 		]
 
-class RelationshipForm(forms.ModelForm):
+class PatientEmergencyContactForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
 		self.helper.form_id = 'patient-form'
@@ -60,22 +60,26 @@ class RelationshipForm(forms.ModelForm):
 		self.helper.form_action = '.'
 		
 		layout = Layout(
-			Row(Column('title')),
-			Row(Column('first_name')),
+			Div(HTML('<legend>Enter Emergency Contact</legend>')),
+			Row(Column(Field('full_name', css_class='span5'))),
+			Row(Column(Field('email', css_class='span4'))),
+			Row(Column(Field('mobile_phone', css_class='span3'))),
+			Row(Column(Field('home_phone', css_class='span3'))),
+			Row(Column(Field('work_phone', css_class='span3'))),
+			Row(Column(Field('postal_code', css_class='span3'))),
 			Row(Column('national_id')),
-			Row(Column('postal_code')),
-			Row(Column('employer')),
-			Row(Column('doctor')),       
+			Row(Column('next_of_kin')),
+			
 			Row(
-				ButtonHolder(
-					Submit('Save', 'Save Changes'),
-				)
+				Div(
+					Submit('Save', 'Save Changes', css_class='btn-primary'),
+				css_class='form-actions')
 			)
 		)
 		self.helper.add_layout(layout)
 		
-		return super(RelationshipForm, self).__init__(*args, **kwargs)
+		return super(PatientEmergencyContactForm, self).__init__(*args, **kwargs)
 
 	class Meta:
-		model = Relationship
-		exclude = ['person_a']
+		model = PatientEmergencyContact
+		exclude = ['patient']

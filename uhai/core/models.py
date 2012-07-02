@@ -10,7 +10,7 @@ class OwnerModel(models.Model):
 
 class Record(models.Model):
 	name = models.CharField(max_length=30)
-	patient = models.ForeignKey("patient.Patient")
+	patient = models.ForeignKey("patients.Patient")
 	notes = models.TextField()
 	
 	class Meta:

@@ -723,9 +723,8 @@
     "model": "questions.response",
     "fields": {
       "question": 47,
-      "patient": 1,
       "value": "2",
-      "answer_by": 1
+      "user": 1
     }
   },
   {
@@ -733,9 +732,8 @@
     "model": "questions.response",
     "fields": {
       "question": 47,
-      "patient": 1,
       "value": "2",
-      "answer_by": 1
+      "user": 1
     }
   },
   {
@@ -743,9 +741,8 @@
     "model": "questions.response",
     "fields": {
       "question": 47,
-      "patient": 1,
       "value": "",
-      "answer_by": 1
+      "user": 1
     }
   },
   {
@@ -753,9 +750,8 @@
     "model": "questions.response",
     "fields": {
       "question": 48,
-      "patient": 1,
       "value": "on",
-      "answer_by": 1
+      "user": 1
     }
   }
 ]

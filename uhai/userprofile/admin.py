@@ -3,8 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Group
 
 from uhai.core.utils import *
-from uhai.patient.models import Patient
-from uhai.healthprovider.models import HealthWorker
+from uhai.patients.models import Patient
+from uhai.providers.models import HealthWorker
 
 from forms import *
 from models import *
@@ -19,7 +19,6 @@ class HealthWorkerAdmin(admin.StackedInline):
 	
 class PatientInlineAdmin(admin.StackedInline):
 	model = Patient
-	readonly_fields = ['patient_number']
 	extra = 0
 
 '''[profile.id, 'PAT-%s-%s' % (datetime.now().strftime('%Y'), get_random_string(4))]'''
@@ -49,24 +48,6 @@ class UserUserProfileAdmin(UserAdmin):
 	form = UserChangeForm
 	
 	actions = [deactivate]
-
-class PersonAdmin(admin.ModelAdmin):
-    model = Person
-    list_display = [f.name for f in Person._meta.fields if f.name not in [
-          'photo', 
-          'country', 
-          'nationality', 
-          'id', 
-          'date_created', 
-          'date_edited'
-          ]
-    ]
-    inlines = []
-    
-    def queryset(self, request):
-        qs = super(PersonAdmin, self).queryset(request)
-        return qs.filter(userprofile__isnull=True)
-    
-admin.site.register(Person, PersonAdmin)
+   
 admin.site.unregister(User)
 admin.site.register(User, UserUserProfileAdmin)

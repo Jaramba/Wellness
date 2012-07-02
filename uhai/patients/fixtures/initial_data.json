@@ -1,91 +1,85 @@
 [
   {
     "pk": 1,
-    "model": "patient.patient",
+    "model": "patients.patient",
     "fields": {
       "weight": "97",
       "blood_group": "b-positive",
       "gender": "male",
       "height": "159",
       "date_of_birth": "1990-04-07",
-      "patient_number": "PAT-2001-89SE",
-      "employer": 1,
-	  "user":1	  
+      "user": 1,
+      "employer": 1
     }
   },
   {
     "pk": 2,
-    "model": "patient.patient",
+    "model": "patients.patient",
     "fields": {
       "weight": null,
       "blood_group": null,
       "gender": null,
       "height": null,
       "date_of_birth": null,
-      "patient_number": "PAT-2012-rq7O",
-      "employer": null,
-	  "user":2
+      "user": 2,
+      "employer": null
     }
   },
   {
     "pk": 4,
-    "model": "patient.patient",
+    "model": "patients.patient",
     "fields": {
       "weight": null,
       "blood_group": null,
       "gender": null,
       "height": null,
       "date_of_birth": null,
-      "patient_number": "PAT-2012-YJXA",
-      "employer": null,
-	  "user":4
+      "user": 4,
+      "employer": null
     }
   },
   {
     "pk": 5,
-    "model": "patient.patient",
+    "model": "patients.patient",
     "fields": {
       "weight": null,
       "blood_group": null,
       "gender": null,
       "height": null,
       "date_of_birth": null,
-      "patient_number": "PAT-2012-MDJV",
-      "employer": null,
-	  "user":5
+      "user": 5,
+      "employer": null
     }
   },
   {
     "pk": 10,
-    "model": "patient.patient",
+    "model": "patients.patient",
     "fields": {
       "weight": null,
       "blood_group": null,
       "gender": null,
       "height": null,
       "date_of_birth": null,
-      "patient_number": "PAT-2012-ihcm",
-      "employer": null,
-	  "user":10
+      "user": 10,
+      "employer": null
     }
   },
   {
     "pk": 13,
-    "model": "patient.patient",
+    "model": "patients.patient",
     "fields": {
       "weight": null,
       "blood_group": null,
       "gender": null,
       "height": null,
       "date_of_birth": null,
-      "patient_number": "PAT-2012-c1st",
-      "employer": null,
-	  "user":13
+      "user": 13,
+      "employer": null
     }
-  },  
+  },
   {
     "pk": 1,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:02:47",
@@ -96,7 +90,7 @@
   },
   {
     "pk": 2,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:02:58",
@@ -107,7 +101,7 @@
   },
   {
     "pk": 3,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:03:06",
@@ -118,7 +112,7 @@
   },
   {
     "pk": 4,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:03:18",
@@ -129,7 +123,7 @@
   },
   {
     "pk": 5,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:03:30",
@@ -140,7 +134,7 @@
   },
   {
     "pk": 6,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:03:40",
@@ -151,7 +145,7 @@
   },
   {
     "pk": 7,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:03:46",
@@ -162,7 +156,7 @@
   },
   {
     "pk": 8,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:03:56",
@@ -173,7 +167,7 @@
   },
   {
     "pk": 9,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:04:10",
@@ -184,7 +178,7 @@
   },
   {
     "pk": 10,
-    "model": "patient.relationshiptype",
+    "model": "patients.relationshiptype",
     "fields": {
       "preffered": false,
       "date_created": "2012-05-21T08:04:28",
@@ -195,10 +189,9 @@
   },
   {
     "pk": 1,
-    "model": "patient.relationship",
+    "model": "patients.relationship",
     "fields": {
-      "next_of_kin": false,
-      "emergency_contact": false,
+      "next_of_kin": true,
       "person_b": 3,
       "relationship": 10,
       "person_a": 2

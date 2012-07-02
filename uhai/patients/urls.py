@@ -17,11 +17,11 @@ urlpatterns = get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
     models=[
        Patient,
-	   Relationship
+	   PatientEmergencyContact
     ],
     forms=[
        PatientForm,
-	   RelationshipForm
+	   PatientEmergencyContactForm
     ],
     data=globals()                            
 )

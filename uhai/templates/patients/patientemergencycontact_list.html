@@ -1,0 +1,41 @@
+{% extends "records/records_base.html" %}
+
+{% block container-right %}
+	<legend>Emergency Contacts</legend>
+	<div class="widget_inside drugs-search">
+		
+		<div id="add" style="width:100%;clear:both"><a href="{% url patientemergencycontact-create %}" class="btn btn-info pull-right">Add Emergency Contact</a></div>
+		{% if patientemergencycontacts %} 
+			<table class='table' style="clear:both">
+				<tr>
+					<th>Full Name</th>
+					<th>Email</th>
+					<th>Mobile Phone</th>
+					<th>Home Phone</th>
+					<th>Work Phone</th>
+					<th>Postal Code</th>
+				</tr>
+				{% for patientemergencycontact in patientemergencycontacts %}
+					<tr>
+						<td>{{patientemergencycontact.full_name}}</td>
+						<td>{{patientemergencycontact.email}}</td>
+						<td>{{patientemergencycontact.mobile_phone}}</td>
+						<td>{{patientemergencycontact.home_phone}}</td>
+						<td>{{patientemergencycontact.work_phone}}</td>
+						<td>{{patientemergencycontact.postal_code}}</td>
+						<td>
+							<a href="{% url patientemergencycontact-edit patientemergencycontact.pk %}">Edit</a> |
+							<a href="{% url patientemergencycontact-delete patientemergencycontact.pk %}">Delete</a>
+						</td>
+					</tr>
+				{% empty %}
+					<tr><td colspan="2">No Emergency Contacts Found</td></tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<div>
+				No Emergency Contacts Found
+			<div>
+		{% endif %}
+	</div>
+{% endblock container-right %}

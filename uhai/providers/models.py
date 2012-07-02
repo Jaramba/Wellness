@@ -1,7 +1,7 @@
 from django.db import models
 from uhai.core.models import *
 from uhai.userprofile.models import *
-from uhai.insuranceprovider.models import *
+from uhai.insurance.models import *
 
 class SpecialityCategory(models.Model):
 	name = models.CharField(max_length=150)
@@ -36,9 +36,11 @@ class HealthCareFacility(Company):
         permissions = (
             ('view_healthcarefacility', 'View health care facility'),
         )
-
+		
 class HealthWorker(models.Model):
 	user = models.OneToOneField('auth.User')
+	is_admin = models.BooleanField(default=False)
+	is_contact_person = models.BooleanField(default=False)
 	facility = models.ForeignKey(HealthCareFacility)
 	speciality = models.ManyToManyField(Speciality)
 	practice_number = models.CharField(max_length=20, null=True, blank=False)

@@ -7,7 +7,7 @@ class Title(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class Person(models.Model):
+class UserProfile(models.Model):
 	'''
 	Not Everyone is a patient; This will act as a staging profile, until someone
 	gets an account.... hmmm, should we create an inactive user or just this?
@@ -31,6 +31,9 @@ class Person(models.Model):
 	county = models.ForeignKey('core.County', null=True, help_text='Your home county')
 	country = models.ForeignKey('core.Country', null=True, help_text='Your home country')
 		
+	user = models.OneToOneField('auth.User')
+	national_id = models.CharField(max_length=25)
+		
 	date_edited = models.DateTimeField(auto_now=True)
 	date_created = models.DateTimeField(auto_now=True)
 
@@ -46,19 +49,6 @@ class Person(models.Model):
 					self.last_name if hasattr(self, 'last_name') else ''
 				) if i
 			])
-	class Meta:
-		verbose_name = 'Person'
-        permissions = (
-            ('view_person', 'View person'),
-        )
-
-class UserProfile(Person):
-	user = models.OneToOneField('auth.User')
-	national_id = models.CharField(max_length=25)
-	
-	def __unicode__(self):
-		return self.full_name
-	
 	class Meta:
 		verbose_name = 'System User profile'
         permissions = (

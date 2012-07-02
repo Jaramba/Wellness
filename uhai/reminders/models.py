@@ -14,7 +14,7 @@ class Reminder(models.Model):
         ('nine-months', 'Nine months'),
         ('yearly', 'Per year')
     ]
-    patient  = models.ForeignKey('patient.Patient')
+    user = models.ForeignKey('auth.User')
     message = models.CharField(max_length=140)
     frequency = models.CharField(choices=PERIODS, max_length=50)
     start_date = models.DateTimeField('Start Time')

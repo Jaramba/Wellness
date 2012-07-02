@@ -54,8 +54,8 @@ class PrescriptionForm(forms.ModelForm):
             Row(Column('reminder_type')),
             Row(Column('date_prescribed'), Column('date_started')),
             Row(Column('next_prescription_date')),
-            Row(Column('reason', css_class="textarea")),
-            Row(Column('notes', css_class="textarea")),
+            Row(Field('reason'), css_class='textarea-column'),
+            Row(Field('notes'), css_class='textarea-column'),
             
             Row(
 				Div(
@@ -73,4 +73,41 @@ class PrescriptionForm(forms.ModelForm):
         widgets = {
             'reason' : forms.Textarea,
             'notes' : forms.Textarea
+        }
+
+class ImmunizationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.form_id = 'problem-form'
+        self.helper.form_class = 'general_form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '#'
+        
+        self.layout = Layout(
+            Div(HTML('<legend>Create Immunization</legend>')),
+            Row(Column(Field('name', css_class="span4"))),
+            Row(Column(Field('code'))),
+            Row(Column(Field('vaccine', css_class="span3"))),
+			Row(Column(Field('brand_name', css_class="span5"))),
+            Row(Column(Field('duration_of_protection'))),
+            Row(Column(Field('mode_of_delivery', css_class="span4"))),
+            Row(Column(Field('site', css_class="span5"))),
+			Row(Column(Field('practice_date'))),
+            Row(Column(Field('expiry_date'))),
+            Row(Column(Field('follow_up_date'))),
+            Row(Field('notes'), css_class='textarea-column'),
+            Row(
+				Div(
+					Submit('Save', 'Save Changes', css_class='btn-primary'),
+				css_class='form-actions')
+			)
+        )
+        self.helper.add_layout(self.layout)
+        super(ImmunizationForm, self).__init__(*args, **kwargs)
+        
+    class Meta:
+        model = Immunization
+        exclude = ['patient']
+        widgets = {
+            'notes': forms.Textarea
         }

@@ -23,6 +23,7 @@ class HealthInsuranceProvider(Company):
 		)
 
 class EmployerCompany(Company):
+	contact_person_name = models.CharField(max_length=100, null=True)
 	insurance_providers = models.ManyToManyField('HealthInsuranceProvider')	
 	class Meta:
 		verbose_name_plural = 'Employer companies'

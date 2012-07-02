@@ -1,0 +1,785 @@
+[
+  {
+    "pk": 1,
+    "model": "providers.specialitycategory",
+    "fields": {
+      "name": "Dentistry"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "providers.specialitycategory",
+    "fields": {
+      "name": "Complementary"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "providers.specialitycategory",
+    "fields": {
+      "name": "Doctors"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "providers.specialitycategory",
+    "fields": {
+      "name": "Health care centers"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "providers.specialitycategory",
+    "fields": {
+      "name": "Health care services"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "providers.specialitycategory",
+    "fields": {
+      "name": "Health care centers"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:53.704",
+      "name": "Other",
+      "slug": "other"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:53.822",
+      "name": "Clinics",
+      "slug": "clinics"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:53.922",
+      "name": "Acupuncturists",
+      "slug": "acupuncturists"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.030",
+      "name": "Chiropractors",
+      "slug": "chiropractors"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.130",
+      "name": "Naturopathic medicine",
+      "slug": "naturopathic-medicine"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.239",
+      "name": "Osteopathic",
+      "slug": "osteopathic"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.339",
+      "name": "speciality alternative",
+      "slug": "speciality-alternative"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.584",
+      "name": "General",
+      "slug": "general"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.689",
+      "name": "Cosmetic",
+      "slug": "cosmetic"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.797",
+      "name": "Dentist referral services",
+      "slug": "dentist-referral-services"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:54.914",
+      "name": "Endodontics",
+      "slug": "endodontics"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.022",
+      "name": "Orthodontics",
+      "slug": "orthodontics"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.139",
+      "name": "Pediatric",
+      "slug": "pediatric"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.239",
+      "name": "Periodontics",
+      "slug": "periodontics"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.339",
+      "name": "Prosthodontics",
+      "slug": "prosthodontics"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.464",
+      "name": "Speciality dental care",
+      "slug": "speciality-dental-care"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.622",
+      "name": "Other",
+      "slug": "other-doctors"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.747",
+      "name": "Allergists and Immunologists",
+      "slug": "allergists-immunologists"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.864",
+      "name": "Bariatrics Doctors",
+      "slug": "bariatrics-doctors"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:55.972",
+      "name": "Cardiologists",
+      "slug": "cardiologists"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.076",
+      "name": "Dermatologists",
+      "slug": "dermatologists"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.205",
+      "name": "Endocrinologists",
+      "slug": "endocrinologists"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.314",
+      "name": "ENT Doctors",
+      "slug": "ent-doctors"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.439",
+      "name": "Gastroenterologists",
+      "slug": "gastroenterologists"
+    }
+  },
+  {
+    "pk": 25,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.539",
+      "name": "General Practitioners",
+      "slug": "general-practitioners"
+    }
+  },
+  {
+    "pk": 26,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.647",
+      "name": "General Surgeons",
+      "slug": "general-surgeons"
+    }
+  },
+  {
+    "pk": 27,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.747",
+      "name": "Geriatrics Doctors",
+      "slug": "geriatrics-doctors"
+    }
+  },
+  {
+    "pk": 28,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.847",
+      "name": "Gynecologists and Obstetricians",
+      "slug": "gynecologists-obstetricians"
+    }
+  },
+  {
+    "pk": 29,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:56.947",
+      "name": "Internists",
+      "slug": "internists"
+    }
+  },
+  {
+    "pk": 30,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.055",
+      "name": "Neurologists",
+      "slug": "neurologists"
+    }
+  },
+  {
+    "pk": 31,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.164",
+      "name": "Oncologists",
+      "slug": "oncologists"
+    }
+  },
+  {
+    "pk": 32,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.264",
+      "name": "Ophthalmologists",
+      "slug": "ophthalmologists"
+    }
+  },
+  {
+    "pk": 33,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.380",
+      "name": "Oral and Maxillofacial Surgeons",
+      "slug": "oral-maxillofacial-surgeons"
+    }
+  },
+  {
+    "pk": 34,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.472",
+      "name": "Orthopedists",
+      "slug": "orthopedists"
+    }
+  },
+  {
+    "pk": 35,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.630",
+      "name": "Pediatricians",
+      "slug": "pediatricians"
+    }
+  },
+  {
+    "pk": 36,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.722",
+      "name": "Physician Referral Services",
+      "slug": "physician-referral-services"
+    }
+  },
+  {
+    "pk": 37,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.814",
+      "name": "Plastic and Reconstructive Surgeons",
+      "slug": "plastic-reconstructive-surgeons"
+    }
+  },
+  {
+    "pk": 38,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.905",
+      "name": "Podiatrists",
+      "slug": "podiatrists"
+    }
+  },
+  {
+    "pk": 39,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:57.996",
+      "name": "Psychiatrists",
+      "slug": "psychiatrists"
+    }
+  },
+  {
+    "pk": 40,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.114",
+      "name": "Radiologists",
+      "slug": "radiologists"
+    }
+  },
+  {
+    "pk": 41,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.239",
+      "name": "Urologists",
+      "slug": "urologists"
+    }
+  },
+  {
+    "pk": 42,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.331",
+      "name": "Vascular Surgeons",
+      "slug": "vascular-surgeons"
+    }
+  },
+  {
+    "pk": 43,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.422",
+      "name": "Assisted Living",
+      "slug": "assisted-living"
+    }
+  },
+  {
+    "pk": 44,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.522",
+      "name": "Donor Centers",
+      "slug": "donor-centers"
+    }
+  },
+  {
+    "pk": 45,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.614",
+      "name": "Health Care Clinics",
+      "slug": "health-care-clinics"
+    }
+  },
+  {
+    "pk": 46,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.714",
+      "name": "Hospitals",
+      "slug": "hospitals"
+    }
+  },
+  {
+    "pk": 47,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.822",
+      "name": "Nursing Homes",
+      "slug": "nursing homes"
+    }
+  },
+  {
+    "pk": 48,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.912",
+      "name": "Pharmacies",
+      "slug": "pharmacies"
+    }
+  },
+  {
+    "pk": 49,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:58.987",
+      "name": "Diagnostic Services",
+      "slug": "diagnostic-services"
+    }
+  },
+  {
+    "pk": 50,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.062",
+      "name": "Health Associations",
+      "slug": "health-associations"
+    }
+  },
+  {
+    "pk": 51,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.129",
+      "name": "Health Care Referral Services",
+      "slug": "health-care-referral-services"
+    }
+  },
+  {
+    "pk": 52,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.212",
+      "name": "Home Health Care",
+      "slug": "home-health-care"
+    }
+  },
+  {
+    "pk": 53,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.295",
+      "name": "Medical Support Services",
+      "slug": "medical-support-services"
+    }
+  },
+  {
+    "pk": 54,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.371",
+      "name": "Other",
+      "slug": "other-speciality"
+    }
+  },
+  {
+    "pk": 55,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.455",
+      "name": "Addiction",
+      "slug": "addiction"
+    }
+  },
+  {
+    "pk": 56,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.626",
+      "name": "Cancer Services",
+      "slug": "cancer-services"
+    }
+  },
+  {
+    "pk": 57,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.712",
+      "name": "Counseling",
+      "slug": "counseling"
+    }
+  },
+  {
+    "pk": 58,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.796",
+      "name": "Dialysis",
+      "slug": "dialysis"
+    }
+  },
+  {
+    "pk": 59,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.887",
+      "name": "Hospice",
+      "slug": "hospice"
+    }
+  },
+  {
+    "pk": 60,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:47:59.979",
+      "name": "Laser Vision Correction",
+      "slug": "laser-vision-correction"
+    }
+  },
+  {
+    "pk": 61,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.071",
+      "name": "Men's Health",
+      "slug": "mens-health"
+    }
+  },
+  {
+    "pk": 62,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.254",
+      "name": "Mental Health Services",
+      "slug": "mental-health"
+    }
+  },
+  {
+    "pk": 63,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.346",
+      "name": "Nutrition",
+      "slug": "nutrition"
+    }
+  },
+  {
+    "pk": 64,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.446",
+      "name": "Optometrists",
+      "slug": "optometrists"
+    }
+  },
+  {
+    "pk": 65,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.529",
+      "name": "Pain Management",
+      "slug": "pain-management"
+    }
+  },
+  {
+    "pk": 66,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.622",
+      "name": "Physical Therapy",
+      "slug": "physical-therapy"
+    }
+  },
+  {
+    "pk": 67,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.697",
+      "name": "Sleep Disorders",
+      "slug": "sleep-disorders"
+    }
+  },
+  {
+    "pk": 68,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.795",
+      "name": "Speech and Hearing",
+      "slug": "speech-hearing"
+    }
+  },
+  {
+    "pk": 69,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.887",
+      "name": "Sports Medicine",
+      "slug": "sports-medicine"
+    }
+  },
+  {
+    "pk": 70,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:00.979",
+      "name": "Weight Loss",
+      "slug": "weight-loss"
+    }
+  },
+  {
+    "pk": 71,
+    "model": "providers.speciality",
+    "fields": {
+      "category": 1,
+      "date_added": "2012-05-24T10:48:01.062",
+      "name": "Women's Health",
+      "slug": "womens-health"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "providers.healthcarefacility",
+    "fields": {
+      "name": "Komarock Medical centre",
+      "official_hospital_number": null,
+      "phone": "+254736705845",
+      "location": "Nairobi. Kenya",
+      "speciality": [
+        1,
+        2
+      ],
+      "date_added": "2012-04-07T11:22:30",
+      "email": "kanarelo+kmc@gmail.com",
+      "date_edited": "2012-04-07T11:22:30"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "providers.healthworker",
+    "fields": {
+      "speciality": [
+        2
+      ],
+      "facility": 2,
+      "is_admin": true,
+      "user": 3,
+      "practice_number": "45579",
+      "is_contact_person": true
+    }
+  }
+]

@@ -93,7 +93,7 @@ class DefaultMenu(Menu):
                 'Medical Records',
                 models=(
 					'uhai.records.*','uhai.medication.*', 					
-					'uhai.patient.*',					
+					'uhai.patients.*',					
 				),
             ),
 			items.AppList(
@@ -102,19 +102,19 @@ class DefaultMenu(Menu):
             ),
 			items.AppList(
                 'Providers',
-                models=('uhai.healthprovider.*',),
+                models=('uhai.providers.*',),
             ),
             items.AppList(
                 'Insurance Administration',
-                models=('uhai.insuranceprovider.*',),
+                models=('uhai.insurance.*',),
             ),
             items.AppList(
                 'Administration',
                 exclude=(
 					'uhai.questions.*','uhai.records.*',
-					'uhai.programs.*', 'uhai.insuranceprovider.*', 
-					'uhai.medication.*', 'uhai.patient.*',
-					'uhai.healthprovider.*'
+					'uhai.programs.*', 'uhai.insurance.*', 
+					'uhai.medication.*', 'uhai.patients.*',
+					'uhai.providers.*'
 				),
             ),
         ]

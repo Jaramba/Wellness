@@ -15,10 +15,9 @@ urlpatterns = patterns('uhai.records.views',
 
 urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
-	preurl='patient/(?P<patient_number>[-\w]+)/',
+	preurl='patient/(?P<patient_pk>[-\w]+)/',
     models=[
        Encounter, Order, 
-       Immunization,  
        TrackingField,
        Diagnosis, ProblemTest, 
 	   EncounterTest, 
@@ -26,7 +25,6 @@ urlpatterns += get_crud_urls(
     ],
     forms=[
        EncounterPatientForm, OrderForm,
-	   ImmunizationForm,
        TrackingFieldForm,
        DiagnosisForm, ProblemTestForm, 
        EncounterTestForm, EncounterTestResultForm,
@@ -62,7 +60,6 @@ urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
     models=[
        Encounter, Order, 
-       Immunization,  
        TrackingField,
        Diagnosis, ProblemTest, 
 	   EncounterTest, 
@@ -70,7 +67,6 @@ urlpatterns += get_crud_urls(
     ],
     forms=[
        EncounterPatientForm, OrderForm,
-	   ImmunizationForm,
        TrackingFieldForm,
        DiagnosisForm, ProblemTestForm, 
        EncounterTestForm, EncounterTestResultForm,

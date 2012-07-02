@@ -1,22 +1,6 @@
 from django.db import models
 from uhai.core.models import Record, MetaData 
 
-class Immunization(Record):
-	code = models.CharField(max_length=50)
-	vaccine = models.ForeignKey('medication.Medication')
-	brand_name = models.CharField(max_length=100)
-	duration_of_protection = models.CharField(max_length=100, help_text='duration time, in years')
-	mode_of_delivery = models.CharField(max_length=100)
-	site = models.CharField(max_length=100)
-	follow_up_date = models.DateTimeField()
-	expiry_date = models.DateTimeField()
-	practice_date = models.DateTimeField()
-	
-	class Meta:
-	    permissions = ( 
-	        ('view_immunization', 'View immunization'), 
-	    )
-
 class ProblemType(MetaData):pass
 class Problem(models.Model):
 	name = models.CharField(max_length=30)	
@@ -52,36 +36,10 @@ class ICD10Block(MetaData):
 			('view_icd10block', 'View icd10block'), 
 		)
 
-class TrackingField(models.Model):
-	'''
-	Every problem is trackable, and has things that are tracked
-	That's only its conditional, or is Patient defined,
-	or if in a Program
-	'''
-	name =  models.CharField(max_length=120)
-	problem = models.ForeignKey('Problem')
-	unit = models.CharField(max_length=50)
-	daily_cummulative = models.BooleanField(default=False, help_text="Check here if this is a 'daily cumulative' tracking item (calories, for instance) ")
-
-	upper_normal = models.CharField(max_length=5)
-	normal = models.CharField(max_length=5)
-	lower_normal = models.CharField(max_length=5)
-
-	upper_severe = models.CharField(max_length=5)
-	severe = models.CharField(max_length=5)
-	lower_severe = models.CharField(max_length=5)
-
-	upper_moderate = models.CharField(max_length=5)	
-	moderate = models.CharField(max_length=5)
-	lower_moderate = models.CharField(max_length=5)
-
-	def __unicode__(self):
-		return '%s in %s' % (self.name, self.unit)
-
 class EncounterType(MetaData):pass
 class Encounter(models.Model):
-	patient = models.ForeignKey("patient.Patient")
-	provider = models.ForeignKey('healthprovider.HealthWorker')
+	user = models.ForeignKey("auth.User", verbose_name="Patient")
+	provider = models.ForeignKey('providers.HealthWorker')
 	type = models.ForeignKey('EncounterType')
 	patient_complience = models.BooleanField(default=False)
 	location = models.CharField(max_length=50, null=True)
@@ -91,7 +49,7 @@ class Encounter(models.Model):
 	observation_notes = models.TextField()
 	
 	def __unicode__(self):
-		return 'Visit by %s' % (self.patient)
+		return 'Visit by %s' % (self.user)
 
 class Order(models.Model):
 	encounter = models.ForeignKey('Encounter')
@@ -99,7 +57,7 @@ class Order(models.Model):
 	instructions = models.CharField(max_length=500)
 	discontinued = models.BooleanField(default=False)
 	discontinued_date = models.DateTimeField(editable=False)
-	discontinued_by = models.ForeignKey('healthprovider.HealthWorker', editable=False)
+	discontinued_by = models.ForeignKey('providers.HealthWorker', editable=False)
 	discontinued_reason = models.CharField(max_length=500)
 
 	class Meta:
@@ -121,6 +79,42 @@ class Diagnosis(models.Model):
 			('view_diagnosis', 'View diagnosis'), 
 		)
 
+class TrackingField(models.Model):
+	'''
+	Every problem is trackable, and has things that are tracked
+	That's only its conditional, or is Patient defined,
+	or if in a Program
+	'''
+	name =  models.CharField(max_length=120)	
+	unit = models.CharField(max_length=25)
+	diagnosis = models.ForeignKey('Diagnosis')
+
+	upper_normal = models.CharField(max_length=5)
+	normal = models.CharField(max_length=5)
+	lower_normal = models.CharField(max_length=5)
+
+	upper_severe = models.CharField(max_length=5)
+	severe = models.CharField(max_length=5)
+	lower_severe = models.CharField(max_length=5)
+
+	upper_moderate = models.CharField(max_length=5)	
+	moderate = models.CharField(max_length=5)
+	lower_moderate = models.CharField(max_length=5)
+	
+	date_added = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+		return '%s in %s' % (self.name, self.unit)
+
+class TrackingEntry(models.Model):
+	field = models.ForeignKey(TrackingField)
+	value = models.CharField(max_length=5)
+	
+	date_updated = models.DateTimeField(auto_now_add=True)
+	
+	class Meta:
+		verbose_name_plural = 'Tracking entries'
+		
 class Test(MetaData):
 	expected_outcomes = models.TextField()
 	date_added = models.DateTimeField(auto_now=True)
