@@ -18,12 +18,15 @@ class Event(models.Model):
 		('nine-months', 'Nine months'),
 		('yearly', 'Per year')
 	]
-	user = models.ForeignKey("auth.User", verbose_name="Patient")
+	user    = models.ForeignKey("auth.User", verbose_name="Patient")
+	title   = models.CharField(max_length=50)
 	message = models.CharField(max_length=140)
 	frequency = models.CharField(choices=PERIODS, max_length=50)
 	completed = models.BooleanField(default=False)
-	event_date_start = models.DateTimeField()
-	event_date_end   = models.DateTimeField()
+	start_time = models.DateTimeField()
+	end_time   = models.DateTimeField()
 	
+	def __unicode__(self):
+		return self.message
 	
-    
+	class Meta:pass

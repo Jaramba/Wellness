@@ -161719,10 +161719,9 @@
     "model": "records.encounter",
     "fields": {
       "patient_complience": false,
-      "start_time": "18:03:35.027",
+      "start_time": "2012-06-27T10:16:49.192",
       "observation_notes": "Nothing much",
-      "encounter_date": "2012-05-26",
-      "end_time": "18:03:35.027",
+      "end_time": "2012-06-27T10:20:49.192",
       "location": null,
       "provider": 1,
       "type": 1,
@@ -161734,10 +161733,9 @@
     "model": "records.encounter",
     "fields": {
       "patient_complience": false,
-      "start_time": "18:07:32.345",
+      "start_time": "2012-06-27T10:16:49.192",
       "observation_notes": "Wew",
-      "encounter_date": "2012-05-26",
-      "end_time": "18:07:32.345",
+      "end_time": "2012-06-27T10:19:49.192",
       "location": null,
       "provider": 1,
       "type": 2,
@@ -161900,9 +161898,7 @@
     "fields": {
       "test": 1,
       "notes": "",
-      "name": "Blood Test",
-      "encounter": 1,
-      "date_administered": "2012-05-26T19:39:50"
+      "name": "Blood Test"
     }
   },
   {
@@ -161911,9 +161907,7 @@
     "fields": {
       "test": 2,
       "notes": "",
-      "name": "Stool",
-      "encounter": 1,
-      "date_administered": "2012-05-26T19:41:12"
+      "name": "Stool"
     }
   }
 ]

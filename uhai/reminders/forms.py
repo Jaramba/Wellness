@@ -3,7 +3,7 @@ from models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
 
-class ReminderForm(forms.ModelForm):
+class EventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
 		self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
@@ -25,10 +25,10 @@ class ReminderForm(forms.ModelForm):
 			)
 		)
 		self.helper.add_layout(layout)
-		super(ReminderForm, self).__init__(*args, **kwargs)
+		super(EventForm, self).__init__(*args, **kwargs)
         
     class Meta:
-		model = Reminder
+		model = Event
 		widgets = {
 			'message' : forms.Textarea
 		}

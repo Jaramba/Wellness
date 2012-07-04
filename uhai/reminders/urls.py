@@ -10,5 +10,5 @@ urlpatterns = patterns('uhai.reminders.views',
 )
 
 urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),models=[Reminder],forms=[ReminderForm],data=globals()                            
+    '.'.join(__name__.split('.')[:-1]+['views']),models=[Event],forms=[EventForm],data=globals()                            
 )

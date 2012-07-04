@@ -121,7 +121,6 @@ class ProblemTest(Test):
 
 class EncounterTest(Event):
 	name = models.CharField(max_length=30)
-	encounter = models.ForeignKey('Encounter')
 	test = models.ForeignKey('Test')
 	notes = models.TextField(null=True, blank=True)
 	

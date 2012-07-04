@@ -9,4 +9,4 @@ from uhai.core.views import model_view
 def calendar(request, template_name="reminders/calendar.html"):
 	return render_to_response(template_name, {}, context_instance=RequestContext(request))
 	
-reminder = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
+event = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))

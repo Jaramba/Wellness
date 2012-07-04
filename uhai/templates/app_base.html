@@ -38,12 +38,12 @@
 						<ul class="nav">
 							{% if request.user.is_authenticated %}
 								<li class="navbar-item" title="Home" rel="tooltip" class="active">
-									<a href="{% url index %}"><i class="icon-home icon-white"></i></a>
+									<a href="{% url index %}">Home</a>
 								</li>
 								<li class="navbar-item" title="Messages" rel="tooltip"><a href="{% url messages_inbox %}"><i class="icon-envelope icon-white"></i></a></li>
 								{% if request.session.use_page_as == 'health-worker' %}
-									<li class="navbar-item" title="Schedule" id="schedule-menu" rel="tooltip">
-										<a href="{% url calendar %}"><i class="icon-calendar icon-white"></i></a>
+									<li class="navbar-item" id="schedule-menu">
+										<a href="{% url calendar %}">Schedule</a>
 									</li>
 									<li class="navbar-item" title="Patients" id="patient-menu" rel="tooltip">
 										<a href="{% url patient-list %}" data-toggle="dropdown"><i class="icon-user icon-white"></i></a>
