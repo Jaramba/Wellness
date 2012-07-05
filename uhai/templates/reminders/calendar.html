@@ -1,4 +1,5 @@
 {% extends "app_base.html"%}
+{% load crispy_forms_tags %}
 
 {% block extracss-inline %}
 	#show-in-calendar{
@@ -59,6 +60,9 @@
 
 {% block extrajs-jquery-enclosed %}
 	init_calendar();
+	$('#id-add-encounter').click(function() {
+		$('#questionnaire-modal').modal();
+	});
 {% endblock extrajs-jquery-enclosed %}
 
 {% block extrajs-jquery-plugins %}
@@ -85,12 +89,22 @@
 			<label class="show label label-info">Tracking Records</label><input type="checkbox" name="tracking-records" />
 		</div>
 	</div>
-	<div class="show" id="reminders">
+	<div class="show" id="reminders" style="margin-top:20px">
 		<legend>Reminders</legend>
 		You have no reminders at this time
+	</div>
+	<div class="show" id="reminders" style="margin-top:10px">
+		<a id="id-add-encounter" class="btn btn-primary">Add Appointment</a>
 	</div>
 {% endblock container-left %}
 
 {% block container-right %}
 	<div id="calendar" class="calendar-wrapper"></div>
 {% endblock container-right %}
+
+{% block modal %}
+	<div class="modal hide fade in" id="questionnaire-modal">
+		<div id='questionnaire-modal-body' class="modal-body"></div>
+		{% crispy form form.helper %}
+	</div>
+{% endblock modal %}

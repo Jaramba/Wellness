@@ -18,6 +18,7 @@ class Company(models.Model):
 		
 class HealthInsuranceProvider(Company):	
 	class Meta:
+	
 		permissions = (
 			('view_healthinsuranceprovider', 'View health insurance provider'),
 		)
@@ -43,6 +44,9 @@ class Insurance(models.Model):
 		permissions = (
 			('view_insurance', 'View insurance'),
 		)
+	
+	def __unicode__(self):
+		return self.plan_name
 
 class PatientInsurance(Record):
 	STATUS = (
@@ -54,7 +58,7 @@ class PatientInsurance(Record):
 	coverage_start_date = models.DateField()
 	coverage_end_date = models.DateField()
 	insurance = models.ForeignKey('Insurance', help_text='Type of cover')
-	status = models.CharField(max_length=50, choices=STATUS)
+	status = models.IntegerField(choices=STATUS)
 	subscriber_policy_id = models.CharField(max_length=100)
 	
 	class Meta:

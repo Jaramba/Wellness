@@ -1,0 +1,24 @@
+{% extends "app_base.html" %}
+
+{% block container-right %}
+	<legend style="margin-bottom: 10px;">{% block header %}{% endblock header %}</legend>
+	<div class="widget_inside drugs-search">
+		<div id="add" style="width:100%;clear:both;">
+			{% block action-buttons %}
+			{% endblock action-buttons %}
+		</div>
+		{% block table-list %} 
+		{% endblock table-list %}
+	</div>
+	<div class="pager">
+		{% if objects.has_previous %}
+			<a class="previous" href="?page={{ objects.previous_page_number }}">previous</a>
+		{% endif %}
+		<span class="current">
+			Page {{ objects.number }} of {{ objects.paginator.num_pages }}.
+		</span>
+		{% if objects.has_next %}
+			<a class="next" href="?page={{ objects.next_page_number }}">next</a>
+		{% endif %}
+	</div>
+{% endblock container-right %}

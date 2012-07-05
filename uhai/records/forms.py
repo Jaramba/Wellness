@@ -13,9 +13,13 @@ class EncounterForm(forms.ModelForm):
         
         self.layout = Layout(
             Div(HTML('<legend>Create Encounter</legend>')),
-            Row(Column(Field('patient'))),       
+			Row(Column(Field('patient'))),
+			Row(Column(Field('title'))),
+            Row(Column(Field('frequency'))),
+			Row(Column(Field('message'))),			
 			Row(Column(Field('patient_complience'))),
             Row(Column(Field('type'))),
+			Row(Column(Field('completed'))),
             Row(Column(Field('location'))),
             Row(Column(Field('encounter_date'))),
             Row(Column(Field('start_time'))),
@@ -48,10 +52,13 @@ class EncounterPatientForm(forms.ModelForm):
 
 		self.layout = Layout(
 			Div(HTML('<legend>Enter Encounter</legend>')),
+			Row(Column(Field('title'))),
+            Row(Column(Field('frequency', css_class='span2'))),
+			Row(Column(Field('message', css_class='span6'))),
 			Row(Column(Field('type', css_class='span3'))),
 			Row(Column(Field('provider', css_class='span4'))),
 			Row(Column(Field('location', css_class='span4'))),
-			Row(Column(Field('encounter_date'))),
+			Row(Column(Field('completed'))),
 			Row(Column(Field('start_time'))),
 			Row(Column(Field('end_time'))),
 			Row(Field('observation_notes'), css_class="textarea-column"),
@@ -68,7 +75,7 @@ class EncounterPatientForm(forms.ModelForm):
     
 	class Meta:
 		model = Encounter
-		exclude = ['patient', 'patient_complience']
+		exclude = ['user', 'patient', 'patient_complience']
 		widgets = {
 			'observation_notes' : forms.Textarea,
 		}

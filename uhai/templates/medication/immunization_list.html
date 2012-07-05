@@ -1,8 +1,14 @@
-{% extends "records/records_base.html" %}
+{% extends "records/list_base.html" %}
 
-{% block container-right %}
-	<legend>Immunizations</legend>
-	<div id="add" style="clear:both"><a href="{% url immunization-create %}" class="btn btn-info pull-right">Add Immunization</a></div>
+{% block header %}
+	Immunizations
+{% endblock header %}
+
+{% block action-buttons %}
+	<a href="{% url immunization-create %}" class="btn btn-info pull-right">Add Immunization</a>
+{% endblock action-buttons %}
+
+{% block table-list %}
 	{% if immunizations %} 
 		<table class='table'>
 			<tr>
@@ -35,4 +41,4 @@
 			No Immunizations Found
 		<div>
 	{% endif %}
-{% endblock container-right %}
+{% endblock table-list %}

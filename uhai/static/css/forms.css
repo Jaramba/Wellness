@@ -74,12 +74,21 @@ padding: 0px 0px 3px 0px;
 display:none;
 }
 
-.field input{
-clear:both;
-float:left;
-height:27px;
-padding: 2px 2px;
-margin: 7px 0 0 0;
+.field input[type=text]{
+	clear:both;
+}
+
+label.checkbox-label{
+	float: left; 
+	margin-top: 12px; 
+	margin-left: 7px;
+}
+
+.field input{	
+	float:left;
+	height:27px;
+	padding: 2px 2px;
+	margin: 7px 0 0 0;
 }
 
 .field select{

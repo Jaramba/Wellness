@@ -4,7 +4,9 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from uhai.core.views import model_view
 
-patient = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
+@login_required
+def patient(request, *args, **kwargs):
+	return model_view(request, max_pagination_items=4, *args, **kwargs)
 
 @login_required
 def patientemergencycontact(request, *args, **kwargs):

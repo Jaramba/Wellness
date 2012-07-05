@@ -1,17 +1,4 @@
-{% extends "app_base.html" %}
-{% load i18n %}
-
-{% block extracss-links %}
-	<link rel='stylesheet' href='{{ STATIC_URL }}css/jquery-ui-1.8.17.custom.css' type='text/css' media='screen' />
-{% endblock extracss-links %}
-
-{% block extrajs-jquery-enclosed %}
-	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
-{% endblock extrajs-jquery-enclosed %}
-
-{% block extrajs-jquery-plugins %}
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js" ></script>
-{% endblock extrajs-jquery-plugins %}
+{% extends "list_base.html" %}
 
 {% block container-left %}
 	<ul class="nav nav-list">
@@ -42,6 +29,3 @@
 		</li>
 	</ul>
 {% endblock container-left %}
-
-{% block container-right %}
-{% endblock container-right %}

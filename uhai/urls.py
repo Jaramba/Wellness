@@ -27,6 +27,7 @@ urlpatterns += patterns('',
 	url(r'^programs/', include('uhai.programs.urls')),
 	
 	url(r'^messages/', include('messages.urls')),
+	url(r'^search/', include('uhai.search.urls')),
 	
 	url(r'', include('uhai.core.urls')),
 	url(r'', include('uhai.userprofile.urls')),

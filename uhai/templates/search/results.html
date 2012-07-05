@@ -1,0 +1,76 @@
+{% extends 'app_base.html' %}
+
+{% block body-hook %}id="search-results"{% endblock body-hook %}
+
+{% block container %}
+	<div class="row">
+		<div class="span12">
+			<div class="well">
+				<form class="form-inline" method="GET" action="{% url search-index %}">
+					<div class="control-group">
+						<label class="control-label visuallyhidden" for="id_search">Search</label>
+						<div class="controls">
+							<input name="q" placeholder="Search" class="span10" type="text" id="id_q">
+						  <input type="submit" class="btn btn-primary" value="Search">
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<label class="checkbox inline">
+								<input checked="checked" type="checkbox" name="active_only" value="on" id="id_has_releases">Active patients only
+							</label>
+						</div>
+					</div>
+				</form>      
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3">
+			<div class="well">
+				<h3>Refine Results</h3>
+				<ul class="nav nav-list">
+					<li class="nav-header">By License</li>
+					<li><a href="/?q=django&amp;has_releases=on&amp;license=BSD+License">BSD License (1147)</a></li>
+					<li><a href="/?q=django&amp;has_releases=on&amp;license=Unknown">Unknown (741)</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="span9">
+			<div class="results-wrapper">
+				{% for patient in patients %}
+					<div class="results">
+						<div class="result row">
+							<div>
+								<div class="span9 package-name"><a href="{% url patient-detail patient.pk %}">{{ patient.user.full_name }}</a></div>
+								<div class="span3">
+									<div class="author"><em>Employer: {{ patient.employer.name|default:"Not specified" }}</em></div>
+								</div>
+								<div class="span2">
+									<div class="downloads"><span class="count">{{ patient.enrolledprogram_set.count }}</span> enrolled programs</div>
+								</div>
+								<div class="span2"></div>
+								<div class="span2"></div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="pagination">
+				<ul>
+					{% if objects.has_previous %}
+						<li class="prev">
+							<a class="previous" href="?page={{ objects.previous_page_number }}">previous</a>
+						</li>						
+					{% endif %}					
+					{% for r in range %}						
+						<li class="active"><a href="?page={{ r }}">{{r}}</a></li>						
+					{% endfor %}
+					{% if objects.has_next %}
+						<li class="next"><a href="?page={{ objects.next_page_number }}">Next</a></li>					
+					{% endif %}					
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock container %}

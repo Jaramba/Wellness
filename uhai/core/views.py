@@ -1,4 +1,6 @@
 from django.core.urlresolvers import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
@@ -11,6 +13,7 @@ def model_view(request, pk=None,
          model_form_classes=[],
          action='view',
          data = {},
+		 max_pagination_items=5,
          initial_form_data=lambda:{},
          save_form=lambda form:form.save(),
          redirect_to=None,
@@ -28,11 +31,20 @@ def model_view(request, pk=None,
 			raise Http404()
 		except AssertionError, e:
 			raise e
-		data[context_object_name(model_obj)] = model_obj
-		print data
-	else:
-		data[context_object_name_plural(queryset.model)] = queryset
-
+		data[context_object_name(model_obj) if callable(context_object_name) else context_object_name] = model_obj
+	else:		
+		page = request.REQUEST.get('page', 1)
+		paginator = Paginator(queryset, max_pagination_items)
+		
+		try:
+			objects = paginator.page(page)
+		except PageNotAnInteger:
+			objects = paginator.page(1)
+		except EmptyPage:
+			objects = paginator.page(paginator.num_pages)
+		
+		data['objects'] = data[context_object_name_plural(queryset.model) if callable(context_object_name_plural) else context_object_name_plural] = objects
+		
 	if not template_name:
 		template_name = "%s/%s_%s.html" % (queryset.model._meta.app_label, queryset.model._meta.object_name.lower(), action)
 		
@@ -47,8 +59,7 @@ def model_view(request, pk=None,
 		if action == 'edit' or action == 'create':
 			model_form_classes.append(model_form_class)
 				
-			for model_form_class in model_form_classes:  
-				print request.POST
+			for model_form_class in model_form_classes:
 				form = model_form_class(request.POST, request.FILES, instance=model_obj)
 				if form.is_valid():
 					o = save_form(form)

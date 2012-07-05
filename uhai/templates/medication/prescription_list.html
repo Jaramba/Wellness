@@ -1,43 +1,47 @@
-{% extends "medication/medication_base.html" %}
+{% extends "records/list_base.html" %}
 {% load i18n %}
 
 {% block page-title %}
 	Prescription List
 {% endblock %}
 
-{% block container-right %}
-	<legend>Prescriptions</legend>
-	<div class="widget_inside drugs-search">
-		<div id="add" style="width:100%;clear:both"><a href="{% url prescription-create %}" class="btn btn-info" style="float:right">Add prescription</a></div>
-		{% if Prescriptions %} 
-			<table class='table'>
-				<tr>
-					<th>Code</th>
-					<th>Vaccine</th>
-					<th>Brand name</th>
-					<th>Lot number</th>
-					<th>Site</th>
-					<th>Date</th>
+{% block header %}
+	Prescriptions
+{% endblock header %}
+
+{% block action-buttons %}
+	<a href="{% url prescription-create %}" class="btn btn-info" style="float:right">Add prescription</a>
+{% endblock action-buttons %}
+
+{% block table-list %}
+	{% if Prescriptions %} 
+		<table class='table'>
+			<tr>
+				<th>Code</th>
+				<th>Vaccine</th>
+				<th>Brand name</th>
+				<th>Lot number</th>
+				<th>Site</th>
+				<th>Date</th>
+			</tr>
+			{% for prescription in prescriptions %}
+				<tr>	
+					<td>{{prescription.code}}</td>
+					<td>{{prescription.vaccine}}</td>
+					<td>{{prescription.brand_name}}</td>
+					<td>{{prescription.lot_number}}</td>
+					<td>{{prescription.site}}</td>
+					<td>{{prescription.practice_date}}</td>
+					<td>
+						<a href="{% url prescription-edit prescription.pk %}">Edit</a> |
+						<a href="{% url prescription-delete prescription.pk %}">Delete</a>
+					</td>
 				</tr>
-				{% for prescription in prescriptions %}
-					<tr>	
-						<td>{{prescription.code}}</td>
-						<td>{{prescription.vaccine}}</td>
-						<td>{{prescription.brand_name}}</td>
-						<td>{{prescription.lot_number}}</td>
-						<td>{{prescription.site}}</td>
-						<td>{{prescription.practice_date}}</td>
-						<td>
-							<a href="{% url prescription-edit prescription.pk %}">Edit</a> |
-							<a href="{% url prescription-delete prescription.pk %}">Delete</a>
-						</td>
-					</tr>
-				{% empty %}
-					<tr><td colspan="2">No Prescriptions Found</td></tr>
-				{% endfor %}
-			</table>
-		{% else %}
-			No Prescriptions Found
-		{% endif %}
-	</div>
-{% endblock container-right %}
+			{% empty %}
+				<tr><td colspan="2">No Prescriptions Found</td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		No Prescriptions Found
+	{% endif %}
+{% endblock table-list %}
