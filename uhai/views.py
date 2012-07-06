@@ -19,7 +19,7 @@ def index(request, template_name="", data={}):
 		def getitems(tracking_record, ds={}):
 			teq = TrackingEntry.objects.filter(field__in=TrackingField.objects.filter(tracking_record=tracking_record))
 			for d in teq.dates('date_updated', 'month'):
-				yield ([d.strftime('%d-%m-%Y %H:00')] + [te for te in teq.filter(date_updated=datetime.date(d.year, d.month, d.day))])
+				yield ([d.strftime('%d-%m-%Y %H:00')] + [te.value for te in teq])
 
 		data['charts'] = [{
 			"label": t.slug,

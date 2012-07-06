@@ -128,12 +128,19 @@ class TrackingField(MetaData):
 		return '%s in %s' % (self.name, self.unit)
 
 class TrackingEntry(models.Model):
-	patient = models.ForeignKey('patients.Patient')	
+	'''
+	Remember, for every tracking entry, which comes in 
+	pairs/items, like Systolic/Diastolic, you have to identify
+	them, so pull them together with a special key
+	'''
+	patient = models.ForeignKey('patients.Patient')
 	field = models.ForeignKey(TrackingField)
 	value = models.CharField(max_length=5)
-	
+
+	#pair_key = models.CharField(max_length=10)
+
 	date_updated = models.DateTimeField(default=datetime.now)
-	
+
 	class Meta:
 		verbose_name_plural = 'Tracking entries'
 		
@@ -157,5 +164,3 @@ class EncounterTestResult(Event):
 	encounter_test = models.ForeignKey(EncounterTest)
 	inference = models.TextField(null=True, blank=True)
 	notes = models.TextField(null=True, blank=True)
-
-	
