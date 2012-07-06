@@ -4,13 +4,11 @@ from uhai.core.models import Record, MetaData
 class Event(models.Model):
 	PERIODS = [
 		('every-hour', 'Hourly'),
-		('twice-a-day', 'Twice a  day'),
-		('thrice-a-day', 'Thrice a day'),
-		('four-times-a-day', 'Four times a day'),
-		('five-times-a-day', 'Five times a day'),
-		('six-times-a-day', 'Six times a day'),
-		('seven-times-a-day', 'Seven times a day'),
-		('eight-times-a-day', 'Eight times a day'),
+		('twice-a-day', 'Twice daily'),
+		('thrice-a-day', 'Thrice daily'),
+		('four-times-a-day', 'Four times daily'),
+		('five-times-a-day', 'Five times daily'),
+		('daily', 'Daily'),
 		('weekly', 'Weekly'),
 		('monthly', 'Monthly'),
 		('three-months', 'Three months'),

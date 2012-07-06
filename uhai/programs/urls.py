@@ -2,11 +2,11 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 
 from django.db.models.base import ModelBase
-from forms import *
-from django.views.generic.base import TemplateView
 
-from uhai.questions.models import (PatientProgramQuestionnaire, ProgramQuestionnaire)
-from uhai.questions.forms import (PatientProgramQuestionnaireForm)
+from models import *
+from forms import *
+
+from django.views.generic.base import TemplateView
 
 from uhai.core.utils import get_crud_urls
 
@@ -29,7 +29,7 @@ urlpatterns += get_crud_urls(
     data=globals()                            
 )   
 
-urlpatterns += patterns('uhai.questions.views',
+urlpatterns += patterns('uhai.programs.views',
 	url(r'^questionnaires/$', 'questionaire', {'action':'list', 'queryset':ProgramQuestionnaire.objects.all(),}, name='questionnaire-list'),
 	url(r'^response/$', 'responses', name='questionnaire-response'),
 	url(r'(?P<questionnaire_pk>[-\d]+)/questionset/(?P<pk>[-\d]+)/$', 'questionset',{

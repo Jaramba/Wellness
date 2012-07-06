@@ -33,7 +33,6 @@ INSTALLED_APPS = (
 	'uhai.patients',	
 	'uhai.providers',
 	'uhai.medication',
-	'uhai.questions',
 	'uhai.reminders',
 	'uhai.userprofile',
 	'uhai.stats',

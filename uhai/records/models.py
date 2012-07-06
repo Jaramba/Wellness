@@ -1,4 +1,5 @@
 from django.db import models
+
 from uhai.core.models import Record, MetaData 
 from uhai.reminders.models import Event
 
@@ -95,9 +96,6 @@ class TrackingField(MetaData):
 		('thrice-a-day', 'Thrice daily'),
 		('four-times-a-day', 'Four times daily'),
 		('five-times-a-day', 'Five times daily'),
-		('six-times-a-day', 'Six times daily'),
-		('seven-times-a-day', 'Seven times daily'),
-		('eight-times-a-day', 'Eight times daily'),
 		('daily', 'Daily'),
 		('weekly', 'Weekly'),
 		('monthly', 'Monthly'),
@@ -137,7 +135,7 @@ class TrackingEntry(models.Model):
 	field = models.ForeignKey(TrackingField)
 	value = models.CharField(max_length=5)
 
-	#pair_key = models.CharField(max_length=10)
+	shared_key = models.CharField(max_length=10)
 
 	date_updated = models.DateTimeField(default=datetime.now)
 
