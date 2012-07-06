@@ -46,10 +46,17 @@ class HealthWorker(models.Model):
 	practice_number = models.CharField(max_length=20, null=True, blank=False)
 
 	def __unicode__(self):
-		return self.practice_number
+		return self.user.full_name
 	
 	class Meta:
 		permissions = (
 			('view_healthworker', 'View health worker'),
 		)
 		verbose_name_plural = 'Health Worker Profile'
+
+class PatientProvider(models.Model):
+	patient = models.ForeignKey('patients.Patient')
+	provider = models.ForeignKey('HealthWorker')
+	primary = models.BooleanField(default=False)
+	
+	

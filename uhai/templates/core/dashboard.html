@@ -1,2 +1,152 @@
 {% extends "app_base.html" %}
 
+{% block extracss-links %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
+{% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block extrajs-global %}	
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		{% for chart in charts %}
+			var data{{ forloop.counter }} = google.visualization.arrayToDataTable(
+				{% autoescape off %}
+					{{ chart.data }}
+				{% endautoescape %}
+			);
+
+			var options{{ forloop.counter }} = {
+			  title: 'Blood Pressure'
+			};
+
+			var chart{{ forloop.counter}} = new google.visualization.LineChart(document.getElementById('{{chart.label}}-chart'));
+			chart{{ forloop.counter}}.draw(data{{ forloop.counter }}, options{{ forloop.counter }});
+		{% endfor %}
+	}		
+{% endblock extrajs-global %}	
+
+{% block container %}
+	{% if request.session.use_page_as == 'patient' %}
+		<legend>Welcome, {{ request.user.patient }}</legend>
+		<div>
+			<div class="well" style="border-radius: 0px;">
+				<h4>Welcome to your Dashboard</h4>
+				This dashboard contains all the information needed to track and manage your TextMaster activity; get new tasks and track your production records.
+			</div>
+		</div>
+		{% if messages %}
+			<div class="info">
+				{{ message.content }}
+			</div>
+		{% endif %}
+		<table class="table">
+			<tr>
+				<td rowspan="2" style="width:25%">
+					<div style="padding-right:10px; border-right: 1px solid #DDD;">
+						<table>
+							<tr>
+								<td style="border-top:none" colspan="2">
+									<h3 class="pull-left">My User Profile</h3>
+									<a class="pull-right" href="{% url settings %}">
+										<i class="icon-edit icon-black" style="margin-top: 8px;margin-right: -4px;"></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									{{ request.user.full_name }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									{{ request.user.profile.email }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									{{ request.user.profile.mobile_phone }}
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									#{{ request.user.profile.national_id }}
+								</td>
+							</tr>
+							<tr><td></td></tr>
+							<tr>							
+								<td style="border-top:none" colspan="2">
+									<h3 class="pull-left">My Medical Profile</h3>
+									<a class="pull-right" href="{% url settings %}">
+										<i class="icon-edit icon-black" style="margin-top: 8px;margin-right: -4px;"></i>
+									</a>
+								</td>
+							</tr>
+							
+							<tr>
+								<td style="width:100px">
+									<strong>Sex:</strong>
+								</td>
+								<td>
+									{{ request.user.patient.get_gender_display}}
+								</td>
+							</tr>
+							<tr>
+								<td style="width:100px">
+									<strong>Age:</strong>
+								</td>
+								<td>
+									{{request.user.patient.date_of_birth|timesince}}
+								</td>
+							</tr>
+							<tr>
+								<td style="width:100px">
+									<strong>Blood group:</strong>
+								</td>
+								<td>
+									{{ request.user.patient.get_blood_group_display }}
+								</td>
+							</tr>
+							<tr>
+								<td style="width:100px">
+									<strong>Weight:</strong>
+								</td>
+								<td>
+									{{ request.user.patient.weight }} kg
+								</td>
+							</tr>
+							<tr>
+								<td style="width:100px">
+									<strong>Height:</strong>
+								</td>
+								<td>
+									{{ request.user.patient.height }} cm
+								</td>
+							</tr>
+						</table>
+					<div>
+				</td>
+				<td colspan="2" rowspan="2">
+					<h2>Track Vitals</h2>
+					<div class="tabbable">
+					  <ul class="nav nav-tabs">
+						{% for item in items %}
+							<li {% if forloop.first %}class="active"{% endif %}><a href="#tab{{ item.counter }}" data-toggle="tab">{{ item.name }}</a></li>
+						{% endfor %}
+					  </ul>
+					  <div class="tab-content">
+						{% for item in items %}
+							<div class="tab-pane{% if forloop.first %} active{% endif %}" id="tab{{ item.counter }}">
+								<div id="{{ item.slug }}-chart" style="width: 840px; height:300px;"></div>
+							</div>
+						{% endfor %}
+					  </div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	{% endif %}
+{% endblock container %}

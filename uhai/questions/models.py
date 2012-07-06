@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from uhai.core.models import MetaData
 
+from datetime import datetime
+
 class ProgramQuestionnaire(models.Model):
 	name = models.CharField(max_length=255)
 	intro = models.CharField('Introduction', max_length=20, null=True, blank=False)
@@ -102,10 +104,13 @@ class Response(models.Model):
 	"""
 	Records a student's response to a given question at a 
 	particular sitting
+	Can be filled by Doctor... or another person
 	"""
-	user = models.ForeignKey('auth.User', related_name='reponse_patient')
+	user = models.ForeignKey('auth.User')
+	#answer_by = models.ForeignKey('auth.User')
 	question = models.ForeignKey(Question)
 	value = models.CharField(max_length=255)
+	response_date = models.DateTimeField(default=datetime.now)
 
 	def __unicode__(self):
 		return self.question.text

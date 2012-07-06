@@ -35,6 +35,7 @@ class Patient(models.Model):
 
 	employer  = models.ForeignKey('insurance.EmployerCompany', null=True)
 	insurance = models.ManyToManyField('insurance.Insurance', through='insurance.PatientInsurance')
+	providers = models.ManyToManyField('providers.HealthWorker', through='providers.PatientProvider')
 
 	def __unicode__(self):
 		return '%s' % self.user

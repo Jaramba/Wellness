@@ -87,15 +87,23 @@ class ImmunizationForm(forms.ModelForm):
             Div(HTML('<legend>Create Immunization</legend>')),
             Row(Column(Field('name', css_class="span4"))),
             Row(Column(Field('code'))),
+			
+			Row(Column(Field('title'))),
+            Row(Column(Field('frequency'))),
+			Row(Column(Field('message'))),
+			
+			Row(Column(Field('completed'))),
             Row(Column(Field('vaccine', css_class="span3"))),
 			Row(Column(Field('brand_name', css_class="span5"))),
             Row(Column(Field('duration_of_protection'))),
             Row(Column(Field('mode_of_delivery', css_class="span4"))),
-            Row(Column(Field('site', css_class="span5"))),
-			Row(Column(Field('practice_date'))),
+            
+			Row(Column(Field('start_time', css_class="span3"))),
+			Row(Column(Field('end_time', css_class="span3"))),
+
             Row(Column(Field('expiry_date'))),
             Row(Column(Field('follow_up_date'))),
-            Row(Field('notes'), css_class='textarea-column'),
+			
             Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
@@ -107,7 +115,7 @@ class ImmunizationForm(forms.ModelForm):
         
     class Meta:
         model = Immunization
-        exclude = ['patient']
+        exclude = ['patient', 'user']
         widgets = {
             'notes': forms.Textarea
         }

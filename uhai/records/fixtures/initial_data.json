@@ -161715,31 +161715,64 @@
     }
   },
   {
+    "pk": 3,
+    "model": "records.encountertype",
+    "fields": {
+      "date_created": "2012-07-06T04:51:42.904",
+      "description": "",
+      "date_changed": "2012-07-06T04:51:42.904",
+      "name": "Review visit",
+      "slug": "review-visit"
+    }
+  },
+  {
     "pk": 1,
     "model": "records.encounter",
     "fields": {
-      "patient_complience": false,
-      "start_time": "2012-06-27T10:16:49.192",
-      "observation_notes": "Nothing much",
-      "end_time": "2012-06-27T10:20:49.192",
-      "location": null,
-      "provider": 1,
-      "type": 1,
-      "user": 4
+      "patient_complience": true,
+      "type": 3,
+      "location": "Nairobi, Kenya",
+      "observation_notes": "Seems ok"
     }
   },
   {
     "pk": 2,
     "model": "records.encounter",
     "fields": {
-      "patient_complience": false,
-      "start_time": "2012-06-27T10:16:49.192",
-      "observation_notes": "Wew",
-      "end_time": "2012-06-27T10:19:49.192",
-      "location": null,
-      "provider": 1,
+      "patient_complience": true,
       "type": 2,
-      "user": 5
+      "location": "Nairobi, Kenya",
+      "observation_notes": "Seems ok"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "records.encounter",
+    "fields": {
+      "patient_complience": true,
+      "type": 2,
+      "location": "Nairobi, Kenya",
+      "observation_notes": "Seems ok"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "records.encounter",
+    "fields": {
+      "patient_complience": true,
+      "type": 2,
+      "location": "Nairobi, Kenya",
+      "observation_notes": "Seems ok"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "records.encounter",
+    "fields": {
+      "patient_complience": true,
+      "type": 1,
+      "location": "Nairobi, Kenya",
+      "observation_notes": "Seems ok"
     }
   },
   {
@@ -161753,22 +161786,231 @@
     }
   },
   {
+    "pk": 2,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Seriously addicted to gambling",
+      "problem": 11896,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 3,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Constant checkup",
+      "problem": 562,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 4,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Due to HIV",
+      "problem": 4568,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 5,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "born with it",
+      "problem": 4233,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 6,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Addicted to alcohol",
+      "problem": 11891,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 7,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Addicted to Marijuana",
+      "problem": 11892,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 8,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Seriously addicted to gambling",
+      "problem": 11896,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 9,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Constant checkup",
+      "problem": 562,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 10,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Due to HIV",
+      "problem": 4568,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 11,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "born with it",
+      "problem": 4233,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 12,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Addicted to alcohol",
+      "problem": 11891,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 13,
+    "model": "records.diagnosis",
+    "fields": {
+      "notes": "Addicted to Marijuana",
+      "problem": 11892,
+      "approved": true,
+      "encounter": 5
+    }
+  },
+  {
+    "pk": 1,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 3033,
+      "date_changed": "2012-07-06T10:46:14.713",
+      "date_created": "2012-07-06T10:46:14.713",
+      "slug": "sleep",
+      "name": "Sleep"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 8048,
+      "date_changed": "2012-07-06T10:49:27.921",
+      "date_created": "2012-07-06T10:49:27.921",
+      "slug": "blood-pressure",
+      "name": "Blood pressure"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 8048,
+      "date_changed": "2012-07-06T10:52:34.671",
+      "date_created": "2012-07-06T10:57:58.754",
+      "slug": "resting-heart-rate",
+      "name": "Resting Heart Rate"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 8265,
+      "date_changed": "2012-07-06T11:05:08.114",
+      "date_created": "2012-07-06T11:05:08.114",
+      "slug": "weight",
+      "name": "Weight"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 8221,
+      "date_changed": "2012-07-06T11:07:22.916",
+      "date_created": "2012-07-06T11:07:22.916",
+      "slug": "temperature-oral",
+      "name": "Temperature (oral)"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 11883,
+      "date_changed": "2012-07-06T11:08:31.904",
+      "date_created": "2012-07-06T11:08:31.904",
+      "slug": "alcohol-abuse",
+      "name": "Alcohol Abuse"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "records.trackingrecord",
+    "fields": {
+      "description": "",
+      "diagnosis": 8288,
+      "date_changed": "2012-07-06T12:13:50.948",
+      "date_created": "2012-07-06T12:13:50.948",
+      "slug": "blood-sugar-level",
+      "name": "Blood sugar level"
+    }
+  },
+  {
     "pk": 1,
     "model": "records.trackingfield",
     "fields": {
       "lower_normal": "132.5",
-      "name": "Systolic",
+      "lower_moderate": "48",
+      "description": "",
+      "date_added": "2012-05-26T18:01:54.248",
       "normal": "130",
+      "tracking_record": 2,
       "upper_moderate": "52",
       "upper_normal": "127.5",
       "upper_severe": "245",
       "severe": "230",
-      "lower_moderate": "48",
+      "frequency": "thrice-a-day",
       "lower_severe": "190",
-      "diagnosis": 1,
-      "date_added": "2012-05-26T18:01:54.248",
+      "date_changed": "2012-07-06T10:39:28.632",
+      "date_created": "2012-07-06T12:12:06.990",
       "moderate": "50",
-      "unit": "mmHg"
+      "slug": "systolic",
+      "unit": "mmHg",
+      "name": "Systolic"
     }
   },
   {
@@ -161776,18 +162018,23 @@
     "model": "records.trackingfield",
     "fields": {
       "lower_normal": "82.5",
-      "name": "Diastolic",
+      "lower_moderate": "38",
+      "description": "",
+      "date_added": "2012-05-26T18:01:54.248",
       "normal": "90",
+      "tracking_record": 2,
       "upper_moderate": "42",
       "upper_normal": "97.5",
       "upper_severe": "145",
       "severe": "140",
-      "lower_moderate": "38",
+      "frequency": "thrice-a-day",
       "lower_severe": "130",
-      "diagnosis": 1,
-      "date_added": "2012-05-26T18:01:54.248",
+      "date_changed": "2012-07-06T10:39:28.634",
+      "date_created": "2012-07-06T12:12:21.785",
       "moderate": "35",
-      "unit": "mmHg"
+      "slug": "diastolic",
+      "unit": "mmHg",
+      "name": "Diastolic"
     }
   },
   {
@@ -161795,18 +162042,23 @@
     "model": "records.trackingfield",
     "fields": {
       "lower_normal": "182.5",
-      "name": "Fingerstick-blood sugar",
+      "lower_moderate": "38",
+      "description": "",
+      "date_added": "2012-05-26T18:01:54.248",
       "normal": "180",
+      "tracking_record": 7,
       "upper_moderate": "42",
       "upper_normal": "177.5",
       "upper_severe": "410",
       "severe": "400",
-      "lower_moderate": "38",
+      "frequency": "thrice-a-day",
       "lower_severe": "390",
-      "diagnosis": 1,
-      "date_added": "2012-05-26T18:01:54.248",
+      "date_changed": "2012-07-06T10:39:28.636",
+      "date_created": "2012-07-06T12:14:01.727",
       "moderate": "40",
-      "unit": "mg/dL"
+      "slug": "blood-glucose",
+      "unit": "mg/dL",
+      "name": "Blood glucose"
     }
   },
   {
@@ -161814,18 +162066,23 @@
     "model": "records.trackingfield",
     "fields": {
       "lower_normal": "36.5",
-      "name": "Temperature (oral)",
+      "lower_moderate": "37",
+      "description": "",
+      "date_added": "2012-05-26T18:01:54.248",
       "normal": "37",
+      "tracking_record": 5,
       "upper_moderate": "35",
       "upper_normal": "37.5",
       "upper_severe": "40",
       "severe": "38",
-      "lower_moderate": "37",
+      "frequency": "twice-a-day",
       "lower_severe": "37",
-      "diagnosis": 1,
-      "date_added": "2012-05-26T18:01:54.248",
+      "date_changed": "2012-07-06T10:39:28.638",
+      "date_created": "2012-07-06T12:14:26.095",
       "moderate": "36",
-      "unit": "degrees (Centigrade)"
+      "slug": "temperature",
+      "unit": "degrees (Centigrade)",
+      "name": "Temperature"
     }
   },
   {
@@ -161833,18 +162090,23 @@
     "model": "records.trackingfield",
     "fields": {
       "lower_normal": "135",
-      "name": "Weight",
+      "lower_moderate": "135",
+      "description": "",
+      "date_added": "2012-05-26T18:01:54.248",
       "normal": "72",
+      "tracking_record": 4,
       "upper_moderate": "135",
       "upper_normal": "135",
       "upper_severe": "150",
       "severe": "135",
-      "lower_moderate": "135",
+      "frequency": "weekly",
       "lower_severe": "120",
-      "diagnosis": 1,
-      "date_added": "2012-05-26T18:01:54.248",
+      "date_changed": "2012-07-06T10:39:28.640",
+      "date_created": "2012-07-06T12:14:42.287",
       "moderate": "2.25",
-      "unit": "kg"
+      "slug": "weight",
+      "unit": "kg",
+      "name": "Weight"
     }
   },
   {
@@ -161852,18 +162114,133 @@
     "model": "records.trackingfield",
     "fields": {
       "lower_normal": "9",
-      "name": "Sleep",
+      "lower_moderate": "1",
+      "description": "",
+      "date_added": "2012-05-26T18:01:54.248",
       "normal": "10",
+      "tracking_record": 1,
       "upper_moderate": "0",
       "upper_normal": "11",
       "upper_severe": "17",
       "severe": "16",
-      "lower_moderate": "1",
+      "frequency": "daily",
       "lower_severe": "15",
-      "diagnosis": 1,
-      "date_added": "2012-05-26T18:01:54.248",
+      "date_changed": "2012-07-06T10:39:28.643",
+      "date_created": "2012-07-06T12:16:27.754",
       "moderate": "0",
-      "unit": "hours"
+      "slug": "sleep",
+      "unit": "hours",
+      "name": "Sleep"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:51:40.242",
+      "field": 1,
+      "patient": 1,
+      "value": "110"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:53:01.033",
+      "field": 2,
+      "patient": 1,
+      "value": "113"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:53:39.954",
+      "field": 1,
+      "patient": 1,
+      "value": "120"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:54:35.301",
+      "field": 2,
+      "patient": 1,
+      "value": "120"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:55:17.609",
+      "field": 2,
+      "patient": 1,
+      "value": "120"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T14:13:24",
+      "field": 1,
+      "patient": 1,
+      "value": "123"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T08:13:51",
+      "field": 1,
+      "patient": 1,
+      "value": "12"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T20:14:41",
+      "field": 1,
+      "patient": 1,
+      "value": "125"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T14:15:12",
+      "field": 2,
+      "patient": 1,
+      "value": "119"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T08:15:32",
+      "field": 2,
+      "patient": 1,
+      "value": "126"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T20:15:59",
+      "field": 2,
+      "patient": 1,
+      "value": "150"
     }
   },
   {

@@ -19,13 +19,13 @@ for M in [x
         if (issubclass(type(x), ModelBase) and
 		not x._meta.abstract and 		
 		x.__name__ not in [
-				'ProgramWorkflowState', 'ProgramWorkflow'
+				'ProgramWorkflowState', 'ProgramWorkflow', 'EnrolledProgram'
 			]
 		)
 ]:
 	class ItemAdmin(GuardedModelAdmin):
 		model = M
-		list_display = [f.name for f in M._meta.fields]
+		list_display = [f.name for f in M._meta.fields if not f.name in ('description', 'is_public','concept_notes','expected_outcome_notes')]
 		inlines = []
 		
 	try:

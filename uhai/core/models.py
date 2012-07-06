@@ -1,6 +1,7 @@
 from django.db import models, transaction
 from django.contrib.auth.models import User, Group
 from django.db import models
+from datetime import datetime
 
 class OwnerModel(models.Model):
 	owner = models.ForeignKey('auth.User', null=True, editable=False)
@@ -20,8 +21,8 @@ class MetaData(models.Model):
 	name = models.CharField(max_length=120)
 	slug = models.SlugField(max_length=200, unique=True)
 	description = models.TextField(null=True, blank=True)
-	date_created = models.DateTimeField(auto_now=True)
-	date_changed = models.DateTimeField(auto_now_add=True)
+	date_created = models.DateTimeField(auto_now=True, default=datetime.now)
+	date_changed = models.DateTimeField(auto_now_add=True, default=datetime.now)
 	
 	def __unicode__(self):
 		return self.name

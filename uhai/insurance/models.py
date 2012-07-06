@@ -5,7 +5,7 @@ from uhai.core.models import MetaData
 class Company(models.Model):
 	name = models.CharField(max_length=50)
 	phone = models.CharField(max_length=50)
-	email = models.EmailField()
+	email = models.EmailField(null=True, blank=True)
 	location = models.CharField(max_length=200)
 	date_edited = models.DateTimeField(auto_now=True)
 	date_added = models.DateTimeField(auto_now_add=True)
@@ -18,7 +18,6 @@ class Company(models.Model):
 		
 class HealthInsuranceProvider(Company):	
 	class Meta:
-	
 		permissions = (
 			('view_healthinsuranceprovider', 'View health insurance provider'),
 		)
@@ -48,18 +47,20 @@ class Insurance(models.Model):
 	def __unicode__(self):
 		return self.plan_name
 
-class PatientInsurance(Record):
+class PatientInsurance(models.Model):
 	STATUS = (
 		(0, "Inactive"),
 		(1, "Approved"),
 		(2, "Suspended"),
 		(3, "Expired")
 	)
+	patient = models.ForeignKey("patients.Patient")	
 	coverage_start_date = models.DateField()
 	coverage_end_date = models.DateField()
 	insurance = models.ForeignKey('Insurance', help_text='Type of cover')
 	status = models.IntegerField(choices=STATUS)
 	subscriber_policy_id = models.CharField(max_length=100)
+	notes = models.TextField()
 	
 	class Meta:
 		permissions = (

@@ -3,7 +3,7 @@ from uhai.core.models import Record, MetaData
 
 class Event(models.Model):
 	PERIODS = [
-		('every-hour', 'Every hour'),
+		('every-hour', 'Hourly'),
 		('twice-a-day', 'Twice a  day'),
 		('thrice-a-day', 'Thrice a day'),
 		('four-times-a-day', 'Four times a day'),
@@ -12,21 +12,22 @@ class Event(models.Model):
 		('seven-times-a-day', 'Seven times a day'),
 		('eight-times-a-day', 'Eight times a day'),
 		('weekly', 'Weekly'),
-		('monthly', 'Per month'),
+		('monthly', 'Monthly'),
 		('three-months', 'Three months'),
 		('six-months', 'Six months'),
 		('nine-months', 'Nine months'),
-		('yearly', 'Per year')
+		('yearly', 'Yearly')
 	]
-	user    = models.ForeignKey("auth.User", verbose_name="Patient")
-	title   = models.CharField(max_length=50)
-	message = models.CharField(max_length=140)
+	user    = models.ForeignKey("patients.Patient", verbose_name="Patient")
+	provider = models.ForeignKey('providers.HealthWorker', null=True)
+	
+	text = models.CharField(max_length=50, null=True, blank=True)
 	frequency = models.CharField(choices=PERIODS, max_length=50)
 	completed = models.BooleanField(default=False)
 	start_time = models.DateTimeField()
 	end_time   = models.DateTimeField()
 	
 	def __unicode__(self):
-		return self.message
+		return self.text
 	
 	class Meta:pass

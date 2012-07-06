@@ -2,6 +2,8 @@ from django.db import models
 from uhai.core.models import Record, MetaData 
 from uhai.reminders.models import Event
 
+from datetime import datetime
+
 class ProblemType(MetaData):pass
 class Problem(models.Model):
 	name = models.CharField(max_length=30)	
@@ -39,14 +41,13 @@ class ICD10Block(MetaData):
 
 class EncounterType(MetaData):pass
 class Encounter(Event):	
-	provider = models.ForeignKey('providers.HealthWorker')
 	type = models.ForeignKey('EncounterType')
 	patient_complience = models.BooleanField(default=False)
 	location = models.CharField(max_length=50, null=True)	
 	observation_notes = models.TextField()
 	
 	def __unicode__(self):
-		return 'Visit by %s' % (self.user)
+		return (self.user.user.full_name)
 
 class Order(models.Model):
 	encounter = models.ForeignKey('Encounter')
@@ -76,16 +77,39 @@ class Diagnosis(models.Model):
 			('view_diagnosis', 'View diagnosis'), 
 		)
 
-class TrackingField(models.Model):
+	def __unicode__(self):
+		return self.problem.name
+
+class TrackingRecord(MetaData):
+	diagnosis = models.ForeignKey('Problem', verbose_name="Problem")
+			
+class TrackingField(MetaData):
 	'''
 	Every problem is trackable, and has things that are tracked
 	That's only its conditional, or is Patient defined,
 	or if in a Program
 	'''
-	name =  models.CharField(max_length=120)	
+	PERIODS = [
+		('every-hour', 'Hourly'),
+		('twice-a-day', 'Twice daily'),
+		('thrice-a-day', 'Thrice daily'),
+		('four-times-a-day', 'Four times daily'),
+		('five-times-a-day', 'Five times daily'),
+		('six-times-a-day', 'Six times daily'),
+		('seven-times-a-day', 'Seven times daily'),
+		('eight-times-a-day', 'Eight times daily'),
+		('daily', 'Daily'),
+		('weekly', 'Weekly'),
+		('monthly', 'Monthly'),
+		('three-months', 'Three months'),
+		('six-months', 'Six months'),
+		('nine-months', 'Nine months'),
+		('yearly', 'Yearly')
+	]
+	tracking_record = models.ForeignKey('TrackingRecord', null=True)
 	unit = models.CharField(max_length=25)
-	diagnosis = models.ForeignKey('Diagnosis')
-
+	frequency = models.CharField(choices=PERIODS, max_length=50, null=True)
+	
 	upper_normal = models.CharField(max_length=5)
 	normal = models.CharField(max_length=5)
 	lower_normal = models.CharField(max_length=5)
@@ -103,14 +127,18 @@ class TrackingField(models.Model):
 	def __unicode__(self):
 		return '%s in %s' % (self.name, self.unit)
 
-class TrackingEntry(Event):
+class TrackingEntry(models.Model):
+	patient = models.ForeignKey('patients.Patient')	
 	field = models.ForeignKey(TrackingField)
 	value = models.CharField(max_length=5)
 	
-	date_updated = models.DateTimeField(auto_now_add=True)
+	date_updated = models.DateTimeField(default=datetime.now)
 	
 	class Meta:
 		verbose_name_plural = 'Tracking entries'
+		
+	def __unicode__(self):
+		return 'Tracking entry for: %s' % self.field
 		
 class Test(MetaData):
 	expected_outcomes = models.TextField()
@@ -129,3 +157,5 @@ class EncounterTestResult(Event):
 	encounter_test = models.ForeignKey(EncounterTest)
 	inference = models.TextField(null=True, blank=True)
 	notes = models.TextField(null=True, blank=True)
+
+	

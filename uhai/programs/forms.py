@@ -2,10 +2,6 @@ from django import forms
 from models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
-
-class ProgramTypeForm(forms.ModelForm):
-    class Meta:
-        model = ProgramType
         
 class ProgramForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

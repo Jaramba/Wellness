@@ -57,27 +57,18 @@ class Prescription(Event):
     	('teaspoon', 'Teaspoon (Tbsp)'),
     	('ounce', 'Ounce (oz)'),
     ]
-    PERIODS = [
-    	('as-needed', 'As needed'),
-    	('per-hour', 'Per hour'),
-    	('per-day', 'Per day'),
-    	('per-week', 'Per week'),
-    	('per-month', 'Per month'),
-    	('per-year', 'Per year')
-    ]	
-    medication = models.ForeignKey('Medication')    
+    medication = models.ForeignKey('Medication')   
     reason = models.CharField(max_length=300)
     
     quantity = models.SmallIntegerField()
     unit = models.CharField(max_length=50, choices=UNIT)
-    period = models.CharField(max_length=50, choices=PERIODS)
     notes = models.CharField(max_length=2000)
     
     def __unicode__(self):
-    	return '%s, %s %s taken %s %s for %s, prescribed by %s' % (
+    	return '%s, %s %s taken %s %s prescribed by %s' % (
     		self.medication.name, self.quantity, self.unit, 
-    		self.get_frequency_display(), self.get_period_display(), 
-    		self.encounter.patient, self.encounter.provider
+    		self.get_frequency_display(), 
+    		self.user, self.provider
     	)
         
     class Meta:
@@ -110,6 +101,7 @@ class Immunization(Event):
 	mode_of_delivery = models.CharField(choices=MODE_OF_DELIVERY, max_length=100)
 	follow_up_date = models.DateTimeField()
 	expiry_date = models.DateTimeField()
+	
 
 	class Meta:
 		permissions = ( 

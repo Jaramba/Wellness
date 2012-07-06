@@ -1,0 +1,67 @@
+[
+  {
+    "pk": 1,
+    "model": "reminders.event",
+    "fields": {
+      "text": "Meeting with Dr",
+      "completed": true,
+      "frequency": "monthly",
+      "user": 2,
+      "provider": null,
+      "start_time": "2012-07-06T04:50:49",
+      "end_time": "2013-07-06T04:50:49"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "reminders.event",
+    "fields": {
+      "text": "Meeting with Dr",
+      "completed": true,
+      "frequency": "monthly",
+      "user": 13,
+      "provider": null,
+      "start_time": "2012-07-06T04:50:49",
+      "end_time": "2013-07-06T04:50:49"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "reminders.event",
+    "fields": {
+      "text": "Appointment with Dr",
+      "completed": true,
+      "frequency": "monthly",
+      "user": 4,
+      "provider": null,
+      "start_time": "2012-07-06T04:50:49",
+      "end_time": "2013-07-06T04:50:49"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "reminders.event",
+    "fields": {
+      "text": "Appointment with Dr",
+      "completed": true,
+      "frequency": "monthly",
+      "user": 10,
+      "provider": null,
+      "start_time": "2012-07-06T04:50:49",
+      "end_time": "2013-07-06T04:50:49"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "reminders.event",
+    "fields": {
+      "text": "Appointment with Dr",
+      "completed": true,
+      "frequency": "weekly",
+      "user": 1,
+      "provider": null,
+      "start_time": "2012-07-06T04:50:49",
+      "end_time": "2013-07-06T04:50:49"
+    }
+  }
+]

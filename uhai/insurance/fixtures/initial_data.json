@@ -1,29 +1,277 @@
 [
   {
-    "pk": 1, 
-    "model": "insurance.healthinsuranceprovider", 
+    "pk": 1,
+    "model": "insurance.healthinsuranceprovider",
     "fields": {
-      "name": "AON", 
-      "phone": "254736705812", 
-      "location": "Kenya", 
-      "date_added": "2012-04-07 10:10:34", 
-      "email": "info@aon.com", 
-      "date_edited": "2012-04-07 10:10:34"
+      "name": "AON",
+      "phone": "254736705812",
+      "location": "Kenya",
+      "date_added": "2012-04-07T10:10:34",
+      "email": "info@aon.com",
+      "date_edited": "2012-07-06T00:07:24.732"
     }
-  }, 
+  },
   {
-    "pk": 1, 
-    "model": "insurance.employercompany", 
+    "pk": 1,
+    "model": "insurance.employercompany",
     "fields": {
-      "name": "Kenya Power", 
+      "name": "Kenya Power",
       "insurance_providers": [
         1
-      ], 
-      "phone": "254736705812", 
-      "location": "Kenya", 
-      "date_added": "2012-04-07 10:12:41", 
-      "email": "kanarelo@gmail.com", 
-      "date_edited": "2012-04-07 10:12:41"
+      ],
+      "phone": "0736705812",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Gladys Mshilla",
+      "date_added": "2012-04-07T10:12:41",
+      "email": "kanarelo@gmail.com",
+      "date_edited": "2012-07-06T00:23:17.249"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Barclays Bank of Kenya Ltd",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "07383923",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Jim Kisaka",
+      "date_added": "2012-07-06T00:14:26.575",
+      "email": "info@barclays.com",
+      "date_edited": "2012-07-06T00:14:26.575"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Kengen",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "07283676",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Kanyora Francis",
+      "date_added": "2012-07-06T00:15:25.850",
+      "email": "info@kengen.com",
+      "date_edited": "2012-07-06T00:15:25.850"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Kenya Commercial Bank",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "06873672",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Kibara James",
+      "date_added": "2012-07-06T00:16:21.001",
+      "email": "info@kcb.com",
+      "date_edited": "2012-07-06T00:16:21.001"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "National Bank of Kenya",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "968379",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Kitata Kisimba",
+      "date_added": "2012-07-06T00:17:02.157",
+      "email": "info@nbk.com",
+      "date_edited": "2012-07-06T00:17:02.157"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Uchumi supermarket",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "0323662",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Edith Mukewa",
+      "date_added": "2012-07-06T00:17:46.966",
+      "email": "info@uchumi.com",
+      "date_edited": "2012-07-06T00:17:46.966"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Total Kenya",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "073822343",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Kioana Zimbao",
+      "date_added": "2012-07-06T00:18:34.802",
+      "email": "info@totalkenya.com",
+      "date_edited": "2012-07-06T00:18:34.802"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Kenya Airways",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "073637267",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Hosbon Omondi",
+      "date_added": "2012-07-06T00:19:34.876",
+      "email": "info@kenyaairways.com",
+      "date_edited": "2012-07-06T00:19:34.876"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Hutchings Biemer",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "0279273",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Koli Ismael",
+      "date_added": "2012-07-06T00:20:19.419",
+      "email": "info@hutchingsbiemer.com",
+      "date_edited": "2012-07-06T00:20:19.419"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "insurance.employercompany",
+    "fields": {
+      "name": "Equity Bank",
+      "insurance_providers": [
+        1
+      ],
+      "phone": "83287676",
+      "location": "Nairobi, Kenya",
+      "contact_person_name": "Joan Nyathira",
+      "date_added": "2012-07-06T00:21:10.016",
+      "email": "info@equity.com",
+      "date_edited": "2012-07-06T00:21:10.016"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "insurance.insurancetype",
+    "fields": {
+      "date_created": "2012-07-06T00:04:25.373",
+      "description": "",
+      "date_changed": "2012-07-06T00:04:25.373",
+      "name": "Health",
+      "slug": "health"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "insurance.insurancetype",
+    "fields": {
+      "date_created": "2012-07-06T00:09:00.258",
+      "description": "",
+      "date_changed": "2012-07-06T00:09:00.258",
+      "name": "Life",
+      "slug": "life"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "insurance.insurance",
+    "fields": {
+      "plan_name": "Managed care coverage",
+      "notes": "",
+      "plan_id": "23232",
+      "policy_provider": 1,
+      "type": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "insurance.insurance",
+    "fields": {
+      "plan_name": "Indemnity or Fee-for-Service coverage",
+      "notes": "",
+      "plan_id": "23324",
+      "policy_provider": 1,
+      "type": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "insurance.insurance",
+    "fields": {
+      "plan_name": "Health maintenance",
+      "notes": "",
+      "plan_id": "34342",
+      "policy_provider": 1,
+      "type": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "insurance.insurance",
+    "fields": {
+      "plan_name": "Preferred provider",
+      "notes": "",
+      "plan_id": "65768",
+      "policy_provider": 1,
+      "type": 1
+    }
+  },
+  {
+    "pk": 5,
+    "model": "insurance.insurance",
+    "fields": {
+      "plan_name": "Point of service",
+      "notes": "",
+      "plan_id": "32443",
+      "policy_provider": 1,
+      "type": 1
+    }
+  },
+  {
+    "pk": 1,
+    "model": "insurance.patientinsurance",
+    "fields": {
+      "status": 1,
+      "patient": 1,
+      "subscriber_policy_id": "2323",
+      "coverage_end_date": "2013-07-06",
+      "notes": "Approved insurance",
+      "insurance": 1,
+      "coverage_start_date": "2012-07-06"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "insurance.patientinsurance",
+    "fields": {
+      "status": 1,
+      "patient": 1,
+      "subscriber_policy_id": "3233",
+      "coverage_end_date": "2013-07-06",
+      "notes": "Health Maintenance",
+      "insurance": 3,
+      "coverage_start_date": "2012-07-06"
     }
   }
 ]

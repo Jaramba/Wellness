@@ -722,36 +722,40 @@
     "pk": 1,
     "model": "questions.response",
     "fields": {
+      "response_date": "2012-07-06T05:58:21.070",
       "question": 47,
-      "value": "2",
-      "user": 1
+      "user": 1,
+      "value": "2"
     }
   },
   {
     "pk": 2,
     "model": "questions.response",
     "fields": {
+      "response_date": "2012-07-06T05:58:21.072",
       "question": 47,
-      "value": "2",
-      "user": 1
+      "user": 1,
+      "value": "2"
     }
   },
   {
     "pk": 3,
     "model": "questions.response",
     "fields": {
+      "response_date": "2012-07-06T05:58:21.074",
       "question": 47,
-      "value": "",
-      "user": 1
+      "user": 1,
+      "value": ""
     }
   },
   {
     "pk": 4,
     "model": "questions.response",
     "fields": {
+      "response_date": "2012-07-06T05:58:21.076",
       "question": 48,
-      "value": "on",
-      "user": 1
+      "user": 1,
+      "value": "on"
     }
   }
 ]

@@ -1,25 +1,13 @@
 [
   {
     "pk": 1,
-    "model": "programs.programtype",
-    "fields": {
-      "date_created": "2012-05-26T14:55:01.792",
-      "description": "",
-      "date_changed": "2012-05-26T14:55:01.792",
-      "name": "Health",
-      "slug": "health"
-    }
-  },
-  {
-    "pk": 1,
     "model": "programs.program",
     "fields": {
       "name": "Weight Gain",
-      "owner": 1,
       "concept_notes": "",
+      "owner": 1,
       "is_public": false,
       "problem": 2,
-      "type": 1,
       "expected_outcome_notes": "Gain Prescribe weight"
     }
   },
@@ -28,11 +16,118 @@
     "model": "programs.program",
     "fields": {
       "name": "HIV/AIDS Improvement",
-      "owner": 1,
       "concept_notes": "",
+      "owner": 1,
       "is_public": false,
       "problem": 1,
-      "type": 1,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 3,
+    "model": "programs.program",
+    "fields": {
+      "name": "Work Related Stress",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11777,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 4,
+    "model": "programs.program",
+    "fields": {
+      "name": "Work Burnout",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11900,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 5,
+    "model": "programs.program",
+    "fields": {
+      "name": "Crime Trauma",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11867,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 6,
+    "model": "programs.program",
+    "fields": {
+      "name": "Gambling Addiction",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11896,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 7,
+    "model": "programs.program",
+    "fields": {
+      "name": "Sexual Behavior",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11895,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 8,
+    "model": "programs.program",
+    "fields": {
+      "name": "Obesity ",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11893,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 9,
+    "model": "programs.program",
+    "fields": {
+      "name": "HIV Counselling",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11886,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 10,
+    "model": "programs.program",
+    "fields": {
+      "name": "Spouse Accident",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11912,
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 11,
+    "model": "programs.program",
+    "fields": {
+      "name": "Drug Addiction",
+      "concept_notes": "",
+      "owner": null,
+      "is_public": false,
+      "problem": 11892,
       "expected_outcome_notes": ""
     }
   },

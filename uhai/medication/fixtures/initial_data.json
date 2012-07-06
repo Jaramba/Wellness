@@ -28,14 +28,96 @@
     }
   },
   {
+    "pk": 3,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "2",
+      "strength": "23",
+      "name": "Amoxil",
+      "side_effects": "Head ache",
+      "medication_type": "otc",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "4",
+      "strength_unit": "gram"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "2",
+      "strength": "45",
+      "name": "Cristamine",
+      "side_effects": "Rashes",
+      "medication_type": "prescribed",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "3",
+      "strength_unit": "milligram"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "2",
+      "strength": "2",
+      "name": "Betadine",
+      "side_effects": "Puking",
+      "medication_type": "otc",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "4",
+      "strength_unit": "percent"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "2",
+      "strength": "3",
+      "name": "Flagil",
+      "side_effects": "Cough",
+      "medication_type": "otc",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "4",
+      "strength_unit": "microgram"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "3",
+      "strength": "4",
+      "name": "Calpol",
+      "side_effects": "Headache",
+      "medication_type": "prescribed",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "2",
+      "strength_unit": "gram"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "medication.medication",
+    "fields": {
+      "min_daily_dose": "2",
+      "strength": "3",
+      "name": "Piriton",
+      "side_effects": "Low libido",
+      "medication_type": "prescribed",
+      "way_taken": "by-mouth",
+      "max_daily_dose": "5",
+      "strength_unit": "gram"
+    }
+  },
+  {
     "pk": 1,
     "model": "medication.prescription",
     "fields": {
+      "reason": "Low blood sugar",
       "medication": 1,
       "notes": "Nes",
-      "period": "as-needed",
-      "reason": "Low blood sugar",
-      "frequency": "3",
       "unit": "suppository",
       "quantity": 2
     }
@@ -44,11 +126,9 @@
     "pk": 2,
     "model": "medication.prescription",
     "fields": {
+      "reason": "Head ache",
       "medication": 2,
       "notes": "We cant get it!!",
-      "period": "per-day",
-      "reason": "Head ache",
-      "frequency": "3",
       "unit": "tablet",
       "quantity": 2
     }

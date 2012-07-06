@@ -5,23 +5,23 @@ import models
 
 class DiagnosisInline(admin.TabularInline):
 	model = models.Diagnosis
-	extra = 1
+	extra = 0
 
 class OrderInline(admin.TabularInline):
 	model = models.Order
-	extra = 1
+	extra = 0
 	
 class EncounterTestInline(admin.TabularInline):
 	model = models.EncounterTest
-	extra = 1
+	extra = 0
 	
 class ProblemTestInline(admin.TabularInline):
 	model = models.ProblemTest
-	extra = 1
+	extra = 0
 
 class EncounterAdmin(admin.ModelAdmin):
 	model = models.Encounter
-	list_display = [f.name for f in models.Encounter._meta.fields]
+	list_display = [f.name for f in models.Encounter._meta.fields if not f.name in ('id', 'event_ptr', 'observation_notes', 'message', 'completed', 'location')]
 	inlines = [DiagnosisInline, OrderInline, EncounterTestInline]
 admin.site.register(models.Encounter, EncounterAdmin)
 
@@ -44,6 +44,16 @@ class ICD10ChapterAdmin(admin.ModelAdmin):
 	inlines = [ICD10Blockline]
 admin.site.register(models.ICD10Chapter, ICD10ChapterAdmin)
 
+class ProblemInline(admin.TabularInline):
+	model = models.Problem
+	extra = 1
+
+class ICD10BlockAdmin(admin.ModelAdmin):
+	model = models.ICD10Block
+	list_display = [f.name for f in models.ICD10Block._meta.fields]
+	inlines = [ProblemInline]
+admin.site.register(models.ICD10Block, ICD10BlockAdmin)
+
 for M in [x
     for x in models.__dict__.values()  
         if (issubclass(type(x), ModelBase) and 
@@ -57,7 +67,7 @@ for M in [x
 ]:
 	class ItemAdmin(admin.ModelAdmin):
 		model = M
-		list_display = [f.name for f in M._meta.fields]
+		list_display = [f.name for f in M._meta.fields if not f.name in ('id', 'event_ptr', 'observation_notes', 'message', 'completed', 'location')]
 		inlines = []
 		search_fields = M._meta.fields[:5]
 		

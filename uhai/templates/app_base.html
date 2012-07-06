@@ -16,6 +16,7 @@
 		{% block extrajs-global %}{% endblock extrajs-global %}
 		$(function(){
 			$('.navbar-item').tooltip({animation:true, placement:'bottom'});
+			try{$('select').selectToAutocomplete();}catch($e){}
 			{% block extrajs-jquery-enclosed %}{% endblock extrajs-jquery-enclosed %}
 		});
 	</script>

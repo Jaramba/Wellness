@@ -1,12 +1,6 @@
 from django.db import models
 from uhai.core.models import *
-
-class ProgramType(MetaData):
-    '''
-    Meta-definer of the program; The type of program
-    '''
-    pass
-
+	
 class Program(OwnerModel):
     '''
     This represents either an Employee Assistance Program (EAP)
@@ -14,10 +8,8 @@ class Program(OwnerModel):
     to help Alcoholics.
     '''
     name = models.CharField(max_length=100)
-    program_owner = models.ForeignKey('auth.User', related_name='owned_programs', null=True, editable=False)
-    type = models.ForeignKey("ProgramType", null=True, editable=False)
-    is_public = models.BooleanField(default=False, editable=False, help_text='Can be used by other Patients, Users as a Template. Leave unchecked, to be private')
     problem = models.ForeignKey("records.Problem")
+    is_public = models.BooleanField(default=False, editable=False, help_text='Can be used by other Patients, Users as a Template. Leave unchecked, to be private')
     concept_notes = models.TextField(null=True, blank=True)
     expected_outcome_notes = models.TextField(null=True, blank=True)
 
@@ -38,8 +30,8 @@ class EnrolledProgram(models.Model):
 	Weight loss program...
     '''
     program = models.ForeignKey("Program")
-    enrollee = models.ForeignKey("auth.User", related_name='enrollee')
-    enroller = models.ForeignKey("auth.User", related_name='enroller')
+    enrollee = models.ForeignKey("patients.Patient", related_name='enrollee')
+    enroller = models.ForeignKey("auth.User", related_name='enroller', verbose_name="Enrolled By")
     date_enrolled = models.DateField(auto_now=True)
     date_completed = models.DateField()
     outcome_notes = models.TextField(null=True, blank=True)

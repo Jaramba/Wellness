@@ -7,7 +7,7 @@ model_classes = [x for x in models.__dict__.values()  if issubclass(type(x), Mod
 for m in model_classes:
     class ItemAdmin(admin.ModelAdmin):
         model = m
-        list_display = [f.name for f in m._meta.fields]
+        list_display = [f.name for f in m._meta.fields if not f.name in ('id', 'frequency', 'duration_of_protection', 'event_ptr', 'observation_notes', 'message', 'completed', 'location')]
     try:
         admin.site.register(m, ItemAdmin)
     except:
