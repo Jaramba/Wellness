@@ -1,75 +1,35 @@
 from django.conf.urls.defaults import *
-from django.contrib import admin
-
-from django.db.models.base import ModelBase
-from django.views.generic.base import TemplateView
 
 from uhai.core.utils import get_crud_urls
+from app_map import MODULE_NAME, APP_MAP
 
-from models import *
-from forms import *
-
-urlpatterns = patterns('uhai.records.views',
+urlpatterns = patterns(MODULE_NAME,
     url(r'^$', 'index', name='records'),
 )
 
 urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),
-	preurl='patient/(?P<patient_pk>[-\w]+)/',
-    models=[
-       Encounter, Order, 
-       TrackingField,
-       Diagnosis, ProblemTest, 
-	   EncounterTest, 
-       EncounterTestResult
-    ],
-    forms=[
-       EncounterPatientForm, OrderForm,
-       TrackingFieldForm,
-       DiagnosisForm, ProblemTestForm, 
-       EncounterTestForm, EncounterTestResultForm,
-    ],
-    data=globals()                            
+    MODULE_NAME,
+	app_map=APP_MAP	
+)
+
+'''
+urlpatterns += get_crud_urls(
+    MODULE_NAME,
+ 	app_map=APP_MAP,
+ 	preurl='patient/(?P<patient_pk>[-\w]+)/'	
 )
 
 urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
-	posturl='type/(?P<problem_type>[-\w]+)/',
-    models=[
-       Diagnosis,
-    ],
-    forms=[
-       DiagnosisForm
-    ],
-    data=globals()
+ 	posturl='type/(?P<problem_type>[-\w]+)/',
+	app_map=APP_MAP,
+    items=['diagnosis']	
 )
 
 urlpatterns += get_crud_urls(
     '.'.join(__name__.split('.')[:-1]+['views']),
 	posturl='type/(?P<encounter_type>[-\w]+)/',
-    models=[
-       Encounter,
-    ],
-    forms=[
-       EncounterForm
-    ],
-    data=globals()
+    app_map=APP_MAP,
+    items=['encounter']
 )
-
-urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),
-    models=[
-       Encounter, Order, 
-       TrackingField,
-       Diagnosis, ProblemTest, 
-	   EncounterTest, 
-       EncounterTestResult
-    ],
-    forms=[
-       EncounterPatientForm, OrderForm,
-       TrackingFieldForm,
-       DiagnosisForm, ProblemTestForm, 
-       EncounterTestForm, EncounterTestResultForm,
-    ],
-    data=globals()                            
-)
+'''

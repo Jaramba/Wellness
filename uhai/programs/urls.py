@@ -1,34 +1,19 @@
 from django.conf.urls.defaults import *
-from django.contrib import admin
 
-from django.db.models.base import ModelBase
-
-from models import *
-from forms import *
-
-from django.views.generic.base import TemplateView
+from app_map import MODULE_NAME, APP_MAP
 
 from uhai.core.utils import get_crud_urls
 
-urlpatterns = patterns('uhai.programs.views',
+urlpatterns = patterns(MODULE_NAME,
     url(r'^$', 'index', name='programs'),
 )
 
 urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),
-    models=[
-        Program, 
-        EnrolledProgram,
-		Questionnaire
-    ],
-    forms=[
-        ProgramForm, 
-        EnrolledProgramForm,
-		Questionnaire
-    ],
-    data=globals()                            
-)   
+    MODULE_NAME,
+	app_map=APP_MAP
+)
 
+'''
 urlpatterns += patterns('uhai.programs.views',
 	url(r'^questionnaires/$', 'questionaire', {'action':'list', 'queryset':Questionnaire.objects.all(),}, name='questionnaire-list'),
 	url(r'^response/$', 'responses', name='questionnaire-response'),
@@ -57,3 +42,4 @@ urlpatterns += patterns('uhai.programs.views',
 		}, 
 	name='questionnaire-start'),
 )
+'''

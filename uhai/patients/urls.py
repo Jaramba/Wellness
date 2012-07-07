@@ -1,27 +1,10 @@
 from django.conf.urls.defaults import *
-from django.contrib import admin
 
-from models import *
-from forms import *
-
-from django.db.models.base import ModelBase
-from forms import (PatientForm)
-
-from django.views.generic.base import TemplateView
+from app_map import MODULE_NAME, APP_MAP
 
 from uhai.core.utils import get_crud_urls
 
-urlpatterns = patterns('',)
-
 urlpatterns = get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),
-    models=[
-       Patient,
-	   PatientEmergencyContact
-    ],
-    forms=[
-       PatientForm,
-	   PatientEmergencyContactForm
-    ],
-    data=globals()                            
+    MODULE_NAME,
+	app_map=APP_MAP
 )

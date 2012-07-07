@@ -9,6 +9,18 @@ urlpatterns = patterns('uhai.reminders.views',
 	url(r'^calendar/$', 'calendar', name="calendar"),
 )
 
+MODULE_NAME = '.'.join(__name__.split('.')[:-1]+['views'])
+APP_MAP={
+	'event':{
+		'model':Event,
+		'forms':{
+			'patient': EventForm,
+		},
+		'actions':'CRUDL',
+	}, 
+}
+
 urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),models=[Event],forms=[EventForm],data=globals()                            
+    MODULE_NAME,
+	app_map=APP_MAP	
 )

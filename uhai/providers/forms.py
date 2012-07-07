@@ -9,6 +9,13 @@ class HealthCareFacilityForm(forms.ModelForm):
 	class Meta:
 		model = HealthCareFacility
 
+class SpecialityForm(forms.ModelForm):
+	def __init__(self, *args, **kwargs):
+		return super(SpecialityForm, self).__init__(*args, **kwargs)
+	
+	class Meta:
+		model = Speciality
+		
 class HealthWorkerAdminForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		return super(HealthWorkerAdminForm, self).__init__(*args, **kwargs)

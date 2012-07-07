@@ -94,14 +94,14 @@ class Immunization(Event):
 		('under-tongue', 'Under tongue'),
 		('subcataneous', 'Subcataneous'),
 	]
-	code = models.CharField(max_length=50)
-	vaccine = models.ForeignKey(Medication)
-	brand_name = models.CharField(max_length=100)
-	duration_of_protection = models.CharField(max_length=3, help_text='duration time, in years')
+	code = models.CharField(max_length=50, null=True)
+	brand_name = models.CharField(max_length=100, null=True)
+	duration_of_protection = models.CharField(max_length=3, help_text='duration time, in years', null=True)
 	mode_of_delivery = models.CharField(choices=MODE_OF_DELIVERY, max_length=100)
-	follow_up_date = models.DateTimeField()
-	expiry_date = models.DateTimeField()
-	
+	follow_up_date = models.DateTimeField(null=True)
+	expiry_date = models.DateTimeField(null=True)
+
+	notes = models.CharField(max_length=2000, null=True, blank=True)
 
 	class Meta:
 		permissions = ( 

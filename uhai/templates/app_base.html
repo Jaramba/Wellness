@@ -49,7 +49,7 @@
 									<li class="navbar-item" id="patient-menu">
 										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
 									</li>
-								{% elif request.session.use_page_as == 'patient' %}
+								{% else %}
 									<li class="navbar-item"><a href="{% url calendar %}">Schedule</a></li>
 									<li class="navbar-item"><a href="{% url records %}">Records</a></li>
 									<li class="navbar-item"><a href="{% url programs %}">Programs</a></li>
@@ -66,9 +66,11 @@
 					<div class="pull-right">
 						{% block navbar-right %}
 							{% if request.user.is_authenticated %}
-								<form method="GET" class="navbar-search pull-left" action="{% url search-index %}" style="padding-top:2px;">
-									<input type="text" class="search-query span2" name="q" placeholder="Search User/Patient"/>
-								</form>
+								{% if not request.session.use_page_as == 'patient' %}
+									<form method="GET" class="navbar-search pull-left" action="{% url search-index %}" style="padding-top:2px;">
+										<input type="text" class="search-query span2" name="q" placeholder="Search User/Patient"/>
+									</form>
+								{% endif %}
 								<ul class="nav pull-right" style="padding-top: 3px;">
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>

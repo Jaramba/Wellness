@@ -1,0 +1,50 @@
+{% extends "app_base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block page-title %}
+	Immunization Create
+{% endblock page-title %}
+
+{% block extracss-links %}
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/jquery-ui-1.8.17.custom.css' type='text/css' media='screen' />
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/jquery.select-to-autocomplete.css' type='text/css' media='screen' />
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
+{% endblock extracss-links %}
+
+{% block extracss-inline %}
+	.textarea-column{
+		padding: 2px 0px 10px 10px;
+		vertical-align: top;
+		margin: 0 20px 20px 0;
+		position: relative;
+		height: 200px;
+	}
+	.textarea-column textarea{
+		height: 200px;
+	}
+	table.mceLayout{
+		width: 500px;
+	}
+{% endblock extracss-inline %}
+
+{% block extrajs-global %}
+	tinyMCE_GZ.init({'plugins':'','themes':'simple','languages':'en','disk_cache':true,'debug':false});
+{% endblock extrajs-global %}
+
+{% block extrajs-jquery-plugins %}
+	{{block.super}}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.select-to-autocomplete.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tinymce.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce_gzip.js"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block extrajs-jquery-enclosed %}
+	{{block.super}}
+	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
+{% endblock extrajs-jquery-enclosed %}
+
+{% block container-right %}
+	{% crispy form form.helper %}
+{% endblock container-right %}

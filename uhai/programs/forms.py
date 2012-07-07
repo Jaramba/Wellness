@@ -104,3 +104,7 @@ class PatientQuestionnaireForm(forms.ModelForm):
 class ResponseForm(forms.ModelForm):
 	class Meta:
 		model = Response
+		
+class QuestionnaireForm(forms.ModelForm):
+	class Meta:
+		model = Questionnaire

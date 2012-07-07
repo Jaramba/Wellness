@@ -1,8 +1,7 @@
-from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render_to_response, get_object_or_404
+from django.http import Http404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
@@ -47,7 +46,7 @@ def model_view(request, pk=None,
 		
 	if not template_name:
 		template_name = "%s/%s_%s.html" % (queryset.model._meta.app_label, queryset.model._meta.object_name.lower(), action)
-		
+	
 	if request.method == 'GET':
 		if action in ['create', 'view', 'edit', 'delete', 'list']:
 			if action in ['create', 'edit']:
@@ -66,7 +65,7 @@ def model_view(request, pk=None,
 					success = True
 			
 			if success:
-				return HttpResponseRedirect(reverse('%s-list' % queryset.model.__name__.lower()))
+				return redirect(redirect_to or '%s-list' % queryset.model.__name__.lower())
 			data[context_form_name] = form
 		elif action == 'delete':
 			if model_obj:
@@ -76,3 +75,19 @@ def model_view(request, pk=None,
 			
 	data.update(extra_data)
 	return render_to_response(template_name, data, context_instance=RequestContext(request))
+
+def user_model_view(request, user_pk=None, forms={}, *args, **kwargs):	
+	if kwargs['action'] in ('create', 'edit'):
+		kwargs['model_form_class'] = forms[request.session.get('use_page_as') or 'patient']
+	
+	if request.session.get('use_page_as') == 'patient':
+		user = request.user
+		kwargs['queryset'] = kwargs['queryset'].filter(user=user)
+		kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user.pk)
+	else:
+		if user_pk:
+			user = get_object_or_404(User, pk=user_pk)
+			kwargs['queryset'] = kwargs['queryset'].filter(user=user)
+			kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user.pk)
+	
+	return model_view(request, *args, **kwargs)

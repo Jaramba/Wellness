@@ -23,28 +23,49 @@ def perform_raw_sql(sql, data=[]):
 	cursor.execute(sql, data)
 	transaction.commit_unless_managed()
 
-def get_crud_urls(views_module='', preurl='', posturl='', models=[], forms=[], data=globals(), actions=['C','R','U','D','L']):
-    url_patterns = []
-    for i,M in enumerate(models):
-		qs = M.objects.all()
-		model_name = M.__name__.lower()
-		form_class = forms[i]
-		urls = []
-		if 'L' in actions:
-			urls.append(url(r'^%s%s/list/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'list', 'queryset':qs}, name='%s-list' % model_name))
-		if 'C' in actions:
+def get_crud_urls(views_module='', preurl='', posturl='', app_map={}, items=[], exclude=[]):
+	'''
+	This is an awesome magical URL creator... Meant for CRUD parts.
+	Just pass a dictionary in the following form:
+		'model_name':{
+			'model':ModelItSelf,
+			'forms':{
+				'type_of_user': FormToGiveUser,
+			},
+			'actions':'CRUDL',#crud actions
+		},
+	'''
+
+	url_patterns = []
+	model_items = set(app_map.keys())
+	urls = []
+
+	if items:		
+		model_items=items
+		
+	elif exclude:		
+		model_items = (model_items - set(exclude))
+	
+	for model_name in model_items:		
+		app_items = app_map[model_name]
+		qs = app_items['model'].objects.all()
+				
+		if 'C' in app_items['actions']:
 			urls.append(url(r'^%s%s/create/%s$' % (preurl, model_name, posturl), model_name, {
-					'action' : 'create','queryset':qs,'model_form_class': form_class,
+					'action' : 'create','queryset':qs,'model_form_classes': app_items['forms'],
 			}, name='%s-create' % model_name))
-		if 'U' in actions:
+		if 'U' in app_items['actions']:
 			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/edit/%s$' % (preurl, model_name, posturl), model_name, {
 				'action' : 'edit',
 				'queryset':qs,
-				'model_form_class': form_class,
+				'model_form_classes': app_items['forms'],
 			}, name='%s-edit' % model_name))
-		if 'D' in actions:
+		if 'D' in app_items['actions']:
 			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/delete/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'delete', 'queryset':qs}, name='%s-delete' % model_name))
-		if 'D' in actions:
+		if 'L' in app_items['actions']:
+			urls.append(url(r'^%s%s/list/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'list', 'queryset':qs}, name='%s-list' % model_name))
+		if 'R' in app_items['actions']:
 			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'detail', 'queryset':qs}, name='%s-detail' % model_name))
-		url_patterns += patterns(views_module,*urls)
-    return url_patterns
+		url_patterns += patterns(views_module, *urls)
+
+	return url_patterns
