@@ -1,17 +1,17 @@
 from django.conf.urls.defaults import *
 
-from app_map import MODULE_NAME, APP_MAP
+from app_map import VIEW_NAME, APP_MAP
 
 from uhai.core.utils import get_crud_urls
 
 urlpatterns = get_crud_urls(
-    MODULE_NAME,
+    VIEW_NAME,
 	app_map=APP_MAP
 )
 
 '''
 urlpatterns = get_crud_urls(
-    MODULE_NAME,
+    VIEW_NAME,
 	preurl='patient/(?P<user_pk>[-\w]+)/',
     app_map=APP_MAP
 )

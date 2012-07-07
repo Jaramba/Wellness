@@ -1,15 +1,15 @@
 from django.conf.urls.defaults import *
 
-from app_map import MODULE_NAME, APP_MAP
+from app_map import VIEW_NAME, APP_MAP
 
 from uhai.core.utils import get_crud_urls
 
-urlpatterns = patterns(MODULE_NAME,
+urlpatterns = patterns(VIEW_NAME,
     url(r'^$', 'index', name='programs'),
 )
 
 urlpatterns += get_crud_urls(
-    MODULE_NAME,
+    VIEW_NAME,
 	app_map=APP_MAP
 )
 

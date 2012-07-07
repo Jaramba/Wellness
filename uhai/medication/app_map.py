@@ -1,6 +1,6 @@
 from forms import *
 
-MODULE_NAME = 'uhai.medication.views'
+VIEW_NAME = 'uhai.medication.views'
 APP_MAP={
    'prescription':{
 		'model':Prescription,

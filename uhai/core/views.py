@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 def model_view(request, pk=None, 
          template_name='',
          queryset=None,
-         model_form_class=None,
-         model_form_classes=[],
          action='view',
          data = {},
 		 max_pagination_items=5,
