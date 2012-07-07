@@ -9,10 +9,8 @@ urlpatterns = get_crud_urls(
 	app_map=APP_MAP
 )
 
-'''
-urlpatterns = get_crud_urls(
+urlpatterns += get_crud_urls(
     VIEW_NAME,
-	preurl='patient/(?P<user_pk>[-\w]+)/',
-    app_map=APP_MAP
+	app_map=APP_MAP,
+	preurl='patient/(?P<user_pk>[-\w]+)/',    
 )
-'''

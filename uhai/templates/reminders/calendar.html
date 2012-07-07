@@ -1,5 +1,4 @@
 {% extends "app_base.html"%}
-{% load crispy_forms_tags %}
 
 {% block extracss-inline %}
 	#show-in-calendar{
@@ -60,9 +59,6 @@
 
 {% block extrajs-jquery-enclosed %}
 	init_calendar();
-	$('#id-add-encounter').click(function() {
-		$('#questionnaire-modal').modal();
-	});
 {% endblock extrajs-jquery-enclosed %}
 
 {% block extrajs-jquery-plugins %}
@@ -101,10 +97,3 @@
 {% block container-right %}
 	<div id="calendar" class="calendar-wrapper"></div>
 {% endblock container-right %}
-
-{% block modal %}
-	<div class="modal hide fade in" id="questionnaire-modal">
-		<div id='questionnaire-modal-body' class="modal-body"></div>
-		{% crispy form form.helper %}
-	</div>
-{% endblock modal %}

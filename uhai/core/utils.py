@@ -37,19 +37,21 @@ def get_crud_urls(views_module='', preurl='', posturl='', app_map={}, items=[], 
 	'''
 
 	url_patterns = []
-	model_items = set(app_map.keys())
+	model_items = []
 	urls = []
 
-	if items:		
+	'''
+	if items:
 		model_items=items
 		
 	elif exclude:		
-		model_items = (model_items - set(exclude))
+		model_items = set(app_map.keys()) - set(exclude)
+	'''
 	
-	for model_name in model_items:		
-		app_items = app_map[model_name]
+	for model_name, app_items in app_map.items():
+		#app_items = app_map[model_name]
 		qs = app_items['model'].objects.all()
-				
+		
 		if 'C' in app_items['actions']:
 			urls.append(url(r'^%s%s/create/%s$' % (preurl, model_name, posturl), model_name, {
 					'action' : 'create','queryset':qs,'model_form_classes': app_items['forms'],
@@ -67,5 +69,5 @@ def get_crud_urls(views_module='', preurl='', posturl='', app_map={}, items=[], 
 		if 'R' in app_items['actions']:
 			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/%s$' % (preurl, model_name, posturl), model_name, {'action' : 'detail', 'queryset':qs}, name='%s-detail' % model_name))
 		url_patterns += patterns(views_module, *urls)
-
+	
 	return url_patterns

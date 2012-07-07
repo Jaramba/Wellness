@@ -1,6 +1,6 @@
 from forms import *
 
-VIEW_NAME = 'uhai.medication.views'
+VIEW_NAME = '.'.join(__name__.split('.')[:-1]+['views'])
 APP_MAP={
    'prescription':{
 		'model':Prescription,

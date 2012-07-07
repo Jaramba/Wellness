@@ -12,7 +12,6 @@ urlpatterns += get_crud_urls(
 	app_map=APP_MAP	
 )
 
-'''
 urlpatterns += get_crud_urls(
     VIEW_NAME,
  	app_map=APP_MAP,
@@ -32,4 +31,3 @@ urlpatterns += get_crud_urls(
     app_map=APP_MAP,
     items=['encounter']
 )
-'''
