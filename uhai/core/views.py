@@ -1,19 +1,23 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-from django.http import Http404
-from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.template.context import RequestContext
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
-def model_view(request, pk=None, 
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render_to_response, get_object_or_404, redirect
+
+from django.template.context import RequestContext
+
+def model_view(request, pk=None,
          template_name='',
          queryset=None,
          action='view',
          data = {},
 		 max_pagination_items=5,
-         initial_form_data=lambda:{},
+		 model_form_class=[],
+		 model_form_classes=[],
+         initial_form_data={},
          save_form=lambda form:form.save(),
-         redirect_to=None,
+         redirect_to_args=[],
          extra_action=lambda request, action:None,
          context_object_name=lambda model_obj:model_obj._meta.object_name.lower(),
          context_object_name_plural=lambda model_obj:model_obj._meta.object_name.lower()+'s',
@@ -48,7 +52,7 @@ def model_view(request, pk=None,
 	if request.method == 'GET':
 		if action in ['create', 'view', 'edit', 'delete', 'list']:
 			if action in ['create', 'edit']:
-				data[context_form_name] = model_form_class() if action == 'create' else model_form_class(instance=model_obj)
+				data[context_form_name] = model_form_class(initial=initial_form_data) if action == 'create' else model_form_class(instance=model_obj, initial=initial_form_data)
 		else:
 			extra_action(request, action)
 		
@@ -63,7 +67,7 @@ def model_view(request, pk=None,
 					success = True
 			
 			if success:
-				return redirect(redirect_to or '%s-list' % queryset.model.__name__.lower())
+				return HttpResponseRedirect(redirect_to) if redirect_to else  redirect('%s-list' % queryset.model.__name__.lower(), *redirect_to_args)
 			data[context_form_name] = form
 		elif action == 'delete':
 			if model_obj:
@@ -74,18 +78,24 @@ def model_view(request, pk=None,
 	data.update(extra_data)
 	return render_to_response(template_name, data, context_instance=RequestContext(request))
 
-def user_model_view(request, user_pk=None, forms={}, *args, **kwargs):	
+def user_model_view(
+	request, 
+	user_pk=None, 
+	model_form_classes={},
+	*args, 
+	**kwargs):	
+	
 	if kwargs['action'] in ('create', 'edit'):
-		kwargs['model_form_class'] = forms[request.session.get('use_page_as') or 'patient']
+		kwargs['model_form_class'] = model_form_classes.get(request.session.get('use_page_as') or 'patient', None)
 	
 	if request.session.get('use_page_as') == 'patient':
 		user = request.user
 		kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-		kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user.pk)
+		kwargs['redirect_to_args'] = [user.pk]
 	else:
 		if user_pk:
 			user = get_object_or_404(User, pk=user_pk)
 			kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-			kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user.pk)
-	
+			kwargs['redirect_to_args'] = [user.pk]
+			
 	return model_view(request, *args, **kwargs)

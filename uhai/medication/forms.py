@@ -170,7 +170,7 @@ class ImmunizationForm(forms.ModelForm):
 		if commit:
 			obj.save()
 		return obj
-	
+
 class PatientImmunizationForm(forms.ModelForm):
 	start_time = forms.DateTimeField(label="Date of Administered")
 	def __init__(self, *args, **kwargs):
@@ -196,7 +196,16 @@ class PatientImmunizationForm(forms.ModelForm):
 		)
 		self.helper.add_layout(self.layout)
 		super(PatientImmunizationForm, self).__init__(*args, **kwargs)
-		
+	
 	class Meta:
 		model = Immunization
 		fields = ['provider', 'brand_name', 'mode_of_delivery', 'start_time']
+
+	def save(self, commit=True):
+		obj = super(ImmunizationForm, self).save(commit=False)
+		obj.end_time = obj.start_time
+		obj.text = 'Vacination for %s' % obj.user
+		
+		if commit:
+			obj.save()
+		return obj

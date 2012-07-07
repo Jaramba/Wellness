@@ -19,14 +19,14 @@ urlpatterns += get_crud_urls(
 )
 
 urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),
+    VIEW_NAME,
  	posturl='type/(?P<problem_type>[-\w]+)/',
 	app_map=APP_MAP,
     items=['diagnosis']	
 )
 
 urlpatterns += get_crud_urls(
-    '.'.join(__name__.split('.')[:-1]+['views']),
+    VIEW_NAME,
 	posturl='type/(?P<encounter_type>[-\w]+)/',
     app_map=APP_MAP,
     items=['encounter']

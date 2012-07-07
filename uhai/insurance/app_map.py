@@ -9,7 +9,7 @@ APP_MAP={
 		},
 		'actions':'RL',
 	},
-	'healthInsuranceprovider':{
+	'healthinsuranceprovider':{
 		'model':HealthInsuranceProvider,
 		'actions':'RL',
 	},

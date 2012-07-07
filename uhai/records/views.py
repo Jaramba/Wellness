@@ -8,15 +8,15 @@ from forms import *
 from models import *
 from uhai.patients.models import Patient
 
-from uhai.core.views import model_view
+from uhai.core.views import model_view, user_model_view
 
 #CRUD
-order = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-visit = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-trackingfield = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-encountertestresult = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-encountertest = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-problemtest = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
+order = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
+visit = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
+trackingfield = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
+encountertestresult = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
+encountertest = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
+problemtest = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
 
 @login_required
 def index(request, problem_type='', template_name = "records/index.html", *args, **kwargs):

@@ -5,7 +5,7 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from uhai.core.views import model_view
+from uhai.core.views import model_view, user_model_view
 
 from django.http import Http404
 from django.shortcuts import get_object_or_404
@@ -21,7 +21,7 @@ def prescription(request, user_pk=None, *args, **kwargs):
 		try:
 			patient_profile = get_object_or_404(User, pk=user_pk).patient
 			
-			if kwargs['action'] in ('create', 'edit'):
+			if kwargs['action'] in ('create', 'edit'):				
 				kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user_pk)
 		except Patient.DoesNotExist:
 			raise Http404('User #%s does not have patient profile active/activated' % user_pk)
@@ -32,21 +32,11 @@ def prescription(request, user_pk=None, *args, **kwargs):
 	return model_view(request, *args, **kwargs)
 
 @login_required
-def immunization(request, user_pk=None, *args, **kwargs):	
-	if request.session.get('use_page_as') == 'patient':
-		if kwargs['action'] in ('create', 'edit'):
-			kwargs['model_form_class'] = PatientImmunizationForm
-		else:
-			user = request.user
-			kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-			kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user.pk)
-	else:
-		if user_pk:
-			user = get_object_or_404(User, pk=user_pk)
-			kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-			kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user.pk)
-		
-			if kwargs['action'] in ('create', 'edit'):
-				kwargs['model_form_class'] = ImmunizationForm
-
-	return model_view(request, *args, **kwargs)
+def immunization(request, user_pk=None, *args, **kwargs):
+	def save_form(form, commit=False):
+		obj = form.save(commit=false)
+		obj.user = request.user
+		obj.save()
+		return obj
+	
+	return user_model_view(request, *args, **kwargs)
