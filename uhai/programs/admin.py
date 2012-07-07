@@ -33,15 +33,15 @@ class QuestionSetAdmin(admin.ModelAdmin):
 	inlines = [QuestionInline]
 admin.site.register(models.QuestionSet, QuestionSetAdmin)
 
-class PatientProgramQuestionnaireInline(admin.TabularInline):
-	model = models.PatientProgramQuestionnaire
+class PatientQuestionnaireInline(admin.TabularInline):
+	model = models.PatientQuestionnaire
 	extra = 0
 
-class ProgramQuestionnaireAdmin(admin.ModelAdmin):
-	model = models.ProgramQuestionnaire
-	list_display = [f.name for f in models.ProgramQuestionnaire._meta.fields]
-	inlines = [PatientProgramQuestionnaireInline]
-admin.site.register(models.ProgramQuestionnaire, ProgramQuestionnaireAdmin)
+class QuestionnaireAdmin(admin.ModelAdmin):
+	model = models.Questionnaire
+	list_display = [f.name for f in models.Questionnaire._meta.fields]
+	inlines = [PatientQuestionnaireInline]
+admin.site.register(models.Questionnaire, QuestionnaireAdmin)
 
 for M in [x
     for x in models.__dict__.values()  
@@ -49,7 +49,7 @@ for M in [x
 		not x._meta.abstract and 		
 		x.__name__ not in [
 				'ProgramWorkflowState', 'ProgramWorkflow', 'EnrolledProgram',
-				'QuestionSet', 'Question','PatientProgramQuestionnaire'
+				'QuestionSet', 'Question','PatientQuestionnaire'
 			]
 		)
 ]:

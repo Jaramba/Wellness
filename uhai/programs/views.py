@@ -14,7 +14,7 @@ programtype = login_required(lambda request, *args, **kwargs: model_view(request
 programworkflow = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 programworkflowstate = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 enrolledprogram = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-programquestionnaire = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
+questionnaire = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 questionaire = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 
 @login_required
@@ -24,7 +24,7 @@ def index(request, problem_type='', template_name = "programs/index.html", *args
 
 @login_required
 def questionaire_view(request, pk=None, *args, **kwargs):
-	model_obj = get_object_or_404(ProgramQuestionnaire, pk=pk)
+	model_obj = get_object_or_404(Questionnaire, pk=pk)
 	questionsets = model_obj.questionset_set.all()
 	questions = Question.objects.filter(questionset__in=questionsets)
 	extra_data = locals()

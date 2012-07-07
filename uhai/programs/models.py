@@ -88,7 +88,7 @@ class ProgramWorkflowState(models.Model):
             ('view_programworkflowstate', 'View program workflow state'), 
         )
 
-class ProgramQuestionnaire(models.Model):
+class Questionnaire(models.Model):
 	name = models.CharField(max_length=255)
 	intro = models.CharField('Introduction', max_length=20, null=True, blank=False)
 	detail = models.CharField('Details', max_length=100, null=True, blank=False)
@@ -104,12 +104,12 @@ class ProgramQuestionnaire(models.Model):
 	
 	class Meta:
 	    permissions = ( 
-	        ('view_programquestionnaire', 'View program questionnaire'), 
+	        ('view_questionnaire', 'View questionnaire'), 
 	    )
 
-class PatientQuestionnaireManager(models.Manager):
+class QuestionSetManager(models.Manager):
 	def get_query_set(self):
-		qs = super(PatientQuestionnaireManager, self).get_query_set()
+		qs = super(QuestionSetManager, self).get_query_set()
 		return qs.filter(answerable_by='patient')
 		
 class QuestionSet(models.Model):
@@ -120,11 +120,11 @@ class QuestionSet(models.Model):
 	]
 	label = models.CharField(max_length=255, blank=True, null=True)
 	answerable_by = models.CharField(max_length=50, choices=ANSWERABLE_BY, null=True, blank=False, help_text='Questions in this section are answerable by who?')
-	questionnaire = models.ForeignKey(ProgramQuestionnaire, blank=True)
+	questionnaire = models.ForeignKey(Questionnaire, blank=True)
 	date_created = models.DateTimeField(auto_now=True)
 		
 	objects = models.Manager()
-	pq_objects = PatientQuestionnaireManager()	
+	pq_objects = QuestionSetManager()	
 		
 	def __unicode__(self):
 		return '%s from %s' % (self.label, self.questionnaire)
@@ -167,7 +167,7 @@ class Question(models.Model):
 			('view_question', 'View question'), 
 		)
 
-class PatientProgramQuestionnaire(models.Model):
+class PatientQuestionnaire(models.Model):
 	"""
 	Represents the event where a patient answered a questionnaire
 	"""
@@ -188,7 +188,7 @@ class PatientProgramQuestionnaire(models.Model):
 		('nine-months', 'Nine months'),
 		('yearly', 'Yearly')
 	]
-	questionnaire = models.ForeignKey('ProgramQuestionnaire')
+	questionnaire = models.ForeignKey('Questionnaire')
 	patient = models.ForeignKey('patients.Patient')
 	frequency = models.CharField(max_length=25, choices=PERIODS, help_text='Frequency the patient should fill the questionnaire')
 	completed = models.BooleanField(default=False)

@@ -74,7 +74,7 @@ class EnrolledProgramForm(forms.ModelForm):
             'outcome_notes': forms.Textarea
         }
 		
-class PatientProgramQuestionnaireForm(forms.ModelForm):
+class PatientQuestionnaireForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'patient-form'
@@ -94,10 +94,10 @@ class PatientProgramQuestionnaireForm(forms.ModelForm):
         )
         self.helper.add_layout(layout)
         
-        return super(PatientProgramQuestionnaireForm, self).__init__(*args, **kwargs)
+        return super(PatientQuestionnaireForm, self).__init__(*args, **kwargs)
     
     class Meta:
-		model = PatientProgramQuestionnaire
+		model = PatientQuestionnaire
 		exclude = [
 		]
 

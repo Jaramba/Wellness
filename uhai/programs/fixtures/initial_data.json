@@ -180,7 +180,7 @@
   },
   {
     "pk": 1,
-    "model": "programs.programquestionnaire",
+    "model": "programs.questionnaire",
     "fields": {
       "name": "HIV/AIDs Follow up",
       "notes": null,
@@ -889,7 +889,7 @@
   },
   {
     "pk": 1,
-    "model": "programs.patientprogramquestionnaire",
+    "model": "programs.patientquestionnaire",
     "fields": {
       "questionnaire": 1,
       "completed": false,
