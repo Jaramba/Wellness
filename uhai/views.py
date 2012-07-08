@@ -15,8 +15,8 @@ from datetime import datetime
 def index(request, template_name="", data={}):
 	if request.user.is_authenticated():
 		if not request.session.get('use_page_as'):
-		request.session['use_page_as'] = slugify(request.user.profile.main_role)
-		template_name = 'core/dashboard.html'
+			request.session['use_page_as'] = slugify(request.user.profile.main_role)
+			template_name = 'core/dashboard.html'
 
 		diagnoses = Diagnosis.objects.filter(approved=True, encounter__user=request.user.patient)		
 		tracking_records = list(TrackingRecord.objects.filter(diagnosis__id__in=[diagnosis.problem.id for diagnosis in diagnoses]))
