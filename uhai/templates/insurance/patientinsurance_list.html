@@ -1,7 +1,10 @@
-{% extends "medication/immunization_list.html" %}
+{% extends "records/list_base.html" %}
 
-{% block container-right %}
-	<legend>Insurance</legend>
+{% block header %}
+	Insurance
+{% endblock header %}
+
+{% block table-list %}
 	{% if insurances %}
 	<table class="table table-bordered table-striped">
 		<thead>
@@ -47,14 +50,12 @@
 				</tr>
 			{% empty %}
 				<tr>
-					<div class="well">No Insurance cover found</div>
+					<div>No Insurance cover found</div>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 	{% else %}
-		<div class="well">No Insurance cover found</div>
+		<div>No Insurance cover found</div>
 	{% endif %}
-{% endblock container-right %}
-
-
+{% endblock table-list %}

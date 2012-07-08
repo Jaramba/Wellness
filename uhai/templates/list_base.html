@@ -1,12 +1,16 @@
 {% extends "app_base.html" %}
 
+{% block extrajs-jquery-enclosed %}
+	{{ block.super }}
+	$('legend .btn').tooltip({animation:true, placement:'bottom'});
+{% endblock extrajs-jquery-enclosed %}
+
 {% block container-right %}
-	<legend style="margin-bottom: 10px;">{% block header %}{% endblock header %}</legend>
-	<div>
-		<div id="add" style="width:100%;clear:both;">
-			{% block action-buttons %}
-			{% endblock action-buttons %}
-		</div>
+	<legend style="margin-bottom: 10px;">
+		{% block header %}{% endblock header %}
+		{% block action-buttons %}{% endblock action-buttons %}
+	</legend>
+	<div>		
 		{% block table-list %} 
 			{% if objects %}
 				{% block table %}

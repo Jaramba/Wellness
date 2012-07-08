@@ -20,7 +20,6 @@ def prescription(request, user_pk=None, *args, **kwargs):
 	if user_pk and not request.session.get('use_page_as') == 'patient':
 		try:
 			patient_profile = get_object_or_404(User, pk=user_pk).patient
-			
 			if kwargs['action'] in ('create', 'edit'):	
 				kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user_pk)
 		except Patient.DoesNotExist:

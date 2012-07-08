@@ -5,7 +5,9 @@
 {% endblock header %}
 
 {% block action-buttons %}
-	<a href="{% url immunization-create %}" class="btn btn-info pull-right">Add Immunization</a>
+	<a href="{% url immunization-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+		<i class="icon-plus-sign"></i>
+	</a>
 {% endblock action-buttons %}
 
 {% block table-list %}
@@ -41,8 +43,10 @@
 					<td>{{immunization.start_time|date:"SHORT_DATE_FORMAT"}}</td>
 					<td>{{immunization.follow_up_date|date:"SHORT_DATE_FORMAT"}}</td>
 					<td>
-						<a href="{% url immunization-edit immunization.pk %}">Edit</a> |
-						<a href="{% url immunization-delete immunization.pk %}">Delete</a>
+						<div class="btn-group">
+							<a class="btn btn-info" href="{% url immunization-edit immunization.pk %}">Edit</a>
+							<a class="btn btn-danger" href="{% url immunization-delete immunization.pk %}">Delete</a>
+						</div>
 					</td>
 				</tr>
 			{% empty %}

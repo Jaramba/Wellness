@@ -1,7 +1,10 @@
-{% extends "medication/immunization_list.html" %}
+{% extends "records/list_base.html" %}
 
-{% block container-right %}
-	<legend>Encounter Test Results</legend>
+{% block header %}
+	Encounter Test Results
+{% endblock header %}
+
+{% block table-list %}
 	{% if encountertestresultresults %}
 		<table class='table table-stripped table-bordered'>
 			<tr>
@@ -30,4 +33,4 @@
 			No Encounter Results Found
 		</div>
 	{% endif %}
-{% endblock container-right %}
+{% endblock table-list %}

@@ -25,6 +25,6 @@ APP_MAP={
 		'forms':{
 			'patient': PatientInsuranceForm,
 		},
-		'actions':'CRUDL',
+		'actions':'RL',
 	}, 
 }

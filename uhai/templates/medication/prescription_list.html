@@ -10,7 +10,9 @@
 {% endblock header %}
 
 {% block action-buttons %}
-	<a href="{% url prescription-create %}" class="btn btn-info" style="float:right">Add prescription</a>
+	<a href="{% url prescription-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+		<i class="icon-plus-sign"></i>
+	</a>
 {% endblock action-buttons %}
 
 {% block table-list %}

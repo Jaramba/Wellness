@@ -53,16 +53,22 @@ def get_crud_urls(views_module='', preurl='', posturl='', app_map={}, items=[], 
 			urls.append(url(r'^%s%s/create/%s$' % (preurl, model_name, posturl), '%s.%s' % (views_module, model_name), {
 					'action' : 'create', 'queryset':qs,'model_form_classes': app_items['forms'],
 			}, name='%s-create' % model_name))
+		
+		if 'L' in app_items['actions']:
+			urls.append(url(r'^%s%s/list/%s$' % (preurl, model_name, posturl), '%s.%s' % (views_module, model_name), {
+					'action' : 'list', 
+					'queryset':qs
+				}, name='%s-list' % model_name)
+			)
 		if 'U' in app_items['actions']:
-			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/edit/%s$' % (preurl, model_name, posturl), '%s.%s' % (views_module, model_name), {
+			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/edit/%s$' % (preurl, model_name, posturl), 
+			'%s.%s' % (views_module, model_name), {
 				'action' : 'edit',
 				'queryset':qs,
 				'model_form_classes': app_items['forms'],
 			}, name='%s-edit' % model_name))
 		if 'D' in app_items['actions']:
 			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/delete/%s$' % (preurl, model_name, posturl), '%s.%s' % (views_module, model_name), {'action' : 'delete', 'queryset':qs}, name='%s-delete' % model_name))
-		if 'L' in app_items['actions']:
-			urls.append(url(r'^%s%s/list/%s$' % (preurl, model_name, posturl), '%s.%s' % (views_module, model_name), {'action' : 'list', 'queryset':qs}, name='%s-list' % model_name))
 		
 		if 'R' in app_items['actions']:
 			urls.append(url(r'^%s%s/(?P<pk>[-\w]+)/%s$' % (preurl, model_name, posturl), '%s.%s' % (views_module, model_name), {'action' : 'detail', 'queryset':qs}, name='%s-detail' % model_name))
