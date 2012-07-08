@@ -1,11 +1,15 @@
 from django.contrib.auth.decorators import login_required
-from django.template.context import RequestContext
-from django.shortcuts import render_to_response, redirect
 
 from django.http import HttpResponseRedirect
-from uhai.userprofile.forms import RoleChooserForm
 
+from django.shortcuts import render_to_response, redirect
+
+from django.template.defaultfilters import slugify
+from django.template.context import RequestContext
+
+from uhai.userprofile.forms import RoleChooserForm
 from uhai.records.models import Diagnosis, TrackingRecord, TrackingField, TrackingEntry
+
 from datetime import datetime
 
 def index(request, template_name="", data={}):
@@ -52,7 +56,6 @@ def use_as(request, type=None):
 		form = RoleChooserForm(request.POST, instance=request.user.profile)
 		if form.is_valid():
 			profile = form.save()
-			from django.template.defaultfilters import slugify
 			request.session['use_page_as'] = slugify(profile.main_role)
 			return redirect('/')
 	else:
