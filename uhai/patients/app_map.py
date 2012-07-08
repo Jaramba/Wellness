@@ -11,9 +11,6 @@ APP_MAP={
 	},
 	'patientemergencycontact':{
 		'model':PatientEmergencyContact,
-		'forms':{
-			'patient': PatientEmergencyContactForm,
-		},
-		'actions':'CRUDL',
+		'actions':'L',
 	}
 }

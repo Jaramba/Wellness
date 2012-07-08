@@ -24,8 +24,8 @@
 					<td>{{encounter.user.full_name}}</td>
 					<td>{{encounter.start_time}}</td>
 					<td>{{encounter.type}}</td>
-					<td>
-						<a class="btn btn-primary" href="{% url encounter-edit encounter.pk %}">Edit</a>
+					<td class="btn-group">
+						<a class="btn" href="{% url encounter-edit encounter.pk %}">Edit</a>
 					</td>
 				</tr>
 			{% empty %}

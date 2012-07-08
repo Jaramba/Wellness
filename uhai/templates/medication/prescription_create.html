@@ -1,11 +1,6 @@
 {% extends "medication/immunization_create.html" %}
 {% load i18n %}
-{% load crispy_forms_tags %}
 
 {% block page-title %}
 	Prescription Create
 {% endblock %}
-
-{% block container-right %}
-	{% crispy form form.helper %}
-{% endblock container-right %}

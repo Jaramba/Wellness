@@ -40,80 +40,83 @@ class MedicationForm(forms.ModelForm):
         }
 
 class PrescriptionForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_id = 'patient-insurance-form'
-        self.helper.form_class = 'general_form'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = '.'
-        
-        layout = Layout(
-            Row(HTML('<legend>Add Prescription</legend>')),
+	user = forms.ModelChoiceField(queryset=User.objects.filter(patient__pk__isnull=False), empty_label=u"", label="Patient")
+	start_time = forms.DateTimeField(label="Date Prescribed")
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_id = 'patient-insurance-form'
+		self.helper.form_class = 'general_form'
+		self.helper.form_method = 'POST'
+		self.helper.form_action = '.'
+		
+		layout = Layout(
+			Row(HTML('<legend>Add Prescription</legend>')),
 			Row(Column(Field('user', css_class="span5"))),
 			Row(Column(Field('provider', css_class="span5"))),
-            Row(Column(Field('medication', css_class="span4"))),
-            Row(Column(Field('quantity'))),
+			Row(Column(Field('medication', css_class="span4"))),
+			Row(Column(Field('quantity'))),
 			Row(Column(Field('unit', css_class="span3"))),
-            Row(Column(Field('frequency', css_class="span3"))),
+			Row(Column(Field('frequency', css_class="span3"))),
 			Row(Column(Field('completed'))),
-            Row(Column(Field('start_time'))),
-            Row(Field('reason'), css_class='textarea-column'),
+			Row(Column(Field('start_time'))),
+			Row(Field('reason'), css_class='textarea-column'),
 			Row(HTML('<br/><br/>')),
-            Row(Field('notes'), css_class='textarea-column'),
-            
-            Row(
+			Row(Field('notes'), css_class='textarea-column'),
+			
+			Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
 				css_class='form-actions')
 			)
-        )
-        self.helper.add_layout(layout)
+		)
+		self.helper.add_layout(layout)
 
-        return super(PrescriptionForm, self).__init__(*args, **kwargs)
-    
-    class Meta:
-        model = Prescription
-        exclude = ['end_time', 'text']
-        widgets = {
-            'reason' : forms.Textarea,
-            'notes' : forms.Textarea
-        }
+		return super(PrescriptionForm, self).__init__(*args, **kwargs)
+
+	class Meta:
+		model = Prescription
+		exclude = ['end_time', 'text']
+		widgets = {
+			'reason' : forms.Textarea,
+			'notes' : forms.Textarea
+		}
 
 class PatientPrescriptionForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_id = 'patient-insurance-form'
-        self.helper.form_class = 'general_form'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = '.'
-        
-        layout = Layout(
-            Row(HTML('<legend>Add Prescription</legend>')),
-            Row(Column('medication')),
-            Row(Column('quantity'), Column('unit')),
-            Row(Column('frequency'), Column('period')),
-            Row(Column('start_time')),
+	start_time = forms.DateTimeField(label="Date Prescribed")
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_id = 'patient-insurance-form'
+		self.helper.form_class = 'general_form'
+		self.helper.form_method = 'POST'
+		self.helper.form_action = '.'
+		
+		layout = Layout(
+			Row(HTML('<legend>Add Prescription</legend>')),
+			Row(Column(Field('medication', css_class="span5"))),
+			Row(Column(Field('provider', css_class="span5"))),
+			Row(Column(Field('quantity', css_class="span1"))),
+			Row(Column(Field('unit', css_class="span3"))),
+			Row(Column(Field('frequency', css_class="span2"))),
+			Row(Column(Field('completed'))),
+			Row(Column(Field('start_time'))),
 			
-            Row(Field('reason'), css_class='textarea-column'),
-            Row(Field('notes'), css_class='textarea-column'),
-            
-            Row(
+			Row(
 				Div(
 					Submit('Save', 'Save Changes', css_class='btn-primary'),
 				css_class='form-actions')
 			)
-        )
-        self.helper.add_layout(layout)
+		)
+		self.helper.add_layout(layout)
 
-        return super(PrescriptionForm, self).__init__(*args, **kwargs)
-    
-    class Meta:
-        model = Prescription
-        exclude = ['end_time']
-        widgets = {
-            'reason' : forms.Textarea,
-            'notes' : forms.Textarea
-        }
+		return super(PatientPrescriptionForm, self).__init__(*args, **kwargs)
+
+	class Meta:
+		model = Prescription
+		exclude = ['end_time', 'text', 'user', 'notes', 'reason']
+		widgets = {
+			'reason' : forms.Textarea,
+			'notes' : forms.Textarea
+		}
 		
 class ImmunizationForm(forms.ModelForm):
 	user = forms.ModelChoiceField(queryset=User.objects.filter(patient__pk__isnull=False), empty_label=u"", label="Patient")

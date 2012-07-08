@@ -2,10 +2,6 @@
 
 {% block header %}Emergency Contacts{% endblock header %}
 
-{% block action-buttons %}
-	<a style="margin-bottom:10px;" href="{% url patientemergencycontact-create %}" class="btn btn-info pull-right">Add Emergency Contact</a>
-{% endblock action-buttons %}
-
 {% block table-list %}
 	{% if patientemergencycontacts %} 
 		<table class='table' style="clear:both">

@@ -108,8 +108,6 @@ def user_model_view(
 	if request.session.get('use_page_as') == 'patient':
 		user = request.user
 		kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-		if not kwargs.get('redirect_to'):
-			kwargs['redirect_to_args'] = [user.pk]
 	else:
 		if user_pk:
 			user = get_object_or_404(User, pk=user_pk)

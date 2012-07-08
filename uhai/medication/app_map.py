@@ -6,6 +6,7 @@ APP_MAP={
 		'model':Prescription,
 		'forms':{
 			'patient': PatientPrescriptionForm,
+			'health-worker': PrescriptionForm,
 		},
 		'actions':'CRUDL',
 	},
