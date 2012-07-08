@@ -226,3 +226,10 @@ class LocationForm(forms.ModelForm):
 			'county',
 			'country',
 		]
+		
+class RoleChooserForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = [
+			'main_role',
+		]

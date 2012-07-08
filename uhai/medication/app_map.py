@@ -12,7 +12,7 @@ APP_MAP={
 	'medication':{
 		'model':Medication,
 		'forms':{
-			'patient': MedicationForm,
+			'health-worker': MedicationForm,
 		},
 		'actions':'CRUDL',
 	},
@@ -20,6 +20,7 @@ APP_MAP={
 		'model':Immunization,
 		'forms':{
 			'patient': PatientImmunizationForm,
+			'health-worker': ImmunizationForm,
 		},
 		'actions':'CRUDL',
 	}

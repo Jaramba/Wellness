@@ -1,10 +1,16 @@
-{% extends "medication/immunization_list.html" %}
+{% extends "records/list_base.html" %}
 
-{% block container-right %}
-	<legend>Encounters</legend>
+{% block header %}
+	Encounters
+{% endblock header %}
+
+{% block action-buttons %}
 	{% if request.session.use_page_as == 'health-worker' %}
 		<div id="add" style="clear:both"><a href="{% url encounter-create %}" class="btn btn-info pull-right">Add Encounter</a></div>
 	{% endif %}
+{% endblock action-buttons %}
+
+{% block table-list %}
 	{% if encounters %}
 		<table class='table table-stripped table-bordered'>
 			<tr>
@@ -15,8 +21,8 @@
 			</tr>
 			{% for encounter in encounters %}
 				<tr>	
-					<td>{{encounter.patient.full_name}}</td>
-					<td>{{encounter.encounter_date}}</td>
+					<td>{{encounter.user.full_name}}</td>
+					<td>{{encounter.start_time}}</td>
 					<td>{{encounter.type}}</td>
 					<td>
 						<a class="btn btn-primary" href="{% url encounter-edit encounter.pk %}">Edit</a>
@@ -31,4 +37,4 @@
 			No Encounters Found
 		</div>
 	{% endif %}
-{% endblock container-right %}
+{% endblock table-list %}

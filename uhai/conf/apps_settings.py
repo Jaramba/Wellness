@@ -21,7 +21,6 @@ INSTALLED_APPS = (
 	
 	#apps
 	'crispy_forms',
-	'guardian',
 	'messages',
 	'pagination',
 	#'south',

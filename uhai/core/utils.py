@@ -16,7 +16,7 @@ def pkgen():
             if pk.find(rw) >= 0:
                 bad_pk = True
                 return pk
-
+				
 def perform_raw_sql(sql, data=[]):
 	from django.db import connection, transaction
 	cursor = connection.cursor()

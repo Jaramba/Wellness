@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
 	#app level
 	url(r'^$', 'uhai.views.index', {'template_name':'index.html'}, name="index"),
+	url(r'^start/use-as/$', 'uhai.views.use_as', name="choose-use-as"),
 	url(r'^use-as/(?P<type>patient|insurance-agent|health-worker|admin|employer)/$', 'uhai.views.use_as', name="use-as"),
 	url(r'^admin_tools/', include('admin_tools.urls')),
 	url(r'^stats/', include('uhai.stats.urls')),

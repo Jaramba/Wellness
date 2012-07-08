@@ -33,7 +33,8 @@ APP_MAP={
    'encounter':{
 		'model':Encounter,
 		'forms':{
-			'patient': EncounterForm,
+			'patient': PatientEncounterForm,
+			'health-worker': EncounterForm,
 		},
 		'actions':'CRUDL',
 	},

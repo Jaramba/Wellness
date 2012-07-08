@@ -21,7 +21,7 @@ def prescription(request, user_pk=None, *args, **kwargs):
 		try:
 			patient_profile = get_object_or_404(User, pk=user_pk).patient
 			
-			if kwargs['action'] in ('create', 'edit'):				
+			if kwargs['action'] in ('create', 'edit'):	
 				kwargs['redirect_to'] = reverse('%s-list' % kwargs['queryset'].model.__name__.lower(), user_pk)
 		except Patient.DoesNotExist:
 			raise Http404('User #%s does not have patient profile active/activated' % user_pk)
@@ -37,7 +37,7 @@ def immunization(request, user_pk=None, *args, **kwargs):
 		obj = form.save(commit=commit)
 		obj.user = request.user
 		obj.end_time = obj.follow_up_date = obj.start_time
-		obj.text = 'Vacination for %s' % obj.user
+		obj.text = 'Vaccination for %s' % obj.user
 		obj.save()
 		return obj
 	kwargs['save_form'] = save_form

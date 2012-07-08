@@ -3,12 +3,14 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response, redirect
 
 from django.http import HttpResponseRedirect
+from uhai.userprofile.forms import RoleChooserForm
 
 from uhai.records.models import Diagnosis, TrackingRecord, TrackingField, TrackingEntry
-import json
 from datetime import datetime
 
 def index(request, template_name="", data={}):
+	if not request.session.get('use_page_as'):
+		request.session['use_page_as'] = slugify(request.user.profile.main_role)
 	if request.user.is_authenticated():
 		template_name = 'core/dashboard.html'
 		
@@ -29,6 +31,7 @@ def index(request, template_name="", data={}):
 					]
 				
 		def getchartdata(_tuple):
+			import json
 			return {
 				"title": _tuple[0].name,
 				"label": _tuple[0].slug,
@@ -36,7 +39,7 @@ def index(request, template_name="", data={}):
 				"haxis": 'Time',
 				"data" : json.dumps(list(_tuple[1]))
 			}
-						
+		
 		data['charts'] = map(getchartdata, [(t, getitems(t)) for t in tracking_records])
 		data['items'] = tracking_records
 	else:
@@ -44,6 +47,20 @@ def index(request, template_name="", data={}):
 	return render_to_response(template_name, data, context_instance= RequestContext(request))
 
 @login_required
-def use_as(request, type):
-	request.session['use_page_as'] = type
+def use_as(request, type=None):
+	if request.method == "POST":
+		form = RoleChooserForm(request.POST, instance=request.user.profile)
+		if form.is_valid():
+			profile = form.save()
+			from django.template.defaultfilters import slugify
+			request.session['use_page_as'] = slugify(profile.main_role)
+			return redirect('/')
+	else:
+		if type:
+			request.session['use_page_as'] = type
+		else:
+			if not request.user.profile.main_role:
+				data = {}
+				template_name = 'use_as.html'	
+				return render_to_response(template_name, data, context_instance=RequestContext(request))
 	return redirect(request.META.get('HTTP_REFERER', '/'))

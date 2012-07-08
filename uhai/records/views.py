@@ -8,7 +8,7 @@ from forms import *
 from models import *
 from uhai.patients.models import Patient
 
-from uhai.core.views import model_view, role_model_view
+from uhai.core.views import model_view, role_model_view, user_model_view
 
 #CRUD
 order = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
@@ -24,23 +24,19 @@ def index(request, problem_type='', template_name = "records/index.html", *args,
     return render_to_response(template_name, data, context_instance= RequestContext(request))
 
 @login_required
-def encounter(request, patient_pk=None, encounter_type=None, data={}, queryset=None, *args, **kwargs):
-	queryset = queryset.filter(patient__pk=patient_pk) if patient_pk else queryset
+def encounter(request, user_pk=None, encounter_type=None, queryset=None, *args, **kwargs):
 	kwargs['queryset'] = queryset.filter(type__slug=encounter_type) if encounter_type else queryset
 
-	if request.method == "POST":
-		def save_form(form):
-			encounter = form.save(commit=False)
-			try:
-				encounter.patient = request.user.profile.patient if not patient_pk else queryset.get(pk=patient_pk)
-			except Patient.DoesNotExist:
-				raise Http404
-			encounter.save()
-			return encounter
-
-		data['save_form'] = save_form
-	kwargs.update(data)
-	return role_model_view(request, *args, **kwargs)
+	def save_form(form, commit=False):
+		obj = form.save(commit=commit)
+		obj.user = request.user
+		obj.end_time = obj.follow_up_date = obj.start_time
+		obj.text = 'Vacination for %s' % obj.user
+		obj.save()
+		return obj
+	kwargs['save_form'] = save_form
+	
+	return user_model_view(request, *args, **kwargs)
 
 @login_required
 def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **kwargs):

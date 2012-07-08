@@ -1,0 +1,40 @@
+{% extends 'app_base.html' %}
+
+{% block extracss-inline %}
+	.hero-unit{
+		margin:8em 15em auto;
+	}
+	.hero-unit{
+		padding:40px;
+	}
+{% endblock extracss-inline %}		
+
+{% block container %}
+	<form method="POST" actions=".">{% csrf_token %}
+		<div class="hero-unit span7">
+		  <h1 style="font-size:27px; margin-bottom:10px">Multiple Roles</h1>
+		  
+		  <p style="font-size:16px">
+			We have detected that you have been assigned multiple roles on this system. 
+			Please choose the default role to be used.
+		  </p>
+		  <select name="main_role">
+			<option value="">Select Role</option>
+			{% if request.user.is_superuser %}
+				{% for group in user_groups %}
+					{% if not group.name == 'Admin' %}
+						<option value="{{ group.id}}">{{ group.name }}</option>
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				{% for group in request.user.groups.all %}
+					<option value="{{ group.name|slugify}}">{{ group.name }}</option>
+				{% endfor %}
+			{% endif %}
+		  </select>
+		  <p>
+			<input type="submit" class="btn btn-large btn-success" value="Save Changes"/>
+		  </p>
+		</div>
+	</form>
+{% endblock container %}

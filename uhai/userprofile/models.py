@@ -33,6 +33,8 @@ class UserProfile(models.Model):
 		
 	user = models.OneToOneField('auth.User')
 	national_id = models.CharField(max_length=25)
+	
+	main_role = models.ForeignKey(Group, null=True)
 		
 	date_edited = models.DateTimeField(auto_now=True)
 	date_created = models.DateTimeField(auto_now=True)

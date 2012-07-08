@@ -6,6 +6,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 
 from django.template.context import RequestContext
+from django.forms.models import modelform_factory
 
 def model_view(request, pk=None,
          template_name='',
@@ -30,10 +31,14 @@ def model_view(request, pk=None,
 		try:
 			model_obj = queryset.filter(pk=pk).get() if pk else queryset.model()
 		except queryset.model.DoesNotExist:
-			raise Http404()
+			raise Http404('%s #%s does not exist' % (queryset.model._meta.verbose_name, pk))
 		except AssertionError, e:
 			raise e
 		data['object'] = data[context_object_name(model_obj) if callable(context_object_name) else context_object_name] = model_obj
+		
+		if action in ('edit', 'create'):
+			if not model_form_class:
+				model_form_class = modelform_factory(queryset.model)
 	else:		
 		page = request.REQUEST.get('page', 1)
 		paginator = Paginator(queryset, max_pagination_items)
@@ -61,7 +66,7 @@ def model_view(request, pk=None,
 			extra_action(request, action)
 		
 	elif request.method == 'POST':
-		if action == 'edit' or action == 'create':
+		if action == 'edit' or action == 'create':	
 			model_form_classes.append(model_form_class)
 				
 			for model_form_class in model_form_classes:
@@ -69,7 +74,7 @@ def model_view(request, pk=None,
 				if form.is_valid():
 					o = save_form(form)
 					success = True
-			
+
 			if success:
 				return redirect(redirect_to) if redirect_to else redirect('%s-list' % queryset.model.__name__.lower(), *redirect_to_args)
 			data[context_form_name] = form
@@ -91,13 +96,12 @@ def role_model_view(
 	
 	if kwargs['action'] in ('create', 'edit'):
 		kwargs['model_form_class'] = model_form_classes.get(request.session.get('use_page_as') or 'patient', None)
+		
 	return model_view(request, *args, **kwargs)
-	
-	
+
 def user_model_view(
 	request, 
-	user_pk=None, 
-	model_form_classes={},
+	user_pk=None,
 	*args, 
 	**kwargs):	
 	
@@ -113,4 +117,4 @@ def user_model_view(
 			if not kwargs.get('redirect_to'):
 				kwargs['redirect_to_args'] = [user.pk]
 			
-	return permssions_model_view(request, *args, **kwargs)
+	return role_model_view(request, *args, **kwargs)

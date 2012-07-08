@@ -42,7 +42,7 @@ class EncounterForm(forms.ModelForm):
 			'observation_notes' : forms.Textarea,
 		}
 		
-class EncounterPatientForm(forms.ModelForm):
+class PatientEncounterForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
 		self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
@@ -52,9 +52,7 @@ class EncounterPatientForm(forms.ModelForm):
 
 		self.layout = Layout(
 			Div(HTML('<legend>Enter Encounter</legend>')),
-			Row(Column(Field('title'))),
             Row(Column(Field('frequency', css_class='span2'))),
-			Row(Column(Field('message', css_class='span6'))),
 			Row(Column(Field('type', css_class='span3'))),
 			Row(Column(Field('provider', css_class='span4'))),
 			Row(Column(Field('location', css_class='span4'))),
@@ -71,11 +69,11 @@ class EncounterPatientForm(forms.ModelForm):
 			)
 		)
 		self.helper.add_layout(self.layout)
-		super(EncounterPatientForm, self).__init__(*args, **kwargs)
+		super(PatientEncounterForm, self).__init__(*args, **kwargs)
     
 	class Meta:
 		model = Encounter
-		exclude = ['user', 'patient', 'patient_complience']
+		exclude = ['user', 'patient_complience', 'text']
 		widgets = {
 			'observation_notes' : forms.Textarea,
 		}
