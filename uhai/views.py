@@ -16,7 +16,6 @@ def index(request, template_name="", data={}):
 	if request.user.is_authenticated():
 		if not request.session.get('use_page_as'):
 			request.session['use_page_as'] = slugify(request.user.profile.main_role)
-			template_name = 'core/dashboard.html'
 
 		diagnoses = Diagnosis.objects.filter(approved=True, encounter__user=request.user.patient)		
 		tracking_records = list(TrackingRecord.objects.filter(diagnosis__id__in=[diagnosis.problem.id for diagnosis in diagnoses]))
@@ -46,6 +45,7 @@ def index(request, template_name="", data={}):
 
 		data['charts'] = map(getchartdata, [(t, getitems(t)) for t in tracking_records])
 		data['items'] = tracking_records
+		template_name = 'core/dashboard.html'
 	else:
 		template_name = 'index.html'	
 	return render_to_response(template_name, data, context_instance= RequestContext(request))
