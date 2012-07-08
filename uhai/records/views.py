@@ -8,15 +8,15 @@ from forms import *
 from models import *
 from uhai.patients.models import Patient
 
-from uhai.core.views import model_view, user_model_view
+from uhai.core.views import model_view, role_model_view
 
 #CRUD
-order = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
-visit = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
-trackingfield = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
-encountertestresult = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
-encountertest = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
-problemtest = login_required(lambda request, *args, **kwargs: user_model_view(request, *args, **kwargs))
+order = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
+visit = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
+trackingfield = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
+encountertestresult = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
+encountertest = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
+problemtest = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
 
 @login_required
 def index(request, problem_type='', template_name = "records/index.html", *args, **kwargs):
@@ -40,7 +40,7 @@ def encounter(request, patient_pk=None, encounter_type=None, data={}, queryset=N
 
 		data['save_form'] = save_form
 	kwargs.update(data)
-	return model_view(request, *args, **kwargs)
+	return role_model_view(request, *args, **kwargs)
 
 @login_required
 def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **kwargs):
@@ -48,4 +48,4 @@ def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **k
 		extra_data['problem_type'] = get_object_or_404(ProblemType, slug=problem_type)
 	
 	kwargs['queryset'] = queryset.filter(problem__type__slug=problem_type) if problem_type else queryset
-	return model_view(request, extra_data=extra_data, *args, **kwargs)
+	return role_model_view(request, extra_data=extra_data, *args, **kwargs)

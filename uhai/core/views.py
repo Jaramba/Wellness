@@ -83,15 +83,23 @@ def model_view(request, pk=None,
 	data.update(extra_data)
 	return render_to_response(template_name, data, context_instance=RequestContext(request))
 
+def role_model_view(
+	request,
+	model_form_classes={},
+	*args, 
+	**kwargs):
+	
+	if kwargs['action'] in ('create', 'edit'):
+		kwargs['model_form_class'] = model_form_classes.get(request.session.get('use_page_as') or 'patient', None)
+	return model_view(request, *args, **kwargs)
+	
+	
 def user_model_view(
 	request, 
 	user_pk=None, 
 	model_form_classes={},
 	*args, 
 	**kwargs):	
-	
-	if kwargs['action'] in ('create', 'edit'):
-		kwargs['model_form_class'] = model_form_classes.get(request.session.get('use_page_as') or 'patient', None)
 	
 	if request.session.get('use_page_as') == 'patient':
 		user = request.user
@@ -105,4 +113,4 @@ def user_model_view(
 			if not kwargs.get('redirect_to'):
 				kwargs['redirect_to_args'] = [user.pk]
 			
-	return model_view(request, *args, **kwargs)
+	return permssions_model_view(request, *args, **kwargs)
