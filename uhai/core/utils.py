@@ -37,19 +37,16 @@ def get_crud_urls(views_module='', preurl='', posturl='', app_map={}, items=[], 
 	'''
 
 	url_patterns = []
-	model_items = []
 	urls = []
+	model_items = app_map.keys()
 
-	'''
 	if items:
 		model_items=items
-		
 	elif exclude:		
-		model_items = set(app_map.keys()) - set(exclude)
-	'''
+		model_items = set(model_items) - set(exclude)
 	
-	for model_name, app_items in app_map.items():
-		#app_items = app_map[model_name]
+	for model_name in model_items:
+		app_items = app_map[model_name]
 		qs = app_items['model'].objects.all()
 		
 		if 'C' in app_items['actions']:

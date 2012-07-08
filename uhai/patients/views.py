@@ -1,12 +1,20 @@
 # Create your views here.
 from models import *
 from forms import * 
+
+from django.http import Http404
+
 from django.contrib.auth.decorators import login_required
-from uhai.core.views import model_view
+from uhai.core.views import model_view, user_model_view
 
 @login_required
 def patient(request, *args, **kwargs):
-	return model_view(request, max_pagination_items=4, *args, **kwargs)
+	try:
+		kwargs['pk'] = request.user.patient.pk			
+	except Patient.DoesNotExist:
+		raise Http404()
+		
+	return user_model_view(request, max_pagination_items=4, *args, **kwargs)
 
 @login_required
 def patientemergencycontact(request, *args, **kwargs):

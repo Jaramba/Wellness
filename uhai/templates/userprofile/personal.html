@@ -4,13 +4,26 @@
 {% block page-title %}Personal profile{% endblock %}
 
 {% block extracss-links %}
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/Aristo.css' type='text/css' media='screen' />
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
 {% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	{{block.super}}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block extrajs-jquery-enclosed %}
+	{{block.super}}
+	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
+	$('#id_date_of_birth').datepicker();
+{% endblock extrajs-jquery-enclosed %}
 
 {% block container-left %}
 	<ul class="nav nav-list">
 		<li class="nav-header">Account Settings</li>
-		<li><a href="{% url settings %}">Profile</a></li>
+		<li><a href="{% url settings %}">User Profile</a></li>
+		<li><a href="{% url settings-medical %}">Medical Profile</a></li>
 		<li><a href="{% url settings-contacts %}">Contact</a></li>
 		<li><a href="{% url settings-location %}">Location</a></li>
 		<li><a href="{% url settings-password %}">Password</a></li>

@@ -2,6 +2,8 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from forms import *
 
+from uhai.patients.forms import Patient, PatientProfileForm
+
 from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
 
@@ -13,6 +15,18 @@ urlpatterns = patterns('uhai.userprofile.views',
     url(r'^account/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
 )
 
+urlpatterns += patterns('uhai.patients.views',
+	url(r'^account/medical/$', 'patient', {
+		'action' : 'edit',
+		'template_name':'userprofile/personal.html',
+		'queryset': Patient.objects.all(),
+		'model_form_classes': {
+			'patient': PatientProfileForm,
+		},
+		'redirect_to' : '/account/medical/'
+	},	
+	name='settings-medical'),
+)
 urlpatterns += patterns('',
     url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'userprofile/password_reset.html'}, name='settings-password-reset'),

@@ -17,6 +17,7 @@ def model_view(request, pk=None,
 		 model_form_classes=[],
          initial_form_data={},
          save_form=lambda form, commit=False:form.save(),
+		 redirect_to=None,
          redirect_to_args=[],
          extra_action=lambda request, action:None,
          context_object_name=lambda model_obj:model_obj._meta.object_name.lower(),
@@ -70,7 +71,7 @@ def model_view(request, pk=None,
 					success = True
 			
 			if success:
-				return redirect('%s-list' % queryset.model.__name__.lower(), *redirect_to_args)
+				return redirect(redirect_to) if redirect_to else redirect('%s-list' % queryset.model.__name__.lower(), *redirect_to_args)
 			data[context_form_name] = form
 		elif action == 'delete':
 			if model_obj:
@@ -95,11 +96,13 @@ def user_model_view(
 	if request.session.get('use_page_as') == 'patient':
 		user = request.user
 		kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-		kwargs['redirect_to_args'] = [user.pk]
+		if not kwargs.get('redirect_to'):
+			kwargs['redirect_to_args'] = [user.pk]
 	else:
 		if user_pk:
 			user = get_object_or_404(User, pk=user_pk)
 			kwargs['queryset'] = kwargs['queryset'].filter(user=user)
-			kwargs['redirect_to_args'] = [user.pk]
+			if not kwargs.get('redirect_to'):
+				kwargs['redirect_to_args'] = [user.pk]
 			
 	return model_view(request, *args, **kwargs)

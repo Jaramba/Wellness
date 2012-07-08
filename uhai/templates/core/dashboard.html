@@ -4,6 +4,22 @@
 	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
 {% endblock extracss-links %}
 
+{% block extracss-inline %}
+	.tabbable, .chart-contents, .tabpane, .tab-content{
+		overflow: hidden;
+	}
+	.chart-contents{		
+		height: 346px;
+	}
+	.chart-area{
+		margin-left: 10px;
+	}
+{% endblock extracss-inline %}
+
+{% block extrajs-jquery-enclosed %}
+	$('.btn-edit').tooltip({animation:true, placement:'right'});
+{% endblock extrajs-jquery-enclosed %}
+
 {% block extrajs-jquery-plugins %}
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endblock extrajs-jquery-plugins %}
@@ -14,7 +30,7 @@
 	function drawChart() {
 		{% for chart in charts %}
 			{% if chart.data %}
-				var dataarray = {% autoescape off %}{{ chart.data }}{% endautoescape %};
+				var dataarray = {% autoescape off %}{{ chart.data}}{% endautoescape %};
 				
 				if (dataarray.length > 0){
 					var data{{ forloop.counter }} = google.visualization.arrayToDataTable(dataarray);
@@ -29,9 +45,9 @@
 						},
 						hAxis:{ 
 							title: '{{ chart.haxis }}',
-							gridlines: {count: 4}				
+							gridlines: {count: 4}
 						}
-					}; 
+					};
 
 					var chart{{ forloop.counter}} = new google.visualization.LineChart(document.getElementById('{{chart.label}}-chart'));
 					chart{{ forloop.counter}}.draw(data{{ forloop.counter }}, options{{ forloop.counter }});
@@ -61,7 +77,7 @@
 						<tr>
 							<td style="border-top:none" colspan="2">
 								<h3 class="pull-left">My User Profile</h3>
-								<a class="pull-right" href="{% url settings %}">
+								<a class="btn-edit pull-right" href="{% url settings %}" rel="tooltip" title="Edit">
 									<i class="icon-edit icon-black" style="margin-top: 8px;margin-right: -4px;"></i>
 								</a>
 							</td>
@@ -90,7 +106,7 @@
 						<tr>							
 							<td style="border-top:none" colspan="2">
 								<h3 class="pull-left">My Medical Profile</h3>
-								<a class="pull-right" href="{% url settings %}">
+								<a class="btn-edit pull-right" href="{% url settings %}" rel="tooltip" title="Edit">
 									<i class="icon-edit icon-black" style="margin-top: 8px;margin-right: -4px;"></i>
 								</a>
 							</td>
@@ -139,7 +155,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="pull-left span9" style="margin-left: 10px;">
+			<div class="chart-area pull-left span9">
 				<h2>Track Vitals</h2>
 				<div class="tabbable">
 				  <ul class="nav nav-tabs">
@@ -150,7 +166,7 @@
 				  <div class="tab-content">
 					{% for item in items %}
 						<div class="tab-pane{% if forloop.first %} active{% endif %}" id="tab{{ forloop.counter }}">
-							<div id="{{ item.slug }}-chart" style="width:850px;height:350px;"></div>
+							<div id="{{ item.slug }}-chart" class="chart-contents"></div>
 						</div>
 					{% empty %}
 						<li>No Data Found</li>
