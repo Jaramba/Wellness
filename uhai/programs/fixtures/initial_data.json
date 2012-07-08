@@ -4,10 +4,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Weight Gain",
+      "problems": [
+        2
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [2],
       "expected_outcome_notes": "Gain Prescribe weight"
     }
   },
@@ -16,10 +18,12 @@
     "model": "programs.program",
     "fields": {
       "name": "HIV/AIDS Improvement",
+      "problems": [
+        1
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [1],
       "expected_outcome_notes": ""
     }
   },
@@ -28,10 +32,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Work Related Stress",
+      "problems": [
+        11777
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11777],
       "expected_outcome_notes": ""
     }
   },
@@ -40,10 +46,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Work Burnout",
+      "problems": [
+        11900
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11900],
       "expected_outcome_notes": ""
     }
   },
@@ -52,10 +60,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Crime Trauma",
+      "problems": [
+        11867
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11867],
       "expected_outcome_notes": ""
     }
   },
@@ -64,10 +74,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Gambling Addiction",
+      "problems": [
+        11896
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11896],
       "expected_outcome_notes": ""
     }
   },
@@ -76,10 +88,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Sexual Behavior",
+      "problems": [
+        11895
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11895],
       "expected_outcome_notes": ""
     }
   },
@@ -88,10 +102,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Obesity ",
+      "problems": [
+        11893
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11893],
       "expected_outcome_notes": ""
     }
   },
@@ -100,10 +116,12 @@
     "model": "programs.program",
     "fields": {
       "name": "HIV Counselling",
+      "problems": [
+        11886
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11886],
       "expected_outcome_notes": ""
     }
   },
@@ -112,10 +130,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Spouse Accident",
+      "problems": [
+        11912
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11912],
       "expected_outcome_notes": ""
     }
   },
@@ -124,10 +144,12 @@
     "model": "programs.program",
     "fields": {
       "name": "Drug Addiction",
+      "problems": [
+        11892
+      ],
       "concept_notes": "",
       "owner": 1,
       "is_public": false,
-      "problems": [11892],
       "expected_outcome_notes": ""
     }
   },
@@ -892,8 +914,9 @@
     "model": "programs.patientquestionnaire",
     "fields": {
       "questionnaire": 1,
-      "completed": false,
+      "frequency": "",
       "patient": 1,
+      "completed": false,
       "updated_at": "2012-05-26T19:30:51.024"
     }
   },
@@ -901,44 +924,44 @@
     "pk": 1,
     "model": "programs.response",
     "fields": {
-      "response_date": "2012-07-06T05:58:21.070",
+      "answered_by": 1,
       "question": 47,
       "patient": 1,
-	  "answered_by": 1,
-      "value": "2"
+      "value": "2",
+      "response_date": "2012-07-06T05:58:21.070"
     }
   },
   {
     "pk": 2,
     "model": "programs.response",
     "fields": {
-      "response_date": "2012-07-06T05:58:21.072",
+      "answered_by": 1,
       "question": 47,
       "patient": 1,
-	  "answered_by": 1,
-      "value": "2"
+      "value": "2",
+      "response_date": "2012-07-06T05:58:21.072"
     }
   },
   {
     "pk": 3,
     "model": "programs.response",
     "fields": {
-      "response_date": "2012-07-06T05:58:21.074",
+      "answered_by": 1,
       "question": 47,
-      "patient": 1,	  
-	  "answered_by": 1,
-      "value": ""
+      "patient": 1,
+      "value": "",
+      "response_date": "2012-07-06T05:58:21.074"
     }
   },
   {
     "pk": 4,
     "model": "programs.response",
     "fields": {
-      "response_date": "2012-07-06T05:58:21.076",
+      "answered_by": 1,
       "question": 48,
       "patient": 1,
-	  "answered_by": 1,
-      "value": "on"
+      "value": "on",
+      "response_date": "2012-07-06T05:58:21.076"
     }
   }
 ]

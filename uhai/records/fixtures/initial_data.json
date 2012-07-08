@@ -162137,9 +162137,10 @@
     "pk": 1,
     "model": "records.trackingentry",
     "fields": {
-      "date_updated": "2012-07-06T08:51:40.242",
+      "date_updated": "2012-07-06T08:51:40",
       "field": 1,
       "patient": 1,
+      "shared_key": "D8JK8",
       "value": "110"
     }
   },
@@ -162147,9 +162148,10 @@
     "pk": 2,
     "model": "records.trackingentry",
     "fields": {
-      "date_updated": "2012-07-06T08:53:01.033",
+      "date_updated": "2012-07-06T08:53:01",
       "field": 2,
       "patient": 1,
+      "shared_key": "D8JK8",
       "value": "113"
     }
   },
@@ -162157,9 +162159,10 @@
     "pk": 3,
     "model": "records.trackingentry",
     "fields": {
-      "date_updated": "2012-07-06T08:53:39.954",
+      "date_updated": "2012-07-06T14:53:39",
       "field": 1,
       "patient": 1,
+      "shared_key": "XSB67",
       "value": "120"
     }
   },
@@ -162167,9 +162170,10 @@
     "pk": 4,
     "model": "records.trackingentry",
     "fields": {
-      "date_updated": "2012-07-06T08:54:35.301",
+      "date_updated": "2012-07-06T14:54:35",
       "field": 2,
       "patient": 1,
+      "shared_key": "XSB67",
       "value": "120"
     }
   },
@@ -162177,9 +162181,10 @@
     "pk": 5,
     "model": "records.trackingentry",
     "fields": {
-      "date_updated": "2012-07-06T08:55:17.609",
+      "date_updated": "2012-07-06T08:55:17",
       "field": 2,
       "patient": 1,
+      "shared_key": "XCHG7",
       "value": "120"
     }
   },
@@ -162190,6 +162195,7 @@
       "date_updated": "2012-07-04T14:13:24",
       "field": 1,
       "patient": 1,
+      "shared_key": "NMDS78",
       "value": "123"
     }
   },
@@ -162200,7 +162206,8 @@
       "date_updated": "2012-07-04T08:13:51",
       "field": 1,
       "patient": 1,
-      "value": "12"
+      "shared_key": "GHAIK",
+      "value": "120"
     }
   },
   {
@@ -162210,6 +162217,7 @@
       "date_updated": "2012-07-04T20:14:41",
       "field": 1,
       "patient": 1,
+      "shared_key": "HJA67",
       "value": "125"
     }
   },
@@ -162220,6 +162228,7 @@
       "date_updated": "2012-07-04T14:15:12",
       "field": 2,
       "patient": 1,
+      "shared_key": "NMDS78",
       "value": "119"
     }
   },
@@ -162230,6 +162239,7 @@
       "date_updated": "2012-07-04T08:15:32",
       "field": 2,
       "patient": 1,
+      "shared_key": "GHAIK",
       "value": "126"
     }
   },
@@ -162240,7 +162250,107 @@
       "date_updated": "2012-07-04T20:15:59",
       "field": 2,
       "patient": 1,
+      "shared_key": "HJA67",
       "value": "150"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T14:49:46",
+      "field": 2,
+      "patient": 1,
+      "shared_key": "18FOP",
+      "value": "123"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T14:29:31",
+      "field": 4,
+      "patient": 1,
+      "shared_key": "BGSTS",
+      "value": "34.0"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T08:30:02",
+      "field": 4,
+      "patient": 1,
+      "shared_key": "GHAGS",
+      "value": "39.1"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-04T20:30:55",
+      "field": 4,
+      "patient": 1,
+      "shared_key": "345H6",
+      "value": "33.4"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T14:32:07",
+      "field": 4,
+      "patient": 1,
+      "shared_key": "2JHNI",
+      "value": "36.2"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:33:25",
+      "field": 4,
+      "patient": 1,
+      "shared_key": "GK12I",
+      "value": "38.5"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T20:34:17",
+      "field": 4,
+      "patient": 1,
+      "shared_key": "G3S3K",
+      "value": "37.3"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T08:27:31",
+      "field": 1,
+      "patient": 1,
+      "shared_key": "XCHG7",
+      "value": "137"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "records.trackingentry",
+    "fields": {
+      "date_updated": "2012-07-06T14:31:28",
+      "field": 1,
+      "patient": 1,
+      "shared_key": "18FOP",
+      "value": "142"
     }
   },
   {
