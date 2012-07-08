@@ -16,14 +16,14 @@
 					<th>Code</th>
 					<th>Patient</th>
 					<th>Delivery</th>
+					<th>Duration</th>
 				{% endif %}
 				<th>Provider</th>
 				{% if not request.session.use_page_as == 'patient' %}
 					<th>Brand name</th>					
 				{% else %}
 					<th>Name</th>
-				{% endif %}
-				<th>Duration</th>				
+				{% endif %}				
 				<th>Administered</th>
 				<th>Follow up</th>
 				<th></th>
@@ -34,10 +34,10 @@
 						<td>{{immunization.code}}</td>
 						<td>{{immunization.user}}</td>						
 						<td>{{immunization.get_mode_of_delivery_display}}</td>
+						<td>{{immunization.duration_of_protection|default:'Not specified'}}{% if immunization.duration_of_protection %} years{% endif %}</td>
 					{% endif %}
 					<td>{{immunization.provider}}</td>
-					<td>{{immunization.brand_name}}</td>
-					<td>{{immunization.duration_of_protection}} years</td>					
+					<td>{{immunization.brand_name}}</td>					
 					<td>{{immunization.start_time|date:"SHORT_DATE_FORMAT"}}</td>
 					<td>{{immunization.follow_up_date|date:"SHORT_DATE_FORMAT"}}</td>
 					<td>

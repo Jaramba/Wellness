@@ -200,12 +200,3 @@ class PatientImmunizationForm(forms.ModelForm):
 	class Meta:
 		model = Immunization
 		fields = ['provider', 'brand_name', 'mode_of_delivery', 'start_time']
-
-	def save(self, commit=True):
-		obj = super(ImmunizationForm, self).save(commit=False)
-		obj.end_time = obj.start_time
-		obj.text = 'Vacination for %s' % obj.user
-		
-		if commit:
-			obj.save()
-		return obj

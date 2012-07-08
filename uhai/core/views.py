@@ -16,7 +16,7 @@ def model_view(request, pk=None,
 		 model_form_class=[],
 		 model_form_classes=[],
          initial_form_data={},
-         save_form=lambda form:form.save(),
+         save_form=lambda form, commit=False:form.save(),
          redirect_to_args=[],
          extra_action=lambda request, action:None,
          context_object_name=lambda model_obj:model_obj._meta.object_name.lower(),
@@ -32,7 +32,7 @@ def model_view(request, pk=None,
 			raise Http404()
 		except AssertionError, e:
 			raise e
-		data[context_object_name(model_obj) if callable(context_object_name) else context_object_name] = model_obj
+		data['object'] = data[context_object_name(model_obj) if callable(context_object_name) else context_object_name] = model_obj
 	else:		
 		page = request.REQUEST.get('page', 1)
 		paginator = Paginator(queryset, max_pagination_items)
@@ -47,7 +47,10 @@ def model_view(request, pk=None,
 		data['objects'] = data[context_object_name_plural(queryset.model) if callable(context_object_name_plural) else context_object_name_plural] = objects
 		
 	if not template_name:
-		template_name = "%s/%s_%s.html" % (queryset.model._meta.app_label, queryset.model._meta.object_name.lower(), action)
+		if action == "delete":
+			template_name = "delete_base.html"
+		else:
+			template_name = "%s/%s_%s.html" % (queryset.model._meta.app_label, queryset.model._meta.object_name.lower(), action)
 	
 	if request.method == 'GET':
 		if action in ['create', 'view', 'edit', 'delete', 'list']:
@@ -67,11 +70,12 @@ def model_view(request, pk=None,
 					success = True
 			
 			if success:
-				return HttpResponseRedirect(redirect_to) if redirect_to else  redirect('%s-list' % queryset.model.__name__.lower(), *redirect_to_args)
+				return redirect('%s-list' % queryset.model.__name__.lower(), *redirect_to_args)
 			data[context_form_name] = form
 		elif action == 'delete':
 			if model_obj:
 				model_obj.delete()
+			return redirect('%s-list' % queryset.model.__name__.lower())
 		else:
 			extra_action(request, action)
 			

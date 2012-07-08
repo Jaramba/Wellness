@@ -34,9 +34,11 @@ def prescription(request, user_pk=None, *args, **kwargs):
 @login_required
 def immunization(request, user_pk=None, *args, **kwargs):
 	def save_form(form, commit=False):
-		obj = form.save(commit=false)
+		obj = form.save(commit=commit)
 		obj.user = request.user
+		obj.end_time = obj.follow_up_date = obj.start_time
+		obj.text = 'Vacination for %s' % obj.user
 		obj.save()
 		return obj
-	
+	kwargs['save_form'] = save_form
 	return user_model_view(request, *args, **kwargs)

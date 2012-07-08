@@ -25,8 +25,7 @@ INSTALLED_APPS = (
 	'messages',
 	'pagination',
 	#'south',
-	
-	'uhai.core',	
+		
 	'uhai.programs',
 	'uhai.insurance',
 	'uhai.records',
@@ -35,6 +34,7 @@ INSTALLED_APPS = (
 	'uhai.medication',
 	'uhai.reminders',
 	'uhai.userprofile',
+	'uhai.core',
 	'uhai.stats',
 	'uhai.sharer',
 )
