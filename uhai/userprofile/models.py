@@ -31,7 +31,7 @@ class UserProfile(models.Model):
 	county = models.ForeignKey('core.County', null=True, help_text='Your home county')
 	country = models.ForeignKey('core.Country', null=True, help_text='Your home country')
 		
-	user = models.OneToOneField('auth.User')
+	user = models.ForeignKey('auth.User', unique=True)
 	national_id = models.CharField(max_length=25)
 	
 	main_role = models.ForeignKey(Group, null=True)

@@ -1,33 +1,59 @@
-{% extends "medication/immunization_list.html" %}
+{% extends "programs/list_base.html" %}
 
-{% block container-right %}
-	<legend>Encounter Tests</legend>
-	{% if encountertesttests %}
-		<table class='table table-stripped table-bordered'>
-			<tr>
-				<th>Name</th>
-				<th>Encounter</th>
-				<th>Test</th>
-				<th>Date Administered</th>
+{% block header %}
+	{% if not request.session.use_page_as == 'patient' %}
+		Program Enrolled Patients
+	{% else %}
+		My Programs
+	{% endif %}
+{% endblock header %}
+
+{% block action-buttons %}
+	{% if not request.session.use_page_as == 'patient' %}
+		<a href="{% url enrolledprogram-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+			<i class="icon-plus-sign"></i>
+		</a>
+	{% endif %}
+{% endblock action-buttons %}
+
+{% block table-list %}
+	{% if enrolledprograms %} 
+		<table class='table'>
+			<tr>			
+				<th>Program Name</th>
+				{% if not request.session.use_page_as == 'patient' %}
+					<th>Patient</th>
+				{% endif %}
+				<th>Enrolled by</th>
+				<th>Date</th>
+				<th>Date of Completion</th>
+				{% if not request.session.use_page_as == 'patient' %}
+					<td></td>
+				{% endif %}
 			</tr>
-			{% for encountertest in encountertesttests %}
-				<tr>	
-					<td>{{encountertest.name}}</td>
-					<td>{{encountertest.encounter}}</td>
-					<td>{{encountertest.test}}</td>
-					<td>{{encountertest.date_administered}}</td>
-					<td>
-						<a class="btn btn-primary" href="{% url encountertest-edit encountertest.pk %}">Edit</a>
-						<a class="btn btn-primary" href="{% url encountertest-delete encountertest.pk %}">Delete</a>
-					</td>
+			{% for enrolledprogram in enrolledprograms %}
+				<tr>
+					<td>{{enrolledprogram.program}}</td>
+					{% if not request.session.use_page_as == 'patient' %}
+						<td>{{enrolledprogram.enrollee}}</td>
+					{% endif %}
+					<td>{{enrolledprogram.enroller}}</td>					
+					<td>{{enrolledprogram.date_enrolled|date:"SHORT_DATE_FORMAT"}}</td>
+					<td>{{enrolledprogram.date_completed|date:"SHORT_DATE_FORMAT"}}</td>
+					{% if not request.session.use_page_as == 'patient' %}
+						<td>
+							<div class="btn-group">							
+								<a class="btn btn-info" href="{% url enrolledprogram-edit enrolledprogram.pk %}">Edit</a>
+								<a class="btn btn-danger" href="{% url enrolledprogram-delete enrolledprogram.pk %}">Delete</a>							
+							</div>
+						</td>
+					{% endif %}
 				</tr>
 			{% empty %}
-				<tr><td colspan="2"><div class="well">No Encounters Found</div></td></tr>
+				No Enrolled Programs Found
 			{% endfor %}
 		</table>
 	{% else %}
-		<div class="well">
-			No Encounters Found
-		</div>
+		No Enrolled Programs Found
 	{% endif %}
-{% endblock container-right %}
+{% endblock table-list %}

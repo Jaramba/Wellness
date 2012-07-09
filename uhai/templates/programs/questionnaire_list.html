@@ -1,0 +1,49 @@
+{% extends "programs/list_base.html" %}
+
+{% block header %}
+	Questionnaires
+{% endblock header %}
+
+{% block action-buttons %}
+	{% if not request.session.use_page_as == 'patient' %}
+		<a href="{% url questionnaire-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+			<i class="icon-plus-sign"></i>
+		</a>
+	{% endif %}
+{% endblock action-buttons %}
+
+{% block table-list %}
+	{% if questionnaires %}
+		<table class='table table-stripped'>
+			<tr>
+				<th>Patient</th>
+				<th>Questionnaire Date</th>
+				<th>Type</th>
+				{% if not request.session.use_page_as == 'patient' %}
+					<th></th>
+				{% endif %}
+			</tr>
+			{% for questionnaire in questionnaires %}
+				<tr>	
+					<td>{{questionnaire.patient.full_name}}</td>
+					<td>{{questionnaire.questionnaire_date}}</td>
+					<td>{{questionnaire.type}}</td>
+					{% if not request.session.use_page_as == 'patient' %}					
+						<td>
+							<div class="btn-group">
+								<a class="btn btn-info" href="{% url questionnaire-edit questionnaire.pk %}">Edit</a>
+								<a class="btn btn-danger" href="{% url questionnaire-delete questionnaire.pk %}">Edit</a>
+							</div>
+						</td>
+					{% endif %}
+				</tr>
+			{% empty %}
+				<tr><td colspan="2">No Questionnaires Found</td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<div>
+			No Questionnaires Found
+		</div>
+	{% endif %}
+{% endblock table-list %}

@@ -9,7 +9,6 @@ class Program(OwnerModel):
     '''
     name = models.CharField(max_length=100)
     problems = models.ManyToManyField("records.Problem")
-    is_public = models.BooleanField(default=False, editable=False, help_text='Can be used by other Patients, Users as a Template. Leave unchecked, to be private')
     concept_notes = models.TextField(null=True, blank=True)
     expected_outcome_notes = models.TextField(null=True, blank=True)
 
