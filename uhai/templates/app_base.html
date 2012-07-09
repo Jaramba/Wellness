@@ -14,7 +14,7 @@
 	{% block extrajs-jquery-plugins %}{% endblock extrajs-jquery-plugins %}
 	<script type="text/javascript">
 		{% block extrajs-global %}{% endblock extrajs-global %}
-		$(function(){			
+		$(function(){
 			try{$('select').selectToAutocomplete();}catch($e){}
 			{% block extrajs-jquery-enclosed %}{% endblock extrajs-jquery-enclosed %}
 		});
@@ -48,16 +48,18 @@
 									<li class="navbar-item" id="patient-menu">
 										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
 									</li>
+									<li class="navbar-item" id="report-menu">
+										<a href="{% url stats %}">Reports</a>
+									</li>
+								{% elif request.session.use_page_as == 'employer' %}
+									<li class="navbar-item" id="patient-menu">
+										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
+									</li>
 								{% else %}
 									<li class="navbar-item"><a href="{% url calendar %}">Schedule</a></li>
 									<li class="navbar-item"><a href="{% url records %}">Records</a></li>
 									<li class="navbar-item"><a href="{% url programs %}">Programs</a></li>
 								{% endif %}								
-								{% if request.session.use_page_as == 'health-worker' %}
-									<li class="navbar-item" id="report-menu">
-										<a href="{% url stats %}">Reports</a>
-									</li>
-								{% endif %}
 							{% endif %}
 							{% block navbar-links %}{% endblock navbar-links %}
 						</ul>

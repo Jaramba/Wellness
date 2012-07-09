@@ -3,8 +3,35 @@
 
 {% block body-hook %}id="search"{% endblock body-hook %}
 
+{% block extracss-links %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.autocomplete.css" type="text/css" />
+{% endblock extracss-links %}
+	
+{% block extrajs-jquery-plugins %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.autocomplete-min.js"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block extracss-inline %}
+	div .autocomplete-w1{left: 0px;}
+	div .autocomplete-w1 .autocomplete{		
+		width: 100%;
+		line-height: 1.5;
+		font-size: 36px;
+	}
+	div .autocomplete{width: 100%;}
+{% endblock extracss-inline %}
+
 {% block extrajs-jquery-enclosed %}
 	$("#id_q").focus();
+	$a = $("#id_q").autocomplete({
+		serviceUrl: '{% url search-suggestions %}',
+		delimiter: /(,|;)\s*/,
+		deferRequestBy: 0, //miliseconds
+		params: { users: 'yes' },
+		minChars: 2,
+		noCache: false //set to true, to disable caching
+	});
+	$a.enable();
 {% endblock extrajs-jquery-enclosed %}
 
 {% block container %}
@@ -21,7 +48,8 @@
 			<label class="control-label visuallyhidden" for="id_q">Search</label>
 			<div class="controls">
 			  <div id="search-box" class="input-append">
-				<input id="id_q" name="q" type="text" placeholder="Search Patient by Surname" class="span11"><button class="btn" type="submit"><i class="icon-big-search"></i><span class="visuallyhidden">Search</span></button>
+				<input name="users" value="yes" type="hidden" style="display:none"/>
+				<input id="id_q" autocomplete="off" name="q" type="text" placeholder="Search Patient by Surname" class="span11"><button class="btn" type="submit"><i class="icon-big-search"></i><span class="visuallyhidden">Search</span></button>
 			  </div>
 			</div>
 		  </div>

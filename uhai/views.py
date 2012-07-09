@@ -17,7 +17,7 @@ def index(request, template_name="", data={}):
 		if not request.session.get('use_page_as'):
 			request.session['use_page_as'] = slugify(request.user.profile.main_role)
 		else:
-			if request.session.get('use_page_as') == 'health-worker':
+			if request.session.get('use_page_as') == 'patient':
 				diagnoses = Diagnosis.objects.filter(approved=True, encounter__user=request.user.patient_set.get())		
 				tracking_records = list(TrackingRecord.objects.filter(diagnosis__id__in=[diagnosis.problem.id for diagnosis in diagnoses]))
 				vitals = list(TrackingRecord.objects.filter(slug__in=['blood-pressure', 'resting-heart-rate', 'temperature-oral']))

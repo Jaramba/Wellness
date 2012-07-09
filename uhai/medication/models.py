@@ -4,9 +4,9 @@ from uhai.reminders.models import Event
 
 class Medication(models.Model):
     MEDICATION_TYPE=[
-        ('otc','OTC'),
+        ('otc','Over the counter'),
         ('prescribed','Prescribed'),
-        ('prescribed-otc','PrescribedOTC')
+        ('prescribed-otc','Prescribed, over the counter')
     ]
     WAY_TAKEN = [
         ('by-mouth', 'By mouth'),
@@ -32,7 +32,7 @@ class Medication(models.Model):
         ('percent', 'Percent (%)'),
     ]	
     name = models.CharField(max_length=50)
-    medication_type = models.CharField(max_length=10, choices=MEDICATION_TYPE)
+    medication_type = models.CharField(max_length=50, choices=MEDICATION_TYPE)
     way_taken = models.CharField(max_length=20, choices=WAY_TAKEN)
     
     min_daily_dose = models.CharField(max_length=50)

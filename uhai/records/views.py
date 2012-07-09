@@ -1,8 +1,9 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template.context import RequestContext
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 from forms import *
 from models import *
@@ -45,3 +46,26 @@ def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **k
 	
 	kwargs['queryset'] = queryset.filter(problem__type__slug=problem_type) if problem_type else queryset
 	return role_model_view(request, extra_data=extra_data, *args, **kwargs)
+	
+def report(request, template_name='userprofile/login.html', filename='report'):
+    try:
+		import pdfcrowd
+		# create an API client instance
+		client = pdfcrowd.Client("kanarelo", "05d18f129c5b5176f443a1eaa6f2e482")
+		data = {}
+
+		# convert a web page and store the generated PDF to a variable
+		pdf = client.convertHtml(render_to_string(template_name, data, context_instance=RequestContext(request)))
+
+		 # set HTTP response headers
+		response = HttpResponse(mimetype="application/pdf")
+		response["Cache-Control"] = "no-cache"
+		response["Accept-Ranges"] = "none"
+		response["Content-Disposition"] = "attachment; filename=%s.pdf" % filename
+
+		# send the generated PDF
+		response.write(pdf)
+    except pdfcrowd.Error, why:
+        response = HttpResponse(mimetype="text/plain")
+        response.write(why)
+    return response

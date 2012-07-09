@@ -31,3 +31,9 @@ urlpatterns += get_crud_urls(
     app_map=APP_MAP,
     items=['encounter']
 )
+
+urlpatterns += patterns('',
+	url(r'^reports/files/$', 'uhai.records.views.report', {'template_name':'userprofile/login.html'}, name='login'),
+)
+
+
