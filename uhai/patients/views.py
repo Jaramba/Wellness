@@ -10,7 +10,8 @@ from uhai.core.views import model_view, user_model_view
 @login_required
 def patient(request, *args, **kwargs):
 	try:
-		kwargs['pk'] = request.user.patient.pk			
+		if not kwargs.get('pk'):
+			kwargs['pk'] = request.user.patient_set.get().pk
 	except Patient.DoesNotExist:
 		raise Http404()
 		
@@ -28,5 +29,5 @@ def patientemergencycontact(request, *args, **kwargs):
 
 @login_required
 def relationship(request, queryset=None, *args, **kwargs):
-    queryset = Relationship.objects.filter(person_a=request.user.patient)
+    queryset = Relationship.objects.filter(person_a=request.user.patient_set.get())
     return model_view(request, queryset=queryset, *args, **kwargs)

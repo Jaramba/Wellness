@@ -1,6 +1,48 @@
-{% extends "medication/medication_base.html" %}
+{% extends "records/list_base.html" %}
 {% load i18n %}
 
-{% block title %}Medication List{% endblock %}
+{% block page-title %}Medication List{% endblock page-title %}
 
-{% block container-right %}{% endblock container-right %}
+{% block header %}Medicines{% endblock header %}
+
+{% block action-buttons %}
+	<a href="{% url medication-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+		<i class="icon-plus-sign"></i>
+	</a>
+{% endblock action-buttons %}
+
+{% block table-list %}
+	{% if medications %} 
+		<table class='table'>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Strength</th>
+				<th>Min daily</th>					
+				<th>Max daily</th>
+				<th></th>
+			</tr>
+			{% for medication in medications %}
+				<tr>
+					<td>{{medication.name}}</td>					
+					<td>{{medication.get_medication_type_display}}</td>
+					<td>{{medication.strength}} {{medication.strength_unit}}</td>
+					<td>{{medication.min_daily_dose}} dose{{medication.min_daily_dose|pluralize}}</td>					
+					<td>{{medication.max_daily_dose}} dose{{medication.max_daily_dose|pluralize}}</td>
+					<td>
+						<div class="btn-group">
+							<a class="btn btn-info" href="{% url medication-edit medication.pk %}">Edit</a>
+							<a class="btn btn-danger" href="{% url medication-delete medication.pk %}">Delete</a>
+						</div>
+					</td>
+				</tr>
+			{% empty %}
+				<tr><td colspan="2">No Medications Found</td></tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<div>
+			No Medications Found
+		<div>
+	{% endif %}
+{% endblock table-list %}

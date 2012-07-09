@@ -24,7 +24,7 @@ class Patient(models.Model):
 		('o-negative','O-'),
 	]
 
-	user = models.OneToOneField('auth.User')
+	user = models.ForeignKey('auth.User', unique=True)
 
 	gender = models.CharField(max_length=20, choices=GENDER, null=True)
 	date_of_birth = models.DateField(null=True, help_text='The Patient\'s indicated date of birth')

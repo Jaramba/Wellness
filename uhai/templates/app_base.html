@@ -66,9 +66,9 @@
 						{% block navbar-right %}
 							{% if request.user.is_authenticated %}
 								{% if not request.session.use_page_as == 'patient' %}
-									<form method="GET" class="navbar-search pull-left" action="{% url search-index %}" style="padding-top:2px;">
-										<input type="text" class="search-query span2" name="q" placeholder="Search User/Patient"/>
-									</form>
+									<a style="margin-top:8px" class="btn btn-inverse navbar-search pull-left" href="/search/">
+										<i class="icon-search icon-white"></i> Search
+									</a>
 								{% endif %}
 								<ul class="nav pull-right" style="padding-top: 3px;">
 									<li class="dropdown">

@@ -14,11 +14,14 @@ class MedicationForm(forms.ModelForm):
         
         layout = Layout(
             Row(HTML('<legend>Enter Medication</legend>')),
-            Row(Column('name')),
-            Row(Column('medication_type'), Column('way_taken')),
-            Row(Column('min_daily_dose'), Column('max_daily_dose')),
-            Row(Column('strength'), Column('strength_unit')),
-            Row(Column('side_effects', css_class="textarea")),
+            Row(Column(Field('name', css_class="span6"))),
+            Row(Column(Field('medication_type', css_class="span4"))), 
+			Row(Column(Field('way_taken', css_class="span4"))),
+            Row(Column(Field('min_daily_dose', css_class="span2"))), 
+			Row(Column(Field('max_daily_dose', css_class="span2"))),
+            Row(Column(Field('strength', css_class="span2"))), 
+			Row(Column(Field('strength_unit', css_class="span3"))),
+            Row(Field('side_effects') ,css_class="textarea-column"),
             
             Row(
 				Div(

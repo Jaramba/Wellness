@@ -6,7 +6,6 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 
 from django.template.context import RequestContext
-from django.forms.models import modelform_factory
 
 def model_view(request, pk=None,
          template_name='',
@@ -34,11 +33,7 @@ def model_view(request, pk=None,
 			raise Http404('%s #%s does not exist' % (queryset.model._meta.verbose_name, pk))
 		except AssertionError, e:
 			raise e
-		data['object'] = data[context_object_name(model_obj) if callable(context_object_name) else context_object_name] = model_obj
-		
-		if action in ('edit', 'create'):
-			if not model_form_class:
-				model_form_class = modelform_factory(queryset.model)
+		data['object'] = data[context_object_name(model_obj) if callable(context_object_name) else context_object_name] = model_obj		
 	else:		
 		page = request.REQUEST.get('page', 1)
 		paginator = Paginator(queryset, max_pagination_items)

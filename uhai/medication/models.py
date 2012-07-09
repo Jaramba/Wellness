@@ -35,7 +35,6 @@ class Medication(models.Model):
     medication_type = models.CharField(max_length=10, choices=MEDICATION_TYPE)
     way_taken = models.CharField(max_length=20, choices=WAY_TAKEN)
     
-    strength = models.CharField(max_length=50)
     min_daily_dose = models.CharField(max_length=50)
     max_daily_dose = models.CharField(max_length=50)
     strength = models.CharField(max_length=50)

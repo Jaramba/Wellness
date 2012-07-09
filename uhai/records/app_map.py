@@ -5,28 +5,28 @@ APP_MAP={
 	'diagnosis':{
 		'model':Diagnosis,
 		'forms':{
-			'patient': DiagnosisForm,
+			'health-worker': DiagnosisForm,
 		},
 		'actions':'CRUDL',
 	},
 	'problemtest':{
 		'model':ProblemTest,
 		'forms':{
-			'patient': ProblemTestForm,
+			'health-worker': ProblemTestForm,
 		},
 		'actions':'CRUDL',
 	},
 	'encountertestresult':{
 		'model':EncounterTestResult,
 		'forms':{
-			'patient': EncounterTestResultForm,
+			'health-worker': EncounterTestResultForm,
 		},
 		'actions':'CRUDL',
 	},
 	'encountertest':{
 		'model':EncounterTest,
 		'forms':{
-			'patient': EncounterTestForm,
+			'health-worker': EncounterTestForm,
 		},
 		'actions':'CRUDL',
 	},
@@ -48,7 +48,7 @@ APP_MAP={
 	'order':{
 		'model':Order,
 		'forms':{
-			'patient': OrderForm,
+			'health-worker': OrderForm,
 		},
 		'actions':'CRUDL',
 	}, 

@@ -48,7 +48,7 @@ class Encounter(Event):
 	observation_notes = models.TextField()
 	
 	def __unicode__(self):
-		return (self.user.user.full_name)
+		return (self.user.full_name)
 
 class Order(models.Model):
 	encounter = models.ForeignKey('Encounter')

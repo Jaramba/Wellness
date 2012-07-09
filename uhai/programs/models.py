@@ -16,7 +16,7 @@ class Program(OwnerModel):
     	return str(self.name)
 
     class Meta:
-        permissions = ( 
+        permissions = (
             ('view_program', 'View program'), 
         )
 

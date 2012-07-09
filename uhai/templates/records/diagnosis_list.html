@@ -3,12 +3,6 @@
 {% block header %}
 	Diagnoses{% if problem_type %}: {{problem_type}}s{% endif %}
 {% endblock header %}
-
-{% block action-buttons %}
-	{% if request.session.use_page_as == 'health-worker' %}
-		<div id="add" style="width:100%;clear:both"><a href="{% url diagnosis-create %}" class="button blue" style="float:right">Add Diagnosis</a></div>
-	{% endif %}
-{% endblock action-buttons %}
 		
 {% block table-list %}
 	{% if diagnoses %} 

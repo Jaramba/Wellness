@@ -3,44 +3,52 @@ from models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
 
+from django.contrib.auth.models import User
+
 class EncounterForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
-        self.helper.form_class = 'general_form'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = '#'
-        
-        self.layout = Layout(
-            Div(HTML('<legend>Create Encounter</legend>')),
-			Row(Column(Field('patient'))),
-			Row(Column(Field('title'))),
-            Row(Column(Field('frequency'))),
-			Row(Column(Field('message'))),			
+	user = forms.ModelChoiceField(queryset=User.objects.filter(patient__pk__isnull=False), empty_label=u"", label="Patient")
+	def __init__(self, *args, **kwargs):
+		self.helper = FormHelper()
+		self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
+		self.helper.form_class = 'general_form'
+		self.helper.form_method = 'POST'
+		self.helper.form_action = '#'
+		
+		self.layout = Layout(
+			Div(HTML('<legend>Create Encounter</legend>')),
+			Row(Column(Field('user', css_class="span4"))),
+			Row(Column(Field('frequency', css_class="span2"))),	
 			Row(Column(Field('patient_complience'))),
-            Row(Column(Field('type'))),
+			Row(Column(Field('type'))),
 			Row(Column(Field('completed'))),
-            Row(Column(Field('location'))),
-            Row(Column(Field('encounter_date'))),
-            Row(Column(Field('start_time'))),
+			Row(Column(Field('location', css_class="span4"))),
+			Row(Column(Field('start_time'))),
 			Row(Column(Field('end_time'))),
-            Row(Field('observation_notes'), css_class='textarea-column'),
-            
-            Row(
+			Row(Field('observation_notes'), css_class='textarea-column'),
+			
+			Row(
 				Div(
 					Submit('send', 'Send', css_class='btn-primary'),
 				css_class='form-actions')
 			)
-        )
-        self.helper.add_layout(self.layout)
-        super(EncounterForm, self).__init__(*args, **kwargs)
-        
-    class Meta:
+		)
+		self.helper.add_layout(self.layout)
+		super(EncounterForm, self).__init__(*args, **kwargs)
+		
+	class Meta:
 		model = Encounter
-		exclude = ['provider']
+		exclude = ['provider', 'text']
 		widgets = {
 			'observation_notes' : forms.Textarea,
 		}
+		
+	def save(self, commit=True):
+		obj = super(EncounterForm, self).save(commit=False)
+		obj.text = 'Appointment with %s' % obj.user
+		
+		if commit:
+			obj.save()
+		return obj
 		
 class PatientEncounterForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
