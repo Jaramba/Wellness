@@ -4,34 +4,37 @@
 {% block body-hook %}id="search"{% endblock body-hook %}
 
 {% block extracss-links %}
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.autocomplete.css" type="text/css" />
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/Aristo.css' type='text/css' media='screen' />
 {% endblock extracss-links %}
-	
+
 {% block extrajs-jquery-plugins %}
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.autocomplete-min.js"></script>
+	{{block.super}}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.select-to-autocomplete.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tinymce.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce_gzip.js"></script>
 {% endblock extrajs-jquery-plugins %}
 
 {% block extracss-inline %}
-	div .autocomplete-w1{left: 0px;}
-	div .autocomplete-w1 .autocomplete{		
-		width: 100%;
-		line-height: 1.5;
+	.ui-autocomplete-input{
+		margin-right: -3px;
+	}
+	.ui-menu-item{
 		font-size: 36px;
 	}
-	div .autocomplete{width: 100%;}
 {% endblock extracss-inline %}
 
 {% block extrajs-jquery-enclosed %}
-	$("#id_q").focus();
-	$a = $("#id_q").autocomplete({
-		serviceUrl: '{% url search-suggestions %}',
-		delimiter: /(,|;)\s*/,
-		deferRequestBy: 0, //miliseconds
-		params: { users: 'yes' },
-		minChars: 2,
-		noCache: false //set to true, to disable caching
+	$("#id_patient").focus();
+	$('#id_patient').attr({
+		"autocomplete":"off",
+		"placeholder":"Search Patient by Surname",
+		"class":"span11",
+		"type":"text",
+		"name":"q"
 	});
-	$a.enable();
+	try{$('select').selectToAutocomplete();}catch($e){}
+	$("#id_patient").autocomplete();
 {% endblock extrajs-jquery-enclosed %}
 
 {% block container %}
@@ -45,11 +48,14 @@
 	  <div id="search-area">
 		<form class="form-search" method="GET" action=".">
 		  <div class="control-group">
-			<label class="control-label visuallyhidden" for="id_q">Search</label>
 			<div class="controls">
 			  <div id="search-box" class="input-append">
 				<input name="users" value="yes" type="hidden" style="display:none"/>
-				<input id="id_q" autocomplete="off" name="q" type="text" placeholder="Search Patient by Surname" class="span11"><button class="btn" type="submit"><i class="icon-big-search"></i><span class="visuallyhidden">Search</span></button>
+				{{ form.patient }}
+				<button class="btn" type="submit">
+					<i class="icon-big-search"></i>
+					<span class="visuallyhidden">Search</span>
+				</button>
 			  </div>
 			</div>
 		  </div>

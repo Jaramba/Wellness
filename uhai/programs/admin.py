@@ -1,7 +1,6 @@
 from django.contrib import admin
 import models
 from django.db.models.base import ModelBase
-from guardian.admin import GuardedModelAdmin
 
 class ProgramWorkflowStateInline(admin.TabularInline):
 	model = models.ProgramWorkflowState
@@ -53,7 +52,7 @@ for M in [x
 			]
 		)
 ]:
-	class ItemAdmin(GuardedModelAdmin):
+	class ItemAdmin(admin.ModelAdmin):
 		model = M
 		list_display = [f.name for f in M._meta.fields if not f.name in ('description', 'is_public','concept_notes','expected_outcome_notes')]
 		inlines = []

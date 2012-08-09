@@ -4,7 +4,6 @@ from forms import *
 
 from uhai.patients.forms import Patient, PatientProfileForm
 
-from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('uhai.userprofile.views',

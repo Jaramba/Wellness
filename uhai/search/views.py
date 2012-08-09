@@ -10,6 +10,7 @@ import simplejson
 from django.db.models import Q
 
 from uhai.patients.models import Patient
+from forms import SearchPatientForm
 
 @login_required
 def index(request, template_name='search/index.html', data={}):
@@ -20,14 +21,13 @@ def index(request, template_name='search/index.html', data={}):
 		if q:
 			if request.REQUEST.get('users', '').lower() == "yes":
 				item = q
-				results = Patient.objects.defer('user').filter(
-					Q(user__userprofile__first_name__icontains=item)  |
-					Q(user__userprofile__middle_name__icontains=item) |
-					Q(user__userprofile__last_name__icontains=item)
-				)
+				results = Patient.objects.defer('user').filter(pk=q)
 				
 				data['patients'] = results
-				data['q'] = q
+				try:
+					data['q'] = results.get().user.full_name
+				except Patient.DoesNotExist:
+					data['q'] = ''
 						
 			if request.REQUEST.get('jq', '') or request.is_ajax():
 				suggestions = []
@@ -54,6 +54,15 @@ def index(request, template_name='search/index.html', data={}):
 				except PageNotAnInteger:
 					patients = paginator.page(1)
 				except EmptyPage:
-					patients = paginator.page(paginator.num_pages)				
-			
+					patients = paginator.page(paginator.num_pages)		
+					
+	data['form'] = SearchPatientForm()
 	return render_to_response(template_name, data, context_instance= RequestContext(request))
+
+@login_required
+def filter(request, section=None, template_name='search/filter_base.html', data={}):
+	if request.method == "GET":
+		pass
+	return render_to_response(template_name, data, context_instance= RequestContext(request))
+
+	

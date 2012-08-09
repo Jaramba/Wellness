@@ -42,7 +42,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
-	"guardian.backends.ObjectPermissionBackend",
     "uhai.auth.email.EmailBackend",
 )
 

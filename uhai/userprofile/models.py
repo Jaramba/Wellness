@@ -60,7 +60,6 @@ class UserProfile(models.Model):
 	@property
 	def full_name(self):
 		return u' '.join([i for i in (
-					(self.title.name if self.title else ''),
 					self.first_name,
 					(self.middle_name if self.middle_name else ''),
 					self.last_name

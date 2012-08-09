@@ -1,0 +1,22 @@
+{% extends 'app_base.html' %}
+
+{% block container %}
+<form class="well">
+	<div class="row-fluid">
+		<div class="span4">
+			<label>Full Name</label>
+			<input type="text" class="span11" placeholder="Enter the patient full name">
+		</div>
+		<div class="span4">
+			<label>Problem</label>
+			<input type="text" class="span11" placeholder="Enter a diagnosed problem">
+		</div>
+		<div class="span4">
+			<label>Age</label>
+			<input type="text" class="span11" placeholder="Enter the patient age">
+		</div>
+	</div>
+	<button type="submit" class="btn">
+		<i class="icon-search"></i> Filter Results</button>
+</form>
+{% endblock container %}

@@ -41,6 +41,7 @@
 
 {% block extrajs-jquery-enclosed %}
 	{{block.super}}
+	try{$('select').selectToAutocomplete();}catch($e){}
 	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
 {% endblock extrajs-jquery-enclosed %}
 
