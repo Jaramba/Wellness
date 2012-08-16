@@ -66,7 +66,7 @@ LOCALE_PATHS = (
 
 
 from django.core.urlresolvers import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGIN_URL = reverse_lazy('login')
 
 # A sample logging configuration. The only tangible logging

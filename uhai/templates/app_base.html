@@ -37,7 +37,7 @@
 						<ul class="nav" style="padding-top: 4px;">
 							{% if request.user.is_authenticated %}
 								<li class="navbar-item" class="active">
-									<a href="{% url index %}">Home</a>
+									<a href="{% url home %}">Home</a>
 								</li>
 								<li class="navbar-item"><a href="{% url messages_inbox %}">Messages</a></li>
 								{% if request.session.use_page_as == 'health-worker' %}

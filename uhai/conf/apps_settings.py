@@ -35,6 +35,7 @@ INSTALLED_APPS = (
 	'uhai.userprofile',
 	'uhai.core',
 	'uhai.stats',
+	'uhai.sms',
 	'uhai.sharer',
 )
 
