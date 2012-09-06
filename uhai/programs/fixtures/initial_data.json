@@ -204,11 +204,11 @@
     "pk": 1,
     "model": "programs.questionnaire",
     "fields": {
-      "name": "HIV/AIDs Follow up",
+      "title": "HIV/AIDs Follow up",
       "notes": null,
       "detail": "A compulsory questionnaire for diagnosed registered HIV patients",
       "program": 2,
-      "date_created": "2012-06-06T16:19:37.058",
+      "publish_date": "2012-06-06T16:19:37.058",
       "intro": "HIV Checkup"
     }
   },

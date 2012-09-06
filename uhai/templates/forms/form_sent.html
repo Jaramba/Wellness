@@ -1,0 +1,14 @@
+{% extends "app_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page-title %}
+	Form Sent
+{% endblock %}
+
+{% block container-right %}
+	<div id="content">
+		{% if form.response %}
+			<p>{{ form.response }}</p>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -13,7 +13,7 @@
 {% endblock action-buttons %}
 
 {% block table-list %}
-	{% if questionnaires %}
+	{% if params.forms %}
 		<table class='table table-stripped'>
 			<tr>
 				<th>Patient</th>
@@ -23,9 +23,9 @@
 					<th></th>
 				{% endif %}
 			</tr>
-			{% for questionnaire in questionnaires %}
+			{% for questionnaire in params.forms %}
 				<tr>	
-					<td>{{questionnaire.patient.full_name}}</td>
+					<td><a href="{{ questionnaire.get_absolute_url }}">{{questionnaire.title}}</a></td>
 					<td>{{questionnaire.questionnaire_date}}</td>
 					<td>{{questionnaire.type}}</td>
 					{% if not request.session.use_page_as == 'patient' %}					

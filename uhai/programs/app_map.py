@@ -15,12 +15,5 @@ APP_MAP={
 			'patient': EnrolledProgramForm,
 		},
 		'actions':'CRUDL',
-	},
-	'questionnaire':{
-		'model':Questionnaire,
-		'forms':{
-			'patient': QuestionnaireForm,
-		},
-		'actions':'CRUDL',
 	}
 }
