@@ -16,12 +16,9 @@
 	{% if params.forms %}
 		<table class='table table-stripped'>
 			<tr>
-				<th>Patient</th>
+				<th>Questionnaire</th>
 				<th>Questionnaire Date</th>
 				<th>Type</th>
-				{% if not request.session.use_page_as == 'patient' %}
-					<th></th>
-				{% endif %}
 			</tr>
 			{% for questionnaire in params.forms %}
 				<tr>	

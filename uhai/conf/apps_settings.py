@@ -24,7 +24,7 @@ INSTALLED_APPS = (
 	'crispy_forms',
 	'messages',
 	'pagination',
-	'forms_builder.forms',
+	'questionnaires',
 	#'south',
 		
 	'uhai.programs',
@@ -40,6 +40,9 @@ INSTALLED_APPS = (
 	'uhai.sms',
 	'uhai.sharer',
 )
+
+UPLOAD_TO = getattr(settings, "FORMS_BUILDER_UPLOAD_TO", "formsbuilder_uploads")
+EMAIL_TO = getattr(settings, "FORMS_BUILDER_EMAIL_TO", None)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
 
