@@ -1,0 +1,16 @@
+{% load questionnaires_builder_tags %}
+
+{% if form %}
+	{% render_built_questionnaire questionnaire %}
+{% else %}
+	<div class="hero-unit">
+	  <h1>{{ questionnaire.title }}</h1>
+	  <br/>
+	  <p>{{ questionnaire.intro }}</p>
+	  <p>
+		<a class="btn btn-primary btn-large" href="#/page/1">
+		  Start Questionnaire
+		</a>
+	  </p>
+	</div>
+{% endif %}

@@ -15,5 +15,13 @@ APP_MAP={
 			'patient': EnrolledProgramForm,
 		},
 		'actions':'CRUDL',
+	},
+	'questionnaire':{
+		'model':Questionnaire,		
+		'actions':'RL',
+	},
+	'questionnaireresponseentry':{
+		'model':QuestionnaireResponseEntry,		
+		'actions':'RL',
 	}
 }

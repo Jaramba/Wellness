@@ -29,7 +29,8 @@ class EncounterForm(forms.ModelForm):
 			Row(
 				Div(
 					Submit('send', 'Send', css_class='btn-primary'),
-				css_class='form-actions')
+					css_class='form-actions'
+				)
 			)
 		)
 		self.helper.add_layout(self.layout)

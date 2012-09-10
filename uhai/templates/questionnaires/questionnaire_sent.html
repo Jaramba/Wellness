@@ -1,0 +1,10 @@
+{% extends "programs/list_base.html" %}
+
+{% block title %}{{ questionnaire.title }}{% endblock title %}
+
+{% block container-right %}
+    <legend>{{ questionnaire.title }}</legend>
+    {% if questionnaire.response %}
+		<p>{{ questionnaire.response }}</p>
+    {% endif %}
+{% endblock container-right %}

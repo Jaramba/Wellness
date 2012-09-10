@@ -1,0 +1,326 @@
+{% extends "app_base.html" %}
+{% load humanize %}
+
+{% block page-title %}Questionnaire Detail{% endblock page-title %}
+
+{% block body-hook %}id="release-detail"{% endblock body-hook %}
+
+{% block extracss-links %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
+{% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	<script src="{{STATIC_URL}}js/d3.v2.min.js"></script>
+	<script src="{{STATIC_URL}}js/date.js"></script>
+	<script src="{{STATIC_URL}}js/rickshaw.js"></script>
+{% endblock extrajs-jquery-plugins %}
+	
+{% block extrajs-jquery-enclosed %}
+	var palette = new Rickshaw.Color.Palette({scheme: 'spectrum2000'});
+	data = {
+	  element: $("#download-chart .chart")[0],
+	  renderer: 'area',
+	  height:600,
+	  height:200,
+	  stroke: true,
+	  dataURL: '{% url patient-stats %}',
+	  onData: function(d){
+		$("#download-chart .loading").removeClass("loading");
+		return $.map(d, function(i){ i["color"] = palette.color(); return i; });
+	  },
+	  onComplete: function(s){
+		var hoverDetail = new Rickshaw.Graph.HoverDetail({
+		  graph: s.graph,
+		  xFormatter: function(x) { var d = new Date(x*1000); return "Week of " + d.toString("MMM d"); },
+		  yFormatter: function(y) { return parseInt(y) + " reminders"; }
+		});
+
+		var ticksTreatment = 'glow';
+
+		var xAxis = new Rickshaw.Graph.Axis.Time({
+		  graph: s.graph,
+		  timeUnit: 'week',
+		  ticksTreatment: ticksTreatment
+		});
+
+		var yAxis = new Rickshaw.Graph.Axis.Y({
+		  graph: s.graph,
+		  tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+		  ticksTreatment: ticksTreatment
+		});
+
+		xAxis.render();
+		yAxis.render();
+	  }
+	};
+	var graph = new Rickshaw.Graph.Ajax(data);
+{% endblock extrajs-jquery-enclosed %}
+
+{% block container %}	
+	<header class="row" style="margin-bottom:0">
+		<div class="span12">
+			<hgroup class="package-title">
+				<legend>{{ patient.user }}</legend>
+				<h6>{{ patient.intro }}</h6>
+			</hgroup>
+		</div>
+	</header>
+	<div class="subnav ">
+		<ul class="nav nav-pills">
+			<li class="active">
+				<a href="#description" data-toggle="tab">Details</a>
+				{# put in details on doctors, schemes#}
+			</li>
+			<li class="">
+				<a href="#encounters" data-toggle="tab">Encounters</a>
+			</li>
+			<li class="">
+				<a href="#prescriptions" data-toggle="tab">Prescriptions</a>
+			</li>
+			<li class="">
+				<a href="#diagnoses" data-toggle="tab">Diagnoses</a>
+			</li>
+			<li class="">
+				<a href="#responses" data-toggle="tab">Responses</a>
+			</li>
+			<li class="">
+				<a href="#insurance" data-toggle="tab">Insurance</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="span9">
+			<div class="tab-content">
+				<div id="description" class="tab-pane fade active in">
+					<div class="html-description">
+						<p>
+							<div id="image-holder" data-image-holder="{{patient.pk}}" style="margin-right:10px">
+								<img width="110px" height="110px" src="{{MEDIA_URL}}{{ patient.user.profile.photo }}"/>
+							</div>
+						</p>
+						<p>
+							<strong>Age:</strong> {{patient.date_of_birth|timesince}}
+						</p>
+						<p>
+							<strong>Sex:</strong> {{patient.get_gender_display}}
+						</p>
+						<p>
+							<strong>Weight:</strong> {{patient.weight}} kgs
+						</p>
+						<p>
+							<strong>Height:</strong> {{patient.height}} cms
+						</p>
+						<p>
+							<strong>Residence:</strong> {{village}} {{patient.user.profile.county}}, {{patient.user.profile.province}}, {{patient.user.profile.country}}
+						</p>						
+						<p>
+							<strong>Mobile:</strong> {{patient.user.profile.mobile_phone}}
+						</p>
+						<p>
+							<strong>Work:</strong> {{patient.user.profile.work_phone}}
+						</p>
+						<p>
+							<strong>Home:</strong> {{patient.user.profile.home_phone}}
+						</p>
+						<p>
+							<strong>Email:</strong> {{patient.user.profile.email}}
+						</p>
+						<p>
+							<strong>Employer:</strong> {{patient.employer}}
+						</p>
+						<p>
+							<strong>Facility:</strong> {{patient.employer}}
+						</p>
+					</div>
+				</div>
+				<div id="info" class="tab-pane fade">
+					<div class="author">
+						<h4>Program</h4>
+						{{ patient.program.name }}
+					</div>
+					<div class="links">
+						<h4>Program Patient Enrollment</h4>
+						<ul class="unstyled">
+							<li>
+								{% with enrolledprograms=patient.program.enrolledprogram_set.all.count %}
+									{{ enrolledprograms }} Patient{{enrolledprograms|pluralize }}
+								{% endwith %}
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="span3"></div>
+						<div class="span3"></div>
+						<div class="span3"></div>
+					</div>
+				</div>
+				<div id="all-questionsets" class="tab-pane fade">
+					<table class="table table-striped table-bordered questionsets">
+						<thead>
+							<tr>
+								<th>Label</th>
+								<th>Answerable By</th>
+								<th>Date Created</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for questionset in questionsets%}
+								<tr>
+									<td>{{ questionset.label }}</td>
+									<td>{{ questionset.get_answerable_by_display|default:"Doctor" }}</td>
+									<td><span class="date">{{ questionset.date_created }}</span></td>
+								</tr>
+							{% endfor%}			
+						</tbody>
+					</table>
+				</div>
+				<div id="encounters" class="tab-pane fade">
+					<table class="table table-striped">		
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>Doctor</th>
+								<th>Complience</th>
+								<th>Location</th>
+								<th>Start time</th>
+								<th>End time</th>
+							</tr>
+						</thead>
+						{% for event in patient.event_set.all %}
+							{% if event.encounter %}
+								<tr>
+									<td>{{ event.encounter.type.name }}</td>
+									<td>{{ event.encounter.provider }}</td>
+									<td>{{ event.encounter.patient_complience }}</td>
+									<td>{{ event.encounter.location }}</td>
+									<td>{{ event.encounter.start_time }}</td>
+									<td>{{ event.encounter.end_time }}</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</table>
+				</div>
+				<div id="responses" class="tab-pane fade">
+					<table class="table table-striped">		
+						<thead>
+							<tr>
+								<th>Questionnaire</th>
+								<th>Section</th>
+								<th>Question</th>
+								<th>Response</th>
+								<th>Date</th>
+							</tr>
+						</thead>
+						{% for response in patient.user.response_set.all %}
+							<tr>
+								<td>{{ response.question.questionset.questionnaire.name }}</td>
+								<td>{{ response.question.questionset.label }}</td>
+								<td>{{ response.question.text }}</td>
+								<td>{{ response.value }}</td>
+								<td>{{ response.response_date }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+				<div id="prescriptions" class="tab-pane fade">
+					<table class="table table-striped">		
+						<thead>
+							<tr>
+								<th>Medication</th>
+								<th>Quantity</th>
+								<th>Frequency</th>
+								<th>Completed</th>
+								<th>Start time</th>
+								<th>End 
+time</th>
+							</tr>
+						</thead>
+						{% for event in patient.event_set.all %}
+							{% if event.prescription %}
+								<tr>
+									<td>{{ event.prescription.medication.name }}</td>
+									<td>{{ event.prescription.quantity }} {{ event.prescription.get_unit_display }}</td>
+									<td>{{ event.prescription.frequency }}</td>
+									<td>{{ event.prescription.completed }}</td>
+									<td>{{ event.prescription.start_time }}</td>
+									<td>{{ event.prescription.end_time }}</td>
+								</tr>
+							{% endif %}
+						{% empty %}
+							No Prescriptions found
+						{% endfor %}
+					</table>
+				</div>
+				<div id="diagnoses" class="tab-pane fade">
+					<table class="table table-striped">		
+						<thead>
+							<tr>
+								<th>Problem</th>
+								<th>Approved</th>
+								<th>Diagnosed on</th>
+							</tr>
+						</thead>
+						{% for event in patient.event_set.all %}
+							{% if event.encounter %}
+								{% for diagnosis in event.encounter.diagnosis_set.all %}
+									<tr>
+										<td>{{ diagnosis.problem }}</td>
+										<td>{{ diagnosis.approved }}</td>
+										<td>{{ diagnosis.encounter.start_time }}</td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+						{% empty %}
+							No Prescriptions found
+						{% endfor %}
+					</table>
+				</div>
+				<div id="insurance" class="tab-pane fade">
+					<table class="table table-striped">		
+						<thead>
+							<tr>
+								<th>Plan Name</th>
+								<th>Coverage Start</th>
+								<th>Coverage End</th>
+								<th>Status</th>
+								<th>Type</th>
+								<th>Policy Provider</th>
+								<th>Policy ID</th>
+							</tr>
+						</thead>
+						{% for pinsurance in patient.patientinsurance_set.all %}
+							<tr>
+								<td>{{ pinsurance.insurance.plan_name }}</td>
+								<td>{{ pinsurance.coverage_start_date }}</td>
+								<td>{{ pinsurance.coverage_end_date }}</td>
+								<td>{{ pinsurance.get_status_display }}</td>
+								<td>{{ pinsurance.insurance.type }}</td>
+								<td>{{ pinsurance.insurance.policy_provider.name }}</td>
+								<td>{{ pinsurance.subscriber_policy_id }}</td>
+							</tr>
+						{% empty %}
+							No Policies found
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar">				
+				<div id="download-chart">
+				  <div class="chart loading"></div>
+				  <div class="timeline"></div>
+				  <div class="slider"></div>
+				</div>
+				<div id="release-evaluation">
+					<h3>Evaluation <small>mouse over for details</small></h3>
+					<div class="alert alert-success">
+						<div rel="popover" data-placement="left" data-title="PEP386 Compatibility" data-content="PEP386 defines a specific allowed syntax for Python package questionsets.&lt;br /&gt;&lt;br /&gt;Previously it was impossible to accurately determine across any Python package what order the questionsets should go in, but with PEP386 we can now intelligently sort by version...&lt;br /&gt;&lt;br /&gt;But only if the version numbers are compatible!" data-original-title="">
+							<i class="icon icon-ok"></i> Conforms to medication
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+{% endblock container %}

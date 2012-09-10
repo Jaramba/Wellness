@@ -1,7 +1,7 @@
 {% extends "programs/list_base.html" %}
 
 {% block header %}
-	Questionnaires
+	Questionnaire Responses
 {% endblock header %}
 
 {% block action-buttons %}
@@ -13,18 +13,20 @@
 {% endblock action-buttons %}
 
 {% block table-list %}
-	{% if params.forms %}
+	{% if questionnaires %}
 		<table class='table table-stripped'>
 			<tr>
-				<th>Questionnaire</th>
-				<th>Questionnaire Date</th>
-				<th>Type</th>
+				<th>Title</th>
+				<th>Program</th>
+				<th>Published On</th>
+				<th>Expires On</th>
 			</tr>
-			{% for questionnaire in params.forms %}
+			{% for questionnaire in questionnaires %}
 				<tr>	
 					<td><a href="{{ questionnaire.get_absolute_url }}">{{questionnaire.title}}</a></td>
-					<td>{{questionnaire.questionnaire_date}}</td>
-					<td>{{questionnaire.type}}</td>
+					<td>{{questionnaire.program}}</td>
+					<td>{{questionnaire.publish_date}}</td>
+					<td>{{questionnaire.expiry_date}}</td>
 					{% if not request.session.use_page_as == 'patient' %}					
 						<td>
 							<div class="btn-group">
@@ -35,12 +37,12 @@
 					{% endif %}
 				</tr>
 			{% empty %}
-				<tr><td colspan="2">No Questionnaires Found</td></tr>
+				<tr><td colspan="2">No Questionnaire Responses Found</td></tr>
 			{% endfor %}
 		</table>
 	{% else %}
 		<div>
-			No Questionnaires Found
+			No Questionnaire Responses Found
 		</div>
 	{% endif %}
 {% endblock table-list %}

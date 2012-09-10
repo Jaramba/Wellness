@@ -1,0 +1,94 @@
+{% extends "programs/list_base.html" %}
+{% load questionnaires_builder_tags %}
+
+{% block title %}{{ questionnaire.title }}{% endblock title %}
+
+{% block extracss-links %}
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/Aristo.css' type='text/css' media='screen' />
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
+{% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	{{block.super}}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/sammy-latest.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.waiting.0.1.js"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block extrajs-global %}
+	var surveydata = {};
+{% endblock extrajs-global %}
+
+{% block extrajs-jquery-enclosed %}
+	$.fn.serializeObject = function(o){
+		if (!o){
+			o = {};
+		}
+		var a = this.serializeArray();
+		$.each(a, function() {
+			o[this.name] = (this.value ? (this.value == "Select" ? "" : this.value) : this.value) || '';
+		});
+		return o;
+	};
+	
+	var serialiseForm = function(){
+		surveydata = $("#survey_form").serializeObject(surveydata);
+		return surveydata;
+	};	
+	
+	var app = $.sammy('div.container-right', function() {  
+		var successData = function(data){
+			$("div.container-right").hide().html(data).fadeIn(300);
+			$("#id_previous, #id_next").click(function(){
+				serialiseForm();
+			});
+			$.each(surveydata, function(item, value){
+				var fieldItem = $("#id_"+item);
+				fieldItem.val(value);
+			});
+			$("#id_finish").click(function(){
+				$.post("{% url questionnaire_detail questionnaire.slug %}", serialiseForm())
+				.success(function(data) {					
+					$("div.container-right").hide().html(data).fadeIn(300);
+				});
+			});
+		};
+		this.get('#/', function(context) {
+			$.ajax({
+				url: "{% url questionnaire_detail questionnaire.slug %}",
+				success: function(data) {
+					successData(data);
+				}
+			});
+		});
+		this.get('#/page/:id', function(context) {
+			$.ajax({
+				url: "{% url questionnaire_detail questionnaire.slug %}?page=" + this.params['id'],
+				success: function(data) {
+					successData(data);
+				}
+			});
+		});		
+	});
+	
+	$(function() {
+		app.run('#/');		
+	});
+{% endblock extrajs-jquery-enclosed %}
+
+{% block container-right %}
+	{% if form %}
+		{% render_built_questionnaire questionnaire %}
+	{% else %}
+		<div class="hero-unit">
+		  <h1>{{ questionnaire.title }}</h1>
+		  <br/>
+		  <p>{{ questionnaire.intro }}</p>
+		  <p>
+			<a class="btn btn-primary btn-large" href="#/page/1">
+			  Start Questionnaire
+			</a>
+		  </p>
+		</div>
+	{% endif %}
+{% endblock container-right %}
