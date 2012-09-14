@@ -7,6 +7,7 @@ APP_MAP={
 		'forms':{
 			'patient': PatientForm,
 		},
+        'view':'patient',
 		'actions':'CRUDL',
 	},
 	'patientemergencycontact':{

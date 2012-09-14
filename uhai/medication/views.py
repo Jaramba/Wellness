@@ -5,15 +5,13 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from uhai.core.views import model_view, user_model_view, role_model_view
+from uhai.core.views import *
 
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from uhai.patients.models import Patient
 from django.contrib.auth.models import User
-
-medication = login_required(lambda request, *args, **kwargs: role_model_view(request, *args, **kwargs))
 
 @login_required
 def prescription(request, user_pk=None, *args, **kwargs): 

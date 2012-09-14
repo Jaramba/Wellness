@@ -3,19 +3,18 @@ from models import *
 from forms import * 
 
 from django.http import Http404
-
 from django.contrib.auth.decorators import login_required
-from uhai.core.views import model_view, user_model_view
+
+from uhai.core.views import *
 
 @login_required
 def patient(request, *args, **kwargs):
-	try:
-		if not kwargs.get('pk'):
-			kwargs['pk'] = request.user.patient_set.get().pk
-	except Patient.DoesNotExist:
-		raise Http404()
-		
-	return user_model_view(request, max_pagination_items=4, *args, **kwargs)
+    try:
+        if not kwargs.get('pk'):
+            kwargs['pk'] = request.user.patient_set.get().pk
+    except Patient.DoesNotExist:
+        raise Http404()
+    return user_model_view(request, max_pagination_items=3, *args, **kwargs)
 
 @login_required
 def patientemergencycontact(request, *args, **kwargs):

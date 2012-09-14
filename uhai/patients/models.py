@@ -3,7 +3,7 @@ from uhai.core.utils import pkgen
 from uhai.userprofile.models import *
 
 from django.contrib.auth.models import User
-from django.db import models, transaction
+from django.db import transaction
 
 from uhai.providers.models import HealthWorker
 

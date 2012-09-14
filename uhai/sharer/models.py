@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime, timedelta
 from django.contrib.contenttypes import generic
 
+from uhai.core.models import *
+
 class Sharer(models.Model):
 	content_type = models.ForeignKey('contenttypes.ContentType')
 	object_pk = models.CharField(max_length=80)
@@ -10,7 +12,7 @@ class Sharer(models.Model):
 	
 	shared_by = models.ForeignKey('auth.User', related_name='shared_by')
 	shared_to = models.ForeignKey('auth.User', related_name='shared_to')
-	expires   = models.DateTimeField(default=datetime.now()+timedelta(days=5), help_text='By default, The details expires after 5 days')
+	expires   = models.DateTimeField(default=datetime.now() + timedelta(days=5), help_text='By default, The details expires after 5 days')
 	
 	def __unicode__(self):
 		return 'Shared: %s to %s' % (self.content_type, self.shared_to)

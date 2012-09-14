@@ -1,9 +1,8 @@
-
 from django import forms
 from django.forms.extras import SelectDateWidget
 from django.utils.translation import ugettext_lazy as _
 
-from settings import USE_HTML5
+from django.conf import settings
 
 
 # Constants for all available field types.
@@ -73,7 +72,7 @@ DATES = (DATE, DATE_TIME)
 MULTIPLE = (CHECKBOX_MULTIPLE, SELECT_MULTIPLE)
 
 # HTML5 Widgets
-if USE_HTML5:
+if settings.USE_HTML5:
     html5_field = lambda name, base: type("", (base,), {"input_type": name})
     WIDGETS.update({
         DATE: html5_field("date", forms.DateInput),

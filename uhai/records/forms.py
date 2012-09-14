@@ -150,23 +150,6 @@ class ProblemForm(forms.ModelForm):
             'side_effects' : forms.Textarea
         }
 		
-class TrackingFieldForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.form_id = 'problem-form'
-        self.helper.form_class = 'general_form'
-        self.helper.form_method = 'POST'
-        self.helper.form_action = '#'
-        
-        self.layout = Layout(
-        )
-        
-        self.helper.add_layout(self.layout)
-        super(TrackingFieldForm, self).__init__(*args, **kwargs)
-        
-    class Meta:
-        model = TrackingField
-               
 class DiagnosisForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()

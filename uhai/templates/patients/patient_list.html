@@ -1,5 +1,4 @@
 {% extends "records/list_base.html" %}
-
 {% block page-title %}Patient List{% endblock page-title %}
 
 {% block header %}
@@ -10,12 +9,12 @@
 {% endblock action-buttons %}
 		
 {% block table %}
-	<table class='table'>
+	<table class='table table-striped'>
 		{% for patient in patients %}
 			<tr>
 				<td>
 					<div id="image-holder" class="pull-left" data-image-holder="{{patient.pk}}" style="margin-right:10px">
-						<img width="85px" height="90px" src="{{MEDIA_URL}}{{ patient.user.profile.photo }}"/>
+						<img width="100px" height="110px" class="img-polaroid" src="{{MEDIA_URL}}{{ patient.user.profile.photo }}"/>
 					</div>
 					<div id="detail-holder" data-detail-holder="{{patient.pk}}" class="pull-left">
 						<h4><a href="{% url patient-detail patient.pk %}">{{patient.user}}</a></h4>

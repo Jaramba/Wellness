@@ -7,7 +7,7 @@ APP_MAP={
 		'forms':{
 			'patient': PatientPrescriptionForm,
 			'health-worker': PrescriptionForm,
-		},
+		},		
 		'actions':'CRUDL',
 	},
 	'medication':{
@@ -15,6 +15,7 @@ APP_MAP={
 		'forms':{
 			'health-worker': MedicationForm,
 		},
+		'view':'secured_role_model_view',
 		'actions':'CRUDL',
 	},
 	'immunization':{

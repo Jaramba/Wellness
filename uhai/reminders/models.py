@@ -1,5 +1,5 @@
 from django.db import models
-from uhai.core.models import Record, MetaData
+from uhai.core.models import *
 
 class Event(models.Model):
 	PERIODS = [
@@ -28,4 +28,3 @@ class Event(models.Model):
 	def __unicode__(self):
 		return self.text
 	
-	class Meta:pass

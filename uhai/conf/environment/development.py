@@ -41,10 +41,8 @@ settings.MIDDLEWARE_CLASSES += [
 
 settings.INSTALLED_APPS += [
     "debug_toolbar",
-    "devserver",
+    #"devserver",
 ]
-
-print settings.INSTALLED_APPS
 
 DEBUG_TOOLBAR_CONFIG = {
 	'INTERCEPT_REDIRECTS' : not DEBUG,

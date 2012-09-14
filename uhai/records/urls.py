@@ -33,7 +33,6 @@ urlpatterns += get_crud_urls(
 )
 
 urlpatterns += patterns('',
+    url(r'^encounter/(?P<pk>[-\d]+)/share/$', 'uhai.records.views.encounter', name='encounter-share'),
 	url(r'^reports/files/$', 'uhai.records.views.report', {'template_name':'userprofile/login.html'}, name='login'),
 )
-
-

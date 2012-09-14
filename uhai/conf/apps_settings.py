@@ -23,6 +23,8 @@ INSTALLED_APPS = [
 	#apps
 	'crispy_forms',
 	'messages',
+	'pagination',
+    'cloudinary',
 	
 	# API Tools
     "tastypie",
@@ -36,7 +38,7 @@ INSTALLED_APPS = [
 	"django_hosts",
 	
 	#Database tools
-	#"south",
+	"south",
 	
 	#Customer Care...
 	"intercom",
@@ -104,6 +106,7 @@ MIDDLEWARE_CLASSES = [
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'pagination.middleware.PaginationMiddleware'
 ]
 
 ANONYMOUS_USER_ID = -1

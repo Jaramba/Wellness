@@ -24,7 +24,7 @@
 			{% for questionnaire in questionnaires %}
 				<tr>	
 					<td><a href="{{ questionnaire.get_absolute_url }}">{{questionnaire.title}}</a></td>
-					<td>{{questionnaire.program}}</td>
+					<td><a href="{% url program-detail questionnaire.program.pk %}">{{questionnaire.program}}</a></td>
 					<td>{{questionnaire.publish_date}}</td>
 					<td>{{questionnaire.expiry_date}}</td>
 					{% if not request.session.use_page_as == 'patient' %}					

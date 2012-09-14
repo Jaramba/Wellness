@@ -2,7 +2,8 @@
 from models import *
 from forms import * 
 from django.contrib.auth.decorators import login_required
-from uhai.core.views import model_view
+
+from uhai.core.views import *
 
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -14,18 +15,9 @@ from django.template import RequestContext
 from django.utils.http import urlquote
 from email_extras.utils import send_mail_template
 
-from settings import SEND_FROM_SUBMITTER, USE_SITES
 from signals import questionnaire_invalid, questionnaire_valid
 
 from django.http import Http404, HttpResponse
-
-program = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-programtype = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-programworkflow = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-programworkflowstate = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-enrolledprogram = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-questionnaire = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
-questionnaireresponseentry = login_required(lambda request, *args, **kwargs: model_view(request, *args, **kwargs))
 
 @login_required
 def index(request, problem_type='', template_name = "programs/index.html", *args, **kwargs):
@@ -82,7 +74,7 @@ def questionnaire_detail(request, slug, template="questionnaires/questionnaire_%
 			email_copies = [e.strip() for e in questionnaire.email_copies.split(",")
 							if e.strip()]
 			if email_copies:
-				if email_to and SEND_FROM_SUBMITTER:
+				if email_to and settings.SEND_FROM_SUBMITTER:
 					# Send from the email entered.
 					email_from = email_to
 				attachments = []

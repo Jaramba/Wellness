@@ -1,17 +1,16 @@
 from django.core.urlresolvers import reverse
-from django.conf import settings as django_settings
+from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import fields
-import settings
 from utils import now, slugify, unique_slug
 
 from uhai.core.models import *
-	
-class Program(OwnerModel):
+    
+class Program(models.Model):
     '''
     This represents either an Employee Assistance Program (EAP)
     or a Patient Assistance Program (PAP). An example is a program
@@ -21,22 +20,30 @@ class Program(OwnerModel):
     problems = models.ManyToManyField("records.Problem")
     concept_notes = models.TextField(null=True, blank=True)
     expected_outcome_notes = models.TextField(null=True, blank=True)
+    
+    #ACL
+    user = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
 
     def __unicode__(self):
-    	return str(self.name)
+        return str(self.name)
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ("program-detail", (self.pk,))
 
     class Meta:
         permissions = (
             ('view_program', 'View program'), 
         )
-
+    
 class EnrolledProgram(models.Model):
     '''
     Patient/Employee can be enrolled in a Program to help them
     Anyone can be enrolled to this... Even Doctors or even employees
     of Insurance companies
-	Even Patients can enroll themselves to a program, for example,
-	Weight loss program...
+    Even Patients can enroll themselves to a program, for example,
+    Weight loss program...
     '''
     program = models.ForeignKey("Program")
     enrollee = models.ForeignKey("patients.Patient", related_name='enrollee')
@@ -44,6 +51,10 @@ class EnrolledProgram(models.Model):
     date_enrolled = models.DateField(auto_now=True)
     date_completed = models.DateField()
     outcome_notes = models.TextField(null=True, blank=True)
+    
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
     
     def __unicode__(self):
         return 'Program enrolled to: %s by %s' % (self.program, self.enrollee)
@@ -68,8 +79,12 @@ class ProgramWorkflow(models.Model):
     continued = models.BooleanField(default=True)
     days = models.IntegerField(default=0, blank=True, null=True)
     
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
+    
     def __unicode__(self):
-    	return self.name
+        return self.name
     
     class Meta:
         permissions = ( 
@@ -89,8 +104,12 @@ class ProgramWorkflowState(models.Model):
     terminal = models.BooleanField(default=False)
     concept_notes = models.TextField()
     
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
+    
     def __unicode__(self):
-    	return 'Node: %s %s' % (self.name, self.program_workflow)
+        return 'Node: %s %s' % (self.name, self.program_workflow)
     
     class Meta:
         permissions = ( 
@@ -100,8 +119,8 @@ class ProgramWorkflowState(models.Model):
 STATUS_DRAFT = 1
 STATUS_PUBLISHED = 2
 STATUS_CHOICES = (
-	(STATUS_DRAFT, _("Draft")),
-	(STATUS_PUBLISHED, _("Published")),
+    (STATUS_DRAFT, _("Draft")),
+    (STATUS_PUBLISHED, _("Published")),
 )
 class QuestionnaireManager(models.Manager):
     """
@@ -120,86 +139,94 @@ class QuestionnaireManager(models.Manager):
         return self.filter(*filters)
 
 class Questionnaire(models.Model):
-	"""
-	A user-built form.
-	"""
+    """
+    A user-built form.
+    """
 
-	program = models.ForeignKey("Program")
-	sites = models.ManyToManyField(Site, editable=settings.USE_SITES,
-		default=[django_settings.SITE_ID])
-	title = models.CharField(_("Title"), max_length=50)
-	slug = models.SlugField(_("Slug"), editable=settings.EDITABLE_SLUGS,
-		max_length=100, unique=True)
-	intro = models.TextField(_("Intro"), blank=True)
-	button_text = models.CharField(_("Button text"), max_length=50,
-		default=_("Submit"))
-	response = models.TextField(_("Response"), blank=True)
-	status = models.IntegerField(_("Status"), choices=STATUS_CHOICES,
-		default=STATUS_PUBLISHED)
-	publish_date = models.DateTimeField(_("Published from"),
-		help_text=_("With published selected, won't be shown until this time"),
-		blank=True, null=True)
-	expiry_date = models.DateTimeField(_("Expires on"),
-		help_text=_("With published selected, won't be shown after this time"),
-		blank=True, null=True)
-	login_required = models.BooleanField(_("Login required"),
-		help_text=_("If checked, only logged in users can view the form"))
-	send_email = models.BooleanField(_("Send email"), default=True, help_text=
-		_("If checked, the person entering the questionnaire will be sent an email"))
-	email_from = models.EmailField(_("From address"), blank=True,
-		help_text=_("The address the email will be sent from"))
-	email_copies = models.CharField(_("Send copies to"), blank=True,
-		help_text=_("One or more email addresses, separated by commas"),
-		max_length=200)
-	email_subject = models.CharField(_("Subject"), max_length=200, blank=True)
-	email_message = models.TextField(_("Message"), blank=True)
+    sites = models.ManyToManyField(Site, editable=settings.USE_SITES,
+        default=[settings.SITE_ID])
+    title = models.CharField(_("Title"), max_length=50)
+    slug = models.SlugField(_("Slug"), editable=settings.EDITABLE_SLUGS,
+        max_length=100, unique=True)
+    intro = models.TextField(_("Intro"), blank=True)
+    button_text = models.CharField(_("Button text"), max_length=50,
+        default=_("Submit"))
+    response = models.TextField(_("Response"), blank=True)
+    status = models.IntegerField(_("Status"), choices=STATUS_CHOICES,
+        default=STATUS_PUBLISHED)
+    publish_date = models.DateTimeField(_("Published from"),
+        help_text=_("With published selected, won't be shown until this time"),
+        blank=True, null=True)
+    expiry_date = models.DateTimeField(_("Expires on"),
+        help_text=_("With published selected, won't be shown after this time"),
+        blank=True, null=True)
+    login_required = models.BooleanField(_("Login required"),
+        help_text=_("If checked, only logged in users can view the form"))
+    
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
+    
+    objects = QuestionnaireManager()
 
-	objects = QuestionnaireManager()
+    class Meta:
+        verbose_name = _("Questionnaire")
+        verbose_name_plural = _("Questionnaires")
 
-	class Meta:
-		verbose_name = _("Questionnaire")
-		verbose_name_plural = _("Questionnaires")
+    def __unicode__(self):
+        return unicode(self.title)
 
-	def __unicode__(self):
-		return unicode(self.title)
+    def save(self, *args, **kwargs):
+        """
+        Create a unique slug from title - append an index and increment if it
+        already exists.
+        """
+        if not self.slug:
+            slug = slugify(self)
+            self.slug = unique_slug(self.__class__.objects, "slug", slug)
+        super(Questionnaire, self).save(*args, **kwargs)
 
-	def save(self, *args, **kwargs):
-		"""
-		Create a unique slug from title - append an index and increment if it
-		already exists.
-		"""
-		if not self.slug:
-			slug = slugify(self)
-			self.slug = unique_slug(self.__class__.objects, "slug", slug)
-		super(Questionnaire, self).save(*args, **kwargs)
+    def total_entries(self):
+        """
+        Called by the admin list view where the queryset is annotated
+        with the number of entries.
+        """
+        return self.total_entries
+    total_entries.admin_order_field = "total_entries"
 
-	def total_entries(self):
-		"""
-		Called by the admin list view where the queryset is annotated
-		with the number of entries.
-		"""
-		return self.total_entries
-	total_entries.admin_order_field = "total_entries"
+    @models.permalink
+    def get_absolute_url(self):
+        return ("questionnaire_detail", (), {"slug": self.slug})
 
-	@models.permalink
-	def get_absolute_url(self):
-		return ("questionnaire_detail", (), {"slug": self.slug})
+    def admin_links(self):
+        kw = {"args": (self.id,)}
+        links = [
+            (_("View questionnaire on site"), self.get_absolute_url()),
+            (_("Filter entries"), reverse("admin:form_entries", **kw)),
+            (_("View all entries"), reverse("admin:form_entries_show", **kw)),
+            (_("Export all entries"), reverse("admin:form_entries_export", **kw)),
+        ]
+        for i, (text, url) in enumerate(links):
+            links[i] = "<a href='%s'>%s</a>" % (url, ugettext(text))
+        return "<br>".join(links)
+    admin_links.allow_tags = True
+    admin_links.short_description = ""
 
-	def admin_links(self):
-		kw = {"args": (self.id,)}
-		links = [
-			(_("View questionnaire on site"), self.get_absolute_url()),
-			(_("Filter entries"), reverse("admin:form_entries", **kw)),
-			(_("View all entries"), reverse("admin:form_entries_show", **kw)),
-			(_("Export all entries"), reverse("admin:form_entries_export", **kw)),
-		]
-		for i, (text, url) in enumerate(links):
-			links[i] = "<a href='%s'>%s</a>" % (url, ugettext(text))
-		return "<br>".join(links)
-	admin_links.allow_tags = True
-	admin_links.short_description = ""
+class ProgramQuestionnaire(Questionnaire):
+    send_email = models.BooleanField(_("Send email"), default=True, help_text=
+        _("If checked, the person entering the questionnaire will be sent an email"))
+    email_from = models.EmailField(_("From address"), blank=True,
+        help_text=_("The address the email will be sent from"))
+    email_copies = models.CharField(_("Send copies to"), blank=True,
+        help_text=_("One or more email addresses, separated by commas"),
+        max_length=200)
+    email_subject = models.CharField(_("Subject"), max_length=200, blank=True)
+    email_message = models.TextField(_("Message"), blank=True)
 
-
+    program = models.ForeignKey("Program")
+    
+class DiagnosisQuestionnaire(Questionnaire):pass
+        
 class FieldManager(models.Manager):
     """
     Only show visible fields when displaying actual form..
@@ -207,120 +234,137 @@ class FieldManager(models.Manager):
     def visible(self):
         return self.filter(visible=True)
 
-
 class Field(models.Model):
-	"""
-	A field for a user-built form.
-	"""
+    """
+    A field for a user-built form.
+    """
 
-	label = models.CharField(_("Label"), max_length=settings.LABEL_MAX_LENGTH)
-	slug = models.SlugField(_('Slug'), max_length=100, blank=True,
-			default="")
-	field_type = models.IntegerField(_("Type"), choices=fields.NAMES)
-	required = models.BooleanField(_("Required"), default=True)
-	visible = models.BooleanField(_("Visible"), default=True)
-	choices = models.CharField(_("Choices"), max_length=1000, blank=True,
-		help_text="Comma separated options where applicable. If an option "
-			"itself contains commas, surround the option starting with the %s"
-			"character and ending with the %s character." %
-				(settings.CHOICES_QUOTE, settings.CHOICES_UNQUOTE))
-	default = models.CharField(_("Default value"), blank=True,
-		max_length=settings.FIELD_MAX_LENGTH)
-	placeholder_text = models.CharField(_("Placeholder Text"), null=True,
-		blank=True, max_length=100, editable=settings.USE_HTML5)
-	help_text = models.CharField(_("Help text"), blank=True, max_length=100)
+    label = models.CharField(_("Label"), max_length=settings.LABEL_MAX_LENGTH)
+    slug = models.SlugField(_('Slug'), max_length=100, blank=True,
+            default="")
+    field_type = models.IntegerField(_("Type"), choices=fields.NAMES)
+    required = models.BooleanField(_("Required"), default=True)
+    visible = models.BooleanField(_("Visible"), default=True)
+    choices = models.CharField(_("Choices"), max_length=1000, blank=True,
+        help_text="Comma separated options where applicable. If an option "
+            "itself contains commas, surround the option starting with the %s"
+            "character and ending with the %s character." %
+                (settings.CHOICES_QUOTE, settings.CHOICES_UNQUOTE))
+    default = models.CharField(_("Default value"), blank=True,
+        max_length=settings.FIELD_MAX_LENGTH)
+    placeholder_text = models.CharField(_("Placeholder Text"), null=True,
+        blank=True, max_length=100, editable=settings.USE_HTML5)
+    help_text = models.CharField(_("Help text"), blank=True, max_length=100)
 
-	objects = FieldManager()
+    objects = FieldManager()
 
-	questionnaire = models.ForeignKey("Questionnaire", related_name="fields")
-	order = models.IntegerField(_("Order"), null=True, blank=True)
+    questionnaire = models.ForeignKey("Questionnaire", related_name="fields")
+    order = models.IntegerField(_("Order"), null=True, blank=True)
+    
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
 
-	def delete(self, *args, **kwargs):
-		fields_after = self.questionnaire.fields.filter(order__gte=self.order)
-		fields_after.update(order=models.F("order") - 1)
-		super(Field, self).delete(*args, **kwargs)
+    def delete(self, *args, **kwargs):
+        fields_after = self.questionnaire.fields.filter(order__gte=self.order)
+        fields_after.update(order=models.F("order") - 1)
+        super(Field, self).delete(*args, **kwargs)
 
-	class Meta:
-		verbose_name = _("Field")
-		ordering = ("order",)
-		verbose_name_plural = _("Fields")
+    class Meta:
+        verbose_name = _("Field")
+        ordering = ("order",)
+        verbose_name_plural = _("Fields")
 
-	def __unicode__(self):
-		return u"%s in %s" % (self.label, self.questionnaire)
+    def __unicode__(self):
+        return u"%s in %s" % (self.label, self.questionnaire)
 
-	def get_choices(self):
-		"""
-		Parse a comma separated choice string into a list of choices taking
-		into account quoted choices using the ``settings.CHOICES_QUOTE`` and
-		``settings.CHOICES_UNQUOTE`` settings.
-		"""
-		choice = ""
-		quoted = False
-		
-		self.choices = "Select, %s" % self.choices
-		
-		for char in self.choices:
-			if not quoted and char == settings.CHOICES_QUOTE:
-				quoted = True
-			elif quoted and char == settings.CHOICES_UNQUOTE:
-				quoted = False
-			elif char == "," and not quoted:
-				choice = choice.strip()
-				if choice:
-					yield choice, choice
-				choice = ""
-			else:
-				choice += char
-				
-		choice = choice.strip()
-		
-		if choice:
-			yield choice, choice
+    def get_choices(self):
+        """
+        Parse a comma separated choice string into a list of choices taking
+        into account quoted choices using the ``settings.CHOICES_QUOTE`` and
+        ``settings.CHOICES_UNQUOTE`` settings.
+        """
+        choice = ""
+        quoted = False
+        
+        self.choices = "Select, %s" % self.choices
+        
+        for char in self.choices:
+            if not quoted and char == settings.CHOICES_QUOTE:
+                quoted = True
+            elif quoted and char == settings.CHOICES_UNQUOTE:
+                quoted = False
+            elif char == "," and not quoted:
+                choice = choice.strip()
+                if choice:
+                    yield choice, choice
+                choice = ""
+            else:
+                choice += char
+                
+        choice = choice.strip()
+        
+        if choice:
+            yield choice, choice
 
-	def save(self, *args, **kwargs):
-		if self.order is None:
-			self.order = self.questionnaire.fields.count()
-				
-		if not self.slug:
-			slug = slugify(self).replace('-', '_')
-			self.slug = unique_slug(self.questionnaire.fields, "slug", slug)
-		return super(Field, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.order is None:
+            self.order = self.questionnaire.fields.count()
+                
+        if not self.slug:
+            slug = slugify(self).replace('-', '_')
+            self.slug = unique_slug(self.questionnaire.fields, "slug", slug)
+        return super(Field, self).save(*args, **kwargs)
 
-	def is_a(self, *args):
-		"""
-		Helper that returns True if the field's type is given in any arg.
-		"""
-		return self.field_type in args
+    def is_a(self, *args):
+        """
+        Helper that returns True if the field's type is given in any arg.
+        """
+        return self.field_type in args
 
-
+class FieldLevel(MetaData):
+    field = models.ForeignKey("Field")
+    range = models.CharField(max_length=50)
+    
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
+        
 class QuestionnaireResponseEntry(models.Model):
-	"""
-	An entry submitted via a user-built form.
-	"""
-	entry_time = models.DateTimeField(_("Date/time"))
-	user = models.ForeignKey("auth.User")
-	questionnaire = models.ForeignKey("Questionnaire", related_name="entries")
+    """
+    An entry submitted via a user-built form.
+    """
+    entry_time = models.DateTimeField(_("Date/time"))
+    user = models.ForeignKey("auth.User", related_name="respondent")
+    questionnaire = models.ForeignKey("Questionnaire", related_name="entries")
+    
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
 
-	def __unicode__(self):
-		return "Response to %s by %s" % (self.questionnaire, self.user)
+    def __unicode__(self):
+        return "Response to %s by %s" % (self.questionnaire, self.user)
 
-	class Meta:
-		verbose_name = _("Questionnaire response")
+    class Meta:
+        verbose_name = _("Questionnaire response")
 
 class QuestionnaireFieldResponseEntry(models.Model):
-	"""
-	A single field value for a questionnaire entry submitted via a user-built form.
-	"""
+    """
+    A single field value for a questionnaire entry submitted via a user-built form.
+    """
 
-	field = models.ForeignKey("Field")
-	value = models.CharField(max_length=settings.FIELD_MAX_LENGTH,
-			null=True)
-			
-	entry = models.ForeignKey("QuestionnaireResponseEntry", related_name="fields")
+    field = models.ForeignKey("Field")
+    value = models.CharField(max_length=settings.FIELD_MAX_LENGTH,
+            null=True)
+            
+    entry = models.ForeignKey("QuestionnaireResponseEntry", related_name="fields")
 
-	def __unicode__(self):
-		return "Field Response: %s for %s" % (self.entry, self.field)
+    #ACL
+    owner = models.ForeignKey('auth.User', null=True, editable=False)
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
 
-	class Meta:
-		verbose_name = _("Questionnaire question response")
+    def __unicode__(self):
+        return "Field Response: %s for %s" % (self.entry, self.field)
 
+    class Meta:
+        verbose_name = _("Questionnaire question response")

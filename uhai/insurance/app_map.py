@@ -7,6 +7,7 @@ APP_MAP={
 		'forms':{
 			'patient': EmployerCompanyForm,
 		},
+		'view':'employercompany',
 		'actions':'RL',
 	},
 	'healthinsuranceprovider':{

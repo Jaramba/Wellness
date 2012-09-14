@@ -16,8 +16,12 @@ APP_MAP={
 		},
 		'actions':'CRUDL',
 	},
-	'questionnaire':{
-		'model':Questionnaire,		
+	'diagnosisquestionnaire':{
+		'model':DiagnosisQuestionnaire,		
+		'actions':'RL',
+	},
+    'programquestionnaire':{
+		'model':ProgramQuestionnaire,		
 		'actions':'RL',
 	},
 	'questionnaireresponseentry':{

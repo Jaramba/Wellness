@@ -21,8 +21,7 @@ from forms import *
 from models import Field, QuestionnaireResponseEntry, QuestionnaireFieldResponseEntry
 import models
 
-from settings import CSV_DELIMITER, UPLOAD_ROOT
-from settings import USE_SITES, EDITABLE_SLUGS
+from django.conf import settings
 from utils import now, slugify
 
 try:
@@ -32,40 +31,55 @@ try:
 except ImportError:
     XLWT_INSTALLED = False
 
-fs = FileSystemStorage(location=UPLOAD_ROOT)
+fs = FileSystemStorage(location=settings.UPLOAD_ROOT)
 form_admin_filter_horizontal = ()
-form_admin_fieldsets = [
-    (None, {"fields": ("title", "program", ("status", "login_required",),
-        ("publish_date", "expiry_date",), "intro", "button_text", "response")}),
-    (_("Email"), {"fields": ("send_email", "email_from", "email_copies",
-        "email_subject", "email_message")}),]
 
-if EDITABLE_SLUGS:
-    form_admin_fieldsets.append(
-            (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))
-
-if USE_SITES:
-    form_admin_fieldsets.append((_("Sites"), {"fields": ("sites",),
-        "classes": ("collapse",)}))
-    form_admin_filter_horizontal = ("sites",)
-
-class FieldAdmin(admin.TabularInline):
+class FieldTabularInlineAdmin(admin.TabularInline):
     model = Field
     exclude = ('slug', )
+    
+class FieldLevelTabularInlineAdmin(admin.TabularInline):
+    model = FieldLevel
+    exclude = ('slug', )
+    
+class FieldAdmin(admin.ModelAdmin):
+    exclude = ('slug', )
+    inlines = (FieldLevelTabularInlineAdmin,)
+    search_fields = ("label", "slug", "choices", "placeholder_text")
+    list_filter = ("questionnaire", "field_type")
+    list_editable = ("choices",)
+    list_display = ("label", "choices", "required", "visible", "default")
+    list_display_links = ("label",)
 
 class QuestionnaireAdmin(admin.ModelAdmin):
-
-    inlines = (FieldAdmin,)
-    list_display = ("title", "status", "email_copies", "publish_date",
+    inlines = (FieldTabularInlineAdmin,)
+    list_display = ("title", "status", "publish_date",
                     "expiry_date", "total_entries", "admin_links")
     list_display_links = ("title",)
-    list_editable = ("status", "email_copies", "publish_date", "expiry_date")
+    list_editable = ("status", "publish_date", "expiry_date")
     list_filter = ("status",)
     filter_horizontal = form_admin_filter_horizontal
-    search_fields = ("title", "intro", "response", "email_from",
-                     "email_copies")
+    search_fields = ("title", "intro", "response", "email_from")
     radio_fields = {"status": admin.HORIZONTAL}
-    fieldsets = form_admin_fieldsets
+    fieldsets = form_admin_fieldsets = [
+        (None, 
+            {"fields": 
+                ["title", "program", ("status", "login_required",),
+                ("publish_date", "expiry_date",), "intro", "button_text", "response"
+                ]
+            }
+        )
+    ]
+    
+    if settings.EDITABLE_SLUGS:
+        fieldsets.append(
+            (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))
+
+    if settings.USE_SITES:
+        fieldsets.append((_("Sites"), {"fields": ("sites",),
+            "classes": ("collapse",)}))
+    form_admin_filter_horizontal = ("sites",)
+
 
     def queryset(self, request):
         """
@@ -119,7 +133,7 @@ class QuestionnaireAdmin(admin.ModelAdmin):
                 fname = "%s-%s.csv" % (questionnaire.slug, slugify(now().ctime()))
                 response["Content-Disposition"] = "attachment; filename=%s" % fname
                 queue = StringIO()
-                csv = writer(queue, delimiter=CSV_DELIMITER)
+                csv = writer(queue, delimiter=settings.CSV_DELIMITER)
                 csv.writerow(entries_form.columns())
                 for row in entries_form.rows(csv=True):
                     csv.writerow(row)
@@ -183,45 +197,87 @@ class QuestionnaireAdmin(admin.ModelAdmin):
         f.close()
         return response
 
-admin.site.register(models.Questionnaire, QuestionnaireAdmin)
+class ProgramQuestionnaireAdmin(QuestionnaireAdmin):
+    fieldsets = form_admin_fieldsets = [
+        (None, {"fields": ["title", "program", ("status", "login_required",),
+        ("publish_date", "expiry_date",), "intro", "button_text", "response"]}),
+        (_("Email"), {"fields": ("send_email", "email_from", "email_copies",
+            "email_subject", "email_message")}),]
+            
+    list_display = ("title", "status", "email_copies", "publish_date",
+                    "expiry_date", "total_entries", "admin_links")
+    list_editable = ("status", "email_copies", "publish_date", "expiry_date")
+    search_fields = ("title", "intro", "response", "email_from",
+                     "email_copies")
+    
+    if settings.EDITABLE_SLUGS:
+        fieldsets.append(
+            (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))
+
+    if settings.USE_SITES:
+        fieldsets.append((_("Sites"), {"fields": ("sites",),
+            "classes": ("collapse",)}))
+    form_admin_filter_horizontal = ("sites",)
+    
+class DiagnosisQuestionnaireAdmin(QuestionnaireAdmin):
+    fieldsets = form_admin_fieldsets = [
+        (
+            None, {"fields": ["title", ("status", "login_required",),
+            ("publish_date", "expiry_date",), "intro", "button_text", "response"]}
+        )
+    ]
+    
+    if settings.EDITABLE_SLUGS:
+        fieldsets.append(
+            (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))
+
+    if settings.USE_SITES:
+        fieldsets.append((_("Sites"), {"fields": ("sites",),
+            "classes": ("collapse",)}))
+    form_admin_filter_horizontal = ("sites",)
+      
+admin.site.register(models.ProgramQuestionnaire, ProgramQuestionnaireAdmin)
+admin.site.register(models.DiagnosisQuestionnaire, DiagnosisQuestionnaireAdmin)
 admin.site.register(models.QuestionnaireResponseEntry)
-admin.site.register(QuestionnaireFieldResponseEntry)
+admin.site.register(models.Field, FieldAdmin)
+admin.site.register(models.QuestionnaireFieldResponseEntry)
 
 class ProgramWorkflowStateInline(admin.TabularInline):
-	model = models.ProgramWorkflowState
-	extra = 1
+    model = models.ProgramWorkflowState
+    extra = 1
 
 class EnrolledProgramInline(admin.TabularInline):
-	model = models.EnrolledProgram
-	extra = 1
-	
+    model = models.EnrolledProgram
+    extra = 1
+    
 class ProgramAdmin(admin.ModelAdmin):
-	model = models.Program
-	list_display = [f.name for f in models.Program._meta.fields]
-	inlines = [EnrolledProgramInline]
+    model = models.Program
+    list_display = [f.name for f in models.Program._meta.fields]
+    inlines = [EnrolledProgramInline]
 admin.site.register(models.Program, ProgramAdmin)
 
 class ProgramWorkflowAdmin(admin.ModelAdmin):
-	model = models.ProgramWorkflow
-	list_display = [f.name for f in models.ProgramWorkflow._meta.fields]
-	inlines = [ProgramWorkflowStateInline]
+    model = models.ProgramWorkflow
+    list_display = [f.name for f in models.ProgramWorkflow._meta.fields]
+    inlines = [ProgramWorkflowStateInline]
 admin.site.register(models.ProgramWorkflow, ProgramWorkflowAdmin)
 
 for M in [x
     for x in models.__dict__.values()  
         if (issubclass(type(x), ModelBase) and
-		not x._meta.abstract and 		
-		x.__name__ not in [
-				'ProgramWorkflowState', 'ProgramWorkflow', 'EnrolledProgram',
-			]
-		)
+            not x._meta.abstract and         
+            x.__name__ not in [
+                    'ProgramWorkflowState', 'ProgramWorkflow', 
+                    'EnrolledProgram', 'Questionnaire', 'Field'
+                ]
+        )
 ]:
-	class ItemAdmin(admin.ModelAdmin):
-		model = M
-		list_display = [f.name for f in M._meta.fields if not f.name in ('description', 'is_public','concept_notes','expected_outcome_notes')]
-		inlines = []
-		
-	try:
-		admin.site.register(M, ItemAdmin)
-	except admin.sites.AlreadyRegistered:
-		pass
+    class ItemAdmin(admin.ModelAdmin):
+        model = M
+        list_display = [f.name for f in M._meta.fields if not f.name in ('description', 'is_public','concept_notes','expected_outcome_notes')]
+        inlines = []
+        
+    try:
+        admin.site.register(M, ItemAdmin)
+    except admin.sites.AlreadyRegistered:
+        pass

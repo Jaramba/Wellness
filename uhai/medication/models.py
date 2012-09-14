@@ -1,5 +1,4 @@
-from django.db import models
-from uhai.core.models import Record, MetaData
+from uhai.core.models import *
 from uhai.reminders.models import Event
 
 class Medication(models.Model):

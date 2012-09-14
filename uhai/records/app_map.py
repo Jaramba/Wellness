@@ -7,6 +7,7 @@ APP_MAP={
 		'forms':{
 			'health-worker': DiagnosisForm,
 		},
+		'view': 'secured_role_model_view',
 		'actions':'CRUDL',
 	},
 	'problemtest':{
@@ -14,6 +15,7 @@ APP_MAP={
 		'forms':{
 			'health-worker': ProblemTestForm,
 		},
+		'view': 'secured_role_model_view',
 		'actions':'CRUDL',
 	},
 	'encountertestresult':{
@@ -21,6 +23,7 @@ APP_MAP={
 		'forms':{
 			'health-worker': EncounterTestResultForm,
 		},
+		'view': 'secured_role_model_view',
 		'actions':'CRUDL',
 	},
 	'encountertest':{
@@ -28,6 +31,7 @@ APP_MAP={
 		'forms':{
 			'health-worker': EncounterTestForm,
 		},
+		'view': 'secured_role_model_view',
 		'actions':'CRUDL',
 	},
    'encounter':{
@@ -36,20 +40,15 @@ APP_MAP={
 			'patient': PatientEncounterForm,
 			'health-worker': EncounterForm,
 		},
+		'view': 'encounter',
 		'actions':'CRUDL',
 	},
-	'trackingfield':{
-		'model':TrackingField,
-		'forms':{
-			'patient': TrackingFieldForm,
-		},
-		'actions':'CRUDL',
-	}, 
 	'order':{
 		'model':Order,
 		'forms':{
 			'health-worker': OrderForm,
 		},
+		'view': 'secured_role_model_view',
 		'actions':'CRUDL',
 	}, 
 }
