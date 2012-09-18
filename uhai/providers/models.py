@@ -59,4 +59,3 @@ class PatientProvider(models.Model):
 	provider = models.ForeignKey('HealthWorker')
 	primary = models.BooleanField(default=False)
 	
-	

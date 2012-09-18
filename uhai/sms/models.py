@@ -1,6 +1,7 @@
 from django.db import models
+from uhai.core.models import *
 
-class SmsMessage(models.Model):        
+class SmsMessage(OwnerModel):        
 	text = models.CharField(max_length=480)
 	queued_at = models.DateTimeField(auto_now_add=True)      
 

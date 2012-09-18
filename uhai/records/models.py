@@ -1,12 +1,12 @@
 from django.db import models
 
-from uhai.core.models import Record, MetaData 
+from uhai.core.models import *
 from uhai.reminders.models import Event
 
 from datetime import datetime
 
 class ProblemType(MetaData):pass
-class Problem(models.Model):
+class Problem(OwnerModel):
 	name = models.CharField(max_length=30)	
 	type = models.ForeignKey(ProblemType, null=True)
 	icd10_code = models.CharField(max_length=10, verbose_name='ICD Code', null=True, blank=True)
@@ -50,7 +50,7 @@ class Encounter(Event):
 	def __unicode__(self):
 		return (self.user.full_name)
 
-class Order(models.Model):
+class Order(OwnerModel):
 	encounter = models.ForeignKey('Encounter')
 	concept_notes = models.CharField(max_length=500)
 	instructions = models.CharField(max_length=500)
@@ -66,7 +66,7 @@ class Order(models.Model):
 			('view_order', 'View order'), 
 		)
 
-class Diagnosis(models.Model):
+class Diagnosis(OwnerModel):
 	problem = models.ForeignKey('Problem')
 	approved = models.BooleanField(default=False)
 	encounter = models.ForeignKey('Encounter')

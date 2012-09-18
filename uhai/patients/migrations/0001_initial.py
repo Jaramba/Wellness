@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding model 'Patient'
         db.create_table('patients_patient', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], unique=True)),
             ('gender', self.gf('django.db.models.fields.CharField')(max_length=20, null=True)),
             ('date_of_birth', self.gf('django.db.models.fields.DateField')(null=True)),
@@ -23,7 +23,7 @@ class Migration(SchemaMigration):
 
         # Adding model 'RelationshipType'
         db.create_table('patients_relationshiptype', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('a_is_to_b', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('b_is_to_a', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('preffered', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -34,7 +34,7 @@ class Migration(SchemaMigration):
 
         # Adding model 'Relationship'
         db.create_table('patients_relationship', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('person_a', self.gf('django.db.models.fields.related.ForeignKey')(related_name='person_a', to=orm['auth.User'])),
             ('person_b', self.gf('django.db.models.fields.related.ForeignKey')(related_name='person_b', to=orm['auth.User'])),
             ('next_of_kin', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -44,8 +44,8 @@ class Migration(SchemaMigration):
 
         # Adding model 'PatientEmergencyContact'
         db.create_table('patients_patientemergencycontact', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('patient', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
+            ('patient', self.gf('django.db.models.fields.related.ForeignKey')(related_name='patient_user', to=orm['auth.User'])),
             ('next_of_kin', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('full_name', self.gf('django.db.models.fields.CharField')(max_length=120, null=True)),
             ('email', self.gf('django.db.models.fields.CharField')(max_length=72, null=True)),
@@ -111,38 +111,37 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        'core.ownermodel': {
+            'Meta': {'object_name': 'OwnerModel'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'})
+        },
         'insurance.employercompany': {
             'Meta': {'object_name': 'EmployerCompany'},
-            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'contact_person_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'insurance_providers': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['insurance.HealthInsuranceProvider']", 'symmetrical': 'False'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
         'insurance.healthinsuranceprovider': {
             'Meta': {'object_name': 'HealthInsuranceProvider'},
-            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
         'insurance.insurance': {
-            'Meta': {'object_name': 'Insurance'},
-            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'Meta': {'object_name': 'Insurance', '_ormbases': ['core.OwnerModel']},
             'notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'plan_id': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
             'plan_name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'policy_provider': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.HealthInsuranceProvider']"}),
@@ -153,66 +152,64 @@ class Migration(SchemaMigration):
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'})
         },
         'insurance.patientinsurance': {
-            'Meta': {'object_name': 'PatientInsurance'},
-            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
+            'Meta': {'object_name': 'PatientInsurance', '_ormbases': ['core.OwnerModel']},
             'coverage_end_date': ('django.db.models.fields.DateField', [], {}),
             'coverage_start_date': ('django.db.models.fields.DateField', [], {}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'insurance': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.Insurance']"}),
             'notes': ('django.db.models.fields.TextField', [], {}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'patient': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['patients.Patient']"}),
             'status': ('django.db.models.fields.IntegerField', [], {}),
             'subscriber_policy_id': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'patients.patient': {
-            'Meta': {'object_name': 'Patient'},
+            'Meta': {'object_name': 'Patient', '_ormbases': ['core.OwnerModel']},
             'blood_group': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'date_of_birth': ('django.db.models.fields.DateField', [], {'null': 'True'}),
             'employer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.EmployerCompany']", 'null': 'True'}),
             'gender': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'height': ('django.db.models.fields.CharField', [], {'default': '0', 'max_length': '7', 'null': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'insurance': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['insurance.Insurance']", 'through': "orm['insurance.PatientInsurance']", 'symmetrical': 'False'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'providers': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['providers.HealthWorker']", 'through': "orm['providers.PatientProvider']", 'symmetrical': 'False'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'unique': 'True'}),
             'weight': ('django.db.models.fields.CharField', [], {'default': '0', 'max_length': '5', 'null': 'True'})
         },
         'patients.patientemergencycontact': {
-            'Meta': {'object_name': 'PatientEmergencyContact'},
+            'Meta': {'object_name': 'PatientEmergencyContact', '_ormbases': ['core.OwnerModel']},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.CharField', [], {'max_length': '72', 'null': 'True'}),
             'full_name': ('django.db.models.fields.CharField', [], {'max_length': '120', 'null': 'True'}),
             'home_phone': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'mobile_phone': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'national_id': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             'next_of_kin': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'patient': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
+            'patient': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'patient_user'", 'to': "orm['auth.User']"}),
             'postal_code': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True', 'blank': 'True'}),
             'work_phone': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'})
         },
         'patients.relationship': {
-            'Meta': {'object_name': 'Relationship'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'Meta': {'object_name': 'Relationship', '_ormbases': ['core.OwnerModel']},
             'next_of_kin': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'person_a': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'person_a'", 'to': "orm['auth.User']"}),
             'person_b': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'person_b'", 'to': "orm['auth.User']"}),
             'relationship': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['patients.RelationshipType']"})
         },
         'patients.relationshiptype': {
-            'Meta': {'object_name': 'RelationshipType'},
+            'Meta': {'object_name': 'RelationshipType', '_ormbases': ['core.OwnerModel']},
             'a_is_to_b': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'b_is_to_a': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'preffered': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
         },
         'providers.healthcarefacility': {
@@ -220,10 +217,10 @@ class Migration(SchemaMigration):
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'official_hospital_number': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'speciality': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['providers.Speciality']", 'symmetrical': 'False'})
         },

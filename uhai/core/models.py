@@ -3,7 +3,15 @@ from django.contrib.auth.models import User, Group
 from django.db import models
 from datetime import datetime
 
-class Record(models.Model):
+class OwnerModel(models.Model):
+    #ACL
+    site = models.ForeignKey('sites.Site', null=True, editable=False, related_name="%(app_label)s_%(class)s")
+    access_control_list = models.CharField(max_length=30, null=True, editable=False)
+    
+    class Meta:
+        abstract=True
+
+class Record(OwnerModel):
     name = models.CharField(max_length=30)
     patient = models.ForeignKey("patients.Patient")
     notes = models.TextField()
@@ -11,7 +19,7 @@ class Record(models.Model):
     class Meta:
         abstract=True
 
-class MetaData(models.Model):
+class MetaData(OwnerModel):
     name = models.CharField(max_length=120)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(null=True, blank=True)
@@ -24,7 +32,7 @@ class MetaData(models.Model):
     class Meta:
         abstract=True
 
-class Country(models.Model):
+class Country(OwnerModel):
     name = models.CharField(max_length=150)
     iso = models.CharField(max_length=4)
     
@@ -35,7 +43,7 @@ class Country(models.Model):
         verbose_name_plural = 'Countries'
         pass#sort = ['name']
         
-class Province(models.Model):
+class Province(OwnerModel):
     name = models.CharField(max_length=150)
     iso = models.CharField(max_length=4)
     country = models.ForeignKey(Country)
@@ -46,7 +54,7 @@ class Province(models.Model):
     class Meta:
         verbose_name_plural = 'Provinces'
         
-class County(models.Model):
+class County(OwnerModel):
     name = models.CharField(max_length=150)
     iso = models.CharField(max_length=4)
     province = models.ForeignKey(Province)

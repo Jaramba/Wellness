@@ -10,14 +10,14 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding model 'Title'
         db.create_table('userprofile_title', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
         ))
         db.send_create_signal('userprofile', ['Title'])
 
         # Adding model 'UserProfile'
         db.create_table('userprofile_userprofile', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('title', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['userprofile.Title'], null=True)),
             ('first_name', self.gf('django.db.models.fields.CharField')(max_length=50, null=True)),
             ('middle_name', self.gf('django.db.models.fields.CharField')(max_length=50, null=True)),
@@ -87,32 +87,37 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'core.country': {
-            'Meta': {'object_name': 'Country'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '150'})
-        },
-        'core.county': {
-            'Meta': {'object_name': 'County'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'Meta': {'object_name': 'Country', '_ormbases': ['core.OwnerModel']},
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'})
+        },
+        'core.county': {
+            'Meta': {'object_name': 'County', '_ormbases': ['core.OwnerModel']},
+            'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'province': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Province']"})
         },
-        'core.province': {
-            'Meta': {'object_name': 'Province'},
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Country']"}),
+        'core.ownermodel': {
+            'Meta': {'object_name': 'OwnerModel'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'})
+        },
+        'core.province': {
+            'Meta': {'object_name': 'Province', '_ormbases': ['core.OwnerModel']},
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Country']"}),
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '150'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'})
         },
         'userprofile.title': {
-            'Meta': {'object_name': 'Title'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+            'Meta': {'object_name': 'Title', '_ormbases': ['core.OwnerModel']},
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'})
         },
         'userprofile.userprofile': {
-            'Meta': {'object_name': 'UserProfile'},
+            'Meta': {'object_name': 'UserProfile', '_ormbases': ['core.OwnerModel']},
             'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Country']", 'null': 'True'}),
             'county': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.County']", 'null': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
@@ -120,12 +125,12 @@ class Migration(SchemaMigration):
             'email': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'home_phone': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'main_role': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.Group']", 'null': 'True'}),
             'middle_name': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'mobile_phone': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True'}),
             'national_id': ('django.db.models.fields.CharField', [], {'max_length': '25'}),
+            'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
             'photo': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'postal_code': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'province': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Province']", 'null': 'True'}),

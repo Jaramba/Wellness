@@ -8,34 +8,34 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Sharer'
-        db.create_table('sharer_sharer', (
+        # Adding model 'SmsMessageInbox'
+        db.create_table('sms_smsmessageinbox', (
             ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
-            ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
-            ('object_pk', self.gf('django.db.models.fields.CharField')(max_length=80)),
-            ('shared_by', self.gf('django.db.models.fields.related.ForeignKey')(related_name='shared_by', to=orm['auth.User'])),
-            ('shared_to', self.gf('django.db.models.fields.related.ForeignKey')(related_name='shared_to', to=orm['auth.User'])),
-            ('expires', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 9, 22, 0, 0))),
+            ('text', self.gf('django.db.models.fields.CharField')(max_length=480)),
+            ('queued_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('origin', self.gf('django.db.models.fields.CharField')(max_length=48)),
+            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
-        db.send_create_signal('sharer', ['Sharer'])
+        db.send_create_signal('sms', ['SmsMessageInbox'])
 
-        # Adding model 'ShareRequest'
-        db.create_table('sharer_sharerequest', (
+        # Adding model 'SmsMessageOutbox'
+        db.create_table('sms_smsmessageoutbox', (
             ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
-            ('requestor', self.gf('django.db.models.fields.related.ForeignKey')(related_name='requestor', to=orm['auth.User'])),
-            ('requestee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='requestee', to=orm['auth.User'])),
-            ('app_label', self.gf('django.db.models.fields.CharField')(max_length=30)),
-            ('model', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('text', self.gf('django.db.models.fields.CharField')(max_length=480)),
+            ('queued_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('destination', self.gf('django.db.models.fields.CharField')(max_length=48)),
+            ('gateway_response', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
         ))
-        db.send_create_signal('sharer', ['ShareRequest'])
+        db.send_create_signal('sms', ['SmsMessageOutbox'])
 
 
     def backwards(self, orm):
-        # Deleting model 'Sharer'
-        db.delete_table('sharer_sharer')
+        # Deleting model 'SmsMessageInbox'
+        db.delete_table('sms_smsmessageinbox')
 
-        # Deleting model 'ShareRequest'
-        db.delete_table('sharer_sharerequest')
+        # Deleting model 'SmsMessageOutbox'
+        db.delete_table('sms_smsmessageoutbox')
 
 
     models = {
@@ -80,23 +80,23 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'})
         },
-        'sharer.sharer': {
-            'Meta': {'object_name': 'Sharer', '_ormbases': ['core.OwnerModel']},
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
-            'expires': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 9, 22, 0, 0)'}),
-            'object_pk': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
+        'sms.smsmessageinbox': {
+            'Meta': {'object_name': 'SmsMessageInbox'},
+            'origin': ('django.db.models.fields.CharField', [], {'max_length': '48'}),
             'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
-            'shared_by': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'shared_by'", 'to': "orm['auth.User']"}),
-            'shared_to': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'shared_to'", 'to': "orm['auth.User']"})
+            'queued_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'text': ('django.db.models.fields.CharField', [], {'max_length': '480'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
-        'sharer.sharerequest': {
-            'Meta': {'object_name': 'ShareRequest', '_ormbases': ['core.OwnerModel']},
-            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
-            'model': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+        'sms.smsmessageoutbox': {
+            'Meta': {'object_name': 'SmsMessageOutbox'},
+            'destination': ('django.db.models.fields.CharField', [], {'max_length': '48'}),
+            'gateway_response': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
-            'requestee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'requestee'", 'to': "orm['auth.User']"}),
-            'requestor': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'requestor'", 'to': "orm['auth.User']"})
+            'queued_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'text': ('django.db.models.fields.CharField', [], {'max_length': '480'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'})
         }
     }
 
-    complete_apps = ['sharer']
+    complete_apps = ['sms']

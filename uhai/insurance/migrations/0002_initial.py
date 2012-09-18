@@ -8,25 +8,8 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'SpecialityCategory'
-        db.create_table('providers_specialitycategory', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=150)),
-        ))
-        db.send_create_signal('providers', ['SpecialityCategory'])
-
-        # Adding model 'Speciality'
-        db.create_table('providers_speciality', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=150)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=150)),
-            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['providers.SpecialityCategory'], null=True, blank=True)),
-            ('date_added', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-        ))
-        db.send_create_signal('providers', ['Speciality'])
-
-        # Adding model 'HealthCareFacility'
-        db.create_table('providers_healthcarefacility', (
+        # Adding model 'HealthInsuranceProvider'
+        db.create_table('insurance_healthinsuranceprovider', (
             ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('phone', self.gf('django.db.models.fields.CharField')(max_length=50)),
@@ -34,68 +17,84 @@ class Migration(SchemaMigration):
             ('location', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('date_edited', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('date_added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('official_hospital_number', self.gf('django.db.models.fields.CharField')(max_length=20, null=True)),
         ))
-        db.send_create_signal('providers', ['HealthCareFacility'])
+        db.send_create_signal('insurance', ['HealthInsuranceProvider'])
 
-        # Adding M2M table for field speciality on 'HealthCareFacility'
-        db.create_table('providers_healthcarefacility_speciality', (
+        # Adding model 'EmployerCompany'
+        db.create_table('insurance_employercompany', (
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('phone', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
+            ('location', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('date_edited', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('contact_person_name', self.gf('django.db.models.fields.CharField')(max_length=100, null=True)),
+        ))
+        db.send_create_signal('insurance', ['EmployerCompany'])
+
+        # Adding M2M table for field insurance_providers on 'EmployerCompany'
+        db.create_table('insurance_employercompany_insurance_providers', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('healthcarefacility', models.ForeignKey(orm['providers.healthcarefacility'], null=False)),
-            ('speciality', models.ForeignKey(orm['providers.speciality'], null=False))
+            ('employercompany', models.ForeignKey(orm['insurance.employercompany'], null=False)),
+            ('healthinsuranceprovider', models.ForeignKey(orm['insurance.healthinsuranceprovider'], null=False))
         ))
-        db.create_unique('providers_healthcarefacility_speciality', ['healthcarefacility_id', 'speciality_id'])
+        db.create_unique('insurance_employercompany_insurance_providers', ['employercompany_id', 'healthinsuranceprovider_id'])
 
-        # Adding model 'HealthWorker'
-        db.create_table('providers_healthworker', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-            ('is_admin', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('is_contact_person', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('facility', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['providers.HealthCareFacility'])),
-            ('practice_number', self.gf('django.db.models.fields.CharField')(max_length=20, null=True)),
+        # Adding model 'InsuranceType'
+        db.create_table('insurance_insurancetype', (
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=120)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=200)),
+            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True)),
+            ('date_changed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal('providers', ['HealthWorker'])
+        db.send_create_signal('insurance', ['InsuranceType'])
 
-        # Adding M2M table for field speciality on 'HealthWorker'
-        db.create_table('providers_healthworker_speciality', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('healthworker', models.ForeignKey(orm['providers.healthworker'], null=False)),
-            ('speciality', models.ForeignKey(orm['providers.speciality'], null=False))
+        # Adding model 'Insurance'
+        db.create_table('insurance_insurance', (
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
+            ('plan_id', self.gf('django.db.models.fields.CharField')(max_length=70)),
+            ('plan_name', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['insurance.InsuranceType'])),
+            ('policy_provider', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['insurance.HealthInsuranceProvider'])),
+            ('notes', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
         ))
-        db.create_unique('providers_healthworker_speciality', ['healthworker_id', 'speciality_id'])
+        db.send_create_signal('insurance', ['Insurance'])
 
-        # Adding model 'PatientProvider'
-        db.create_table('providers_patientprovider', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        # Adding model 'PatientInsurance'
+        db.create_table('insurance_patientinsurance', (
+            ('ownermodel_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['core.OwnerModel'], unique=True, primary_key=True)),
             ('patient', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['patients.Patient'])),
-            ('provider', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['providers.HealthWorker'])),
-            ('primary', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('coverage_start_date', self.gf('django.db.models.fields.DateField')()),
+            ('coverage_end_date', self.gf('django.db.models.fields.DateField')()),
+            ('insurance', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['insurance.Insurance'])),
+            ('status', self.gf('django.db.models.fields.IntegerField')()),
+            ('subscriber_policy_id', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('notes', self.gf('django.db.models.fields.TextField')()),
         ))
-        db.send_create_signal('providers', ['PatientProvider'])
+        db.send_create_signal('insurance', ['PatientInsurance'])
 
 
     def backwards(self, orm):
-        # Deleting model 'SpecialityCategory'
-        db.delete_table('providers_specialitycategory')
+        # Deleting model 'HealthInsuranceProvider'
+        db.delete_table('insurance_healthinsuranceprovider')
 
-        # Deleting model 'Speciality'
-        db.delete_table('providers_speciality')
+        # Deleting model 'EmployerCompany'
+        db.delete_table('insurance_employercompany')
 
-        # Deleting model 'HealthCareFacility'
-        db.delete_table('providers_healthcarefacility')
+        # Removing M2M table for field insurance_providers on 'EmployerCompany'
+        db.delete_table('insurance_employercompany_insurance_providers')
 
-        # Removing M2M table for field speciality on 'HealthCareFacility'
-        db.delete_table('providers_healthcarefacility_speciality')
+        # Deleting model 'InsuranceType'
+        db.delete_table('insurance_insurancetype')
 
-        # Deleting model 'HealthWorker'
-        db.delete_table('providers_healthworker')
+        # Deleting model 'Insurance'
+        db.delete_table('insurance_insurance')
 
-        # Removing M2M table for field speciality on 'HealthWorker'
-        db.delete_table('providers_healthworker_speciality')
-
-        # Deleting model 'PatientProvider'
-        db.delete_table('providers_patientprovider')
+        # Deleting model 'PatientInsurance'
+        db.delete_table('insurance_patientinsurance')
 
 
     models = {
@@ -248,4 +247,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['providers']
+    complete_apps = ['insurance']

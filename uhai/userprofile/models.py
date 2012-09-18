@@ -3,13 +3,15 @@ from django.db import models
 
 from django.template.defaultfilters import slugify
 
-class Title(models.Model):
+from uhai.core.models import *
+
+class Title(OwnerModel):
 	name = models.CharField(max_length=50)
 	
 	def __unicode__(self):
 		return self.name
 
-class UserProfile(models.Model):
+class UserProfile(OwnerModel):
     '''
     Not Everyone is a patient; This will act as a staging profile, until someone
     gets an account.... hmmm, should we create an inactive user or just this?

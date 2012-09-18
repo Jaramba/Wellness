@@ -10,7 +10,7 @@ from utils import now, slugify, unique_slug
 
 from uhai.core.models import *
     
-class Program(models.Model):
+class Program(OwnerModel):
     '''
     This represents either an Employee Assistance Program (EAP)
     or a Patient Assistance Program (PAP). An example is a program
@@ -21,10 +21,6 @@ class Program(models.Model):
     concept_notes = models.TextField(null=True, blank=True)
     expected_outcome_notes = models.TextField(null=True, blank=True)
     
-    #ACL
-    user = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-
     def __unicode__(self):
         return str(self.name)
         
@@ -37,7 +33,7 @@ class Program(models.Model):
             ('view_program', 'View program'), 
         )
     
-class EnrolledProgram(models.Model):
+class EnrolledProgram(OwnerModel):
     '''
     Patient/Employee can be enrolled in a Program to help them
     Anyone can be enrolled to this... Even Doctors or even employees
@@ -52,10 +48,6 @@ class EnrolledProgram(models.Model):
     date_completed = models.DateField()
     outcome_notes = models.TextField(null=True, blank=True)
     
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-    
     def __unicode__(self):
         return 'Program enrolled to: %s by %s' % (self.program, self.enrollee)
     
@@ -64,7 +56,7 @@ class EnrolledProgram(models.Model):
             ('view_enrolledprogram', 'View enrolled program'), 
         )
 
-class ProgramWorkflow(models.Model):
+class ProgramWorkflow(OwnerModel):
     '''
     A program may involve certain steps that define progress
     in the program; thus we have the path and the nodes.
@@ -79,10 +71,6 @@ class ProgramWorkflow(models.Model):
     continued = models.BooleanField(default=True)
     days = models.IntegerField(default=0, blank=True, null=True)
     
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-    
     def __unicode__(self):
         return self.name
     
@@ -91,7 +79,7 @@ class ProgramWorkflow(models.Model):
             ('view_enrolledprogram', 'View enrolled program'), 
         )
     
-class ProgramWorkflowState(models.Model):
+class ProgramWorkflowState(OwnerModel):
     '''
     This represents a node/milestone state of @see: PrenrolleeogramWorkflow
     in the program.
@@ -103,10 +91,6 @@ class ProgramWorkflowState(models.Model):
     initial = models.BooleanField(default=False)
     terminal = models.BooleanField(default=False)
     concept_notes = models.TextField()
-    
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
     
     def __unicode__(self):
         return 'Node: %s %s' % (self.name, self.program_workflow)
@@ -138,7 +122,7 @@ class QuestionnaireManager(models.Manager):
             filters.append(Q(sites=Site.objects.get_current()))
         return self.filter(*filters)
 
-class Questionnaire(models.Model):
+class Questionnaire(OwnerModel):
     """
     A user-built form.
     """
@@ -162,10 +146,6 @@ class Questionnaire(models.Model):
         blank=True, null=True)
     login_required = models.BooleanField(_("Login required"),
         help_text=_("If checked, only logged in users can view the form"))
-    
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
     
     objects = QuestionnaireManager()
 
@@ -234,7 +214,7 @@ class FieldManager(models.Manager):
     def visible(self):
         return self.filter(visible=True)
 
-class Field(models.Model):
+class Field(OwnerModel):
     """
     A field for a user-built form.
     """
@@ -261,10 +241,6 @@ class Field(models.Model):
     questionnaire = models.ForeignKey("Questionnaire", related_name="fields")
     order = models.IntegerField(_("Order"), null=True, blank=True)
     
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-
     def delete(self, *args, **kwargs):
         fields_after = self.questionnaire.fields.filter(order__gte=self.order)
         fields_after.update(order=models.F("order") - 1)
@@ -325,12 +301,8 @@ class Field(models.Model):
 class FieldLevel(MetaData):
     field = models.ForeignKey("Field")
     range = models.CharField(max_length=50)
-    
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
         
-class QuestionnaireResponseEntry(models.Model):
+class QuestionnaireResponseEntry(OwnerModel):
     """
     An entry submitted via a user-built form.
     """
@@ -338,17 +310,13 @@ class QuestionnaireResponseEntry(models.Model):
     user = models.ForeignKey("auth.User", related_name="respondent")
     questionnaire = models.ForeignKey("Questionnaire", related_name="entries")
     
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-
     def __unicode__(self):
         return "Response to %s by %s" % (self.questionnaire, self.user)
 
     class Meta:
         verbose_name = _("Questionnaire response")
 
-class QuestionnaireFieldResponseEntry(models.Model):
+class QuestionnaireFieldResponseEntry(OwnerModel):
     """
     A single field value for a questionnaire entry submitted via a user-built form.
     """
@@ -358,10 +326,6 @@ class QuestionnaireFieldResponseEntry(models.Model):
             null=True)
             
     entry = models.ForeignKey("QuestionnaireResponseEntry", related_name="fields")
-
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
 
     def __unicode__(self):
         return "Field Response: %s for %s" % (self.entry, self.field)

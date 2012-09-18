@@ -11,7 +11,8 @@ class Migration(SchemaMigration):
         # Adding model 'Program'
         db.create_table('programs_program', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_program', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('concept_notes', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('expected_outcome_notes', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
@@ -29,6 +30,8 @@ class Migration(SchemaMigration):
         # Adding model 'EnrolledProgram'
         db.create_table('programs_enrolledprogram', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_enrolledprogram', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('program', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['programs.Program'])),
             ('enrollee', self.gf('django.db.models.fields.related.ForeignKey')(related_name='enrollee', to=orm['patients.Patient'])),
             ('enroller', self.gf('django.db.models.fields.related.ForeignKey')(related_name='enroller', to=orm['auth.User'])),
@@ -41,6 +44,8 @@ class Migration(SchemaMigration):
         # Adding model 'ProgramWorkflow'
         db.create_table('programs_programworkflow', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_programworkflow', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('program', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['programs.Program'])),
             ('concept_notes', self.gf('django.db.models.fields.TextField')()),
@@ -52,6 +57,8 @@ class Migration(SchemaMigration):
         # Adding model 'ProgramWorkflowState'
         db.create_table('programs_programworkflowstate', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_programworkflowstate', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=120)),
             ('program_workflow', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['programs.ProgramWorkflow'])),
             ('weight', self.gf('django.db.models.fields.IntegerField')(default=0)),
@@ -64,6 +71,8 @@ class Migration(SchemaMigration):
         # Adding model 'Questionnaire'
         db.create_table('programs_questionnaire', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_questionnaire', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=100)),
             ('intro', self.gf('django.db.models.fields.TextField')(blank=True)),
@@ -96,12 +105,6 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('programs', ['ProgramQuestionnaire'])
 
-        # Adding model 'VitalsQuestionnaire'
-        db.create_table('programs_vitalsquestionnaire', (
-            ('questionnaire_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['programs.Questionnaire'], unique=True, primary_key=True)),
-        ))
-        db.send_create_signal('programs', ['VitalsQuestionnaire'])
-
         # Adding model 'DiagnosisQuestionnaire'
         db.create_table('programs_diagnosisquestionnaire', (
             ('questionnaire_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['programs.Questionnaire'], unique=True, primary_key=True)),
@@ -111,6 +114,8 @@ class Migration(SchemaMigration):
         # Adding model 'Field'
         db.create_table('programs_field', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_field', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('label', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('slug', self.gf('django.db.models.fields.SlugField')(default='', max_length=100, blank=True)),
             ('field_type', self.gf('django.db.models.fields.IntegerField')()),
@@ -125,11 +130,28 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('programs', ['Field'])
 
+        # Adding model 'FieldLevel'
+        db.create_table('programs_fieldlevel', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_fieldlevel', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=120)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=200)),
+            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True)),
+            ('date_changed', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now_add=True, blank=True)),
+            ('field', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['programs.Field'])),
+            ('range', self.gf('django.db.models.fields.CharField')(max_length=50)),
+        ))
+        db.send_create_signal('programs', ['FieldLevel'])
+
         # Adding model 'QuestionnaireResponseEntry'
         db.create_table('programs_questionnaireresponseentry', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_questionnaireresponseentry', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('entry_time', self.gf('django.db.models.fields.DateTimeField')()),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='respondent', to=orm['auth.User'])),
             ('questionnaire', self.gf('django.db.models.fields.related.ForeignKey')(related_name='entries', to=orm['programs.Questionnaire'])),
         ))
         db.send_create_signal('programs', ['QuestionnaireResponseEntry'])
@@ -137,6 +159,8 @@ class Migration(SchemaMigration):
         # Adding model 'QuestionnaireFieldResponseEntry'
         db.create_table('programs_questionnairefieldresponseentry', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('site', self.gf('django.db.models.fields.related.ForeignKey')(related_name='programs_questionnairefieldresponseentry', null=True, to=orm['sites.Site'])),
+            ('access_control_list', self.gf('django.db.models.fields.CharField')(max_length=30, null=True)),
             ('field', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['programs.Field'])),
             ('value', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True)),
             ('entry', self.gf('django.db.models.fields.related.ForeignKey')(related_name='fields', to=orm['programs.QuestionnaireResponseEntry'])),
@@ -169,14 +193,14 @@ class Migration(SchemaMigration):
         # Deleting model 'ProgramQuestionnaire'
         db.delete_table('programs_programquestionnaire')
 
-        # Deleting model 'VitalsQuestionnaire'
-        db.delete_table('programs_vitalsquestionnaire')
-
         # Deleting model 'DiagnosisQuestionnaire'
         db.delete_table('programs_diagnosisquestionnaire')
 
         # Deleting model 'Field'
         db.delete_table('programs_field')
+
+        # Deleting model 'FieldLevel'
+        db.delete_table('programs_fieldlevel')
 
         # Deleting model 'QuestionnaireResponseEntry'
         db.delete_table('programs_questionnaireresponseentry')
@@ -224,6 +248,7 @@ class Migration(SchemaMigration):
         },
         'insurance.employercompany': {
             'Meta': {'object_name': 'EmployerCompany'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'contact_person_name': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
@@ -232,49 +257,59 @@ class Migration(SchemaMigration):
             'insurance_providers': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['insurance.HealthInsuranceProvider']", 'symmetrical': 'False'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+            'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'insurance_employercompany'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
         'insurance.healthinsuranceprovider': {
             'Meta': {'object_name': 'HealthInsuranceProvider'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+            'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'insurance_healthinsuranceprovider'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
         'insurance.insurance': {
             'Meta': {'object_name': 'Insurance'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'plan_id': ('django.db.models.fields.CharField', [], {'max_length': '70'}),
             'plan_name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'policy_provider': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.HealthInsuranceProvider']"}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'insurance_insurance'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.InsuranceType']"})
         },
         'insurance.insurancetype': {
             'Meta': {'object_name': 'InsuranceType'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'insurance_insurancetype'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'})
         },
         'insurance.patientinsurance': {
             'Meta': {'object_name': 'PatientInsurance'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'coverage_end_date': ('django.db.models.fields.DateField', [], {}),
             'coverage_start_date': ('django.db.models.fields.DateField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'insurance': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.Insurance']"}),
             'notes': ('django.db.models.fields.TextField', [], {}),
             'patient': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['patients.Patient']"}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'insurance_patientinsurance'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'status': ('django.db.models.fields.IntegerField', [], {}),
             'subscriber_policy_id': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'patients.patient': {
             'Meta': {'object_name': 'Patient'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'blood_group': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'date_of_birth': ('django.db.models.fields.DateField', [], {'null': 'True'}),
             'employer': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['insurance.EmployerCompany']", 'null': 'True'}),
@@ -283,6 +318,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'insurance': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['insurance.Insurance']", 'through': "orm['insurance.PatientInsurance']", 'symmetrical': 'False'}),
             'providers': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['providers.HealthWorker']", 'through': "orm['providers.PatientProvider']", 'symmetrical': 'False'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'patients_patient'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'unique': 'True'}),
             'weight': ('django.db.models.fields.CharField', [], {'default': '0', 'max_length': '5', 'null': 'True'})
         },
@@ -292,16 +328,19 @@ class Migration(SchemaMigration):
         },
         'programs.enrolledprogram': {
             'Meta': {'object_name': 'EnrolledProgram'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_completed': ('django.db.models.fields.DateField', [], {}),
             'date_enrolled': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'blank': 'True'}),
             'enrollee': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'enrollee'", 'to': "orm['patients.Patient']"}),
             'enroller': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'enroller'", 'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'outcome_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'program': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.Program']"})
+            'program': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.Program']"}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_enrolledprogram'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
         'programs.field': {
             'Meta': {'ordering': "('order',)", 'object_name': 'Field'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'choices': ('django.db.models.fields.CharField', [], {'max_length': '1000', 'blank': 'True'}),
             'default': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'blank': 'True'}),
             'field_type': ('django.db.models.fields.IntegerField', [], {}),
@@ -312,17 +351,32 @@ class Migration(SchemaMigration):
             'placeholder_text': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'questionnaire': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'to': "orm['programs.Questionnaire']"}),
             'required': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_field'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'default': "''", 'max_length': '100', 'blank': 'True'}),
             'visible': ('django.db.models.fields.BooleanField', [], {'default': 'True'})
         },
+        'programs.fieldlevel': {
+            'Meta': {'object_name': 'FieldLevel'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
+            'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'field': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.Field']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'range': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_fieldlevel'", 'null': 'True', 'to': "orm['sites.Site']"}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'})
+        },
         'programs.program': {
             'Meta': {'object_name': 'Program'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'concept_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'expected_outcome_notes': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True'}),
-            'problems': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['records.Problem']", 'symmetrical': 'False'})
+            'problems': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['records.Problem']", 'symmetrical': 'False'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_program'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
         'programs.programquestionnaire': {
             'Meta': {'object_name': 'ProgramQuestionnaire', '_ormbases': ['programs.Questionnaire']},
@@ -336,25 +390,30 @@ class Migration(SchemaMigration):
         },
         'programs.programworkflow': {
             'Meta': {'object_name': 'ProgramWorkflow'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'concept_notes': ('django.db.models.fields.TextField', [], {}),
             'continued': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'days': ('django.db.models.fields.IntegerField', [], {'default': '0', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'program': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.Program']"})
+            'program': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.Program']"}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_programworkflow'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
         'programs.programworkflowstate': {
             'Meta': {'object_name': 'ProgramWorkflowState'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'concept_notes': ('django.db.models.fields.TextField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'initial': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
             'program_workflow': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.ProgramWorkflow']"}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_programworkflowstate'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'terminal': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'weight': ('django.db.models.fields.IntegerField', [], {'default': '0'})
         },
         'programs.questionnaire': {
             'Meta': {'object_name': 'Questionnaire'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'button_text': ('django.db.models.fields.CharField', [], {'default': "u'Submit'", 'max_length': '50'}),
             'expiry_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -362,6 +421,7 @@ class Migration(SchemaMigration):
             'login_required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'publish_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'response': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_questionnaire'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'sites': ('django.db.models.fields.related.ManyToManyField', [], {'default': '[1]', 'to': "orm['sites.Site']", 'symmetrical': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'}),
             'status': ('django.db.models.fields.IntegerField', [], {'default': '2'}),
@@ -369,24 +429,25 @@ class Migration(SchemaMigration):
         },
         'programs.questionnairefieldresponseentry': {
             'Meta': {'object_name': 'QuestionnaireFieldResponseEntry'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'entry': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'fields'", 'to': "orm['programs.QuestionnaireResponseEntry']"}),
             'field': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['programs.Field']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_questionnairefieldresponseentry'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'value': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True'})
         },
         'programs.questionnaireresponseentry': {
             'Meta': {'object_name': 'QuestionnaireResponseEntry'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'entry_time': ('django.db.models.fields.DateTimeField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'questionnaire': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'entries'", 'to': "orm['programs.Questionnaire']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
-        },
-        'programs.vitalsquestionnaire': {
-            'Meta': {'object_name': 'VitalsQuestionnaire', '_ormbases': ['programs.Questionnaire']},
-            'questionnaire_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['programs.Questionnaire']", 'unique': 'True', 'primary_key': 'True'})
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'programs_questionnaireresponseentry'", 'null': 'True', 'to': "orm['sites.Site']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'respondent'", 'to': "orm['auth.User']"})
         },
         'providers.healthcarefacility': {
             'Meta': {'object_name': 'HealthCareFacility'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_edited': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
@@ -395,6 +456,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'official_hospital_number': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'providers_healthcarefacility'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'speciality': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['providers.Speciality']", 'symmetrical': 'False'})
         },
         'providers.healthworker': {
@@ -429,6 +491,7 @@ class Migration(SchemaMigration):
         },
         'records.icd10block': {
             'Meta': {'object_name': 'ICD10Block'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'chapter': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['records.ICD10Chapter']"}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
@@ -437,19 +500,23 @@ class Migration(SchemaMigration):
             'max_code': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
             'min_code': ('django.db.models.fields.CharField', [], {'max_length': '10'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'records_icd10block'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'})
         },
         'records.icd10chapter': {
             'Meta': {'object_name': 'ICD10Chapter'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'records_icd10chapter'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'})
         },
         'records.problem': {
             'Meta': {'object_name': 'Problem'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'cause': ('django.db.models.fields.CharField', [], {'max_length': '150', 'null': 'True', 'blank': 'True'}),
             'detail': ('django.db.models.fields.CharField', [], {'max_length': '150', 'null': 'True', 'blank': 'True'}),
             'icd10_block': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['records.ICD10Block']", 'null': 'True'}),
@@ -457,15 +524,18 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'notes': ('django.db.models.fields.TextField', [], {'null': 'True'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'records_problem'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['records.ProblemType']", 'null': 'True'})
         },
         'records.problemtype': {
             'Meta': {'object_name': 'ProblemType'},
+            'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'date_changed': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now_add': 'True', 'blank': 'True'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'records_problemtype'", 'null': 'True', 'to': "orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'})
         },
         'sites.site': {

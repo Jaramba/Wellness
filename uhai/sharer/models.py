@@ -4,7 +4,7 @@ from django.contrib.contenttypes import generic
 
 from uhai.core.models import *
 
-class Sharer(models.Model):
+class Sharer(OwnerModel):
 	content_type = models.ForeignKey('contenttypes.ContentType')
 	object_pk = models.CharField(max_length=80)
 	
@@ -17,7 +17,7 @@ class Sharer(models.Model):
 	def __unicode__(self):
 		return 'Shared: %s to %s' % (self.content_type, self.shared_to)
 
-class ShareRequest(models.Model):
+class ShareRequest(OwnerModel):
 	requestor = models.ForeignKey('auth.User', related_name='requestor')
 	requestee = models.ForeignKey('auth.User', related_name='requestee')
 	app_label = models.CharField(max_length=30)

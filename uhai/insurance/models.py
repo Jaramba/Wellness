@@ -1,8 +1,8 @@
 from django.db import models
 from uhai.records.models import Record
-from uhai.core.models import MetaData
+from uhai.core.models import *
 
-class Company(models.Model):
+class Company(OwnerModel):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True)
@@ -16,11 +16,7 @@ class Company(models.Model):
     def __unicode__(self):
         return self.name
         
-class HealthInsuranceProvider(Company):    
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-    
+class HealthInsuranceProvider(Company):
     class Meta:
         permissions = (
             ('view_healthinsuranceprovider', 'View health insurance provider'),
@@ -30,10 +26,6 @@ class EmployerCompany(Company):
     contact_person_name = models.CharField(max_length=100, null=True)
     insurance_providers = models.ManyToManyField('HealthInsuranceProvider')    
     
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-    
     class Meta:
         verbose_name_plural = 'Employer companies'
         permissions = (
@@ -41,16 +33,12 @@ class EmployerCompany(Company):
         )
 
 class InsuranceType(MetaData):pass
-class Insurance(models.Model):
+class Insurance(OwnerModel):
     plan_id = models.CharField('Policy/Plan ID', max_length=70)
     plan_name = models.CharField(max_length=50)
     type = models.ForeignKey('InsuranceType')
     policy_provider = models.ForeignKey('HealthInsuranceProvider')
     notes = models.TextField(null=True, blank=True)
-    
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
     
     class Meta:
         permissions = (
@@ -60,7 +48,7 @@ class Insurance(models.Model):
     def __unicode__(self):
         return self.plan_name
 
-class PatientInsurance(models.Model):
+class PatientInsurance(OwnerModel):
     STATUS = (
         (0, "Inactive"),
         (1, "Approved"),
@@ -74,10 +62,6 @@ class PatientInsurance(models.Model):
     status = models.IntegerField(choices=STATUS)
     subscriber_policy_id = models.CharField(max_length=100)
     notes = models.TextField()
-    
-    #ACL
-    owner = models.ForeignKey('auth.User', null=True, editable=False)
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
     
     class Meta:
         permissions = (
