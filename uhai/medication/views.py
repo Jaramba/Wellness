@@ -15,8 +15,8 @@ from django.contrib.auth.models import User
 
 @login_required
 def prescription(request, user_pk=None, *args, **kwargs): 
-	def save_form(form, commit=False):
-		obj = form.save(commit=commit)
+	def save_form(form, *args, **kwargs):
+		contact = form.save(*args, **kwargs)
 		obj.user = request.user
 		obj.end_time = obj.follow_up_date = obj.start_time
 		obj.text = 'Vaccination for %s' % obj.user
@@ -27,8 +27,8 @@ def prescription(request, user_pk=None, *args, **kwargs):
 
 @login_required
 def immunization(request, user_pk=None, *args, **kwargs):
-	def save_form(form, commit=False):
-		obj = form.save(commit=commit)
+	def save_form(form, *args, **kwargs):
+		obj = form.save(*args, **kwargs)
 		obj.user = request.user
 		obj.end_time = obj.follow_up_date = obj.start_time
 		obj.text = 'Vaccination for %s' % obj.user

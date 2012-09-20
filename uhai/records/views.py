@@ -18,18 +18,20 @@ def index(request, problem_type='', template_name = "records/index.html", *args,
 
 @login_required
 def encounter(request, user_pk=None, encounter_type=None, queryset=None, *args, **kwargs):
-	kwargs['queryset'] = queryset.filter(type__slug=encounter_type) if encounter_type else queryset
+    kwargs['queryset'] = queryset.filter(type__slug=encounter_type) if encounter_type else queryset
 
-	def save_form(form, commit=False):
-		obj = form.save(commit=commit)
-		obj.user = request.user
-		obj.end_time = obj.follow_up_date = obj.start_time
-		obj.text = 'Vacination for %s' % obj.user
-		obj.save()
-		return obj
-	kwargs['save_form'] = save_form
-	
-	return user_model_view(request, *args, **kwargs)
+    def save_form(form, commit=False):
+        obj = form.save(commit=commit)
+        obj.user = request.user
+        obj.end_time = obj.follow_up_date = obj.start_time
+        obj.text = 'Vacination for %s' % obj.user
+        obj.save()
+        return obj
+    kwargs['save_form'] = save_form
+    kwargs['extra_context'] = kwargs.get('extra_context', {})
+    kwargs['extra_context'].update(dict(encounter_type=encounter_type))
+
+    return user_model_view(request, *args, **kwargs)
 
 @login_required
 def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **kwargs):

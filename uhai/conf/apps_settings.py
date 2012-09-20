@@ -38,7 +38,7 @@ INSTALLED_APPS = [
 	"django_hosts",
 	
 	#Database tools
-	"south",
+	#"south",
 	
 	#Customer Care...
 	"intercom",

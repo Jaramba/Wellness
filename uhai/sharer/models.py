@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime, timedelta
 from django.contrib.contenttypes import generic
 
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
 
 class Sharer(OwnerModel):
 	content_type = models.ForeignKey('contenttypes.ContentType')

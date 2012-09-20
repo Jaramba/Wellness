@@ -5,9 +5,11 @@
 {% endblock header %}
 
 {% block action-buttons %}
-	<a href="{% url program-create %}" class="btn pull-right" rel="tooltip" title="Add New">
-		<i class="icon-plus-sign"></i>
-	</a>
+    {% if not request.session.use_page_as == 'patient' %}
+        <a href="{% url program-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+            <i class="icon-plus-sign"></i>
+        </a>
+    {% endif %}
 {% endblock action-buttons %}
 
 {% block table-list %}

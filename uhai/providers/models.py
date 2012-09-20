@@ -1,9 +1,10 @@
 from django.db import models
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
+
 from uhai.userprofile.models import *
 from uhai.insurance.models import *
 
-class SpecialityCategory(models.Model):
+class SpecialityCategory(OwnerModel):
 	name = models.CharField(max_length=150)
 
 	def __unicode__(self):
@@ -12,7 +13,7 @@ class SpecialityCategory(models.Model):
 	class Meta:
 		verbose_name_plural = 'Speciality Categories'
 
-class Speciality(models.Model):
+class Speciality(OwnerModel):
 	name = models.CharField(max_length=150)
 	slug = models.SlugField(max_length=150, unique=True)
 	category = models.ForeignKey(SpecialityCategory, null=True, blank=True)
@@ -37,7 +38,7 @@ class HealthCareFacility(Company):
             ('view_healthcarefacility', 'View health care facility'),
         )
 		
-class HealthWorker(models.Model):
+class HealthWorker(OwnerModel):
 	user = models.OneToOneField('auth.User')
 	is_admin = models.BooleanField(default=False)
 	is_contact_person = models.BooleanField(default=False)
@@ -54,7 +55,7 @@ class HealthWorker(models.Model):
 		)
 		verbose_name_plural = 'Health Worker Profile'
 
-class PatientProvider(models.Model):
+class PatientProvider(OwnerModel):
 	patient = models.ForeignKey('patients.Patient')
 	provider = models.ForeignKey('HealthWorker')
 	primary = models.BooleanField(default=False)

@@ -18,8 +18,8 @@ def patient(request, *args, **kwargs):
 
 @login_required
 def patientemergencycontact(request, *args, **kwargs):
-	def save_form(form):
-		contact = form.save(commit=False)
+	def save_form(form, *args, **kwargs):
+		contact = form.save(*args, **kwargs)
 		contact.patient = request.user
 		contact.save()
 		

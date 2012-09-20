@@ -1,3 +1,4 @@
+from models import *
 from forms import *
 
 VIEW_NAME = '.'.join(__name__.split('.')[:-1]+['views'])

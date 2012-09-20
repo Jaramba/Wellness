@@ -1,26 +1,33 @@
+#Python
 from datetime import date
 from os.path import join, split
 from uuid import uuid4
 
+#Django
 import django
-from django import forms
+
 from django.forms.extras import SelectDateWidget
 from django.core.files.storage import FileSystemStorage
 from django.core.urlresolvers import reverse
+from django.conf import settings
+
 from django.template import Template
+
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from django.conf import settings
+from uhai.core.forms import *
+
 import fields
 from utils import now
 
 from models import *
 
+#Django Crispy Forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
         
-class ProgramForm(forms.ModelForm):
+class ProgramForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'
@@ -53,15 +60,15 @@ class ProgramForm(forms.ModelForm):
             'expected_outcome_notes': forms.Textarea
         }
 		
-class ProgramWorkflowForm(forms.ModelForm):
+class ProgramWorkflowForm(BaseModelForm):
     class Meta:
         model = ProgramWorkflow
 
-class ProgramWorkflowStateForm(forms.ModelForm):
+class ProgramWorkflowStateForm(BaseModelForm):
     class Meta:
         model = ProgramWorkflowState
 
-class EnrolledProgramForm(forms.ModelForm):
+class EnrolledProgramForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'
@@ -140,7 +147,7 @@ date_filter_field = forms.ChoiceField(label=" ", required=False,
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 									  
-class QuestionnaireForm(forms.ModelForm):
+class QuestionnaireForm(BaseModelForm):
 	class Meta:
 		model = QuestionnaireResponseEntry
 		exclude = ("questionnaire", "user", "entry_time")
@@ -238,16 +245,17 @@ class QuestionnaireForm(forms.ModelForm):
 				
 		self.helper.add_layout(Layout(*layouts))
 
-	def save(self, **kwargs):
+	def save(self, request=None, **kwargs):
 		"""
 		Get/create a QuestionnaireResponseEntry instance and assign submitted values to
 		related QuestionnaireFieldResponseEntry instances for each questionnaire field.
 		"""
-		entry = super(QuestionnaireForm, self).save(commit=False)
+		entry = super(QuestionnaireForm, self).save(commit=False, request=request)
 		entry.questionnaire = self.questionnaire
 		entry.user = self.request.user
 		entry.entry_time = now()
 		entry.save()
+        
 		entry_fields = entry.fields.values_list("field_id", flat=True)
 		new_entry_fields = []
 		for field in self.questionnaire_fields:
@@ -260,7 +268,7 @@ class QuestionnaireForm(forms.ModelForm):
 			if field.id in entry_fields:
 				field_entry = entry.fields.get(field_id=field.id)
 				field_entry.value = value
-				field_entry.save()
+				field_entry.save(request=request)
 			else:
 				new = {"entry": entry, "field_id": field.id, "value": value}
 				new_entry_fields.append(QuestionnaireFieldResponseEntry(**new))
@@ -269,7 +277,7 @@ class QuestionnaireForm(forms.ModelForm):
 				QuestionnaireFieldResponseEntry.objects.bulk_create(new_entry_fields)
 			else:
 				for field_entry in new_entry_fields:
-					field_entry.save()
+					field_entry.save(request=request)
 		return entry
 
 	def email_to(self):
@@ -478,3 +486,7 @@ class ResponseQuestionnaire(forms.Form):
             if not csv:
                 current_row.insert(0, current_entry)
             yield current_row
+
+class FieldLevelForm(BaseModelForm):
+    class Meta:
+        model = FieldLevel

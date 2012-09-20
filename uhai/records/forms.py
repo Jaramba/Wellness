@@ -1,11 +1,18 @@
 from django import forms
-from models import *
+from models import (
+    Encounter, EncounterTest, Order,
+    ProblemTest, Problem, ProblemTest,
+    Diagnosis
+)
+
+from uhai.core.forms import BaseModelForm
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
 
 from django.contrib.auth.models import User
 
-class EncounterForm(forms.ModelForm):
+class EncounterForm(BaseModelForm):
 	user = forms.ModelChoiceField(queryset=User.objects.filter(patient__pk__isnull=False), empty_label=u"", label="Patient")
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
@@ -51,7 +58,7 @@ class EncounterForm(forms.ModelForm):
 			obj.save()
 		return obj
 		
-class PatientEncounterForm(forms.ModelForm):
+class PatientEncounterForm(BaseModelForm):
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
 		self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
@@ -87,7 +94,7 @@ class PatientEncounterForm(forms.ModelForm):
 			'observation_notes' : forms.Textarea,
 		}
 
-class OrderForm(forms.ModelForm):
+class OrderForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = '%s-form' % self._meta.model._meta.object_name
@@ -118,7 +125,7 @@ class OrderForm(forms.ModelForm):
             'concept_notes': forms.Textarea
         }
                 
-class ProblemForm(forms.ModelForm):
+class ProblemForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'
@@ -150,7 +157,7 @@ class ProblemForm(forms.ModelForm):
             'side_effects' : forms.Textarea
         }
 		
-class DiagnosisForm(forms.ModelForm):
+class DiagnosisForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'
@@ -181,7 +188,7 @@ class DiagnosisForm(forms.ModelForm):
         }
 
 
-class ProblemTestForm(forms.ModelForm):
+class ProblemTestForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'
@@ -213,7 +220,7 @@ class ProblemTestForm(forms.ModelForm):
         }
 
 
-class EncounterTestForm(forms.ModelForm):
+class EncounterTestForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'
@@ -244,7 +251,7 @@ class EncounterTestForm(forms.ModelForm):
             'notes': forms.Textarea,
         }
 
-class EncounterTestResultForm(forms.ModelForm):
+class EncounterTestResultForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'problem-form'

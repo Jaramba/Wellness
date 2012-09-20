@@ -1,5 +1,7 @@
 from django.db.models.base import ModelBase
 
+from django.forms.models import modelform_factory
+
 from csv import writer
 from mimetypes import guess_type
 from os.path import join
@@ -16,9 +18,9 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ungettext, ugettext_lazy as _
 
-from forms import *
+from uhai.core.admin import BaseModelAdmin, BaseTabularInline
 
-from models import Field, QuestionnaireResponseEntry, QuestionnaireFieldResponseEntry
+import forms
 import models
 
 from django.conf import settings
@@ -34,15 +36,15 @@ except ImportError:
 fs = FileSystemStorage(location=settings.UPLOAD_ROOT)
 form_admin_filter_horizontal = ()
 
-class FieldTabularInlineAdmin(admin.TabularInline):
-    model = Field
+class FieldTabularInlineAdmin(BaseTabularInline):
+    model = models.Field
     exclude = ('slug', )
     
-class FieldLevelTabularInlineAdmin(admin.TabularInline):
-    model = FieldLevel
+class FieldLevelTabularInlineAdmin(BaseTabularInline):
+    model = models.FieldLevel
     exclude = ('slug', )
     
-class FieldAdmin(admin.ModelAdmin):
+class FieldAdmin(BaseModelAdmin):
     exclude = ('slug', )
     inlines = (FieldLevelTabularInlineAdmin,)
     search_fields = ("label", "slug", "choices", "placeholder_text")
@@ -51,7 +53,7 @@ class FieldAdmin(admin.ModelAdmin):
     list_display = ("label", "choices", "required", "visible", "default")
     list_display_links = ("label",)
 
-class QuestionnaireAdmin(admin.ModelAdmin):
+class QuestionnaireAdmin(BaseModelAdmin):
     inlines = (FieldTabularInlineAdmin,)
     list_display = ("title", "status", "publish_date",
                     "expiry_date", "total_entries", "admin_links")
@@ -121,7 +123,7 @@ class QuestionnaireAdmin(admin.ModelAdmin):
                 (Form._meta.app_label, Form.__name__.lower()), args=(form_id,))
             return HttpResponseRedirect(change_url)
         questionnaire = get_object_or_404(Form, id=form_id)
-        entries_questionnaire = ResponseForm(questionnaire, request, request.POST or None)
+        entries_questionnaire = forms.ResponseForm(questionnaire, request, request.POST or None)
         delete_entries_perm = "%s.delete_formentry" % models.QuestionnaireResponseEntry._meta.app_label
         can_delete_entries = request.user.has_perm(delete_entries_perm)
         submitted = entries_form.is_valid() or show or export or export_xls
@@ -242,21 +244,21 @@ admin.site.register(models.QuestionnaireResponseEntry)
 admin.site.register(models.Field, FieldAdmin)
 admin.site.register(models.QuestionnaireFieldResponseEntry)
 
-class ProgramWorkflowStateInline(admin.TabularInline):
+class ProgramWorkflowStateInline(BaseTabularInline):
     model = models.ProgramWorkflowState
     extra = 1
 
-class EnrolledProgramInline(admin.TabularInline):
+class EnrolledProgramInline(BaseTabularInline):
     model = models.EnrolledProgram
     extra = 1
     
-class ProgramAdmin(admin.ModelAdmin):
+class ProgramAdmin(BaseModelAdmin):
     model = models.Program
     list_display = [f.name for f in models.Program._meta.fields]
     inlines = [EnrolledProgramInline]
 admin.site.register(models.Program, ProgramAdmin)
 
-class ProgramWorkflowAdmin(admin.ModelAdmin):
+class ProgramWorkflowAdmin(BaseModelAdmin):
     model = models.ProgramWorkflow
     list_display = [f.name for f in models.ProgramWorkflow._meta.fields]
     inlines = [ProgramWorkflowStateInline]
@@ -272,9 +274,15 @@ for M in [x
                 ]
         )
 ]:
-    class ItemAdmin(admin.ModelAdmin):
-        model = M
-        list_display = [f.name for f in M._meta.fields if not f.name in ('description', 'is_public','concept_notes','expected_outcome_notes')]
+    class ItemAdmin(BaseModelAdmin):
+        model = M     
+        #form = forms.__dict__.get(M.__name__ + 'Form', 
+        #        modelform_factory(M, form=forms.BaseModelForm)
+        #)
+        list_display = [f.name for f in M._meta.fields if not f.name in (
+            'description', 'is_public','concept_notes','expected_outcome_notes',
+            'model_owner', 'site', 'access_control_list'
+        )]
         inlines = []
         
     try:

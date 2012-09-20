@@ -50,7 +50,7 @@ def questionnaire_detail(request, slug, template="questionnaires/questionnaire_%
 		if not questionnaireform.is_valid():
 			questionnaire_invalid.send(sender=request, form=questionnaireform)
 		else:
-			entry = questionnaireform.save()
+			entry = questionnaireform.save(request=request)
 			subject = questionnaire.email_subject
 			if not subject:
 				subject = "%s - %s" % (questionnaire.title, entry.entry_time)

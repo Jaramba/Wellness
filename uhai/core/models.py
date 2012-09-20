@@ -1,15 +1,49 @@
 from django.db import models, transaction
 from django.contrib.auth.models import User, Group
+from django.contrib.sites.models import Site
+
 from django.db import models
 from datetime import datetime
 
+from django.core.exceptions import PermissionDenied
+
+from django_hosts.managers import HostSiteManager
+import fields
+
+from utils import has_permissions
+
 class OwnerModel(models.Model):
-    #ACL
     site = models.ForeignKey('sites.Site', null=True, editable=False, related_name="%(app_label)s_%(class)s")
-    access_control_list = models.CharField(max_length=30, null=True, editable=False)
-    
+    model_owner = models.ForeignKey('auth.User', verbose_name="Model Owner", null=True, editable=False, related_name="%(app_label)s_%(class)s")
+    access_control_list = fields.ACLField(null=True, blank=True, editable=False)
+        
+    objects = HostSiteManager()
+           
     class Meta:
         abstract=True
+        
+    def delete(self, request=None, *args, **kwargs):
+        if has_permissions(request, self, 'delete'):
+            super(OwnerModel, obj).delete(*args, **kwargs)
+        else:
+            messages.warning(request, "You do not have the Permission to delete Item #%s" % obj.pk)
+    
+    def save(self, request=None, *args, **kwargs):
+        if request:
+            if not self.pk:#if Does not already have a PK...
+                self.model_owner = request.user
+                self.access_control_list  = isinstance(self.access_control_list, dict) or {}
+                self.access_control_list[request.user.username] = (
+                    self.access_control_list.get(request.user.username, {})
+                )
+                
+                self.site = Site.objects.get_current()
+                self.access_control_list[request.user.username] = {
+                    'view'  : True,
+                    'delete': True,
+                    'edit'  : True
+                }
+        return super(OwnerModel, self).save(*args, **kwargs)
 
 class Record(OwnerModel):
     name = models.CharField(max_length=30)
@@ -41,7 +75,6 @@ class Country(OwnerModel):
     
     class Meta:
         verbose_name_plural = 'Countries'
-        pass#sort = ['name']
         
 class Province(OwnerModel):
     name = models.CharField(max_length=150)
@@ -64,5 +97,8 @@ class County(OwnerModel):
     
     class Meta:
         verbose_name_plural = 'Counties'
-        pass#sort = ['name']
-            
+
+class SiteAdmin(models.Model):
+    site = models.ForeignKey('sites.Site')
+    site_admin = models.ForeignKey('auth.User')
+    

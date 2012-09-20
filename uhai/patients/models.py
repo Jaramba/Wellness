@@ -1,4 +1,4 @@
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
 from uhai.core.utils import pkgen
 from uhai.userprofile.models import *
 
@@ -72,12 +72,12 @@ class Relationship(OwnerModel):
         return '%s and %s (%s)' % (self.person_a, self.person_b, self.relationship)
     
     @transaction.commit_on_success
-    def save(self, force_insert=False, force_update=False):
+    def save(self, *args, **kwargs):
         if self.person_a_id and self.person_b_id and (self.person_a_id == self.person_b_id):
             class CircularRelationException(Exception):pass
             raise CircularRelationException('Sorry. You cannot set yourself as a relation')
         else:
-            super(Relationship, self).save(force_insert, force_update)
+            super(Relationship, self).save(*args, **kwargs)
 
 class PatientEmergencyContact(OwnerModel):
     patient = models.ForeignKey('auth.User', related_name="patient_user")

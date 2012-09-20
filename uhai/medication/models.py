@@ -1,5 +1,7 @@
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
 from uhai.reminders.models import Event
+
+from django.db import models
 
 class Medication(OwnerModel):
     MEDICATION_TYPE=[

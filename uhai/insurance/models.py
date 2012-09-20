@@ -1,6 +1,5 @@
 from django.db import models
-from uhai.records.models import Record
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
 
 class Company(OwnerModel):
     name = models.CharField(max_length=50)

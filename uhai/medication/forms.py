@@ -1,10 +1,16 @@
-from django import forms
-from models import *
+from uhai.core.forms import *
+from models import (
+    Medication, 
+    Immunization,
+    Prescription
+)
+
 from crispy_forms.helper import *
 from crispy_forms.layout import *
+
 from django.contrib.auth.models import User
 
-class MedicationForm(forms.ModelForm):
+class MedicationForm(BaseModelForm):
     def __init__(self, *args, **kwargs):
         self.helper = FormHelper()
         self.helper.form_id = 'patient-insurance-form'
@@ -42,7 +48,7 @@ class MedicationForm(forms.ModelForm):
             'side_effects' : forms.Textarea
         }
 
-class PrescriptionForm(forms.ModelForm):
+class PrescriptionForm(BaseModelForm):
 	user = forms.ModelChoiceField(queryset=User.objects.filter(patient__pk__isnull=False), empty_label=u"", label="Patient")
 	start_time = forms.DateTimeField(label="Date Prescribed")
 	def __init__(self, *args, **kwargs):
@@ -84,7 +90,7 @@ class PrescriptionForm(forms.ModelForm):
 			'notes' : forms.Textarea
 		}
 
-class PatientPrescriptionForm(forms.ModelForm):
+class PatientPrescriptionForm(BaseModelForm):
 	start_time = forms.DateTimeField(label="Date Prescribed")
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()
@@ -121,7 +127,7 @@ class PatientPrescriptionForm(forms.ModelForm):
 			'notes' : forms.Textarea
 		}
 		
-class ImmunizationForm(forms.ModelForm):
+class ImmunizationForm(BaseModelForm):
 	user = forms.ModelChoiceField(queryset=User.objects.filter(patient__pk__isnull=False), empty_label=u"", label="Patient")
 	start_time = forms.DateTimeField(label="Date of Administered")
     	
@@ -168,8 +174,9 @@ class ImmunizationForm(forms.ModelForm):
 			'notes': forms.Textarea
 		}
 	
-	def save(self, commit=True):
-		obj = super(ImmunizationForm, self).save(commit=False)
+	def save(self, commit=True, *args, **kwargs):
+		obj = super(ImmunizationForm, self).save(commit=commit, *args, **kwargs)
+        
 		obj.end_time = obj.start_time
 		obj.text = 'Vacination for %s' % obj.user
 		
@@ -177,7 +184,7 @@ class ImmunizationForm(forms.ModelForm):
 			obj.save()
 		return obj
 
-class PatientImmunizationForm(forms.ModelForm):
+class PatientImmunizationForm(BaseModelForm):
 	start_time = forms.DateTimeField(label="Date of Administered")
 	def __init__(self, *args, **kwargs):
 		self.helper = FormHelper()

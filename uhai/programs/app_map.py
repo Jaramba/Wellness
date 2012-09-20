@@ -6,6 +6,7 @@ APP_MAP={
 		'model':Program,
 		'forms':{
 			'patient': ProgramForm,
+            'health-worker': ProgramForm,
 		},
 		'actions':'CRUDL',
 	},

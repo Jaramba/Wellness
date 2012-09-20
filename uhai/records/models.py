@@ -1,6 +1,6 @@
 from django.db import models
 
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
 from uhai.reminders.models import Event
 
 from datetime import datetime

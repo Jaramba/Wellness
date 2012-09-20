@@ -3,15 +3,15 @@ from django.db import models
 
 from django.template.defaultfilters import slugify
 
-from uhai.core.models import *
+from uhai.core.models import OwnerModel, MetaData
 
-class Title(OwnerModel):
+class Title(models.Model):
 	name = models.CharField(max_length=50)
 	
 	def __unicode__(self):
 		return self.name
 
-class UserProfile(OwnerModel):
+class UserProfile(models.Model):
     '''
     Not Everyone is a patient; This will act as a staging profile, until someone
     gets an account.... hmmm, should we create an inactive user or just this?
@@ -74,11 +74,10 @@ class UserProfile(OwnerModel):
                 ) if i
             ])
 
-#User Hacks... But everybody is a patient
-User.is_healthworker = property(lambda self: self.groups.filter(name='Health Worker').count())
-User.is_employer = property(lambda self: self.groups.filter(name='Employer').count())
-User.is_admin = property(lambda self: self.groups.filter(name='Admin').count())
-User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agent').count())
+#User Hacks... But everybody is a potential patient
+User.is_healthworker = property(lambda self: self.groups.filter(name='Health Worker').exists())
+User.is_employer = property(lambda self: self.groups.filter(name='Employer').exists())
+User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agent').exists())
 
 User.full_name = property(lambda self: self.profile.full_name)
 User.__unicode__ = lambda self: self.full_name if self.full_name.split(' ') else self.username

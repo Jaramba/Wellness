@@ -4,24 +4,26 @@ from uhai.insurance.models import PatientInsurance
 from uhai.providers.models import PatientProvider
 from uhai.programs.models import EnrolledProgram
 
-class PatientInsuranceAdmin(admin.TabularInline):
+from uhai.core.admin import BaseModelAdmin, BaseTabularInline
+
+class PatientInsuranceAdmin(BaseTabularInline):
     model = PatientInsurance
     extra = 0
 	
-class PatientProviderAdmin(admin.TabularInline):
+class PatientProviderAdmin(BaseTabularInline):
     model = PatientProvider
     extra = 0
 
-class EnrolledProgramAdmin(admin.TabularInline):
+class EnrolledProgramAdmin(BaseTabularInline):
     model = EnrolledProgram
     extra = 0
 	
-class RelationshipInline(admin.TabularInline):
+class RelationshipInline(BaseTabularInline):
 	model = Relationship
 	fk_name = 'person_a'
 	extra = 0
 
-class PatientAdmin(admin.ModelAdmin):
+class PatientAdmin(BaseModelAdmin):
 	model = Patient
 	readonly_fields = [f.name for f in Patient._meta.fields if not f.name == 'id']
 

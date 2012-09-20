@@ -1,25 +1,34 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Group
+from django.contrib.sites.models import Site
+from django.contrib.sites.admin import SiteAdmin
+
+from uhai.core.models import SiteAdmin as SiteAdministrator
 
 from uhai.core.utils import *
 from uhai.patients.models import Patient
 from uhai.providers.models import HealthWorker
 
+from uhai.core.admin import BaseStackedInline
+
 from forms import *
 from models import *
 
-class UserProfileAdmin(admin.StackedInline):
+class UserProfileAdmin(BaseStackedInline):
     model = UserProfile
     extra = 1
-
-class HealthWorkerAdmin(admin.StackedInline):
+    fk_name = 'user'
+    
+class HealthWorkerAdmin(BaseStackedInline):
     model = HealthWorker
     extra = 0
+    fk_name = 'user'
 	
-class PatientInlineAdmin(admin.StackedInline):
-	model = Patient
-	extra = 0
+class PatientInlineAdmin(BaseStackedInline):
+    model = Patient
+    extra = 0
+    fk_name = 'user'
 
 '''[profile.id, 'PAT-%s-%s' % (datetime.now().strftime('%Y'), get_random_string(4))]'''
 
@@ -48,6 +57,16 @@ class UserUserProfileAdmin(UserAdmin):
 	form = UserChangeForm
 	
 	actions = [deactivate]
-   
+
+class SiteAdministratorInline(admin.TabularInline):
+    model = SiteAdministrator
+    extra = 1
+    
+class SiteAdminAdmin(SiteAdmin):	
+	inlines = [SiteAdministratorInline]
+    
 admin.site.unregister(User)
+admin.site.unregister(Site)
+
+admin.site.register(Site, SiteAdminAdmin)
 admin.site.register(User, UserUserProfileAdmin)
