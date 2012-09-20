@@ -106,8 +106,13 @@ MIDDLEWARE_CLASSES = [
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'pagination.middleware.PaginationMiddleware'
+	'pagination.middleware.PaginationMiddleware',
+    'django_hosts.middleware.HostsMiddleware',
 ]
+
+ROOT_HOSTCONF = "uhai.conf.hosts"
+PARENT_HOST = "uhai.synacor.co.ke"
+DEFAULT_HOST = "default"
 
 ANONYMOUS_USER_ID = -1
 
