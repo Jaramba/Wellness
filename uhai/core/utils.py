@@ -25,21 +25,25 @@ def perform_raw_sql(sql, data=[]):
 	cursor.execute(sql, data)
 	transaction.commit_unless_managed()
 
-def has_permissions(request, obj, action):
+def has_permissions(request, obj=None, action=None):
     '''
     If the User is the owner... Let him at it...
     If the Usrt is the Super User, Let him at it...
     Else, check the group, and finally the check at the ACL...
     '''
-    if (request.user == obj.model_owner) or request.user.is_superuser:
-        return True
-    #TODO:Check if the Person's Group belongs to this site...
-    #Also, check if the User Group level is granular; can a doctor prescribe
-    #Someone else's patient.... Lovely.
+    if obj:
+        if (request.user == obj.model_owner) or request.user.is_superuser:
+            return True
+        #TODO:Check if the Person's Group belongs to this site...
+        #Also, check if the User Group level is granular; can a doctor prescribe
+        #Someone else's patient.... Lovely.
 
-    if obj.access_control_list:
-        return obj.access_control_list \
-            .get(request.user.username).get(action) or False
+        if obj.access_control_list:
+            return obj.access_control_list \
+                .get(request.user.username, {}).get(action, False)
+            
+    return False
+    
 
 def get_crud_urls(views_module='', preurl='', posturl='', app_map={}, items=[], exclude=[]):
 	'''

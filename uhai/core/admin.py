@@ -15,6 +15,8 @@ from django.forms.models import (inlineformset_factory, BaseInlineFormSet)
 import forms
 import models
 
+from utils import has_permissions
+
 from uhai.core import forms as core_forms
 
 from django.forms.models import modelform_factory
@@ -171,14 +173,12 @@ class BaseModelAdmin(admin.ModelAdmin):
         obj.delete(request=request)
         
     def has_change_permission(self, request, obj=None):
-        class_permission = super(BaseModelAdmin, self).has_change_permission(request, obj=obj)
-        return class_permission if not obj else has_permissions(request, obj, 'edit') or \
-            class_permission
+        return has_permissions(request, obj, 'edit') if obj else \
+            super(BaseModelAdmin, self).has_change_permission(request)
 
     def has_delete_permission(self, request, obj=None):
-        class_permission = super(BaseModelAdmin, self).has_change_permission(request, obj=obj)
-        return class_permission if not obj else has_permissions(request, obj, 'delete') or \
-            class_permission
+        return has_permissions(request, obj, 'delete') if obj else \
+            super(BaseModelAdmin, self).has_change_permission(request)
     
 class BaseTabularInline(admin.TabularInline):
     actions = [delete_selected]
@@ -188,14 +188,12 @@ class BaseTabularInline(admin.TabularInline):
         obj.save(request=request)
         
     def has_change_permission(self, request, obj=None):
-        class_permission = super(BaseTabularInline, self).has_change_permission(request, obj=obj)
-        return class_permission if not obj else has_permissions(request, obj, 'edit') or \
-            class_permission
+        return has_permissions(request, obj, 'edit') if obj else \
+            super(BaseTabularInline, self).has_change_permission(request)
 
     def has_delete_permission(self, request, obj=None):
-        class_permission = super(BaseTabularInline, self).has_change_permission(request, obj=obj)
-        return class_permission if not obj else has_permissions(request, obj, 'delete') or \
-            class_permission
+        return has_permissions(request, obj, 'delete') if obj else \
+            super(BaseTabularInline, self).has_change_permission(request)
         
 class BaseStackedInline(admin.StackedInline):
     actions = [delete_selected]
@@ -204,15 +202,13 @@ class BaseStackedInline(admin.StackedInline):
     def save_model(self, request, obj, form, change):
         obj.save(request=request)
         
-    def has_change_permission(self, request, obj=None):
-        class_permission = super(BaseStackedInline, self).has_change_permission(request, obj=obj)
-        return class_permission if not obj else has_permissions(request, obj, 'edit') or \
-            class_permission
+    def has_change_permission(self, request, obj=None):        
+        return has_permissions(request, obj, 'edit') if obj else \
+            super(BaseStackedInline, self).has_change_permission(request)
 
     def has_delete_permission(self, request, obj=None):
-        class_permission = super(BaseStackedInline, self).has_change_permission(request, obj=obj)
-        return class_permission if not obj else has_permissions(request, obj, 'delete') or \
-            class_permission
+        return has_permissions(request, obj, 'delete') if obj else \
+            super(BaseStackedInline, self).has_change_permission(request)
     
 for M in [models.Country, models.County, models.Province]:
     class ItemAdmin(BaseModelAdmin):

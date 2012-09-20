@@ -254,7 +254,9 @@ class EnrolledProgramInline(BaseTabularInline):
     
 class ProgramAdmin(BaseModelAdmin):
     model = models.Program
-    list_display = [f.name for f in models.Program._meta.fields]
+    list_display = [f.name for f in models.Program._meta.fields if f.name not in (
+        'model_owner', 'site', 'access_control_list'
+    )]
     inlines = [EnrolledProgramInline]
 admin.site.register(models.Program, ProgramAdmin)
 

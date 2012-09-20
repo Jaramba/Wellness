@@ -1,8 +1,8 @@
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 
 from django.conf import settings
-
 from django.contrib.auth.decorators import login_required
 
 from django.http import Http404, HttpResponseRedirect
@@ -35,6 +35,7 @@ def model_view(request, pk=None,
            
     if not queryset:
         try:
+            print request.site
             queryset = model_class.objects.by_request(request)
         except AttributeError, e:
             queryset =  model_class.objects.filter(site=settings.SITE_ID)

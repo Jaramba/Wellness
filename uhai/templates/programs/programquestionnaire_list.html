@@ -19,14 +19,6 @@
 					<td><a href="{% url program-detail programquestionnaire.program.pk %}">{{programquestionnaire.program}}</a></td>
 					<td>{{programquestionnaire.publish_date}}</td>
 					<td>{{programquestionnaire.expiry_date}}</td>
-					{% if not request.session.use_page_as == 'patient' %}					
-						<td>
-							<div class="btn-group">
-								<a class="btn btn-info" href="{% url programquestionnaire-edit programquestionnaire.pk %}">Edit</a>
-								<a class="btn btn-danger" href="{% url programquestionnaire-delete programquestionnaire.pk %}">Edit</a>
-							</div>
-						</td>
-					{% endif %}
 				</tr>
 			{% empty %}
 				<tr><td colspan="2">No Questionnaire Responses Found</td></tr>
