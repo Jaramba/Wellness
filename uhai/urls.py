@@ -28,7 +28,6 @@ urlpatterns += patterns('',
 	url(r'^programs/', include('uhai.programs.urls')),
 	url(r'^medication/', include('uhai.medication.urls')),
 	
-	url(r'^messages/', include('messages.urls')),
 	url(r'^search/', include('uhai.search.urls')),
 	url(r'^sms/', include('uhai.sms.urls')),
 	

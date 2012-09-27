@@ -39,10 +39,9 @@
 								<li class="navbar-item" class="active">
 									<a href="{% url home %}">Home</a>
 								</li>
-								<li class="navbar-item"><a href="{% url messages_inbox %}">Messages</a></li>
 								{% if request.session.use_page_as == 'health-worker' %}
 									<li class="navbar-item" id="schedule-menu">
-										<a href="{% url calendar %}">Schedule</a>
+										<a href="{% url calendar %}">Reminders</a>
 									</li>
 									<li class="navbar-item" id="patient-menu">
 										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
@@ -52,7 +51,7 @@
 										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
 									</li>
 								{% else %}
-									<li class="navbar-item"><a href="{% url calendar %}">Schedule</a></li>
+									<li class="navbar-item"><a href="{% url calendar %}">Reminders</a></li>
 									<li class="navbar-item"><a href="{% url records %}">Records</a></li>
 									<li class="navbar-item"><a href="{% url programs %}">Programs</a></li>
 								{% endif %}								

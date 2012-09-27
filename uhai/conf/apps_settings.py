@@ -22,8 +22,6 @@ INSTALLED_APPS = [
 	
 	#apps
 	'crispy_forms',
-	'messages',
-	'pagination',
     'cloudinary',
 	
 	# API Tools
@@ -106,7 +104,6 @@ MIDDLEWARE_CLASSES = [
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'pagination.middleware.PaginationMiddleware',
     'django_hosts.middleware.HostsMiddleware',
 ]
 
