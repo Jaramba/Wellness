@@ -3,17 +3,45 @@
     "pk": 1,
     "model": "core.country",
     "fields": {
+      "model_owner": 0,
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
       "iso": "KE",
+      "site": 1,
       "name": "Kenya"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.country",
+    "fields": {
+      "model_owner": 0,
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "iso": "SA",
+      "site": 1,
+      "name": "South Africa"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "core.country",
+    "fields": {
+      "model_owner": 0,
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "iso": "UG",
+      "site": 1,
+      "name": "Uganda"
     }
   },
   {
     "pk": 1,
     "model": "core.province",
     "fields": {
+      "name": "Nairobi",
+      "model_owner": 0,
       "country": 1,
-      "iso": "Nrb",
-      "name": "Nairobi"
+      "site": 1,
+      "iso": "NRB",
+      "access_control_list": "{'all': {'edit': True, 'view': True, 'delete': True}}"
     }
   },
   {
@@ -21,8 +49,27 @@
     "model": "core.county",
     "fields": {
       "province": 1,
-      "iso": "Emb",
-      "name": "Embakassi"
+      "name": "Embakassi",
+      "model_owner": 0,
+      "site": 1,
+      "iso": "Emba",
+      "access_control_list": "{'all': {'edit': True, 'view': True, 'delete': True}}"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "core.siteadmin",
+    "fields": {
+      "site_admin": 5,
+      "site": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "core.siteadmin",
+    "fields": {
+      "site_admin": 5,
+      "site": 2
     }
   }
 ]

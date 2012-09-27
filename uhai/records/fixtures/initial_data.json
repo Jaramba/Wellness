@@ -129,8 +129,8 @@
       "icd10_block": 1,
       "cause": null
     }
-  },
-  {
+  }, 
+  {  
     "pk": 6,
     "model": "records.problem",
     "fields": {
@@ -143,7 +143,7 @@
       "cause": null
     }
   },
-  {
+  { 
     "pk": 7,
     "model": "records.problem",
     "fields": {

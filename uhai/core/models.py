@@ -29,20 +29,30 @@ class OwnerModel(models.Model):
             messages.warning(request, "You do not have the Permission to delete Item #%s" % obj.pk)
     
     def save(self, request=None, *args, **kwargs):
-        if request:
-            if not self.pk:#if Does not already have a PK...
-                self.model_owner = request.user
+        if not self.pk:#if Does not already have a PK...
+            if request:
                 self.access_control_list  = isinstance(self.access_control_list, dict) or {}
-                self.access_control_list[request.user.username] = (
-                    self.access_control_list.get(request.user.username, {})
-                )
-                
+                    
+                if request.user.is_superuser:
+                    user = User.objects.get(pk=0)
+                    self.model_owner = user
+                    self.access_control_list['system'] = {
+                        'view'  : True,
+                        'delete': False,
+                        'edit'  : False
+                    }
+                else:
+                    self.model_owner = request.user
+                    self.access_control_list[request.user.username] = (
+                        self.access_control_list.get(request.user.username, {})
+                    )
+                    self.access_control_list[request.user.username] = {
+                        'view'  : True,
+                        'delete': True,
+                        'edit'  : True
+                    }
                 self.site = Site.objects.get_current()
-                self.access_control_list[request.user.username] = {
-                    'view'  : True,
-                    'delete': True,
-                    'edit'  : True
-                }
+                
         return super(OwnerModel, self).save(*args, **kwargs)
 
 class Record(OwnerModel):

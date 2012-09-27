@@ -38,7 +38,7 @@ class UserProfile(models.Model):
     user = models.ForeignKey('auth.User', unique=True)
     national_id = models.CharField(max_length=25)
 
-    main_role = models.ForeignKey(Group, null=True)
+    main_role = models.ForeignKey(Group, null=True, blank=True)
         
     date_edited = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now=True)
@@ -79,8 +79,20 @@ User.is_healthworker = property(lambda self: self.groups.filter(name='Health Wor
 User.is_employer = property(lambda self: self.groups.filter(name='Employer').exists())
 User.is_insuranceagent = property(lambda self: self.groups.filter(name='Insurance Agent').exists())
 
-User.full_name = property(lambda self: self.profile.full_name)
-User.__unicode__ = lambda self: self.full_name if self.full_name.split(' ') else self.username
+User.full_name = property(lambda self: self.profile.full_name if self.profile else None)
+User.__unicode__ = (
+    lambda (self): 
+        self.full_name
+        
+        if (
+            None 
+            if not self.full_name
+            else
+                self.full_name.split(' ')
+        )        
+        else 
+            self.username
+)
 
 def get_profile(self):
 	if not hasattr(self, '_profile_cache'):

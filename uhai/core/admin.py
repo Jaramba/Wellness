@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User, Group
 
+from django.contrib.admin.views.main import ChangeList
+
 from django.core.exceptions import PermissionDenied
 from django.contrib.admin import helpers
 from django.contrib.admin.util import get_deleted_objects, model_ngettext
@@ -15,83 +17,24 @@ from django.forms.models import (inlineformset_factory, BaseInlineFormSet)
 import forms
 import models
 
-from utils import has_permissions
+from utils import has_permissions, delete_selected
 
 from uhai.core import forms as core_forms
 
+from uhai.core.models import OwnerModel
+from uhai.core.forms import BaseModelForm
+
 from django.forms.models import modelform_factory
-
-def delete_selected(modeladmin, request, queryset):
-    opts = modeladmin.model._meta
-    app_label = opts.app_label
-
-    # Check that the user has delete permission for the actual model
-    if not modeladmin.has_delete_permission(request):
-        raise PermissionDenied
-
-    using = router.db_for_write(modeladmin.model)
-
-    # Populate deletable_objects, a data structure of all related objects that
-    # will also be deleted.
-    deletable_objects, perms_needed, protected = get_deleted_objects(
-        queryset, opts, request.user, modeladmin.admin_site, using)
-
-    # The user has already confirmed the deletion.
-    # Do the deletion and return a None to display the change list view again.
-    if request.POST.get('post'):
-        if perms_needed:
-            raise PermissionDenied
-        n = queryset.count()
-        if n:
-            for obj in queryset:
-                obj_display = force_unicode(obj)
-                modeladmin.log_deletion(request, obj, obj_display)
-            for o in queryset:
-                o.delete(request=request)
-            modeladmin.message_user(request, _("Successfully deleted %(count)d %(items)s.") % {
-                "count": n, "items": model_ngettext(modeladmin.opts, n)
-            })
-        # Return None to display the change list page again.
-        return None
-
-    if len(queryset) == 1:
-        objects_name = force_unicode(opts.verbose_name)
-    else:
-        objects_name = force_unicode(opts.verbose_name_plural)
-
-    if perms_needed or protected:
-        title = _("Cannot delete %(name)s") % {"name": objects_name}
-    else:
-        title = _("Are you sure?")
-
-    context = {
-        "title": title,
-        "objects_name": objects_name,
-        "deletable_objects": [deletable_objects],
-        'queryset': queryset,
-        "perms_lacking": perms_needed,
-        "protected": protected,
-        "opts": opts,
-        "app_label": app_label,
-        'action_checkbox_name': helpers.ACTION_CHECKBOX_NAME,
-    }
-
-    # Display the confirmation page
-    return TemplateResponse(request, modeladmin.delete_selected_confirmation_template or [
-        "admin/%s/%s/delete_selected_confirmation.html" % (app_label, opts.object_name.lower()),
-        "admin/%s/delete_selected_confirmation.html" % app_label,
-        "admin/delete_selected_confirmation.html"
-    ], context, current_app=modeladmin.admin_site.name)
-
-delete_selected.short_description = _("Delete selected %(verbose_name_plural)s")
 
 class CoreBaseInlineFormSet(BaseInlineFormSet):
     def __init__(self, *args, **kwargs):        
         super(CoreBaseInlineFormSet, self).__init__(*args, **kwargs)
 
     def save_existing(self, form, instance, commit=True, request=None):
-        """Saves and returns an existing model instance for the given form."""
-        return form.save(commit=commit, request=request)
+        if issubclass(type(form), BaseModelForm):
+            return form.save(commit=commit, request=request)
+        else:
+            return form.save(commit=commit)
         
     def save_existing_objects(self, commit=True, request=None):
         self.changed_objects = []
@@ -116,7 +59,12 @@ class CoreBaseInlineFormSet(BaseInlineFormSet):
                 continue
             if form.has_changed():
                 self.changed_objects.append((obj, form.changed_data))
-                saved_instances.append(self.save_existing(form, obj, commit=commit, request=request))
+                
+                if issubclass(type(obj), OwnerModel):
+                    saved_instances.append(self.save_existing(form, obj, commit=commit, request=request))                    
+                else:
+                    saved_instances.append(self.save_existing(form, obj, commit=commit))
+                
                 if not commit:
                     self.saved_forms.append(form)
         return saved_instances
@@ -128,7 +76,11 @@ class CoreBaseInlineFormSet(BaseInlineFormSet):
                 for form in self.saved_forms:
                     form.save_m2m()
             self.save_m2m = save_m2m
-        return self.save_existing_objects(commit, request=request) +  self.save_new_objects(commit, request=request)
+            
+        return (
+            self.save_existing_objects(commit, request=request) + 
+            self.save_new_objects(commit, request=request)
+        )        
             
     def save_new(self, form, commit=True, request=None):
         # Use commit=False so we can assign the parent key afterwards, then
@@ -161,54 +113,95 @@ class CoreBaseInlineFormSet(BaseInlineFormSet):
                 self.saved_forms.append(form)
         return self.new_objects
 
+class CoreChangeList(ChangeList):
+    def get_query_set(self, request):
+        return super(CoreChangeList, self).get_query_set(request)
+        
 class BaseModelAdmin(admin.ModelAdmin):
     actions = [delete_selected]
-    def save_model(self, request, obj, form, change):
-        obj.save(request=request)
-
+    def save_model(self, request, obj, form, change):        
+        if issubclass(type(obj), OwnerModel):
+            obj.save(request=request)
+        else:
+            obj.save()      
+    
     def save_formset(self, request, form, formset, change):
         formset.save(request=request)
-        
+    
+    def queryset(self, request):
+        queryset = super(BaseModelAdmin, self).queryset(request)
+        if issubclass(queryset.model, OwnerModel):
+            if request.user.is_superuser:
+                return queryset
+            else:
+                return queryset.filter(model_owner__id=request.user.id)        
+        return queryset
+                
     def delete_model(self, request, obj):
-        obj.delete(request=request)
-        
-    def has_change_permission(self, request, obj=None):
-        return has_permissions(request, obj, 'edit') if obj else \
-            super(BaseModelAdmin, self).has_change_permission(request)
+        if issubclass(type(obj), OwnerModel):
+            obj.delete(request=request)
+        else:
+            obj.delete()
+            
+    def has_change_permission(self, request, obj=None):        
+        sp = super(BaseModelAdmin, self).has_change_permission(request)        
+        return sp if not issubclass(type(obj), OwnerModel) else (
+            has_permissions(request, obj, 'edit') if obj else sp
+        )
 
     def has_delete_permission(self, request, obj=None):
-        return has_permissions(request, obj, 'delete') if obj else \
-            super(BaseModelAdmin, self).has_change_permission(request)
-    
+        sp = super(BaseModelAdmin, self).has_change_permission(request)        
+        return sp if not issubclass(type(obj), OwnerModel) else (
+            has_permissions(request, obj, 'delete') if obj else sp
+        )
+            
+    def get_changelist(self, request, **kwargs):
+        return CoreChangeList
+      
 class BaseTabularInline(admin.TabularInline):
     actions = [delete_selected]
     formset = CoreBaseInlineFormSet
         
     def save_model(self, request, obj, form, change):
-        obj.save(request=request)
+        if issubclass(type(obj), OwnerModel):
+            obj.save(request=request)
+        else:
+            obj.save()      
+    
         
     def has_change_permission(self, request, obj=None):
-        return has_permissions(request, obj, 'edit') if obj else \
-            super(BaseTabularInline, self).has_change_permission(request)
+        sp = super(BaseTabularInline, self).has_change_permission(request)        
+        return sp if not issubclass(type(obj), OwnerModel) else (
+            has_permissions(request, obj, 'edit') if obj else sp
+        )
 
     def has_delete_permission(self, request, obj=None):
-        return has_permissions(request, obj, 'delete') if obj else \
-            super(BaseTabularInline, self).has_change_permission(request)
+        sp = super(BaseTabularInline, self).has_change_permission(request)        
+        return sp if not issubclass(type(obj), OwnerModel) else (
+            has_permissions(request, obj, 'delete') if obj else sp
+        )
         
 class BaseStackedInline(admin.StackedInline):
     actions = [delete_selected]
     formset = CoreBaseInlineFormSet
     
     def save_model(self, request, obj, form, change):
-        obj.save(request=request)
-        
+        print "NES"
+        if issubclass(type(obj), OwnerModel):
+            obj.save(request=request)
+        else:
+            obj.save()      
+            
     def has_change_permission(self, request, obj=None):        
-        return has_permissions(request, obj, 'edit') if obj else \
-            super(BaseStackedInline, self).has_change_permission(request)
-
+        sp = super(BaseStackedInline, self).has_change_permission(request)        
+        return sp if not issubclass(type(obj), OwnerModel) else (
+            has_permissions(request, obj, 'edit') if obj else sp
+        )
     def has_delete_permission(self, request, obj=None):
-        return has_permissions(request, obj, 'delete') if obj else \
-            super(BaseStackedInline, self).has_change_permission(request)
+        sp = super(BaseStackedInline, self).has_change_permission(request)        
+        return sp if not issubclass(type(obj), OwnerModel) else (
+            has_permissions(request, obj, 'delete') if obj else sp
+        )
     
 for M in [models.Country, models.County, models.Province]:
     class ItemAdmin(BaseModelAdmin):

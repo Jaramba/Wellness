@@ -53,10 +53,17 @@ class HealthWorker(OwnerModel):
 		permissions = (
 			('view_healthworker', 'View health worker'),
 		)
-		verbose_name_plural = 'Health Worker Profile'
+		verbose_name = 'Health Worker'
 
 class PatientProvider(OwnerModel):
 	patient = models.ForeignKey('patients.Patient')
 	provider = models.ForeignKey('HealthWorker')
 	primary = models.BooleanField(default=False)
+
+	def __unicode__(self):
+		return "%s's provider: %s" % (self.patient, self.provider)
+
+	class Meta:
+		verbose_name_plural = "Patient's Care Providers"
+		verbose_name_plural = "Patient's Care Provider"
 	

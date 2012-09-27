@@ -20,11 +20,6 @@ class Problem(OwnerModel):
 		message = '%s: %s' % (message, self.detail) if self.detail else message
 		return message
 	
-	class Meta:
-	    permissions = (
-	        ('view_problem', 'View problem'), 
-	    )
-
 class ICD10Chapter(MetaData):
 	class Meta:		
 		verbose_name = 'ICD 10 Chapter'

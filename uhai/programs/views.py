@@ -24,11 +24,13 @@ def index(request, problem_type='', template_name = "programs/index.html", *args
     data = {}
     return render_to_response(template_name, data, context_instance= RequestContext(request))
 
-def questionnaire_detail(request, slug, template="questionnaires/questionnaire_%sdetail.html"):
+def questionnaire_detail(request, slug, QuestionnaireType=Questionnaire, 
+    QuestionnaireTypeForm=QuestionnaireForm, template="questionnaires/questionnaire_%sdetail.html"):
 	"""
 	Display a built questionnaire and handle submission.
 	"""
-	published = Questionnaire.objects.published(for_user=request.user)
+    
+	published = QuestionnaireType.objects.published(for_user=request.user)
 	questionnaire = get_object_or_404(published, slug=slug)
 	if questionnaire.login_required and not request.user.is_authenticated():
 		return redirect("%s?%s=%s" % (settings.LOGIN_URL, REDIRECT_FIELD_NAME,
@@ -36,13 +38,13 @@ def questionnaire_detail(request, slug, template="questionnaires/questionnaire_%
 	request_context = RequestContext(request)
 	page = request.REQUEST.get('page',0)
 	if request.method == "GET":
-		questionnaireform = QuestionnaireForm(
+		questionnaireform = QuestionnaireTypeForm(
 			questionnaire, request_context, 
 			request.POST or None, request.FILES or None,
 			page=page
 		)
 	else:
-		questionnaireform = QuestionnaireForm(
+		questionnaireform = QuestionnaireTypeForm(
 			questionnaire, request_context, 
 			request.POST or None, request.FILES or None,
 			paginate=False

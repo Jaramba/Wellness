@@ -25,7 +25,9 @@ class RelationshipInline(BaseTabularInline):
 
 class PatientAdmin(BaseModelAdmin):
 	model = Patient
-	readonly_fields = [f.name for f in Patient._meta.fields if not f.name == 'id']
+	readonly_fields = [f.name for f in Patient._meta.fields if
+        f.name not in ('id', 'model_owner', 'site', 'access_control_list')
+    ]
 
 	def full_name(self):
 		return self.user.full_name

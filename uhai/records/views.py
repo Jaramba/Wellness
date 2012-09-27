@@ -17,7 +17,7 @@ def index(request, problem_type='', template_name = "records/index.html", *args,
     return render_to_response(template_name, data, context_instance= RequestContext(request))
 
 @login_required
-def encounter(request, user_pk=None, encounter_type=None, queryset=None, *args, **kwargs):
+def encounter(request, user_pk=None, encounter_type=None, extra_data={}, queryset=None, *args, **kwargs):
     kwargs['queryset'] = queryset.filter(type__slug=encounter_type) if encounter_type else queryset
 
     def save_form(form, commit=False):
@@ -28,17 +28,16 @@ def encounter(request, user_pk=None, encounter_type=None, queryset=None, *args, 
         obj.save()
         return obj
     kwargs['save_form'] = save_form
-    kwargs['extra_context'] = kwargs.get('extra_context', {})
-    kwargs['extra_context'].update(dict(encounter_type=encounter_type))
+    extra_data['encounter_type'] = encounter_type
 
-    return user_model_view(request, *args, **kwargs)
+    return user_model_view(request, extra_data=extra_data, *args, **kwargs)
 
 @login_required
 def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **kwargs):
 	if problem_type:
 		extra_data['problem_type'] = get_object_or_404(ProblemType, slug=problem_type)
 	
-	kwargs['queryset'] = queryset.filter(problem__type__slug=problem_type) if problem_type else queryset
+	kwargs['queryset'] = queryset.filter(problem__type__slug=problem_type) if problem_type else queryset        
 	return role_model_view(request, extra_data=extra_data, *args, **kwargs)
 	
 def report(request, template_name='userprofile/login.html', filename='report'):

@@ -280,15 +280,19 @@ class QuestionnaireForm(BaseModelForm):
 					field_entry.save(request=request)
 		return entry
 
-	def email_to(self):
-		"""
-		Return the value entered for the first field of type EmailField.
-		"""
-		for field in self.questionnaire_fields:
-			if field.is_a(fields.EMAIL):
-				return self.cleaned_data[field.slug]
-		return None
+class ProgramQuestionnaireForm(QuestionnaireForm):
+    class Meta(QuestionnaireForm.Meta):pass
 
+    def email_to(self):
+        """
+        Return the value entered for the first field of type EmailField.
+        """
+        for field in self.questionnaire_fields:
+            if field.is_a(fields.EMAIL):
+                return self.cleaned_data[field.slug]
+        return None
+    
+        
 class ResponseQuestionnaire(forms.Form):
     """
     Questionnaire with a set of fields dynamically assigned that can be used to

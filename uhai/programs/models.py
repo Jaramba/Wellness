@@ -87,9 +87,9 @@ class ProgramWorkflowState(OwnerModel):
     '''
     name = models.CharField(max_length=120)
     program_workflow = models.ForeignKey("ProgramWorkflow")
-    weight = models.IntegerField(default=0)
-    initial = models.BooleanField(default=False)
-    terminal = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)
+    compliant = models.BooleanField(default=False)
+    completion_days = models.IntegerField(default=0, help_text="Days taken to complete this level")
     concept_notes = models.TextField()
     
     def __unicode__(self):
@@ -204,6 +204,7 @@ class ProgramQuestionnaire(Questionnaire):
     email_message = models.TextField(_("Message"), blank=True)
 
     program = models.ForeignKey("Program")
+    objects = QuestionnaireManager()
     
 class DiagnosisQuestionnaire(Questionnaire):pass
         

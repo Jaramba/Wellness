@@ -4,6 +4,14 @@
 	Diagnoses{% if problem_type %}: {{problem_type}}s{% endif %}
 {% endblock header %}
 		
+{% block action-buttons %}
+	{% if request.session.use_page_as == 'health-worker' %}
+		<a href="{% url diagnosis-create %}" class="btn pull-right" rel="tooltip" title="Add New">
+			<i class="icon-plus-sign"></i>
+		</a>
+	{% endif %}
+{% endblock action-buttons %}        
+
 {% block table-list %}
 	{% if diagnoses %} 
 		<table class='table'>
