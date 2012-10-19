@@ -7,6 +7,9 @@ from datetime import datetime
 
 class ProblemType(MetaData):pass
 class Problem(OwnerModel):
+	'''
+	Anything that a patient can experience, be it Stress, Disease, Condition, that can be noted down
+	'''
 	name = models.CharField(max_length=30)	
 	type = models.ForeignKey(ProblemType, null=True)
 	icd10_code = models.CharField(max_length=10, verbose_name='ICD Code', null=True, blank=True)
@@ -21,10 +24,17 @@ class Problem(OwnerModel):
 		return message
 	
 class ICD10Chapter(MetaData):
+	'''
+	check up ICD10: Just some standard for naming Problems... its a long list though.
+	So, they are divided into chapters
+	'''
 	class Meta:		
 		verbose_name = 'ICD 10 Chapter'
 
 class ICD10Block(MetaData):
+	'''
+	This is a block of ICD10 chapters
+	'''
 	min_code = models.CharField(max_length=10)
 	max_code = models.CharField(max_length=10)
 	chapter = models.ForeignKey(ICD10Chapter)
@@ -62,6 +72,10 @@ class Order(OwnerModel):
 		)
 
 class Diagnosis(OwnerModel):
+	'''
+	A diagnosis of a problem on a patient encounter 
+	by the approval doctor
+	'''
 	problem = models.ForeignKey('Problem')
 	approved = models.BooleanField(default=False)
 	encounter = models.ForeignKey('Encounter')

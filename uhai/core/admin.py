@@ -59,12 +59,12 @@ class CoreBaseInlineFormSet(BaseInlineFormSet):
                 continue
             if form.has_changed():
                 self.changed_objects.append((obj, form.changed_data))
-                
+
                 if issubclass(type(obj), OwnerModel):
                     saved_instances.append(self.save_existing(form, obj, commit=commit, request=request))                    
                 else:
                     saved_instances.append(self.save_existing(form, obj, commit=commit))
-                
+
                 if not commit:
                     self.saved_forms.append(form)
         return saved_instances

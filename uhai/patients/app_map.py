@@ -9,9 +9,5 @@ APP_MAP={
 		},
         'view':'patient',
 		'actions':'CRUDL',
-	},
-	'patientemergencycontact':{
-		'model':PatientEmergencyContact,
-		'actions':'L',
 	}
 }

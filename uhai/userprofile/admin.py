@@ -60,7 +60,7 @@ class UserUserProfileAdmin(UserAdmin):
     
     def queryset(self, request):
         queryset = super(UserUserProfileAdmin, self).queryset(request)
-        return queryset.filter(pk__gt=0) if queryset else queryset
+        return 0#queryset.filter(pk__gt=0, profile) if queryset else queryset
         
     def save_formset(self, request, form, formset, change):
         formset.save(request=request)

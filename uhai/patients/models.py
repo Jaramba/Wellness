@@ -8,6 +8,10 @@ from django.db import transaction
 from uhai.providers.models import HealthWorker
 
 class Patient(OwnerModel):
+    '''
+    Have a model to save patient details... of cos Profile is linked to user, so, 
+    we dont have to worry about it
+    '''
     GENDER = (
         ('male', 'Male'),
         ('female', 'Female')
@@ -47,11 +51,13 @@ class Patient(OwnerModel):
         verbose_name_plural = 'Patient Profile'
         
 class RelationshipType(OwnerModel):
+    '''
+    try and defile the relationship between a user and another
+    '''
     a_is_to_b = models.CharField(max_length=50)
     b_is_to_a = models.CharField(max_length=50)
     preffered = models.BooleanField(default=False)
-    date_created = models.DateTimeField(auto_now=True)
-    date_changed = models.DateTimeField(auto_now_add=True)
+    dependent = models.BooleanField(default=False)
             
     def __unicode__(self):
         return self.a_is_to_b + ' - ' + self.b_is_to_a
@@ -60,7 +66,8 @@ class Relationship(OwnerModel):
     '''
     A patient can decide to add family and track their files;
     Only this patient can then decide to give access to HealthWorkers
-    Only When the PatientKin has reached 18, will they be given access to this system; 
+    Even the dependants can log in, only that the access to the information 
+    on the dependants is restricted after they attain 18 years.
     Registration claim
     '''
     person_a = models.ForeignKey('auth.User', verbose_name='Patient', related_name='person_a')
@@ -78,22 +85,3 @@ class Relationship(OwnerModel):
             raise CircularRelationException('Sorry. You cannot set yourself as a relation')
         else:
             super(Relationship, self).save(*args, **kwargs)
-
-class PatientEmergencyContact(OwnerModel):
-    patient = models.ForeignKey('auth.User', related_name="patient_user")
-        
-    next_of_kin = models.BooleanField(default=False)
-    
-    full_name = models.CharField(max_length=120, null=True)
-    email = models.CharField(max_length=72, null=True)
-    mobile_phone = models.CharField(max_length=20, null=True)
-    home_phone = models.CharField(max_length=20, null=True, blank=True)
-    work_phone = models.CharField(max_length=20, null=True, blank=True)
-    postal_code = models.CharField(max_length=30, null=True, blank=True)
-    national_id = models.CharField(max_length=20)
-    
-    date_edited = models.DateTimeField(auto_now=True)
-    date_created = models.DateTimeField(auto_now=True)
-    
-    def __unicode__(self):
-        return '%s contact: %s' % (self.patient, self.full_name)

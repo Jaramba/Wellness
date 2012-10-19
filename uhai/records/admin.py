@@ -59,9 +59,9 @@ class ProblemInline(BaseTabularInline):
 	extra = 1
 
 class ICD10BlockAdmin(BaseModelAdmin):
-	model = models.ICD10Block
-	list_display = [f.name for f in models.ICD10Block._meta.fields]
-	inlines = [ProblemInline]
+    model = models.ICD10Block
+    list_display = [f.name for f in models.ICD10Block._meta.fields]
+    inlines = [ProblemInline]
 admin.site.register(models.ICD10Block, ICD10BlockAdmin)
 
 for M in [x

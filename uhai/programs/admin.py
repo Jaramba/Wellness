@@ -72,7 +72,7 @@ class QuestionnaireAdmin(BaseModelAdmin):
             }
         )
     ]
-    
+
     if settings.EDITABLE_SLUGS:
         fieldsets.append(
             (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))

@@ -16,6 +16,10 @@ class Company(OwnerModel):
         return self.name
         
 class HealthInsuranceProvider(models.Model):
+    '''
+    The Insurance providers that are enrolled into Uhai
+    A company can have more than one covers
+    '''
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True)
@@ -32,6 +36,10 @@ class HealthInsuranceProvider(models.Model):
         return self.name
 
 class EmployerCompany(Company):
+    '''
+    The Company that is registered by the Insurance company 
+    that owns the current site
+    '''
     contact_person_name = models.CharField(max_length=100, null=True)
     insurance_providers = models.ManyToManyField('HealthInsuranceProvider')    
     
@@ -41,6 +49,9 @@ class EmployerCompany(Company):
 
 class InsuranceType(MetaData):pass
 class Insurance(OwnerModel):
+    """
+    A policy for a patient to be enrolled in.
+    """
     plan_id = models.CharField('Policy/Plan ID', max_length=70)
     plan_name = models.CharField(max_length=50)
     type = models.ForeignKey('InsuranceType')
@@ -65,6 +76,9 @@ class Insurance(OwnerModel):
         super(Insurance, self).save(request=request, *args, **kwargs)
 
 class PatientInsurance(OwnerModel):
+    """
+    A juction model that highlights a Patient's many Insurance cover
+    """
     STATUS = (
         (0, "Inactive"),
         (1, "Approved"),
