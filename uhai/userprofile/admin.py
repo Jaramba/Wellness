@@ -8,6 +8,7 @@ from uhai.core.models import SiteAdmin as SiteAdministrator
 
 from uhai.core.utils import *
 from uhai.patients.models import Patient
+from uhai.patients.admin import RelationshipInline
 from uhai.providers.models import HealthWorker
 
 from uhai.core.admin import BaseStackedInline, CoreBaseInlineFormSet
@@ -53,14 +54,14 @@ class UserUserProfileAdmin(UserAdmin):
 
     list_display = ('id', 'username', 'email', 'title', first_name, 'middle_name', last_name, 'mobile_phone', 'is_superuser', 'is_staff')
     search_fields = ('username', 'first_name', 'last_name', 'email')
-    inlines = [UserProfileAdmin, PatientInlineAdmin, HealthWorkerAdmin]
+    inlines = [UserProfileAdmin, PatientInlineAdmin, HealthWorkerAdmin, RelationshipInline]
     form = UserChangeForm
     
     actions = [deactivate]
     
     def queryset(self, request):
         queryset = super(UserUserProfileAdmin, self).queryset(request)
-        return 0#queryset.filter(pk__gt=0, profile) if queryset else queryset
+        return queryset.filter(pk__gt=0, userprofile__isnull=False) if queryset else queryset
         
     def save_formset(self, request, form, formset, change):
         formset.save(request=request)

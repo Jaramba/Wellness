@@ -28,5 +28,9 @@ def patientemergencycontact(request, *args, **kwargs):
 
 @login_required
 def relationship(request, queryset=None, *args, **kwargs):
-    queryset = Relationship.objects.filter(person_a=request.user.patient_set.get())
+    queryset = Relationship.objects.filter(person_a=request.user)
     return model_view(request, queryset=queryset, *args, **kwargs)
+
+@login_required
+def dependents(request, template_name="patients/dependents.html", data={}, *args, **kwargs):
+    return render_to_response(template_name, data, context_instance=RequestContext(request))

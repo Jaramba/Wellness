@@ -8,3 +8,7 @@ urlpatterns = get_crud_urls(
     VIEW_NAME,
 	app_map=APP_MAP
 )
+
+urlpatterns = patterns(VIEW_NAME,
+    url(r'^dependents/$', 'dependents', name='dependents'),
+)

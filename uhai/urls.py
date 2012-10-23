@@ -7,7 +7,7 @@ admin.autodiscover()
 
 #django
 urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include('django.contrib.admin.site.urls')),
 )
 
 #apps
@@ -23,7 +23,7 @@ urlpatterns += patterns('',
 	url(r'^providers/', include('uhai.providers.urls')),
 	url(r'^insurance/', include('uhai.insurance.urls')),
 	url(r'^account/sharer/', include('uhai.sharer.urls')),	
-	url(r'^patients/', include('uhai.patients.urls')),
+	url(r'^records/', include('uhai.patients.urls')),
 	url(r'^reminders/', include('uhai.reminders.urls')),
 	url(r'^programs/', include('uhai.programs.urls')),
 	url(r'^medication/', include('uhai.medication.urls')),

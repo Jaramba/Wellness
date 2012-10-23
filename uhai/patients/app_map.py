@@ -9,5 +9,12 @@ APP_MAP={
 		},
         'view':'patient',
 		'actions':'CRUDL',
+	},
+	'dependent':{
+		'model':Relationship,
+		'forms':{
+		},
+        'view':'relationship',
+		'actions':'RL',
 	}
 }

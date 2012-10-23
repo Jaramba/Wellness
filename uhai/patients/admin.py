@@ -21,7 +21,7 @@ class EnrolledProgramAdmin(BaseTabularInline):
 class RelationshipInline(BaseTabularInline):
 	model = Relationship
 	fk_name = 'person_a'
-	extra = 0
+	extra = 2
 
 class PatientAdmin(BaseModelAdmin):
 	model = Patient
