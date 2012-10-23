@@ -1,6 +1,8 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+import os
+
 # e-mail settings
 DEFAULT_FROM_EMAIL = 'noreply@uhai.com'
 EMAIL_HOST = 'smtp.webfaction.com'
