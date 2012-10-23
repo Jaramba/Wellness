@@ -1,0 +1,70 @@
+{% extends "records/records_base.html" %}
+
+{% block container %}
+	<legend>Your Personal Records</legend>
+	<div id="medicalrecord" class="ajaxcontainer">
+		<table cellspacing="10" class="table">
+			<tbody>
+				<tr>
+					<td style="vertical-align: top">
+                        <div class="highlightbox" style="width: 492px;height: 127px; position:relative">
+                            <h3>Allergies</h3>
+                            <div style="clear:both; margin-bottom:15px">
+                                Manage and keep track of your list of allergies
+                            </div>
+                            <a class="btn btn-success pull-right" href="{% url diagnosis-list 'allergy' %}">Edit Allergies</a>
+                        </div>
+                    </td>
+					<td style="vertical-align: top">
+						<div class="highlightbox" style="width: 492px;height: 127px; position:relative">
+							<h3>Conditions</h3>
+							<div style="clear:both; margin-bottom:15px">
+								Track any acute, chronic or recurrent medical conditions you have
+							</div>
+							<a class="btn btn-success pull-right" href="{% url diagnosis-list 'condition' %}">Edit Conditions</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top">
+					<div class="highlightbox" style="width: 492px;height: 127px; position:relative">
+						<h3>Immunizations</h3>
+						<div style="clear:both; margin-bottom:15px">
+							Track what immunizations you recently where given, when you had them and when you are due for more
+						</div>
+						<a class="btn btn-success pull-right" href="{% url immunization-list %}">Edit Immunizations</a>
+					</div></td>
+					<td style="vertical-align: top">
+						<div class="highlightbox" style="width: 492px;height: 127px; position:relative">
+							<h3>Medications</h3>
+							<div style="clear:both; margin-bottom:15px">
+								Track any medications you've taken and the reasons for taking them
+							</div>
+							<a class="btn btn-success pull-right" href="{% url prescription-list %}">Edit Medications</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top">
+						<div class="highlightbox" style="width: 492px;height: 127px; position:relative">
+							<h3>Surgical History</h3>
+							<div style="clear:both; margin-bottom:15px">
+								Track any surgeries or procedures you've had
+							</div>
+							<a class="btn btn-success pull-right" href="{% url encounter-list 'surgery' %}">Edit Surgeries</a>
+						</div>
+					</td>
+					<td style="vertical-align: top">
+						<div class="highlightbox" style="width: 492px;height: 127px; position:relative">
+							<h3>Lab Results</h3>
+							<div style="clear:both; margin-bottom:15px">
+								Track all your lab and test results
+							</div>
+							<a class="btn btn-success pull-right" href="{% url encountertestresult-list %}">Edit Lab Results</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock container %}
