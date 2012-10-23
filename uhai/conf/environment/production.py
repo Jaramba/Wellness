@@ -1,7 +1,7 @@
 #production settings
 ROOT_URLCONF = 'uhai.urls'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG 
 
 # e-mail settings
