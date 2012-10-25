@@ -15,24 +15,16 @@ urlpatterns += patterns('',
 	#app level
 	url(r'^$', 'uhai.views.index', name="index"),
 	url(r'^home/$', 'uhai.views.dashboard', name="home"),
-	url(r'^start/use-as/$', 'uhai.views.use_as', name="choose-use-as"),
-	url(r'^use-as/(?P<type>patient|insurance-agent|health-worker|site-admin|employer)/$', 'uhai.views.use_as', name="use-as"),
 	url(r'^admin_tools/', include('admin_tools.urls')),
 	url(r'^stats/', include('uhai.stats.urls')),
 	url(r'^records/', include('uhai.records.urls')),
 	url(r'^providers/', include('uhai.providers.urls')),
 	url(r'^insurance/', include('uhai.insurance.urls')),
-	url(r'^account/sharer/', include('uhai.sharer.urls')),	
 	url(r'^records/', include('uhai.patients.urls')),
 	url(r'^reminders/', include('uhai.reminders.urls')),
 	url(r'^programs/', include('uhai.programs.urls')),
 	url(r'^medication/', include('uhai.medication.urls')),
 	
-	url(r'^search/', include('uhai.search.urls')),
-	url(r'^sms/', include('uhai.sms.urls')),
-	
-	url(r'', include('uhai.core.urls')),
-	url(r'', include('uhai.userprofile.urls')),
 	
 	#view level
     url(r'^login/$', 'uhai.userprofile.views.login', {'template_name':'userprofile/login.html'}, name='login'),
