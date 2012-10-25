@@ -1,9 +1,8 @@
 from django.conf.urls.defaults import * 
 
 urlpatterns = patterns('',
-    url(r'^search/', include('uhai.search.urls')),		
-
-    url(r'^home/$', 'uhai.views.dashboard', name="home"),
+	url(r'^$', 'uhai.views.dashboard', name="home"),
+    url(r'^search/', include('uhai.search.urls')),    
 
 	url(r'^reminders/', include('uhai.reminders.urls')),
 	url(r'^programs/', include('uhai.programs.urls')),
