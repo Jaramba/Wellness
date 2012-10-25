@@ -9,7 +9,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	#app level
 	url(r'^$', 'uhai.views.index', name="index"),	
-	url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^about/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="about"),
     url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
     url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
