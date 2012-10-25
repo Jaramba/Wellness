@@ -42,7 +42,7 @@ def diagnosis(request, queryset=None, problem_type='', extra_data={}, *args, **k
 	
 def report(request, template_name='userprofile/login.html', filename='report'):
 	import pdfcrowd
-    try:		
+	try:		
 		# create an API client instance
 		client = pdfcrowd.Client("kanarelo", "05d18f129c5b5176f443a1eaa6f2e482")
 		data = {}
@@ -58,7 +58,7 @@ def report(request, template_name='userprofile/login.html', filename='report'):
 
 		# send the generated PDF
 		response.write(pdf)
-    except pdfcrowd.Error, why:
-        response = HttpResponse(mimetype="text/plain")
-        response.write(why)
-    return response
+	except pdfcrowd.Error, why:
+	    response = HttpResponse(mimetype="text/plain")
+	    response.write(why)
+	return response
