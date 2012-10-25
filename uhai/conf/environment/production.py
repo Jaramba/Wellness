@@ -1,5 +1,4 @@
-#production settings
-ROOT_URLCONF = 'uhai.urls'
+PARENT_HOST   = 'uhai.co.ke'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG 

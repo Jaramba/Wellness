@@ -1,3 +1,5 @@
+PARENT_HOST   = 'localhost:8000'
+
 #development settings
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

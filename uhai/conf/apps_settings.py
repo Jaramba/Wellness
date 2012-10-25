@@ -110,7 +110,6 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF  = 'uhai.urls'
 ROOT_HOSTCONF = 'uhai.hosts'
-PARENT_HOST   = 'uhai.synacor.co.ke'
 DEFAULT_HOST  = 'default'
 
 ANONYMOUS_USER_ID = -1

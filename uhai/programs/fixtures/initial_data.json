@@ -1,1 +1,577 @@
-[]
+[
+  {
+    "pk": 1,
+    "model": "programs.program",
+    "fields": {
+      "name": "HIV/AIDS Wellness",
+      "model_owner": 0,
+      "problems": [
+        11886
+      ],
+      "site": 1,
+      "concept_notes": "Series of HIV Counselling Steps... Love this!",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "expected_outcome_notes": ""
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.programworkflow",
+    "fields": {
+      "days": 100,
+      "name": "Healthy Eating",
+      "model_owner": 0,
+      "site": 1,
+      "concept_notes": "The Whole process of living healthy starts with living healthy with the HIV virus, this will help you achieve better health.",
+      "program": 1,
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "continued": true
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.questionnaire",
+    "fields": {
+      "status": 2,
+      "title": "Anxiety Disorder Diagnostic Questionnaire",
+      "model_owner": 0,
+      "login_required": true,
+      "site": 1,
+      "button_text": "Submit",
+      "sites": [
+        1
+      ],
+      "intro": "The following questionnaire is designed to help us indentify which particular anxiety disorder you may be dealing with. It is based on the official classification of anxiety disorders used by all mental health professionals and known as DSM-IV (Diagnostic and statistical Manual of Mental Disorders \u2013 fourth edition).",
+      "publish_date": "2012-09-23T13:43:07",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "response": "",
+      "slug": "anxiety-disorder-diagnostic-questionnaire",
+      "expiry_date": "2022-09-23T13:43:09"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "programs.questionnaire",
+    "fields": {
+      "status": 2,
+      "title": "HIV/AIDs Follow up",
+      "model_owner": 0,
+      "login_required": true,
+      "site": 1,
+      "button_text": "Submit",
+      "sites": [
+        1
+      ],
+      "intro": "Sawa sawa... tuanze",
+      "publish_date": "2012-09-24T12:49:11",
+      "access_control_list": "{'system': {'edit': False, 'delete': False, 'view': True}}",
+      "response": "Thanks... Tutaendelea siku nyingine...",
+      "slug": "hivaids-follow-up",
+      "expiry_date": "2022-09-24T12:49:14"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "programs.programquestionnaire",
+    "fields": {
+      "email_message": "",
+      "email_copies": "",
+      "sites": [
+        1
+      ],
+      "send_email": false,
+      "program": 1,
+      "email_subject": "",
+      "email_from": ""
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.diagnosisquestionnaire",
+    "fields": {
+      "sites": [
+        1
+      ]
+    }
+  },
+  {
+    "pk": 1,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you have spontaneous anxiety attacks that come out of the blue? (Only tick \u201cyes\u201d if you do not ha",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Spontaneous anxiety attacks",
+      "order": 0,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "spontaneous_anxiety_attacks_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Understand HIV?",
+      "order": 0,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Yes, No",
+      "slug": "understand_hiv_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Have you had at least one such attack in the last Month?",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Recent attacks",
+      "order": 1,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "recent_attacks_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Cough Persistent",
+      "order": 1,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Yes, No",
+      "slug": "cough_persistent_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "If you had an anxiety attack in the last Month, did you worry about having  another one? Or did you ",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Worry of other attacks?",
+      "order": 2,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "worry_of_other_attacks_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Sputum",
+      "order": 2,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Yes, No",
+      "slug": "sputum_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 5,
+      "help_text": "In your worst experience with anxiety, did you have more than three of the following symptoms? ",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Any Symptoms",
+      "order": 3,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Shortness of breath or smothering sensation, Dizziness or unsteady feeling, Heart palpitations or rapid heartbeat, Trembling or shaking, Sweating, Choking, Nausea or abdominal distress, Feelings of being detached or out of touch with your body, Numbness or tingling sensations, Flushes or chills, Chest pain or discomfort, Fear of dying, Fear of going crazy or doing something out of control",
+      "slug": "any_symptoms_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Sputum Look",
+      "order": 3,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "White, Yellow, Green, Brown, Red/Blood",
+      "slug": "sputum_look_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Does fear of having panic attacks cause you to avoid going into certain  situations? ",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Avoiding situations",
+      "order": 4,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "avoiding_situations_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Lower extremities problems",
+      "order": 4,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Yes, No",
+      "slug": "lower_extremities_problems_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Which of the following situations do you avoid because you are afraid of panicking?",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Situations you avoid",
+      "order": 5,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Going far away from home, Shopping in a grocery store, Standing in a grocery store line, Going to department stores, Going to shopping malls, Driving on freeways, Driving on surface street far from home, Driving anywhere by yourself, Using public transportation (buses, trains etc.), Going over bridges (whether you\u2019re the driver or passenger), Flying in planes, Riding in elevators, Going to the dentist or doctors office, Sitting in a barber or beauticians chair, Eating in restaurants, Gong to work, Being too far from a safe person or safe place, Being alone, Going outside your house",
+      "slug": "situations_you_avoid_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Lower extremities specify",
+      "order": 5,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Infection, Pain, Ulceration, Reduced Sensation, Other",
+      "slug": "lower_extremities_specify_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you avoid certain situations not primarily because you are afraid of  panicking but because you a",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Avoiding Embarassment",
+      "order": 6,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "avoiding_embarassment_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Experience Tiredness / Weakness",
+      "order": 6,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Yes, No",
+      "slug": "experience_tiredness_weakness_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Which of the following situations do you avoid because of fear of  embarrassing or humiliating yours",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Embarrasing situations you avoid",
+      "order": 7,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Sitting in any kind of group (for example, at work, in school classrooms, Social organisations, self help groups), Giving a talk or a presentation before a small group of people, Giving a talk or a presentation before a large group of people, Parties or social functions, Eating in front of others, Writing or signing your name in front of others, Dating, Any situation where you might say something foolish",
+      "slug": "embarrasing_situations_you_avoid_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Suffer from diarrhoea",
+      "order": 7,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "Yes, No",
+      "slug": "suffer_from_diarrhoea_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you fear and avoid any one (or more than one) of the following? ",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Other phobias",
+      "order": 8,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Insects or animals, such as spiders, bees, snakes, rats, bats or dogs, Heights (high floors in buildings, top of hills or mountain or high level bridges), Driving, Tunnels, Bridges, Elevators, Airplanes (flying), Doctors or dentists, Thunder or lightning, Water, Blood, Injections or medical procedures, Illness such as heart attacks or cancer, Darkness ",
+      "slug": "other_phobias_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 10,
+      "help_text": "",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Last Test",
+      "order": 8,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'delete': False, 'view': True}}",
+      "placeholder_text": "",
+      "questionnaire": 2,
+      "choices": "",
+      "slug": "last_test_in_hivaids_follow_up"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you have high degrees of anxiety usually only when you have to face one  of these situations?  ",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "High degrees of anxiety?",
+      "order": 9,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "high_degrees_of_anxiety_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you feel quite anxious much of the time but do not have distinct panic  attacks, do not have phob",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "No specific phobia but anxious?",
+      "order": 10,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "no_specific_phobia_but_anxious_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Have you been prone to excessive worry for at least the last 6 Months?",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Excessive worry lately",
+      "order": 11,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "excessive_worry_lately_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Has your anxiety and worry been associated with at least three of the following 6 symptoms? ",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Any symptoms for that?",
+      "order": 12,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Restlessness or feeling keyed up or on edge, Being easily fatigued, Difficulty concentrating or mind going blank, Irritability, Muscle tension, Sleep disturbance (difficulty falling asleep or restless unsatisfying sleep)",
+      "slug": "any_symptoms_for_that_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you have recurring intrusive thoughts such as hurting or harming a close relative, being contamin",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Any recurring intrusive thoughts",
+      "order": 13,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "any_recurring_intrusive_thoughts_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "programs.field",
+    "fields": {
+      "field_type": 6,
+      "help_text": "Do you perform ritualistic actions such as washing your hands, checking, or  counting to relieve anx",
+      "model_owner": 0,
+      "required": true,
+      "site": 1,
+      "label": "Any ritualistc actions",
+      "order": 14,
+      "visible": true,
+      "default": "",
+      "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
+      "placeholder_text": "",
+      "questionnaire": 1,
+      "choices": "Yes, No",
+      "slug": "any_ritualistc_actions_in_anxiety_disorder_diagnostic_questionnaire"
+    }
+  }
+]

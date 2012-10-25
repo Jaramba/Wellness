@@ -26,7 +26,7 @@
     }
   },
   {
-    "pk": 4,
+    "pk": 3,
     "model": "patients.patient",
     "fields": {
       "weight": null,
@@ -39,7 +39,7 @@
     }
   },
   {
-    "pk": 5,
+    "pk": 4,
     "model": "patients.patient",
     "fields": {
       "weight": null,
@@ -48,32 +48,6 @@
       "height": null,
       "date_of_birth": null,
       "user": 5,
-      "employer": null
-    }
-  },
-  {
-    "pk": 10,
-    "model": "patients.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "user": 10,
-      "employer": null
-    }
-  },
-  {
-    "pk": 13,
-    "model": "patients.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "user": 13,
       "employer": null
     }
   },
@@ -116,7 +90,7 @@
       "a_is_to_b": "Child",
       "b_is_to_a": "Guardian"
     }
-  }
+  },
   {
     "pk": 1,
     "model": "patients.relationship",
