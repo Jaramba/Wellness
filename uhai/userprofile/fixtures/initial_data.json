@@ -127,7 +127,7 @@
     }
   },
   {
-    "pk": 5,
+    "pk": 3,
     "model": "auth.user",
     "fields": {
       "username": "ekhalai",
@@ -147,7 +147,7 @@
     }
   },
   {
-    "pk": 7,
+    "pk": 4,
     "model": "auth.user",
     "fields": {
       "username": "mmasika",
@@ -167,7 +167,7 @@
     }
   },
   {
-    "pk": 11,
+    "pk": 5,
     "model": "auth.user",
     "fields": {
       "username": "kamindi",
@@ -253,7 +253,7 @@
     }
   },
   {
-    "pk": 5,
+    "pk":3,
     "model": "userprofile.userprofile",
     "fields": {
       "province": 1,
@@ -268,7 +268,7 @@
       "county": 1,
       "last_name": "Khalai",
       "postal_code": "30177-00100",
-      "user": 5,
+      "user": 3,
       "home_phone": "254736705812",
       "village": "Komarock",
       "date_created": "2012-09-21T20:20:51.587",
@@ -278,7 +278,7 @@
     }
   },
   {
-    "pk": 7,
+    "pk": 4,
     "model": "userprofile.userprofile",
     "fields": {
       "province": 1,
@@ -293,7 +293,7 @@
       "county": 1,
       "last_name": "Khaemba",
       "postal_code": "30177-00100",
-      "user": 7,
+      "user": 4,
       "home_phone": "254736705812",
       "village": "",
       "date_created": "2012-05-21T04:55:08",
@@ -303,7 +303,7 @@
     }
   },
   {
-    "pk": 11,
+    "pk": 5,
     "model": "userprofile.userprofile",
     "fields": {
       "province": 1,
@@ -318,7 +318,7 @@
       "county": 1,
       "last_name": "Maisiba",
       "postal_code": "",
-      "user": 11,
+      "user": 5,
       "home_phone": "",
       "village": "",
       "date_created": "2012-05-29T17:49:14.463",

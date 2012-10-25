@@ -34,20 +34,7 @@
       "gender": null,
       "height": null,
       "date_of_birth": null,
-      "user": 4,
-      "employer": null
-    }
-  },
-  {
-    "pk": 4,
-    "model": "patients.patient",
-    "fields": {
-      "weight": null,
-      "blood_group": null,
-      "gender": null,
-      "height": null,
-      "date_of_birth": null,
-      "user": 5,
+      "user": 3,
       "employer": null
     }
   },
