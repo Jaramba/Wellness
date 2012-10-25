@@ -52,7 +52,7 @@ TEMPLATE_LOADERS = (
 )
 
 ROOT_URLCONF  = 'uhai.urls'
-ROOT_HOSTCONF = 'uhai.hosts'
+ROOT_HOSTCONF = 'hosts'
 DEFAULT_HOST  = 'default'
 
 TEMPLATE_DIRS = (
