@@ -107,9 +107,11 @@ MIDDLEWARE_CLASSES = [
     'django_hosts.middleware.HostsMiddleware',
 ]
 
-ROOT_HOSTCONF = "uhai.conf.hosts"
-PARENT_HOST = "uhai.synacor.co.ke"
-DEFAULT_HOST = "default"
+
+ROOT_URLCONF  = 'uhai.urls'
+ROOT_HOSTCONF = 'uhai.hosts'
+PARENT_HOST   = 'uhai.synacor.co.ke'
+DEFAULT_HOST  = 'default'
 
 ANONYMOUS_USER_ID = -1
 

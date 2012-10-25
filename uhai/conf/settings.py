@@ -51,10 +51,6 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-ROOT_URLCONF  = 'uhai.urls'
-ROOT_HOSTCONF = 'hosts'
-DEFAULT_HOST  = 'default'
-
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
