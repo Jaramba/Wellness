@@ -1,4 +1,4 @@
-DEFAULT_HOST = 'www.uhai.co.ke'
+DEFAULT_HOST = 'www'
 PARENT_HOST  = 'uhai.co.ke'
 
 DEBUG = True
