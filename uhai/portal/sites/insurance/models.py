@@ -1,6 +1,6 @@
 from django.db import models
 from uhai.core.models import OwnerModel, MetaData
-
+from django.shortcuts import get_object_or_404
 class Company(OwnerModel):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
