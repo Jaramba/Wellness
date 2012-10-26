@@ -14,7 +14,7 @@
 			  <a href="{% host_url index on default %}"> Home </a>
 			</li>
 			<li>
-			  <a style="color: #0BE" href="{% host_url login on secure %}" title="Log in to Uhai">
+			  <a style="color: #0BE" href="{% host_url login on my-portal %}" title="Log in to Uhai">
 				Log In
 			  </a>
 			</li>
@@ -33,7 +33,7 @@
 			</p>
 			{% if not request.user.is_authenticated %}
 				<p class="download-info">
-					<a href="{% host_url login on secure %}" class="btn btn-primary btn-large">Login To Your Account</a>
+					<a href="{% host_url login on my-portal %}" class="btn btn-primary btn-large">Login To Your Account</a>
 				</p>
 			{% endif %}
 		</div>
