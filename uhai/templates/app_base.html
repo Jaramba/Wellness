@@ -38,7 +38,7 @@
 						<ul class="nav" style="padding-top: 4px;">
 							{% if request.user.is_authenticated %}
 								<li class="navbar-item" class="active">
-									<a href="{% host_url home on my-portal %}">Home</a>
+									<a href="{% host_url index on my-portal %}">Home</a>
 								</li>
 								{% if request.session.use_page_as == 'health-worker' %}
 									<li class="navbar-item" id="schedule-menu">
