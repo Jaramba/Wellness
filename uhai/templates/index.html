@@ -1,4 +1,5 @@
 {% extends "app_base.html" %}
+{% load hosts %}
 
 {% block page-title %}Welcome{% endblock page-title %}
 
@@ -10,10 +11,10 @@
 	{% if not request.user.is_authenticated %}
 		<ul class="nav">
 			<li class="active">
-			  <a href="{% url index %}"> Home </a>
+			  <a href="{% host_url index on www %}"> Home </a>
 			</li>
 			<li>
-			  <a style="color: #0BE" href="{% url login %}" title="Log in to Uhai">
+			  <a style="color: #0BE" href="{% host_url login on secure %}" title="Log in to Uhai">
 				Log In
 			  </a>
 			</li>
@@ -32,7 +33,7 @@
 			</p>
 			{% if not request.user.is_authenticated %}
 				<p class="download-info">
-					<a href="{% url login %}" class="btn btn-primary btn-large">Login To Your Account</a>
+					<a href="{% host_url login on secure %}" class="btn btn-primary btn-large">Login To Your Account</a>
 				</p>
 			{% endif %}
 		</div>

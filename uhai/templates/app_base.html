@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load hosts %}
 
 {% block extracss %}
 	{% block extracss-links %}
@@ -37,24 +38,24 @@
 						<ul class="nav" style="padding-top: 4px;">
 							{% if request.user.is_authenticated %}
 								<li class="navbar-item" class="active">
-									<a href="{% url home %}">Home</a>
+									<a href="{% host_url home on my-portal %}">Home</a>
 								</li>
 								{% if request.session.use_page_as == 'health-worker' %}
 									<li class="navbar-item" id="schedule-menu">
-										<a href="{% url calendar %}">Reminders</a>
+										<a href="{% host_url calendar on my-portal %}">Reminders</a>
 									</li>
 									<li class="navbar-item" id="patient-menu">
-										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
+										<a href="{% host_url patient-list on doctor-portal %}" data-toggle="dropdown">Patients</a>
 									</li>
 								{% elif request.session.use_page_as == 'employer' %}
 									<li class="navbar-item" id="patient-menu">
-										<a href="{% url patient-list %}" data-toggle="dropdown">Patients</a>
+										<a href="{% host_url patient-list on doctor-portal %}" data-toggle="dropdown">Patients</a>
 									</li>
 								{% else %}
-									<li class="navbar-item"><a href="{% url calendar %}">Reminders</a></li>
-									<li class="navbar-item"><a href="{% url records %}">Records</a></li>
-									<li class="navbar-item"><a href="{% url programs %}">Programs</a></li>
-									<li class="navbar-item"><a href="{% url dependents %}">Dependents</a></li>
+									<li class="navbar-item"><a href="{% host_url calendar on my-portal %}">Reminders</a></li>
+									<li class="navbar-item"><a href="{% host_url records on my-portal %}">Records</a></li>
+									<li class="navbar-item"><a href="{% host_url programs on my-portal %}">Programs</a></li>
+									<li class="navbar-item"><a href="{% host_url dependents on my-portal %}">Dependents</a></li>
 								{% endif %}								
 							{% endif %}
 							{% block navbar-links %}{% endblock navbar-links %}
@@ -73,36 +74,18 @@
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>
 										<ul class="dropdown-menu">
 											<li>
-												<a href="{% url use-as 'patient' %}"><i class="icon-globe"></i> Use as Patient</a>
 											</li>
-											{% if request.user.is_superuser %}
-												{% for group in user_groups %}
-													{% if not group.name == 'Patient' and not group.name == 'Admin' %}
-														<li>
-															<a href="{% url use-as group.name|slugify %}"><i class="icon-globe"></i> Use as {{ group.name }}</a>
-														</li>
-													{% endif %}
-												{% endfor %}
-											{% else %}
-												{% for group in request.user.groups.all %}
-													{% if not group.name == 'Patient' %}
-														<li>
-															<a href="{% url use-as group.name|slugify %}"><i class="icon-globe"></i> Use as {{ group.name }}</a>
-														</li>
-													{% endif %}
-												{% endfor %}
-											{% endif %}
 											<li class="divider"></li>
 											<li>
-												<a href="{% url settings %}"><i class="icon-user"></i> Account Settings</a>
+												<a href="{% host_url settings on my-portal %}"><i class="icon-user"></i> Account Settings</a>
 											</li>
 											{% if request.user.is_superuser or request.user.is_admin %}
 												<li>
-													<a href="{% url admin:index %}"><i class="icon-briefcase"></i> Administration</a>
+													<a href="{% host_url admin:index on admin %}"><i class="icon-briefcase"></i> Administration</a>
 												</li>
 											{% endif %}
 											<li class="divider"></li>
-											<li><a href="{% url logout %}"><i class="icon-off"></i> Log out</a></li>
+											<li><a href="{% host_url logout on secure %}"><i class="icon-off"></i> Log out</a></li>
 										</ul>
 									</li>
 								</ul>
