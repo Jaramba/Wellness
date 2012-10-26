@@ -12,14 +12,6 @@ from uhai.programs.models import DiagnosisQuestionnaire
 
 from datetime import datetime
 
-@login_required
-def dashboard(request, template_name='core/dashboard.html', data={}):
-    if not request.session.get('use_page_as'):
-        request.session['use_page_as'] = slugify(request.user.profile.main_role)
-    if request.session.get('use_page_as') == 'patient':pass
-    data['diagnosisquestionnaires'] = DiagnosisQuestionnaire.objects.all()
-    return render_to_response(template_name, data, context_instance= RequestContext(request))
-
 def index(request, template_name='index.html', data={}):
 	if request.user.is_authenticated():
 		return redirect('home')
