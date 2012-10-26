@@ -72,6 +72,7 @@ class SiteAdministratorInline(admin.TabularInline):
     
 class HealthInsuranceProviderInline(admin.StackedInline):
     model = HealthInsuranceProvider
+    prepopulated_fields = {'slug':('name',)} 
     extra = 1
     
 class SiteAdminAdmin(SiteAdmin):    

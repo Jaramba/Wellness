@@ -21,6 +21,7 @@ class HealthInsuranceProvider(models.Model):
     A company can have more than one covers
     '''
     name = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True, null=False, blank=False)
     phone = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True)
     location = models.CharField(max_length=200)
