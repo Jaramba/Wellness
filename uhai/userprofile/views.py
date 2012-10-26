@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import login as auth_login, logout as auth_logout
 
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -13,6 +12,8 @@ from django.utils.translation import ugettext as _
 
 from django.views.decorators.http import require_GET
 from django.views.generic.base import TemplateView
+
+from django_hosts.reverse import reverse_full
 
 from forms import *
 from signals import *
@@ -30,7 +31,7 @@ def login(request, *args, **kwargs):
                 *args, **kwargs
         )
     else:
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse_full('default', 'index'))
 
 def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
     if request.user.is_authenticated():
@@ -39,7 +40,7 @@ def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
 		elif request.method == "POST":
 			return auth_logout(request, *args, **kwargs)
     else:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse_full('secure', "login"))
 
 @login_required
 @require_GET
@@ -123,7 +124,7 @@ def delete(request):
         messages.success(request, _("Your profile information has been removed successfully."), fail_silently=True)
 
         signal_responses = signals.post_signal.send(sender=delete, request=request, extra={'old_profile':old_profile, 'old_user': old_user})
-        return signals.last_response(signal_responses) or HttpResponseRedirect(reverse("profile_overview"))
+        return signals.last_response(signal_responses) or HttpResponseRedirect(reverse_full("my-portal", "profile_overview"))
 
     template = "userprofile/delete.html"
     data.update({ 'section': 'delete' })
@@ -164,4 +165,4 @@ def register(request, template_name=None):
         data['form'] = form
         return render_to_response(template_name, data, context_instance=RequestContext(request))
     else:
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse_full("default", 'index'))
