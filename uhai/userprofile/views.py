@@ -31,7 +31,7 @@ def login(request, *args, **kwargs):
                 *args, **kwargs
         )
     else:
-        return HttpResponseRedirect(reverse_full('default', 'index'))
+        return HttpResponseRedirect(reverse_full('my-portal', 'index'))
 
 def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
     if request.user.is_authenticated():

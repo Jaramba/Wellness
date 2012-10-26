@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import * 
 
 urlpatterns = patterns('',
-	url(r'^/$', 'uhai.views.dashboard', name="index"),
+	url(r'^/?$', 'uhai.views.dashboard', name="index"),
     url(r'^search/', include('uhai.search.urls')),    
 
 	url(r'^reminders/', include('uhai.reminders.urls')),
