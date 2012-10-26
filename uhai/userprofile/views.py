@@ -40,7 +40,7 @@ def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
 		elif request.method == "POST":
 			return auth_logout(request, *args, **kwargs)
     else:
-        return HttpResponseRedirect(reverse_full('secure', "login"))
+        return HttpResponseRedirect(reverse_full('my-portal', "login"))
 
 @login_required
 @require_GET
