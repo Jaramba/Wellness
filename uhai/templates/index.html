@@ -11,7 +11,7 @@
 	{% if not request.user.is_authenticated %}
 		<ul class="nav">
 			<li class="active">
-			  <a href="{% host_url index on www %}"> Home </a>
+			  <a href="{% host_url index on default %}"> Home </a>
 			</li>
 			<li>
 			  <a style="color: #0BE" href="{% host_url login on secure %}" title="Log in to Uhai">
