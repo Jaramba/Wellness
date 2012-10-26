@@ -1,4 +1,4 @@
-DEFAULT_HOST = PARENT_HOST   = 'localhost:8000'
+PARENT_HOST   = 'localhost:8000'
 
 #development settings
 DEBUG = True

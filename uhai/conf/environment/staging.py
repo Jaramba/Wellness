@@ -1,5 +1,4 @@
-DEFAULT_HOST = 'www' 
-PARENT_HOST  = 'uhai.synacor.co.ke'
+DEFAULT_HOST = 'uhai.synacor.co.ke'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
