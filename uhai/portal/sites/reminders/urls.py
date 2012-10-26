@@ -1,9 +1,9 @@
 from django.conf.urls.defaults import *
 
-from uhai.core.utils import get_crud_urls
+from uhai.portal.api.core.utils import get_crud_urls
 from app_map import VIEW_NAME, APP_MAP
 
-urlpatterns = patterns('uhai.reminders.views',
+urlpatterns = patterns('uhai.portal.sites.reminders.views',
 	url(r'^calendar/$', 'calendar', name="calendar"),
 )
 

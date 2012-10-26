@@ -1,10 +1,10 @@
 from django.contrib import admin
 from models import *
-from uhai.insurance.models import PatientInsurance
-from uhai.providers.models import PatientProvider
-from uhai.programs.models import EnrolledProgram
+from uhai.portal.sites.insurance.models import PatientInsurance
+from uhai.portal.sites.providers.models import PatientProvider
+from uhai.portal.sites.programs.models import EnrolledProgram
 
-from uhai.core.admin import BaseModelAdmin, BaseTabularInline
+from uhai.portal.api.core.admin import BaseModelAdmin, BaseTabularInline
 
 class PatientInsuranceAdmin(BaseTabularInline):
     model = PatientInsurance

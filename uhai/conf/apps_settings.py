@@ -41,18 +41,18 @@ INSTALLED_APPS = [
 	#Customer Care...
 	"intercom",
 		
-	'uhai.programs',
-	'uhai.insurance',
-	'uhai.records',
-	'uhai.patients',	
-	'uhai.providers',
-	'uhai.medication',
-	'uhai.reminders',
-	'uhai.userprofile',
-	'uhai.core',
-	'uhai.stats',
-	'uhai.sms',
-	'uhai.sharer',
+	'uhai.portal.sites.programs',
+	'uhai.portal.sites.insurance',
+	'uhai.portal.sites.records',
+	'uhai.portal.sites.patients',	
+	'uhai.portal.sites.providers',
+	'uhai.portal.sites.medication',
+	'uhai.portal.sites.reminders',
+	'uhai.portal.my.userprofile',
+	'uhai.portal.api.core',
+	'uhai.portal.api.stats',
+	'uhai.portal.api.sms',
+	'uhai.portal.sites.sharer',
 ]
 
 QUESTIONNAIRE_BUILDER_UPLOAD_TO = UPLOAD_TO = "formsbuilder_uploads"
@@ -94,7 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.media',
 	'django.core.context_processors.static',
 	'django.core.context_processors.request',
-	'uhai.core.context_processors.request',
+	'uhai.portal.api.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = [
@@ -108,7 +108,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 
-ROOT_URLCONF  = 'uhai.urls'
+ROOT_URLCONF  = 'uhai.portal.www.urls'
 ROOT_HOSTCONF = 'uhai.hosts'
 DEFAULT_HOST  = 'default'
 

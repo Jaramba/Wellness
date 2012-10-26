@@ -8,7 +8,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import fields
 from utils import now, slugify, unique_slug
 
-from uhai.core.models import OwnerModel, MetaData
+from uhai.portal.api.core.models import OwnerModel, MetaData
     
 class Program(OwnerModel):
     '''

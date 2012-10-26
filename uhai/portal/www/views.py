@@ -7,8 +7,8 @@ from django.shortcuts import render_to_response, redirect
 from django.template.defaultfilters import slugify
 from django.template.context import RequestContext
 
-from uhai.userprofile.forms import RoleChooserForm
-from uhai.programs.models import DiagnosisQuestionnaire
+from uhai.portal.my.userprofile.forms import RoleChooserForm
+from uhai.portal.sites.programs.models import DiagnosisQuestionnaire
 
 from datetime import datetime
 

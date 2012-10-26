@@ -1,7 +1,7 @@
 from django.db import models
 
-from uhai.core.models import OwnerModel, MetaData
-from uhai.reminders.models import Event
+from uhai.portal.api.core.models import OwnerModel, MetaData
+from uhai.portal.sites.reminders.models import Event
 
 from datetime import datetime
 

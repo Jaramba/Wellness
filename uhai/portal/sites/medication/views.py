@@ -5,12 +5,12 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from uhai.core.views import *
+from uhai.portal.api.core.views import *
 
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
-from uhai.patients.models import Patient
+from uhai.portal.sites.patients.models import Patient
 from django.contrib.auth.models import User
 
 @login_required

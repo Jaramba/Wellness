@@ -2,11 +2,11 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from forms import *
 
-from uhai.patients.forms import Patient, PatientProfileForm
+from uhai.portal.sites.patients.forms import Patient, PatientProfileForm
 
 from django.core.urlresolvers import reverse_lazy
 
-urlpatterns = patterns('uhai.userprofile.views',
+urlpatterns = patterns('uhai.portal.my.userprofile.views',
     # Private profile
 	url(r'^account/settings/$', 'user_change', name='settings'),
     url(r'^account/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
@@ -14,7 +14,7 @@ urlpatterns = patterns('uhai.userprofile.views',
     url(r'^account/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
 )
 
-urlpatterns += patterns('uhai.patients.views',
+urlpatterns += patterns('uhai.portal.sites.patients.views',
 	url(r'^account/medical/$', 'patient', {
 		'action' : 'edit',
 		'template_name':'userprofile/personal.html',

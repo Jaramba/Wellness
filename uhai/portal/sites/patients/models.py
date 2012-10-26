@@ -1,11 +1,11 @@
-from uhai.core.models import OwnerModel, MetaData
-from uhai.core.utils import pkgen
-from uhai.userprofile.models import *
+from uhai.portal.api.core.models import OwnerModel, MetaData
+from uhai.portal.api.core.utils import pkgen
+from uhai.portal.my.userprofile.models import *
 
 from django.contrib.auth.models import User
 from django.db import transaction
 
-from uhai.providers.models import HealthWorker
+from uhai.portal.sites.providers.models import HealthWorker
 
 class Patient(OwnerModel):
     '''

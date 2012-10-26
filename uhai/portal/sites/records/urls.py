@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from uhai.core.utils import get_crud_urls
+from uhai.portal.api.core.utils import get_crud_urls
 from app_map import VIEW_NAME, APP_MAP
 
 urlpatterns = patterns(VIEW_NAME,
@@ -33,5 +33,5 @@ urlpatterns += get_crud_urls(
 )
 
 urlpatterns += patterns('',
-    url(r'^encounter/(?P<pk>[-\d]+)/share/$', 'uhai.records.views.encounter', name='encounter-share'),
+    url(r'^encounter/(?P<pk>[-\d]+)/share/$', 'uhai.portal.sites.records.views.encounter', name='encounter-share'),
 )

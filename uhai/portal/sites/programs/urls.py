@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 from app_map import VIEW_NAME, APP_MAP
-from uhai.core.utils import get_crud_urls
+from uhai.portal.api.core.utils import get_crud_urls
 
 from django.views.generic.base import TemplateView
 from models import Questionnaire, ProgramQuestionnaire
@@ -16,7 +16,7 @@ urlpatterns += get_crud_urls(
 	app_map=APP_MAP
 )
 
-urlpatterns += patterns("uhai.programs.views",
+urlpatterns += patterns("uhai.portal.sites.programs.views",
     url(r"questionaires/(?P<slug>[-\w]+)/sent/$", "questionnaire_sent", name="questionnaire_sent"),
     url(r"questionaires/(?P<slug>[-\w]+)/$", "questionnaire_detail", {
         'QuestionnaireType': ProgramQuestionnaire, 'QuestionnaireTypeForm': ProgramQuestionnaireForm, 

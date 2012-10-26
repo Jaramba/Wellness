@@ -2,7 +2,7 @@ from django.contrib import admin
 from forms import *
 from models import *
 
-from uhai.core.admin import BaseModelAdmin, BaseTabularInline
+from uhai.portal.api.core.admin import BaseModelAdmin, BaseTabularInline
 
 class HealthCareFacilityAdmin(BaseModelAdmin):
     model = HealthCareFacility

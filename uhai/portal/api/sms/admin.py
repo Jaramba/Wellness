@@ -2,7 +2,7 @@ from models import *
 from django.contrib import admin
 from django.contrib.sites.models import Site 
 
-from uhai.core.admin import BaseModelAdmin
+from uhai.portal.api.core.admin import BaseModelAdmin
 
 class SmsMessageOutboxAdmin(BaseModelAdmin):
 	model = SmsMessageOutbox

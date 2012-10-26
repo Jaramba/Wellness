@@ -4,25 +4,25 @@ urlpatterns = patterns('',
 	url(r'^/?$', 'uhai.portal.my.views.switchboard', name="index"),
     url(r'^search/', include('uhai.search.urls')),    
 
-	url(r'^reminders/', include('uhai.reminders.urls')),
-	url(r'^programs/', include('uhai.programs.urls')),
-	url(r'^medication/', include('uhai.medication.urls')),
+	url(r'^reminders/', include('uhai.portal.sites.reminders.urls')),
+	url(r'^programs/', include('uhai.portal.sites.programs.urls')),
+	url(r'^medication/', include('uhai.portal.sites.medication.urls')),
 
-    url(r'^records/', include('uhai.records.urls')),
-	url(r'^providers/', include('uhai.providers.urls')),
-	url(r'^insurance/', include('uhai.insurance.urls')),
-	url(r'^records/', include('uhai.patients.urls')),
+    url(r'^records/', include('uhai.portal.sites.records.urls')),
+	url(r'^providers/', include('uhai.portal.sites.providers.urls')),
+	url(r'^insurance/', include('uhai.portal.sites.insurance.urls')),
+	url(r'^records/', include('uhai.portal.sites.patients.urls')),
 
-	url(r'^login/?$', 'uhai.userprofile.views.login', {
+	url(r'^login/?$', 'uhai.portal.my.userprofile.views.login', {
     		'template_name':'userprofile/login.html'
     	}, name='login'
     ),
-    url(r'^logout/?$','uhai.userprofile.views.logout', {
+    url(r'^logout/?$','uhai.portal.my.userprofile.views.logout', {
     		'redirect_field_name':'next',
     		'template_name':'userprofile/logout.html'
     	}, name='logout'
     ),
 
-	url(r'', include('uhai.core.urls')),
-	url(r'', include('uhai.userprofile.urls')),
+	url(r'', include('uhai.portal.api.core.urls')),
+	url(r'', include('uhai.portal.my.userprofile.urls')),
 )	
