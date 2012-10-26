@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
 	url(r'^/?$', 'uhai.portal.my.views.switchboard', name="index"),
-    url(r'^search/', include('uhai.search.urls')),    
+    url(r'^search/', include('uhai.portal.my.search.urls')),    
 
 	url(r'^reminders/', include('uhai.portal.sites.reminders.urls')),
 	url(r'^programs/', include('uhai.portal.sites.programs.urls')),
