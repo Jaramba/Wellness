@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django.forms.models import modelform_factory
 
-from uhai.portal.api.core.admin import BaseModelAdmin, BaseTabularInline
+from uhai.core.admin import BaseModelAdmin, BaseTabularInline
 
 import models
 import forms

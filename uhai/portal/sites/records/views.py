@@ -9,7 +9,7 @@ from forms import *
 from models import *
 from uhai.portal.sites.patients.models import Patient
 
-from uhai.portal.api.core.views import *
+from uhai.core.views import *
 
 @login_required
 def index(request, problem_type='', template_name = "records/index.html", *args, **kwargs):

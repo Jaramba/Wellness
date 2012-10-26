@@ -5,7 +5,7 @@ from models import (
     Diagnosis
 )
 
-from uhai.portal.api.core.forms import BaseModelForm
+from uhai.core.forms import BaseModelForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *

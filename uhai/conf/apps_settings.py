@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 	'uhai.portal.sites.medication',
 	'uhai.portal.sites.reminders',
 	'uhai.portal.my.userprofile',
-	'uhai.portal.api.core',
+	'uhai.core',
 	'uhai.portal.api.stats',
 	'uhai.portal.api.sms',
 	'uhai.portal.sites.sharer',
@@ -94,7 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.media',
 	'django.core.context_processors.static',
 	'django.core.context_processors.request',
-	'uhai.portal.api.core.context_processors.request',
+	'uhai.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = [

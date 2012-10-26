@@ -2,7 +2,7 @@ from django.contrib import admin
 import models
 from django.db.models.base import ModelBase
 
-from uhai.portal.api.core.admin import BaseModelAdmin
+from uhai.core.admin import BaseModelAdmin
 
 model_classes = [x for x in models.__dict__.values()  if issubclass(type(x), ModelBase) and not x._meta.abstract]
 

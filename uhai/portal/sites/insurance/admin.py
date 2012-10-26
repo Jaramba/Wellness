@@ -3,7 +3,7 @@ from django.contrib import admin
 from forms import *
 from models import *
 
-from uhai.portal.api.core.admin import BaseModelAdmin, BaseTabularInline
+from uhai.core.admin import BaseModelAdmin, BaseTabularInline
 
 class EmployerCompanyAdmin(BaseModelAdmin):
     model = EmployerCompany

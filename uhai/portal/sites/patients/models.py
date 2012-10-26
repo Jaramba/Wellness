@@ -1,5 +1,5 @@
-from uhai.portal.api.core.models import OwnerModel, MetaData
-from uhai.portal.api.core.utils import pkgen
+from uhai.core.models import OwnerModel, MetaData
+from uhai.core.utils import pkgen
 from uhai.portal.my.userprofile.models import *
 
 from django.contrib.auth.models import User

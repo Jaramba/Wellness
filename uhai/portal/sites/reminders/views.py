@@ -3,7 +3,7 @@ from django.template import RequestContext
 
 from django.shortcuts import render_to_response
 
-from uhai.portal.api.core.views import *
+from uhai.core.views import *
 
 @login_required
 def calendar(request, template_name="reminders/calendar.html"):	

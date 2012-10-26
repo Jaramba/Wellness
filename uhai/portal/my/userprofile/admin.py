@@ -4,14 +4,14 @@ from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 from django.contrib.sites.admin import SiteAdmin
 
-from uhai.portal.api.core.models import SiteAdmin as SiteAdministrator
+from uhai.core.models import SiteAdmin as SiteAdministrator
 
-from uhai.portal.api.core.utils import *
+from uhai.core.utils import *
 from uhai.portal.sites.patients.models import Patient
 from uhai.portal.sites.patients.admin import RelationshipInline
 from uhai.portal.sites.providers.models import HealthWorker
 
-from uhai.portal.api.core.admin import BaseStackedInline, CoreBaseInlineFormSet
+from uhai.core.admin import BaseStackedInline, CoreBaseInlineFormSet
 from uhai.portal.sites.insurance.models import HealthInsuranceProvider
 
 from forms import *
