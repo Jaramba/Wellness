@@ -69,7 +69,7 @@ from django_hosts.reverse import reverse_full
 reverse_lazy = lazy(reverse_full, unicode)
 
 LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
-LOGIN_URL = reverse_lazy('secure', 'login')
+LOGIN_URL = reverse_lazy('my-portal', 'login')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
