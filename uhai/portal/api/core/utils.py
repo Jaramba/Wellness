@@ -7,7 +7,12 @@ from django.conf.urls.defaults import *
 
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+from uhai.portal.sites.insurance.models import HealthInsuranceProvider
+
 from django.conf import settings
+
+def insurance_site_callback(request, scheme_slug=None):
+    request.current_insurance = get_object_or_404(HealthInsuranceProvider, slug=scheme_slug)
 
 def pkgen():
     rude = ('lol',)
