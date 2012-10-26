@@ -48,6 +48,9 @@ class EmployerCompany(Company):
         verbose_name_plural = "Schemes"
         verbose_name = "Scheme"
 
+def insurance_site_callback(request, scheme_slug=None):
+    request.current_insurance = get_object_or_404(HealthInsuranceProvider, slug=scheme_slug)
+
 class InsuranceType(MetaData):pass
 class Insurance(OwnerModel):
     """
