@@ -1,0 +1,18 @@
+{% extends "app_base.html" %}
+
+{% block extracss-links %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
+{% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block container %}
+    <legend>Welcome, {{ request.user.get_full_name }}</legend>		
+    {% if messages %}
+        <div class="info">
+            {{ message.content }}
+        </div>
+    {% endif %}		
+{% endblock container %} 
