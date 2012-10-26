@@ -63,9 +63,13 @@ LOCALE_PATHS = (
 )
 
 
-from django.core.urlresolvers import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('home')
-LOGIN_URL = reverse_lazy('login')
+from django.utils.functional import lazy
+from django_hosts.reverse import reverse_full
+
+reverse_lazy = lazy(reverse_full, unicode)
+
+LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
+LOGIN_URL = reverse_lazy('secure', 'login')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

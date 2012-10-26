@@ -10,7 +10,6 @@ from django.template.context import RequestContext
 from uhai.userprofile.forms import RoleChooserForm
 from uhai.programs.models import DiagnosisQuestionnaire
 
-
 from datetime import datetime
 
 @login_required
