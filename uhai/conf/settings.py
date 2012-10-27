@@ -51,25 +51,11 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(CURRENT_PATH, '..','templates'),
-)
-
 LOCALE_PATHS = (
     os.path.join(CURRENT_PATH, '..','locale'),
 )
 
-
-from django.utils.functional import lazy
-from django_hosts.reverse import reverse_full
-
-reverse_lazy = lazy(reverse_full, unicode)
-
-LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
-LOGIN_URL = reverse_lazy('my-portal', 'login')
+ROOT_URLCONF  = 'uhai.portal.www.urls'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -140,6 +126,19 @@ from apps_settings import *
 STAGE = os.environ.get('STAGE', 'staging')
 SITE_ID = 1
 # Load settings specified by STAGE environment variable
+
+from django.utils.functional import lazy
+if STAGE == "staging":
+    from django_hosts.reverse_full import reverse_full
+else:
+    from django.core.urlresolvers import reverse
+    reverse_full = lambda hostname, url, *args, **kwargs: reverse(url, *args, **kwargs)
+
+reverse_lazy = lazy(reverse_full, unicode)
+
+LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
+LOGIN_URL = reverse_lazy('my-portal', 'login')
+
 
 def override_settings(dottedpath):
 	from importlib import import_module

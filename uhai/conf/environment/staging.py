@@ -1,9 +1,28 @@
-PARENT_HOST = 'uhai.synacor.co.ke'
+from django.conf import settings
+import os
+
+PARENT_HOST   = 'uhai.synacor.co.ke'
+ROOT_HOSTCONF = 'uhai.hosts'
+DEFAULT_HOST  = 'default'
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(CURRENT_PATH, '..','templates'),
+)
+
+settings.INSTALLED_APPS += [
+	#Domain Tools
+	'django_hosts',
+]
+
+settings.MIDDLEWARE_CLASSES += [
+    'django_hosts.middleware.HostsMiddleware',
+]
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
-import os
 
 # e-mail settings
 DEFAULT_FROM_EMAIL = 'noreply@uhai.com'

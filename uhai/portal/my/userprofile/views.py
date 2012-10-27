@@ -13,7 +13,11 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.http import require_GET
 from django.views.generic.base import TemplateView
 
-from django_hosts.reverse import reverse_full
+if settings.STAGE == "staging":
+    from django_hosts.reverse_full import reverse_full
+else:
+    from django.core.urlresolvers import reverse
+    reverse_full = lambda hostname, url, *args, **kwargs: reverse(url, *args, **kwargs)
 
 from forms import *
 from signals import *

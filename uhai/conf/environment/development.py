@@ -14,10 +14,17 @@ EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 import os
 from django.conf import settings
 
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(settings.CURRENT_PATH, '..','dev_templates'),
+)
+
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': settings.CURRENT_PATH + '/../database/uhai.db', 
+		'NAME': os.path.join(settings.CURRENT_PATH,'..', 'database', 'uhai.db'), 
 		'HOST': '', 
 		'USER': '', 
 		'PASSWORD': '', 
@@ -29,7 +36,7 @@ DATABASES = {
 HAYSTACK_CONNECTIONS = {
 	'default': {
 		'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-		'PATH': os.path.join(os.path.dirname(__file__),'..', '..', 'whoosh_index'),
+		'PATH': os.path.join(settings.CURRENT_PATH,'..', '..', 'whoosh_index'),
 	},
 }
 

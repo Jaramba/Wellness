@@ -1,11 +1,11 @@
 # Create your views here.
 from models import *
 from forms import * 
+
 from django.contrib.auth.decorators import login_required
 
 from uhai.core.views import *
 
-from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage

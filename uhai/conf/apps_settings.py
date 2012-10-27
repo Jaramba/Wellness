@@ -25,22 +25,20 @@ INSTALLED_APPS = [
     'cloudinary',
 	
 	# API Tools
-    "tastypie",
+    'tastypie',
     
 	#Search Tools
-    "haystack",
-    "celery_haystack",
-    "saved_searches",
-	
-	#Domain Tools
-	"django_hosts",
+    'haystack',
+    'celery_haystack',
+    'saved_searches',
 	
 	#Database tools
-	#"south",
+	#'south',
 	
 	#Customer Care...
-	"intercom",
+	'intercom',
 		
+	'uhai.core',
 	'uhai.portal.sites.programs',
 	'uhai.portal.sites.insurance',
 	'uhai.portal.sites.records',
@@ -48,14 +46,13 @@ INSTALLED_APPS = [
 	'uhai.portal.sites.providers',
 	'uhai.portal.sites.medication',
 	'uhai.portal.sites.reminders',
-	'uhai.portal.my.userprofile',
-	'uhai.core',
+	'uhai.portal.my.userprofile',	
 	'uhai.portal.api.stats',
 	'uhai.portal.api.sms',
 	'uhai.portal.sites.sharer',
 ]
 
-QUESTIONNAIRE_BUILDER_UPLOAD_TO = UPLOAD_TO = "formsbuilder_uploads"
+QUESTIONNAIRE_BUILDER_UPLOAD_TO = UPLOAD_TO = 'formsbuilder_uploads'
 # Nay
 QUESTIONNAIRE_BUILDER_EMAIL_TO = EMAIL_TO = None
 # The maximum allowed length for field values.
@@ -67,23 +64,23 @@ QUESTIONNAIRE_BUILDER_UPLOAD_ROOT = UPLOAD_ROOT = None
 # Boolean controlling whether HTML5 questionnaire fields are used.
 QUESTIONNAIRE_BUILDER_USE_HTML5 = USE_HTML5 = True
 # Boolean controlling whether forms are associated to Django's Sites framework.
-QUESTIONNAIRE_BUILDER_USE_SITES = USE_SITES = "django.contrib.sites" in INSTALLED_APPS
+QUESTIONNAIRE_BUILDER_USE_SITES = USE_SITES = 'django.contrib.sites' in INSTALLED_APPS
 # Boolean controlling whether questionnaire slugs are editable in the admin.
 QUESTIONNAIRE_BUILDER_EDITABLE_SLUGS = EDITABLE_SLUGS = False
 # Char to start a quoted choice with.
-QUESTIONNAIRE_BUILDER_CHOICES_QUOTE = CHOICES_QUOTE = "`"
+QUESTIONNAIRE_BUILDER_CHOICES_QUOTE = CHOICES_QUOTE = '`'
 # Char to end a quoted choice with.
-QUESTIONNAIRE_BUILDER_CHOICES_UNQUOTE = CHOICES_UNQUOTE = "`"
+QUESTIONNAIRE_BUILDER_CHOICES_UNQUOTE = CHOICES_UNQUOTE = '`'
 # Char to use as a field delimiter when exporting questionnaire responses as CSV.
-QUESTIONNAIRE_BUILDER_CSV_DELIMITER = CSV_DELIMITER = ","
+QUESTIONNAIRE_BUILDER_CSV_DELIMITER = CSV_DELIMITER = ','
 # Boolean controlling whether emails to staff recipients are sent from the questionnaire submitter.
 SEND_FROM_SUBMITTER = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
 
 AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "uhai.auth.email.EmailBackend",
+    'django.contrib.auth.backends.ModelBackend',
+    'uhai.auth.email.EmailBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -104,13 +101,7 @@ MIDDLEWARE_CLASSES = [
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django_hosts.middleware.HostsMiddleware',
 ]
-
-
-ROOT_URLCONF  = 'uhai.portal.www.urls'
-ROOT_HOSTCONF = 'uhai.hosts'
-DEFAULT_HOST  = 'default'
 
 ANONYMOUS_USER_ID = -1
 
