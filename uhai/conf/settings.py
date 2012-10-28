@@ -141,18 +141,19 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-from apps_settings import *
-
 STAGE = os.environ.get('STAGE', 'staging')
-SITE_ID = 1
 # Load settings specified by STAGE environment variable
 
+print STAGE 
+
 if STAGE == "development":
-    from uhai.conf.environment.development import *
+    from environment.development import *
 elif STAGE == "staging":
-    from uhai.conf.environment.staging import * 
+    from environment.staging import * 
 else:
-    from uhai.conf.environment.production import *
+    from environment.production import *
+
+from apps_settings import *
 
 """
 def override_settings(dottedpath):
