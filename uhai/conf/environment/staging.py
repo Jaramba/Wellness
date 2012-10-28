@@ -1,8 +1,6 @@
 from django.conf import settings
 import os
 
-print "Name"
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
