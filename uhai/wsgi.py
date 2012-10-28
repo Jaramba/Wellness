@@ -1,10 +1,12 @@
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'uhai.conf.settings'
+
+STAGE = os.environ.get('STAGE', 'staging')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'uhai.conf.environment.%s' % STAGE
 
 import sys
 
 from django.core import management
-from uhai.conf import settings
+from django.conf import settings
 
 management.setup_environ(settings)  # mimic manage.py
 

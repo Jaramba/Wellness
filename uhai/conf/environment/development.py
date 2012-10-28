@@ -1,3 +1,6 @@
+from uhai.conf.settings import *
+import os
+
 PARENT_HOST   = 'localhost'
 
 #development settings
@@ -11,20 +14,17 @@ EMAIL_HOST = 'smtp.webfaction.com'
 EMAIL_HOST_USER = 'uhai'
 EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 
-import os
-from django.conf import settings
-
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(settings.CURRENT_PATH, '..','dev_templates'),
+    os.path.join(CURRENT_PATH, '..','dev_templates'),
 )
 
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': os.path.join(settings.CURRENT_PATH,'..', 'database', 'uhai.db'), 
+		'NAME': os.path.join(CURRENT_PATH,'..', 'database', 'uhai.db'), 
 		'HOST': '', 
 		'USER': '', 
 		'PASSWORD': '', 
@@ -36,11 +36,11 @@ SIMPLE_API_URL = "https://simple.majisoft.co.ke/"
 
 #Debug Settings
 #Middleware
-settings.MIDDLEWARE_CLASSES += [
+MIDDLEWARE_CLASSES += [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-settings.INSTALLED_APPS += [
+INSTALLED_APPS += [
     "debug_toolbar",
     #"devserver",
 ]

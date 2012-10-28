@@ -1,4 +1,4 @@
-from django.conf import settings
+from uhai.conf.settings import *
 import os
 
 DEBUG = True
@@ -6,12 +6,12 @@ TEMPLATE_DEBUG = DEBUG
 
 PARENT_HOST   = 'uhai.synacor.co.ke'
 
-settings.INSTALLED_APPS += [
+INSTALLED_APPS += [
 	#Domain Tools
 	'django_hosts',
 ]
 
-settings.MIDDLEWARE_CLASSES += [
+MIDDLEWARE_CLASSES += [
     'django_hosts.middleware.HostsMiddleware',
 ]
 

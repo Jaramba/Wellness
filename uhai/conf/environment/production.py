@@ -1,3 +1,5 @@
+from uhai.conf.settings import *
+
 PARENT_HOST  = 'uhai.co.ke'
 
 DEBUG = True
