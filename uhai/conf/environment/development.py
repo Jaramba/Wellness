@@ -1,6 +1,8 @@
 from uhai.conf.settings import *
 import os
 
+PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
+
 PARENT_HOST   = 'localhost'
 
 #development settings
@@ -18,13 +20,15 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(CURRENT_PATH, '..','dev_templates'),
+    os.path.join(PROJECT_PATH, 'dev_templates'),
 )
+
+print PROJECT_PATH
 
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': os.path.join(CURRENT_PATH,'..', 'database', 'uhai.db'), 
+		'NAME': os.path.join(PROJECT_PATH, 'database', 'uhai.db'), 
 		'HOST': '', 
 		'USER': '', 
 		'PASSWORD': '', 
@@ -95,3 +99,32 @@ NEW_RELIC_EXTENSIONS_ATTRIBUTES = {
     'is_secure': 'Django secure conneciton',
     'REQUEST': 'Django Request Variable'
 }
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH, 'templates'),
+)
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_PATH, 'locale'),
+)
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/home/media/media.lawrence.com/static/"
+STATIC_ROOT = os.path.join(PROJECT_PATH, '..', 'static_root')
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH, 'static'),
+)
