@@ -147,6 +147,14 @@ STAGE = os.environ.get('STAGE', 'staging')
 SITE_ID = 1
 # Load settings specified by STAGE environment variable
 
+if STAGE == "development":
+    from uhai.conf.environment.development import *
+elif STAGE == "staging":
+    from uhai.conf.environment.staging import * 
+else:
+    from uhai.conf.environment.production import *
+
+"""
 def override_settings(dottedpath):
     from importlib import import_module
     try:		
@@ -166,3 +174,4 @@ def override_settings(dottedpath):
 
 dottedpath = 'uhai.conf.environment.%s' % STAGE
 override_settings(dottedpath)
+"""
