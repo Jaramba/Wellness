@@ -1,4 +1,4 @@
-from uhai.utils.forms import *
+from uhai.core.forms import *
 from models import (
     Medication, 
     Immunization,

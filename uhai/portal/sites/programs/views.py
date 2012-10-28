@@ -4,7 +4,7 @@ from forms import *
 
 from django.contrib.auth.decorators import login_required
 
-from uhai.utils.views import *
+from uhai.core.views import *
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.sites.models import Site

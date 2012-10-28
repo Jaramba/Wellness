@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 from app_map import VIEW_NAME, APP_MAP
-from uhai.utils.funcs import get_crud_urls
+from uhai.core.funcs import get_crud_urls
 
 from django.views.generic.base import TemplateView
 from models import Questionnaire, ProgramQuestionnaire

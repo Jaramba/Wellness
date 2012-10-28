@@ -14,7 +14,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import fields
 from funcs import now, slugify, unique_slug
 
-from uhai.utils.models import OwnerModel, MetaData
+from uhai.core.models import OwnerModel, MetaData
     
 class Program(OwnerModel):
     '''

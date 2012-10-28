@@ -16,7 +16,7 @@ from django.template import Template
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from uhai.utils.forms import *
+from uhai.core.forms import *
 
 import fields
 from funcs import now

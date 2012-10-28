@@ -3,7 +3,7 @@ from django.db import models
 
 from django.template.defaultfilters import slugify
 
-from uhai.utils.models import OwnerModel, MetaData
+from uhai.core.models import OwnerModel, MetaData
 
 class Title(models.Model):
 	name = models.CharField(max_length=50)

@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime, timedelta
 from django.contrib.contenttypes import generic
 
-from uhai.utils.models import OwnerModel, MetaData
+from uhai.core.models import OwnerModel, MetaData
 
 class EncountersSharer(OwnerModel):	
     encounter = models.ManyToManyField('records.Encounter', through='EncounterRequest')

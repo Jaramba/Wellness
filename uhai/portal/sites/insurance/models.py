@@ -1,5 +1,5 @@
 from django.db import models
-from uhai.utils.models import OwnerModel, MetaData
+from uhai.core.models import OwnerModel, MetaData
 from django.shortcuts import get_object_or_404
 
 class Company(OwnerModel):

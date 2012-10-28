@@ -1,7 +1,7 @@
 [
   {
     "pk": 1,
-    "model": "utils.country",
+    "model": "core.country",
     "fields": {
       "model_owner": 0,
       "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
@@ -12,7 +12,7 @@
   },
   {
     "pk": 2,
-    "model": "utils.country",
+    "model": "core.country",
     "fields": {
       "model_owner": 0,
       "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
@@ -23,7 +23,7 @@
   },
   {
     "pk": 3,
-    "model": "utils.country",
+    "model": "core.country",
     "fields": {
       "model_owner": 0,
       "access_control_list": "{'system': {'edit': False, 'view': True, 'delete': False}}",
@@ -34,7 +34,7 @@
   },
   {
     "pk": 1,
-    "model": "utils.province",
+    "model": "core.province",
     "fields": {
       "name": "Nairobi",
       "model_owner": 0,
@@ -46,7 +46,7 @@
   },
   {
     "pk": 1,
-    "model": "utils.county",
+    "model": "core.county",
     "fields": {
       "province": 1,
       "name": "Embakassi",
@@ -58,7 +58,7 @@
   },
   {
     "pk": 1,
-    "model": "utils.siteadmin",
+    "model": "core.siteadmin",
     "fields": {
       "site_admin": 5,
       "site": 1
@@ -66,7 +66,7 @@
   },
   {
     "pk": 2,
-    "model": "utils.siteadmin",
+    "model": "core.siteadmin",
     "fields": {
       "site_admin": 5,
       "site": 2

@@ -5,7 +5,7 @@ from forms import *
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
-from uhai.utils.views import *
+from uhai.core.views import *
 
 @login_required
 def patient(request, *args, **kwargs):

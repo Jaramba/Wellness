@@ -18,7 +18,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils.translation import ungettext, ugettext_lazy as _
 
-from uhai.utils.admin import BaseModelAdmin, BaseTabularInline
+from uhai.core.admin import BaseModelAdmin, BaseTabularInline
 
 import forms
 import models

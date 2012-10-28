@@ -64,7 +64,7 @@ def public(request, user_id=None, template_name="userprofile/public.html"):
     
     return render_to_response(template_name, data, context_instance=RequestContext(request)) 
 
-from uhai.utils.views import model_view
+from uhai.core.views import model_view
 @login_required
 def user_change(request):
     data = {}
