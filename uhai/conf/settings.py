@@ -137,6 +137,8 @@ def override_settings(dottedpath):
 		import warnings
 		warnings.warn("Failed to import %s" % dottedpath)
 		print "Path is %s" % os.path.abspath(os.path.dirname(__file__))
+    except Exception, e:
+        print "Weird error: >>>> ", e
 	else:
 		import sys
 		_thismodule = sys.modules[__name__]
