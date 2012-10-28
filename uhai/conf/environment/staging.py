@@ -5,8 +5,6 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PARENT_HOST   = 'uhai.synacor.co.ke'
-ROOT_HOSTCONF = 'uhai.hosts'
-DEFAULT_HOST  = 'default'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

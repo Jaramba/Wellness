@@ -56,6 +56,8 @@ LOCALE_PATHS = (
 )
 
 ROOT_URLCONF  = 'uhai.portal.www.urls'
+ROOT_HOSTCONF = 'uhai.hosts'
+DEFAULT_HOST  = 'default'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
