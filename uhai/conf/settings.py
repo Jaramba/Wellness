@@ -130,21 +130,21 @@ SITE_ID = 1
 # Load settings specified by STAGE environment variable
 
 def override_settings(dottedpath):
-	from importlib import import_module
-	try:		
-		_m = import_module(dottedpath)		
-	except ImportError, e:
-		import warnings
-		warnings.warn("Failed to import %s" % dottedpath)
-		print "Path is %s" % os.path.abspath(os.path.dirname(__file__))
+    from importlib import import_module
+    try:		
+    	_m = import_module(dottedpath)		
+    except ImportError, e:
+    	import warnings
+    	warnings.warn("Failed to import %s" % dottedpath)
+    	print "Path is %s" % os.path.abspath(os.path.dirname(__file__))
     except Exception, e:
         print "Weird error: >>>> ", e
-	else:
-		import sys
-		_thismodule = sys.modules[__name__]
-		for _k in dir(_m):
-			if _k.isupper() and not _k.startswith('__'): 
-				setattr(_thismodule, _k, getattr(_m, _k))
+    else:
+    	import sys
+    	_thismodule = sys.modules[__name__]
+    	for _k in dir(_m):
+    		if _k.isupper() and not _k.startswith('__'): 
+    			setattr(_thismodule, _k, getattr(_m, _k))
 
 dottedpath = '.'.join(['uhai', 'conf', 'environment', STAGE])
 override_settings(dottedpath)
