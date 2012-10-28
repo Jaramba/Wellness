@@ -32,14 +32,6 @@ DATABASES = {
 	}
 }
 
-#Search Settings
-HAYSTACK_CONNECTIONS = {
-	'default': {
-		'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-		'PATH': os.path.join(settings.CURRENT_PATH,'..', '..', 'whoosh_index'),
-	},
-}
-
 SIMPLE_API_URL = "https://simple.majisoft.co.ke/"
 
 #Debug Settings

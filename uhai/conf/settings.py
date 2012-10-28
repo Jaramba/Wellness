@@ -161,4 +161,3 @@ else:
 
     LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
     LOGIN_URL = reverse_lazy('my-portal', 'login')
-

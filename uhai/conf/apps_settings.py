@@ -28,7 +28,6 @@ INSTALLED_APPS = [
 	#Search Tools
     'haystack',
     'celery_haystack',
-    'saved_searches',
 	
 	#Database tools
 	#'south',
@@ -49,6 +48,15 @@ INSTALLED_APPS = [
 	'uhai.portal.api.sms',
 	'uhai.portal.sites.sharer',
 ]
+
+#Search Settings
+HAYSTACK_CONNECTIONS = {
+	'default': {
+		'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+		'PATH': os.path.join(os.path.dirname(__file__),'..', '..', 'whoosh_index'),
+	},
+}
+
 
 QUESTIONNAIRE_BUILDER_UPLOAD_TO = UPLOAD_TO = 'formsbuilder_uploads'
 # Nay
