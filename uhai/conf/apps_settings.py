@@ -1,4 +1,5 @@
 from django.conf import settings
+import os
 
 INSTALLED_APPS = [
 	#admin

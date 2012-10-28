@@ -37,11 +37,11 @@ SIMPLE_API_URL = "https://simple.majisoft.co.ke/"
 #Debug Settings
 #Middleware
 settings.MIDDLEWARE_CLASSES += [
-    #r"debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 settings.INSTALLED_APPS += [
-    #"debug_toolbar",
+    "debug_toolbar",
     #"devserver",
 ]
 
