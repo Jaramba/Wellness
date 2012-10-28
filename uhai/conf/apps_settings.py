@@ -85,12 +85,12 @@ SEND_FROM_SUBMITTER = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
 
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'uhai.auth.email.EmailBackend',
-)
+]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
+TEMPLATE_CONTEXT_PROCESSORS = [
 	'django.core.context_processors.request',	
 	'django.contrib.auth.context_processors.auth',
 	'django.core.context_processors.debug',
@@ -99,7 +99,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.static',
 	'django.core.context_processors.request',
 	'uhai.core.context_processors.request',
-)
+]
 
 MIDDLEWARE_CLASSES = [
 	'django.middleware.common.CommonMiddleware',

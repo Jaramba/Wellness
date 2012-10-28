@@ -164,5 +164,6 @@ def override_settings(dottedpath):
     		if _k.isupper() and not _k.startswith('__'): 
     			setattr(_thismodule, _k, getattr(_m, _k))
 
-dottedpath = '.'.join(['uhai', 'conf', 'environment', STAGE])
+dottedpath = 'uhai.conf.environment.%s' % STAGE
+print dottedpath, "<<<<<<<<<<<<<<<<<<<"
 override_settings(dottedpath)
