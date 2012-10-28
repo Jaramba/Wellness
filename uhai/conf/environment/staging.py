@@ -6,6 +6,8 @@ ROOT_HOSTCONF = 'uhai.hosts'
 DEFAULT_HOST  = 'default'
 
 from django_hosts.reverse import reverse_full
+from django.utils.functional import lazy
+
 reverse_lazy = lazy(reverse_full, unicode)
 
 LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
