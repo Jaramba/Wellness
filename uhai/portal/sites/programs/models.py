@@ -12,7 +12,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import fields
-from utils import now, slugify, unique_slug
+from funcs import now, slugify, unique_slug
 
 from uhai.utils.models import OwnerModel, MetaData
     

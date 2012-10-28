@@ -5,7 +5,7 @@ from decorators_test import *
 from forms_test import *
 from orphans_test import *
 from other_test import *
-from utils_test import *
+from funcs_test import *
 from shortcuts_test import *
 from tags_test import *
 

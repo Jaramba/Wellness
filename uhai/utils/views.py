@@ -10,7 +10,7 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 
 from django.template.context import RequestContext
 
-from utils import has_permissions
+from funcs import has_permissions
 
 def model_view(request, pk=None,
          template_name='',

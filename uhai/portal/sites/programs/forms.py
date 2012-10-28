@@ -19,7 +19,7 @@ from django.utils.translation import ugettext_lazy as _
 from uhai.utils.forms import *
 
 import fields
-from utils import now
+from funcs import now
 
 from models import *
 

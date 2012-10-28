@@ -24,7 +24,7 @@ import forms
 import models
 
 from django.conf import settings
-from utils import now, slugify
+from funcs import now, slugify
 
 try:
     import xlwt

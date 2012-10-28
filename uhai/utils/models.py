@@ -10,7 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django_hosts.managers import HostSiteManager
 import fields
 
-from utils import has_permissions
+from funcs import has_permissions
 
 """
 Things to nore: We have the same Database for all the Insurance Companies in the system:

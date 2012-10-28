@@ -17,7 +17,7 @@ from django.forms.models import (inlineformset_factory, BaseInlineFormSet)
 import forms
 import models
 
-from utils import has_permissions, delete_selected
+from funcs import has_permissions, delete_selected
 
 from uhai.utils import forms as core_forms
 
