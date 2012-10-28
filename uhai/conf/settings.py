@@ -144,6 +144,7 @@ STATICFILES_FINDERS = (
 STAGE = os.environ.get('STAGE', 'staging')
 # Load settings specified by STAGE environment variable
 
+from apps_settings import *
 print STAGE 
 
 if STAGE == "development":
@@ -152,8 +153,6 @@ elif STAGE == "staging":
     from environment.staging import * 
 else:
     from environment.production import *
-
-from apps_settings import *
 
 """
 def override_settings(dottedpath):
