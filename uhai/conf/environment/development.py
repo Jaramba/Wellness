@@ -1,11 +1,5 @@
 PARENT_HOST   = 'localhost'
 
-from django.core.urlresolvers import reverse
-reverse_lazy = lazy(reverse, unicode)
-
-LOGIN_REDIRECT_URL = reverse_lazy('index')
-LOGIN_URL = reverse_lazy('login')
-
 #development settings
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

@@ -123,7 +123,7 @@ STATICFILES_FINDERS = (
 
 from apps_settings import *
 
-STAGE = os.environ.get('STAGE', 'staging')
+STAGE = os.environ.get('STAGE', 'production')
 SITE_ID = 1
 # Load settings specified by STAGE environment variable
 
@@ -144,3 +144,17 @@ def override_settings(dottedpath):
 
 dottedpath = '.'.join(['uhai', 'conf', 'environment', STAGE])
 override_settings(dottedpath)
+
+if STAGE == "development":
+    from django.core.urlresolvers import reverse_lazy
+
+    LOGIN_REDIRECT_URL = reverse_lazy('index')
+    LOGIN_URL = reverse_lazy('login')
+else:
+    from django_hosts.reverse import reverse_full
+    from django.utils.functional import lazy
+    reverse_lazy = lazy(reverse_full, unicode)
+
+    LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
+    LOGIN_URL = reverse_lazy('my-portal', 'login')
+

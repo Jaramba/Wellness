@@ -1,6 +1,4 @@
 from django.conf import settings
-from django_hosts.reverse import reverse_full
-from django.utils.functional import lazy
 import os
 
 DEBUG = False
@@ -9,12 +7,6 @@ TEMPLATE_DEBUG = DEBUG
 PARENT_HOST   = 'uhai.synacor.co.ke'
 ROOT_HOSTCONF = 'uhai.hosts'
 DEFAULT_HOST  = 'default'
-
-print "HERE >>>>>>>> ", ROOT_HOSTCONF
-
-reverse_lazy = lazy(reverse_full, unicode)
-LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
-LOGIN_URL = reverse_lazy('my-portal', 'login')
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
