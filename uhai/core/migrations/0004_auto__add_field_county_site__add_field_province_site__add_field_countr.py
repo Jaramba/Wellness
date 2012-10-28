@@ -36,7 +36,7 @@ class Migration(SchemaMigration):
 
 
     models = {
-        'utils.country': {
+        'core.country': {
             'Meta': {'object_name': 'Country'},
             'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -44,19 +44,19 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'core_country'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
-        'utils.county': {
+        'core.county': {
             'Meta': {'object_name': 'County'},
             'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
-            'province': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['utils.Province']"}),
+            'province': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Province']"}),
             'site': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'core_county'", 'null': 'True', 'to': "orm['sites.Site']"})
         },
-        'utils.province': {
+        'core.province': {
             'Meta': {'object_name': 'Province'},
             'access_control_list': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True'}),
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['utils.Country']"}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Country']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
