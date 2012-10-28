@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
 ADMINS = (
     ('ONESMUS MUKEWA', 'kanarelo@gmail.com'),
 )
