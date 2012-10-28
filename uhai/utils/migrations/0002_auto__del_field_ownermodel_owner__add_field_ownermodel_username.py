@@ -39,7 +39,7 @@ class Migration(SchemaMigration):
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'}),
-            'province': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Province']"})
+            'province': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['utils.Province']"})
         },
         'core.crudaccessdict': {
             'Meta': {'object_name': 'CRUDAccessDict'},
@@ -55,7 +55,7 @@ class Migration(SchemaMigration):
         },
         'core.province': {
             'Meta': {'object_name': 'Province', '_ormbases': ['core.OwnerModel']},
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Country']"}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['utils.Country']"}),
             'iso': ('django.db.models.fields.CharField', [], {'max_length': '4'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
             'ownermodel_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['core.OwnerModel']", 'unique': 'True', 'primary_key': 'True'})

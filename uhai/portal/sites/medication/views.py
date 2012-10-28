@@ -5,7 +5,7 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
-from uhai.core.views import *
+from uhai.utils.views import *
 
 from django.http import Http404
 from django.shortcuts import get_object_or_404

@@ -12,6 +12,5 @@ host_patterns = patterns('',
     host(r'(?P<scheme_slug>\w+)', 
     	'uhai.portal.sites.urls', 
     	callback='uhai.portal.sites.insurance.models.insurance_site_callback', 
-    	name='insurance-sites'
-    ),
+        name='insurance-sites'),
 )

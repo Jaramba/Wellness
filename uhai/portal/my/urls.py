@@ -23,6 +23,6 @@ urlpatterns = patterns('',
     	}, name='logout'
     ),
 
-	url(r'', include('uhai.core.urls')),
+	url(r'', include('uhai.utils.urls')),
 	url(r'', include('uhai.portal.my.userprofile.urls')),
 )	

@@ -148,7 +148,7 @@ INSTALLED_APPS = [
     #Customer Care...
     'intercom',
         
-    'uhai.core',
+    'uhai.utils',
     'uhai.portal.sites.programs',
     'uhai.portal.sites.insurance',
     'uhai.portal.sites.records',
@@ -210,7 +210,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
-    'uhai.core.context_processors.request',
+    'uhai.utils.context_processors.request',
 ]
 
 MIDDLEWARE_CLASSES = [

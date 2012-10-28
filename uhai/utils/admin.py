@@ -19,10 +19,10 @@ import models
 
 from utils import has_permissions, delete_selected
 
-from uhai.core import forms as core_forms
+from uhai.utils import forms as core_forms
 
-from uhai.core.models import OwnerModel
-from uhai.core.forms import BaseModelForm
+from uhai.utils.models import OwnerModel
+from uhai.utils.forms import BaseModelForm
 
 from django.forms.models import modelform_factory
 

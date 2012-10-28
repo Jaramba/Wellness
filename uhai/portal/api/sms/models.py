@@ -1,5 +1,5 @@
 from django.db import models
-from uhai.core.models import OwnerModel, MetaData
+from uhai.utils.models import OwnerModel, MetaData
 
 class SmsMessage(OwnerModel):        
 	text = models.CharField(max_length=480)

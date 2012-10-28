@@ -3,7 +3,7 @@ from django.db import models
 
 from django.template.defaultfilters import slugify
 
-from uhai.core.models import OwnerModel, MetaData
+from uhai.utils.models import OwnerModel, MetaData
 
 class Title(models.Model):
 	name = models.CharField(max_length=50)
@@ -27,9 +27,9 @@ class UserProfile(models.Model):
 
     postal_code = models.CharField(max_length=50, null=True, blank=True)
     village = models.CharField(max_length=50, null=True, blank=True, help_text='Your home village')
-    province = models.ForeignKey('core.Province', null=True, help_text='Your home province')
-    county = models.ForeignKey('core.County', null=True, help_text='Your home county')
-    country = models.ForeignKey('core.Country', null=True, help_text='Your home country')
+    province = models.ForeignKey('utils.Province', null=True, help_text='Your home province')
+    county = models.ForeignKey('utils.County', null=True, help_text='Your home county')
+    country = models.ForeignKey('utils.Country', null=True, help_text='Your home country')
         
     user = models.ForeignKey('auth.User', unique=True)
     national_id = models.CharField(max_length=25)

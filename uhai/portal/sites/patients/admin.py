@@ -4,7 +4,7 @@ from uhai.portal.sites.insurance.models import PatientInsurance
 from uhai.portal.sites.providers.models import PatientProvider
 from uhai.portal.sites.programs.models import EnrolledProgram
 
-from uhai.core.admin import BaseModelAdmin, BaseTabularInline
+from uhai.utils.admin import BaseModelAdmin, BaseTabularInline
 
 class PatientInsuranceAdmin(BaseTabularInline):
     model = PatientInsurance
