@@ -1,7 +1,7 @@
 from uhai.conf.settings import *
 import os
 
-PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..','..')
+PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
 PARENT_HOST  = 'uhai.co.ke'
 
 DEBUG = True
@@ -14,14 +14,14 @@ EMAIL_HOST_USER = 'uhai'
 EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
-		'HOST': '', 
-		'USER': '', 
-		'PASSWORD': '', 
-		'PORT': ''
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
+        'HOST': '', 
+        'USER': '', 
+        'PASSWORD': '', 
+        'PORT': ''
+    }
 }
 
 TEMPLATE_DIRS = (

@@ -9,8 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 PARENT_HOST   = 'uhai.synacor.co.ke'
 
 INSTALLED_APPS += [
-	#Domain Tools
-	'django_hosts', 
+    #Domain Tools
+    'django_hosts', 
 ]
 
 MIDDLEWARE_CLASSES += [
@@ -24,14 +24,14 @@ EMAIL_HOST_USER = 'uhai'
 EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
-		'HOST': '', 
-		'USER': '', 
-		'PASSWORD': '', 
-		'PORT': ''
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
+        'HOST': '', 
+        'USER': '', 
+        'PASSWORD': '', 
+        'PORT': ''
+    }
 }
 
 TEMPLATE_DIRS = (
