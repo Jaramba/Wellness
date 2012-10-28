@@ -1,6 +1,4 @@
-from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
-from django.utils.translation import ugettext
 
 INSTALLED_APPS = [
 	#admin
