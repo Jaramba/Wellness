@@ -1,7 +1,7 @@
 from django.conf import settings
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 PARENT_HOST   = 'uhai.synacor.co.ke'
