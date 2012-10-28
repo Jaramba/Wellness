@@ -143,7 +143,7 @@ STATICFILES_FINDERS = (
 
 from apps_settings import *
 
-STAGE = os.environ.get('STAGE', 'production')
+STAGE = os.environ.get('STAGE', 'staging')
 SITE_ID = 1
 # Load settings specified by STAGE environment variable
 
@@ -165,5 +165,4 @@ def override_settings(dottedpath):
     			setattr(_thismodule, _k, getattr(_m, _k))
 
 dottedpath = 'uhai.conf.environment.%s' % STAGE
-print dottedpath, "<<<<<<<<<<<<<<<<<<<"
 override_settings(dottedpath)
