@@ -23,8 +23,6 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'dev_templates'),
 )
 
-print PROJECT_PATH
-
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 
