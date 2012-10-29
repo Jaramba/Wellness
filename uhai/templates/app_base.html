@@ -32,28 +32,7 @@
 				</a>
 				<a class="brand" href="/">
 					<i class="icon-leaf icon-white" style="margin-top: 8px;margin-right: -4px;"> </i> Uhai
-				<div class="nav-collapse">
-					<div class="pull-right">
-						{% block navbar-right %}
-							{% if request.user.is_authenticated %}
-								<ul class="nav pull-right" style="padding-top: 3px;">
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>
-										<ul class="dropdown-menu">
-											<li>
-											</li>
-											<li class="divider"></li>
-											<li>
-												<a href="{% host_url settings on my-portal %}"><i class="icon-user"></i> Account Settings</a>
-											</li>
-											<li class="divider"></li>
-											<li><a href="{% host_url logout on my-portal %}"><i class="icon-off"></i> Log out</a></li>
-										</ul>
-									</li>
-								</ul>
-							{% endif %}
-						{% endblock navbar-right %}
-					</div>				
+				<div class="nav-collapse">					
 				</div><!--/.nav-collapse -->
 			{% endblock navbar-container %}
 		</div>
