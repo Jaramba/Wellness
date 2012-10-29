@@ -1,6 +1,6 @@
-from django.conf.urls.defaults import * 
+	from django.conf.urls.defaults import * 
 
-urlpatterns = patterns('uhai.portal.my.views',
+urlpatterns = patterns('uhai.portal.sites.views',
     url(r'^/?$', 'switchboard', name='switchboard'),
 
     url(r'^reminders/', include('uhai.portal.sites.reminders.urls')),
