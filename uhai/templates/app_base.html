@@ -34,53 +34,10 @@
 					<i class="icon-leaf icon-white" style="margin-top: 8px;margin-right: -4px;"> </i> Uhai
 				<div class="nav-collapse">
 					{% block navbar-left %}
-						<ul class="nav" style="padding-top: 4px;">
-							{% if request.user.is_authenticated %}
-								<li class="navbar-item" class="active">
-									<a href="{% host_url index on my-portal %}">Home</a>
-								</li>
-								{% if request.session.use_page_as == 'health-worker' %}
-									<li class="navbar-item" id="schedule-menu">
-										<a href="{% host_url calendar on my-portal %}">Reminders</a>
-									</li>
-									<li class="navbar-item" id="patient-menu">
-										<a href="{% host_url patient-list on doctor-portal %}" data-toggle="dropdown">Patients</a>
-									</li>
-								{% elif request.session.use_page_as == 'employer' %}
-									<li class="navbar-item" id="patient-menu">
-										<a href="{% host_url patient-list on doctor-portal %}" data-toggle="dropdown">Patients</a>
-									</li>
-								{% else %}
-									<li class="navbar-item"><a href="{% host_url calendar on my-portal %}">Reminders</a></li>
-									<li class="navbar-item"><a href="{% host_url records on my-portal %}">Records</a></li>
-									<li class="navbar-item"><a href="{% host_url programs on my-portal %}">Programs</a></li>
-									<li class="navbar-item"><a href="{% host_url dependents on my-portal %}">Dependents</a></li>
-								{% endif %}								
-							{% endif %}
+						<ul class="nav" style="padding-top: 4px;">							
 							{% block navbar-links %}{% endblock navbar-links %}
 						</ul>
-					{% endblock navbar-left %}								
-					<div class="pull-right">
-						{% block navbar-right %}
-							{% if request.user.is_authenticated %}
-								<ul class="nav pull-right" style="padding-top: 3px;">
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user.full_name }} <b class="caret"></b></a>
-										<ul class="dropdown-menu">
-											<li>
-											</li>
-											<li class="divider"></li>
-											<li>
-												<a href="{% host_url settings on my-portal %}"><i class="icon-user"></i> Account Settings</a>
-											</li>
-											<li class="divider"></li>
-											<li><a href="{% host_url logout on my-portal %}"><i class="icon-off"></i> Log out</a></li>
-										</ul>
-									</li>
-								</ul>
-							{% endif %}
-						{% endblock navbar-right %}
-					</div>				
+					{% endblock navbar-left %}		
 				</div><!--/.nav-collapse -->
 			{% endblock navbar-container %}
 		</div>
