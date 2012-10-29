@@ -1,4 +1,4 @@
-	from django.conf.urls.defaults import * 
+from django.conf.urls.defaults import * 
 
 urlpatterns = patterns('uhai.portal.sites.views',
     url(r'^/?$', 'switchboard', name='switchboard'),

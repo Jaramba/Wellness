@@ -4,6 +4,7 @@
     "model": "insurance.healthinsuranceprovider",
     "fields": {
       "name": "AON",
+      "slug": "aon",
       "phone": "254736705812",
       "site": "1",
       "location": "Kenya",
