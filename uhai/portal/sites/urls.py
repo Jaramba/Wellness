@@ -13,5 +13,5 @@ urlpatterns = patterns('uhai.portal.sites.views',
 	url(r'^records/', include('uhai.portal.sites.patients.urls')),
 
 	url(r'', include('uhai.core.urls')),
-	url(r'', include('uhai.portal.my.userprofile.urls')),
+	
 )
