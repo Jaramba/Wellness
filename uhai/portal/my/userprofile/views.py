@@ -26,15 +26,16 @@ import copy
 
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
-		if request.method == 'POST':
-			if not request.POST.get('remember', None):
-				request.session.set_expiry(0)
-		return auth_login(
+    	if request.method == 'POST':
+    		if not request.POST.get('remember', None):
+    			request.session.set_expiry(0)
+    	return auth_login(
                 request, 
                 authentication_form=AuthenticationForm, 
                 *args, **kwargs
         )
     else:
+        print "Redirect to my-portal", getattr(request, 'current_insurance', '>>>> Clean')
         return HttpResponseRedirect(reverse_full('my-portal', 'index'))
 
 def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
