@@ -35,7 +35,6 @@ def login(request, *args, **kwargs):
                 *args, **kwargs
         )
     else:
-        print "Redirect to my-portal", getattr(request, 'current_insurance', '>>>> Clean')
         return HttpResponseRedirect(reverse_full('my-portal', 'index'))
 
 def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
