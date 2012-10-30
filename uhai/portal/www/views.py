@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify
 from django.template.context import RequestContext
 
 from uhai.portal.my.userprofile.forms import RoleChooserForm
-from uhai.portal.sites.programs.models import DiagnosisQuestionnaire
+from uhai.portal.my.programs.models import DiagnosisQuestionnaire
 
 from datetime import datetime
 

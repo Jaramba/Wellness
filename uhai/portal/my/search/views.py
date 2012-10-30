@@ -9,7 +9,7 @@ import simplejson
 
 from django.db.models import Q
 
-from uhai.portal.sites.patients.models import Patient
+from uhai.portal.my.patients.models import Patient
 from forms import SearchPatientForm
 
 @login_required

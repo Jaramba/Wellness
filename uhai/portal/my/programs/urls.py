@@ -16,7 +16,7 @@ urlpatterns += get_crud_urls(
 	app_map=APP_MAP
 )
 
-urlpatterns += patterns("uhai.portal.sites.programs.views",
+urlpatterns += patterns("uhai.portal.my.programs.views",
     url(r"questionaires/(?P<slug>[-\w]+)/sent/$", "questionnaire_sent", name="questionnaire_sent"),
     url(r"questionaires/(?P<slug>[-\w]+)/$", "questionnaire_detail", {
         'QuestionnaireType': ProgramQuestionnaire, 'QuestionnaireTypeForm': ProgramQuestionnaireForm, 

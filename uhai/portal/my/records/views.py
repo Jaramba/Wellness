@@ -7,7 +7,7 @@ from django.http import Http404, HttpResponse
 
 from forms import *
 from models import *
-from uhai.portal.sites.patients.models import Patient
+from uhai.portal.my.patients.models import Patient
 
 from uhai.core.views import *
 

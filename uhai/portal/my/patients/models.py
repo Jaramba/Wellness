@@ -5,7 +5,7 @@ from uhai.portal.my.userprofile.models import *
 from django.contrib.auth.models import User
 from django.db import transaction
 
-from uhai.portal.sites.providers.models import HealthWorker
+from uhai.portal.my.providers.models import HealthWorker
 
 class Patient(OwnerModel):
     '''

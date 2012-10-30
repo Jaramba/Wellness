@@ -149,17 +149,17 @@ INSTALLED_APPS = [
     'intercom',
         
     'uhai.core',
-    'uhai.portal.sites.programs',
-    'uhai.portal.sites.insurance',
-    'uhai.portal.sites.records',
-    'uhai.portal.sites.patients',   
-    'uhai.portal.sites.providers',
-    'uhai.portal.sites.medication',
-    'uhai.portal.sites.reminders',
+    'uhai.portal.my.programs',
+    'uhai.portal.my.insurance',
+    'uhai.portal.my.records',
+    'uhai.portal.my.patients',   
+    'uhai.portal.my.providers',
+    'uhai.portal.my.medication',
+    'uhai.portal.my.reminders',
     'uhai.portal.my.userprofile',   
     'uhai.portal.api.stats',
     'uhai.portal.api.sms',
-    'uhai.portal.sites.sharer',
+    'uhai.portal.my.sharer',
 ]
 
 #Search Settings

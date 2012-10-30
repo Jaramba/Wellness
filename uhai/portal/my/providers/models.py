@@ -2,7 +2,7 @@ from django.db import models
 from uhai.core.models import OwnerModel, MetaData
 
 from uhai.portal.my.userprofile.models import *
-from uhai.portal.sites.insurance.models import *
+from uhai.portal.my.insurance.models import *
 
 class SpecialityCategory(OwnerModel):
 	name = models.CharField(max_length=150)

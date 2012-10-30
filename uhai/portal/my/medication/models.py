@@ -1,5 +1,5 @@
 from uhai.core.models import OwnerModel, MetaData
-from uhai.portal.sites.reminders.models import Event
+from uhai.portal.my.reminders.models import Event
 
 from django.db import models
 

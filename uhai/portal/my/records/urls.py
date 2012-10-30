@@ -33,5 +33,5 @@ urlpatterns += get_crud_urls(
 )
 
 urlpatterns += patterns('',
-    url(r'^encounter/(?P<pk>[-\d]+)/share/$', 'uhai.portal.sites.records.views.encounter', name='encounter-share'),
+    url(r'^encounter/(?P<pk>[-\d]+)/share/$', 'uhai.portal.my.records.views.encounter', name='encounter-share'),
 )
