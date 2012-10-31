@@ -79,5 +79,18 @@ footer .sponsor-logo{margin-top:10px;}
 	width: 192px;
 	height: 137px;
 	background-color: #71b1d1;
+	display: inline-block;
 }
 
+.tile{
+	margin-bottom: 11px;
+	margin-right: 11px;
+}
+
+.tile.last-row{
+	margin-bottom: 0px;
+}
+
+.tile.last-column{
+	margin-right: 0px;
+}
