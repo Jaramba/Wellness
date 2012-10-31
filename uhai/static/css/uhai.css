@@ -90,3 +90,7 @@ footer .sponsor-logo{margin-top:10px;}
 .tile.last{
 	margin-right: 0px;
 }
+
+.allergy-tile{
+	background: url('imgs/Uhai.png') no-repeat -828px -30px;
+}
