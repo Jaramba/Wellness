@@ -87,10 +87,6 @@ footer .sponsor-logo{margin-top:10px;}
 	margin-right: 11px;
 }
 
-.tile.last-row{
-	margin-bottom: 0px;
-}
-
-.tile.last-column{
+.tile.last{
 	margin-right: 0px;
 }
