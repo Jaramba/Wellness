@@ -8,25 +8,27 @@
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {% endblock extrajs-jquery-plugins %}
 
-{% block container %}
-    <legend>Welcome, {{ request.user.get_full_name }}</legend>		
-    {% if messages %}
+{% block container %}    
+    <div class="menu-tiles">
+    	{% if messages %}
         <div class="info">
             {{ message.content }}
         </div>
-    {% endif %}		
-    <div class="tiles">
-    	<div class="row tile-row">
-    		<div class="tile"></div>
-    		<div class="tile"></div>
-    		<div class="tile"></div>
-    		<div class="tile"></div>
-    	</div>
-		<div class="row tile-row">
-			<div class="tile"></div>
-    		<div class="tile"></div>
-    		<div class="tile"></div>
-    		<div class="tile"></div>
-		</div>
-    </div>
+    {% endif %}
+    	<legend>Welcome, {{ request.user.get_full_name }}</legend>
+	    <div class="tiles">
+	    	<div class="row tile-row">
+	    		<div class="tile"></div>
+	    		<div class="tile"></div>
+	    		<div class="tile"></div>
+	    		<div class="tile"></div>
+	    	</div>
+			<div class="row tile-row">
+				<div class="tile"></div>
+	    		<div class="tile"></div>
+	    		<div class="tile"></div>
+	    		<div class="tile"></div>
+			</div>
+	    </div>
+	</div>
 {% endblock container %} 
