@@ -57,3 +57,10 @@ footer .sponsor-logo{margin-top:10px;}
 #lists-detail h1.private{padding-left:30px;background-image:url("https://dtl9zya2lik3.cloudfront.net/img/glyphicons/lock.f0c96fb99aff.png");background-repeat:no-repeat;background-position:left;}
 #lists-list h3.public{padding-left:18px;}
 #lists-list h3 i[class^="icon-"],#lists-list h3 [class*=" icon-"]{margin-top:4px;}
+
+.menu-tiles{
+	width: 933px;
+	margin-right: auto;
+	margin-left: auto;
+}
+

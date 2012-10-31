@@ -14,9 +14,9 @@
         <div class="info">
             {{ message.content }}
         </div>
-    {% endif %}
-    	<legend>Welcome, {{ request.user.get_full_name }}</legend>
+    {% endif %}    	
 	    <div class="tiles">
+	    	<legend>Welcome, {{ request.user.firstname }}</legend>
 	    	<div class="row tile-row">
 	    		<div class="tile"></div>
 	    		<div class="tile"></div>
