@@ -59,20 +59,16 @@ footer .sponsor-logo{margin-top:10px;}
 #lists-list h3 i[class^="icon-"],#lists-list h3 [class*=" icon-"]{margin-top:4px;}
 
 .menu-tiles{
-	width: 933px;
+	max-width: 807px;
+	max-height: 333px;
 	margin-right: auto;
 	margin-left: auto;
 }
 
 .tiles{
-	width: 805px;
+	width: 807px;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.row.tile-row{
-	margin-right: auto;
-	margin-left: auto;
 }
 
 .tile{
@@ -83,8 +79,8 @@ footer .sponsor-logo{margin-top:10px;}
 }
 
 .tile{
-	margin-bottom: 11px;
-	margin-right: 11px;
+	margin-bottom: 8px;
+	margin-right: 8px;
 }
 
 .tile.last{
