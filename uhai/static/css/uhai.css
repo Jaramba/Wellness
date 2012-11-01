@@ -87,6 +87,74 @@ footer .sponsor-logo{margin-top:10px;}
 	margin-right: 0px;
 }
 
-.allergy-tile{
-	background: url('../images/uhai.png') no-repeat -828px -30px;
+.tile-health {
+	background: url('../images/tiles/sprite.png') no-repeat -39px -30px;
+	width: 50px;
+	height: 68px;
+}
+
+.tile-share {
+	background: url('../images/tiles/sprite.png') no-repeat -169px -30px;
+	width: 56px;
+	height: 68px;
+}
+
+.tile-labs {
+	background: url('../images/tiles/sprite.png') no-repeat --302px -30px;
+	width: 56px;
+	height: 68px;
+}
+
+.tile-surgery {
+	background: url('../images/tiles/sprite.png') no-repeat -433px -30px;
+	width: 60px;
+	height: 68px;
+}
+
+.tile-vaccine {
+	background: url('../images/tiles/sprite.png') no-repeat -302px -30px;
+	width: 56px;
+	height: 68px;
+}
+
+.tile-covers {
+	background: url('../images/tiles/sprite.png') no-repeat -968px -30px;
+	width: 54px;
+	height: 68px;
+}
+
+.tile-allergies {
+	background: url('../images/tiles/sprite.png') no-repeat -828px -30px;
+	width: 68px;
+	height: 68px;
+}
+
+.tile-profile {
+	background: url('../images/tiles/sprite.png') no-repeat -1094px -32px;
+	width: 68px;
+	height: 64px;
+}
+
+.tile-dependent {
+	background: url('../images/tiles/sprite.png') no-repeat -1501px -30px;
+	width: 52px;
+	height: 68px;
+}
+
+.tile-records {
+	background: url('../images/tiles/sprite.png') no-repeat -1759px -36px;
+	width: 68px;
+	height: 56px;
+}
+
+.tile-meds {
+	background: url('../images/tiles/sprite.png') no-repeat -2424px -30px;
+	width: 68px;
+	height: 68px;
+}
+
+.tile-vitals {
+	background: url('../images/tiles/sprite.png') no-repeat -1893px -30px;
+	width: 66px;
+	height: 68px;
 }
