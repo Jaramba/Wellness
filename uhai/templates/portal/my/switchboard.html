@@ -5,7 +5,7 @@
 {% endblock extrajs-jquery-plugins %}
 
 {% block extrajs-jquery-enclosed %}
-	$('.row.tile-row').masonry({
+	$('.tile-container').masonry({
 	  itemSelector: '.tile',
 	  columnWidth: 100,
 	  isAnimated: true
@@ -21,7 +21,7 @@
     {% endif %}    	
 	    <div class="tiles">
 	    	<legend>Welcome, {{ request.user.first_name }}</legend>
-	    	<div class="row tile-row">
+	    	<div class="tile-container">
 	    		<div class="tile">
 	    			<img src="{{ STATIC_URL }}images/appointments.png"/>
 	    			<div>Allergies</div>
