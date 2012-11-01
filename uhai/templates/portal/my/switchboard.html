@@ -1,12 +1,16 @@
 {% extends "app_base.html" %}
 
-{% block extracss-links %}
-	<link rel="stylesheet" href="{{STATIC_URL}}css/rickshaw.min.css">
-{% endblock extracss-links %}
-
 {% block extrajs-jquery-plugins %}
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/jquery.masonry.min.js"></script>
 {% endblock extrajs-jquery-plugins %}
+
+{% block extrajs-jquery-enclosed %}
+	$('.row.tile-row').masonry({
+	  itemSelector: '.tile',
+	  columnWidth: 100,
+	  isAnimated: true
+	});
+{% endblock extrajs-jquery-enclosed %}
 
 {% block container %}    
     <div class="menu-tiles">
@@ -19,19 +23,37 @@
 	    	<legend>Welcome, {{ request.user.first_name }}</legend>
 	    	<div class="row tile-row">
 	    		<div class="tile">
-	    			<div class="allergy-tile">
-	    				Allergies
-	    			</div>
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
 	    		</div>
-	    		<div class="tile"></div>
-	    		<div class="tile"></div>
-	    		<div class="tile last"></div>
-	    	</div>
-			<div class="row tile-row">
-				<div class="tile"></div>
-	    		<div class="tile"></div>
-	    		<div class="tile"></div>
-	    		<div class="tile last"></div>
+	    		<div class="tile">
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+	    		</div>
+	    		<div class="tile">
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+	    		</div>
+	    		<div class="tile last">
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+	    		</div>	    	
+				<div class="tile">
+					<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+				</div>
+	    		<div class="tile">
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+	    		</div>
+	    		<div class="tile">
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+	    		</div>
+	    		<div class="tile last">
+	    			<img src="{{ STATIC_URL }}img/uhai.png"/>
+	    			<div>Allergies</div>
+	    		</div>
 			</div>
 	    </div>
 	</div>
