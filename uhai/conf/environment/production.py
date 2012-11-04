@@ -4,7 +4,18 @@ import os
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
 PARENT_HOST  = 'uhai.co.ke'
 
-DEBUG = True
+
+PARENT_HOST   = 'uhai-app.cloudapp.net'
+
+INSTALLED_APPS += [
+    'django_hosts', 
+]
+
+MIDDLEWARE_CLASSES += [
+    'django_hosts.middleware.HostsMiddleware',
+]
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG 
 
 # e-mail settings
@@ -52,3 +63,12 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_PATH, 'static'),
 )
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
+
