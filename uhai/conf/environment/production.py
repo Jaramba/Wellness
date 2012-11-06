@@ -2,10 +2,10 @@ from uhai.conf.settings import *
 import os
 
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
-PARENT_HOST  = 'uhai.co.ke'
-
-
 PARENT_HOST   = 'uhai-app.cloudapp.net'
+
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG 
 
 INSTALLED_APPS += [
     'django_hosts', 
@@ -14,9 +14,6 @@ INSTALLED_APPS += [
 MIDDLEWARE_CLASSES += [
     'django_hosts.middleware.HostsMiddleware',
 ]
-
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG 
 
 # e-mail settings
 DEFAULT_FROM_EMAIL = 'noreply@uhai.com'

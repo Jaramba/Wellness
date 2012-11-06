@@ -2,14 +2,12 @@ from uhai.conf.settings import *
 import os
 
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
+PARENT_HOST   = 'uhai.synacor.co.ke'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-PARENT_HOST   = 'uhai.synacor.co.ke'
-
 INSTALLED_APPS += [
-    #Domain Tools
     'django_hosts', 
 ]
 
