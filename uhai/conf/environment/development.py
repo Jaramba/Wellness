@@ -23,6 +23,15 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'dev_templates'),
 )
 
+#Search Settings
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__),'..', '..', 'whoosh_index'),
+    },
+}
+
+
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', 

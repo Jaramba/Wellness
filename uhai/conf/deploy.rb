@@ -2,7 +2,7 @@ set :application, "uhai"
 set :deploy_to, "~/webapp_releases/uhai"
 set :shared_children, %w(config lib upload database)
 
-set :repository, "~/webapps/git/repos/uhai.git"
+set :repository, "http://ian:n41l4b@git.synacor.co.ke/uhai.git"
 set :local_repository, ".git"
 
 set :scm, :git
@@ -12,7 +12,7 @@ set :use_sudo, false
 set :python_command, "PYTHONPATH=/home/uhai/webapps/uhai/lib/python2.7:$PYTHONPATH python2.7"
 
 server "synacor.co.ke", :app, :web, :primary => true
-#server "uhai-app.cloudapp.net", :app, :web, :primary => true
+server "uhai-app.cloudapp.net", :app, :web, :primary => true
 
 namespace (:deploy) do
   task :restart do

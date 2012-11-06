@@ -155,15 +155,6 @@ INSTALLED_APPS = [
     'uhai.portal.my.sharer',
 ]
 
-#Search Settings
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__),'..', '..', 'whoosh_index'),
-    },
-}
-
-
 QUESTIONNAIRE_BUILDER_UPLOAD_TO = UPLOAD_TO = 'formsbuilder_uploads'
 # Nay
 QUESTIONNAIRE_BUILDER_EMAIL_TO = EMAIL_TO = None
@@ -231,3 +222,5 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 2
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # Whether the session cookie should be secure (https:// only).
 SESSION_COOKIE_SECURE = False
+
+
