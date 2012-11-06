@@ -96,7 +96,6 @@ legend{
 
 .tile-label{	
 	font-size: 17px;
-	font-weight: bold;
 	text-align: center;
 	color: #ffffff;
 	margin: 10px 0px;
@@ -396,4 +395,8 @@ td.profile-label{
 	text-decoration: none;
 	font-weight: bold;
 	color: #71B1D1;
+}
+
+.navbar .container{
+	width: 803px;
 }

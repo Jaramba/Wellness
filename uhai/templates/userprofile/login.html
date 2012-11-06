@@ -1,15 +1,16 @@
-{% extends "index.html" %}
-{% load hosts %}
+{% extends "app_base.html" %}
 
 {% block page-title %}Login{% endblock page-title %}
 
+{% block extracss-inline %}
+	.container{
+		width: 803px;
+	}
+{% endblock extracss-inline %}
+
 {% block container %}
 	<header class="jumbotron subhead" id="overview">
-		<h1 style="font-size:30px;">Log in</h1>
-		<br/>
-		<p>
-			Provide your login credentials below.
-		</p>
+		<h1 style="font-size:35px;font-weight:normal;font-family:'Segoe UI Light'">Log in</h1>
 	</header>
 	{% if form.errors %}
 		<div class="alert alert-error">
@@ -26,7 +27,7 @@
 	{% endif %}
 	<div class="row">
 		<div class="span8">
-			<form method="POST" action="{% host_url login on my-portal %}" autocapitalize="off" class="form-horizontal">{% csrf_token %}
+			<form method="POST" action="{% url login %}" autocapitalize="off" class="form-horizontal">{% csrf_token %}
 				<legend>
 					Existing account
 				</legend>

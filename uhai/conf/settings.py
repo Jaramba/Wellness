@@ -52,6 +52,11 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
+from django.core.urlresolvers import reverse_lazy
+
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = reverse_lazy('login')
+
 ROOT_URLCONF  = 'uhai.portal.www.urls'
 ROOT_HOSTCONF = 'uhai.hosts'
 DEFAULT_HOST  = 'default'

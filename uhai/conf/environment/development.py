@@ -3,6 +3,8 @@ import os
 
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
 
+ROOT_URLCONF  = 'uhai.portal.my.urls'
+
 PARENT_HOST   = 'localhost'
 
 #development settings
