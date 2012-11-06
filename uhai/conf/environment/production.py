@@ -8,7 +8,7 @@ reverse_lazy = lazy(reverse_full, unicode)
 LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
 LOGIN_URL = reverse_lazy('my-portal', 'login')
 
-PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
+PROJECT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'))
 PARENT_HOST   = 'uhai-app.cloudapp.net'
 
 DEBUG = False
