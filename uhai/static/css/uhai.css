@@ -1,6 +1,8 @@
 /* Uhai */
 .visuallyhidden{height:1px;width:1px;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);position:absolute;overflow:hidden;}
-body,p,label,input,button,select,textarea,.navbar-search .search-query{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;}
+body,p,label,input,button,select,textarea,.navbar-search .search-query{
+	font-family: 'Segoe UI Light', "Helvetica Neue", Helvetica, Verdana, Arial,sans-serif;
+}
 html,body{height:100%;}
 a.brand,a.brand:link,a.brand:hover,a.brand:active,a.brand:visited{color:#fff;}
 [class^="icon-"],[class*=" icon-"]{margin-top:2px;}
@@ -59,103 +61,339 @@ footer .sponsor-logo{margin-top:10px;}
 #lists-list h3 i[class^="icon-"],#lists-list h3 [class*=" icon-"]{margin-top:4px;}
 
 .menu-tiles{
-	max-width: 807px;
-	max-height: 333px;
+	width: 804px;
+	height: 345px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.tile-container{
+	max-height: 290px;
 }
 
 .tiles{
-	width: 807px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .tile{
-	width: 192px;
+	width: 195px;
 	height: 137px;
-	background-color: #71b1d1;
-	display: inline-block;
+	background-color: #71b1d1;	
+	margin-bottom: 8px;
+	margin-right: 8px;
+	float: left;
+	position: relative;
 }
 
-.tile{
-	margin-bottom: 8px;
-	margin-right: 8	px;
+.tile a, .tile a:hover, .tile a:visited{
+	text-decoration: none;
+}
+
+legend{
+	font-size: 26px;
+}
+
+.tile-label{	
+	font-size: 17px;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff;
+	margin: 10px 0px;
 }
 
 .tile.last{
 	margin-right: 0px;
 }
 
+.tile.low{
+	margin-bottom: 0px;
+}
+
 .tile-health {
 	background: url('../images/tiles/sprite.png') no-repeat -39px -30px;
 	width: 50px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-share {
 	background: url('../images/tiles/sprite.png') no-repeat -169px -30px;
 	width: 56px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-labs {
-	background: url('../images/tiles/sprite.png') no-repeat --302px -30px;
+	background: url('../images/tiles/sprite.png') no-repeat -302px -30px;
 	width: 56px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-surgery {
 	background: url('../images/tiles/sprite.png') no-repeat -433px -30px;
 	width: 60px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
-.tile-vaccine {
-	background: url('../images/tiles/sprite.png') no-repeat -302px -30px;
-	width: 56px;
+.tile-immunization {
+	background: url('../images/tiles/sprite.png') no-repeat -565px -30px;
+	width: 62px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-covers {
 	background: url('../images/tiles/sprite.png') no-repeat -968px -30px;
 	width: 54px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-allergies {
 	background: url('../images/tiles/sprite.png') no-repeat -828px -30px;
 	width: 68px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-profile {
 	background: url('../images/tiles/sprite.png') no-repeat -1094px -32px;
 	width: 68px;
-	height: 64px;
+	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-dependent {
 	background: url('../images/tiles/sprite.png') no-repeat -1501px -30px;
 	width: 52px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-records {
 	background: url('../images/tiles/sprite.png') no-repeat -1759px -36px;
 	width: 68px;
-	height: 56px;
+	height: 68px;
+	margin: 34px auto -10px auto;
 }
 
 .tile-meds {
 	background: url('../images/tiles/sprite.png') no-repeat -2424px -30px;
 	width: 68px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
 .tile-vitals {
 	background: url('../images/tiles/sprite.png') no-repeat -1893px -30px;
 	width: 66px;
 	height: 68px;
+	margin: 25px auto 0 auto;
 }
 
+.tile-problems{
+	background: url('../images/tiles/sprite.png') no-repeat -39px -30px;
+	width: 50px;
+	height: 68px;
+	margin: 25px auto 0 auto;
+}
+
+.tile-doctors{
+	background: url('../images/tiles/sprite.png') no-repeat -1630px -30px;
+	width: 60px;
+	height: 68px;
+	margin: 25px auto 0 auto;
+}
+
+.tile-programs{
+	background: url('../images/tiles/sprite.png') no-repeat -2823px -33px;
+	width: 68px;
+	height: 68px;
+	margin: 25px auto 0 auto;
+}
+
+.tile-questionnaires{
+	background: url('../images/tiles/sprite.png') no-repeat -2025px -31px;
+	width: 68px;
+	height: 68px;
+	margin: 25px auto 0 auto;
+}
+
+.profile-details{
+	color: #ffffff;
+	width: 50%;
+	margin: 15px 0px 0px 15px;
+	font-size: 15px;
+	float: left;
+}
+
+.reminder-messages{
+	color: #ffffff;
+	margin: 15px auto 10px 15px;
+	font-size: 15px;
+}
+
+.profile{
+	clear: both;
+	display: block;
+}
+
+.reminder-message{
+	clear: both;
+	display: block;
+	color: #ffffff;
+	font-size: 15px;
+}
+
+.profile-icon{
+	float: left;
+	margin: 0px 10px 0px 20px;
+}
+
+.reminder{
+	float: left;
+}
+
+.reminder-count{
+	float: left;
+	font-size: 20px;	
+}
+
+.calendar{
+	float: right;
+	margin: 10px 0px;
+}
+
+.calendar-day{
+	font-size: 14px;
+	float: left;
+	margin: 11px 3px;
+}
+.calendar-date{
+	font-size: 40px;	
+	float: left;
+}
+
+.back-button{
+	float: left;
+	margin-left: 130px;
+	margin-top: 4px;
+}
+
+.tile-border{
+	border: 1px solid #71B1D1;
+}
+
+.crop {
+	overflow: hidden; 
+}
+
+.tile.photo{
+	width: 219px;
+	height: 276px;
+}
+
+.profile-name{
+	text-align: center;
+	font-size: 20px;
+	color: #ffffff;
+	margin-top: 3px;
+}
+
+.medical-profile{
+	width: 200px;
+	height: 268px;
+	padding: 5px 10px;
+}
+
+.notes{
+	width: 787px;
+	height: 268px;
+	padding: 5px 10px;
+}
+
+.profile-table{
+	font-size: 14px;
+	color: #ffffff;
+}
+
+td.profile-label{
+	font-weight: bold;
+	width: 90px;
+}
+
+.notes-label{
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.notes-text{
+	color: #ffffff;
+	font-size: 14px;	
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 245px;
+}
+
+
+.bg-color-pink {
+	background-color: #C3325F !important;
+}
+.fg-color-white {
+	color: white !important;
+}
+
+.tile-buttons{
+	float: left;
+	width: 119px;
+}
+
+.tile-buttons button{
+	height: 32px;
+	width: 115px;
+}
+
+.image-button{
+	position: relative;
+	border: 0;
+	padding-right: 45px;
+	text-align: left;
+	margin: 0px 0px 4px 0px;
+}
+
+.image-button:active{
+	background-color: #000;
+}
+
+.image-button img, .image-button:active img {
+	position: absolute;
+	right: 0;	
+	padding: 5px;
+	height: 100%;
+	top: 0px;
+	box-sizing: border-box;
+	border: 1px transparent solid;
+	z-index: 2;	
+}
+
+.bg-color-red {
+	background-color: #B91D47 !important;
+}
+
+.table-font{
+	font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Verdana, Arial,sans-serif;	
+}
+
+.link-column {
+	width: 200px;
+}
+
+.link-column a{
+	text-decoration: none;
+	font-weight: bold;
+	color: #71B1D1;
+}
