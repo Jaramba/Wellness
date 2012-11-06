@@ -1,6 +1,13 @@
 from uhai.conf.settings import *
 import os
 
+from django.utils.functional import lazy
+from django_hosts.reverse import reverse_full
+reverse_lazy = lazy(reverse_full, unicode)
+
+LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
+LOGIN_URL = reverse_lazy('my-portal', 'login')
+
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
 PARENT_HOST   = 'uhai.synacor.co.ke'
 

@@ -56,13 +56,6 @@ ROOT_URLCONF  = 'uhai.portal.www.urls'
 ROOT_HOSTCONF = 'uhai.hosts'
 DEFAULT_HOST  = 'default'
 
-from django.utils.functional import lazy
-from django_hosts.reverse import reverse_full
-reverse_lazy = lazy(reverse_full, unicode)
-
-LOGIN_REDIRECT_URL = reverse_lazy('my-portal', 'index')
-LOGIN_URL = reverse_lazy('my-portal', 'login')
-
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
