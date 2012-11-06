@@ -6,8 +6,6 @@ from django.db import models
 from datetime import datetime
 
 from django.core.exceptions import PermissionDenied
-
-from django_hosts.managers import HostSiteManager
 import fields
 
 from funcs import has_permissions

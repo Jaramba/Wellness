@@ -48,13 +48,13 @@
 		    		</a>
 	    		</div>
 	    		<div class="tile last">
-	    			<a href="questionnaires.html">
+	    			<a href="{% url questionnaire-list %}">
 		    			<div class="tile-questionnaires"></div>
 		    			<div class="tile-label">Questionnaires</div>
 		    		</a>
 	    		</div>	    	
 				<div class="tile long low">
-					<a href="reminders.html">
+					<a href="{% url questionnaire-list %}">
 						<div class="reminder-messages">
 							<div class="reminder-message">Submit your latest blood sugar level</div>
 							<div class="reminder-message">Appointment with Dr. Juma Kimani</div>
@@ -66,14 +66,14 @@
 			    				<div style="font-weight: bold;">Reminders</div>
 			    			</div>
 			    			<div class="calendar">
-			    				<div class="calendar-day">mon</div>
-			    				<div class="calendar-date">29</div>
+			    				<div class="calendar-day">{% now "a" %}</div>
+			    				<div class="calendar-date">{% now "d" %}</div>
 			    			</div>
 		    			</div>
 		    		</a>
 				</div>
 	    		<div class="tile low">
-	    			<a href="covers.html">
+	    			<a href="covers">
 		    			<div class="tile-covers"></div>
 		    			<div class="tile-label">Covers</div>
 		    		</a>
@@ -85,7 +85,7 @@
 		    		</a>
 	    		</div>
 	    		<div class="tile low last">
-	    			<a href="patient-records.html">
+	    			<a href="{% url records %}">
 		    			<div class="tile-records"></div>
 		    			<div class="tile-label">Records</div>
 		    		</a>
