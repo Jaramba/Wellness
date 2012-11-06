@@ -1,16 +1,14 @@
 {% extends "app_base.html" %}
 
-{% block extrajs-jquery-plugins %}
-	<script type="text/javascript" src="{{STATIC_URL}}js/jquery.masonry.min.js"></script>
-{% endblock extrajs-jquery-plugins %}
-
-{% block extrajs-jquery-enclosed %}
-	$('.tile-container').masonry({
-	  itemSelector: '.tile',
-	  columnWidth: 100,
-	  isAnimated: true
-	});
-{% endblock extrajs-jquery-enclosed %}
+{% block extracss-inline %}
+	.tile{
+		width: 170px;
+		float:left;
+	}
+	.tile.long{
+		width: 270px;
+	}
+{% endblock extracss-inline %}		
 
 {% block container %}    
     <div class="menu-tiles">
@@ -22,21 +20,75 @@
 	    <div class="tiles">
 	    	<legend>Welcome, {{ request.user.first_name }}</legend>
 	    	<div class="tile-container">
-	    		<div class="tile">
+	    		<div class="tile long">
+	    			<a href="profile.html">
+	    				<div class="profile-icon">
+			    			<div class="tile-profile"></div>
+			    			<div class="tile-label">My Profile</div>
+			    		</div>
+			    		<div class="profile-details">
+			    			<span class="profile name">onesmus mukewa</span>
+			    			<span class="profile blood-type">B+ (b-positive)</span>
+			    			<span class="profile age">23 years</span>
+			    			<span class="profile employer">kenya power</span>
+			    			<span class="profile weight">56 kg</span>
+			    		</div>
+		    		</a>
 	    		</div>
 	    		<div class="tile">
+	    			<a href="dependents.html">
+		    			<div class="tile-dependent"></div>
+		    			<div valign="bottom"  class="tile-label">Dependents</div>
+		    		</a>
 	    		</div>
 	    		<div class="tile">
+	    			<a href="programs.html">
+		    			<div class="tile-programs"></div>
+		    			<div class="tile-label">Programs</div>
+		    		</a>
 	    		</div>
-	    		<div class="tile">
+	    		<div class="tile last">
+	    			<a href="questionnaires.html">
+		    			<div class="tile-questionnaires"></div>
+		    			<div class="tile-label">Questionnaires</div>
+		    		</a>
 	    		</div>	    	
-				<div class="tile">
+				<div class="tile long low">
+					<a href="reminders.html">
+						<div class="reminder-messages">
+							<div class="reminder-message">Submit your latest blood sugar level</div>
+							<div class="reminder-message">Appointment with Dr. Juma Kimani</div>
+							<div class="reminder-message">Polio Vaccination for James Wandani</div>
+						</div>
+		    			<div class="tile-label" style="margin: 10px 15px; font-weight: normal;">
+		    				<div class="reminder">
+			    				<div class="reminder-count">12</div>
+			    				<div style="font-weight: bold;">Reminders</div>
+			    			</div>
+			    			<div class="calendar">
+			    				<div class="calendar-day">mon</div>
+			    				<div class="calendar-date">29</div>
+			    			</div>
+		    			</div>
+		    		</a>
 				</div>
-	    		<div class="tile">
+	    		<div class="tile low">
+	    			<a href="covers.html">
+		    			<div class="tile-covers"></div>
+		    			<div class="tile-label">Covers</div>
+		    		</a>
 	    		</div>
-	    		<div class="tile last">
+	    		<div class="tile low">
+	    			<a href="doctors.html">
+		    			<div class="tile-doctors"></div>
+		    			<div class="tile-label">My Doctors</div>
+		    		</a>
 	    		</div>
-	    		<div class="tile last">
+	    		<div class="tile low last">
+	    			<a href="patient-records.html">
+		    			<div class="tile-records"></div>
+		    			<div class="tile-label">Records</div>
+		    		</a>
 	    		</div>
 			</div>
 	    </div>
