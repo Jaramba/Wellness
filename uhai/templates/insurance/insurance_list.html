@@ -2,51 +2,36 @@
 {% load i18n %}
 {% comment %}{% load thumbnail %}{% endcomment %}
 
-{% block container %}
-	<legend>Active Schemes</legend>
-	<table class="table table-bordered table-striped">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Location</th>
-				<th>Email</th> 
-				<th>Phone</th>
-				<th>Contact Person</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for insurance in insurances %}
-				<tr>
-					<td>{{ company.name }}</td>
-					<td>{{ company.location }}</td>
-					<td>{{ company.email }}</td>
-					<td>{{ company.phone }}</td>
-					<td>{{ company.contact_person }}</td>
-					<td>
-						<div class="btn-group">
-							<a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-								<i class="icon-cog"></i>
-								<span class="caret"></span>
-							</a>							
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">
-										<i class="icon-pencil"></i> Edit
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<i class="icon-trash"></i> Delete
-									</a>
-								</li>
-							</ul>
-						</div>
-						
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+{% block container %}	
+	<div class="back-button">
+		<a href="#" onclick="window.location.href=document.referrer || '';">
+			<img src="{{ STATIC_URL }}images/swap-left.png">
+		</a>
+	</div>
+	<div class="menu-tiles">    	
+		<legend>my cover schemes</legend>
+	    <div class="tiles">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Plan ID</th>
+						<th>Name</th> 
+						<th>Type</th>
+						<th>Policy Provider</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for insurance in insurances %}
+						<tr>
+							<td>{{ insurance.plan_id }}</td>
+							<td>{{ insurance.plan_name }}</td>
+							<td>{{ insurance.type }}</td>
+							<td>{{ insurance.policy_provider }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 {% endblock container %}
 
