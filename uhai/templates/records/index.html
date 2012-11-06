@@ -3,10 +3,10 @@
 {% block container %}
 	<div class="menu-tiles">    	
 	    <div class="tiles">
-	    	<legend>patient records</legend>
+	    	<legend>your patient records</legend>
 	    	<div class="tile-container">
 	    		<div class="tile">
-	    			<a href="allergies.html">
+	    			<a href="{% url diagnosis-list 'allergy' %}">
 		    			<div class="tile-allergies"></div>
 		    			<div class="tile-label">Allergies</div>
 		    		</a>
@@ -18,37 +18,37 @@
 		    		</a>
 	    		</div>
 	    		<div class="tile">
-	    			<a href="surgeries.html">
+	    			<a href="{% url encounter-list 'surgery' %}">
 		    			<div class="tile-surgery"></div>
 		    			<div class="tile-label">Surgeries</div>
 		    		</a>
 	    		</div>
 	    		<div class="tile last">
-	    			<a href="labs.html">
+	    			<a href="{% url encountertestresult-list %}">
 		    			<div class="tile-labs"></div>
 		    			<div class="tile-label">Lab Results</div>
 		    		</a>
 	    		</div>	    	
 				<div class="tile low">
-					<a href="medications.html">
+					<a href="{% url prescription-list %}">
 						<div class="tile-meds"></div>
 		    			<div class="tile-label">Medications</div>
 		    		</a>
 				</div>
 	    		<div class="tile low">
-	    			<a href="vitals.html">
+	    			<a href="">
 		    			<div class="tile-vitals"></div>
 		    			<div class="tile-label">Vitals</div>
 		    		</a>
 	    		</div>
 	    		<div class="tile low">
-	    			<a href="encounters.html">
+	    			<a href="{% url encounter-list %}">
 		    			<div class="tile-doctors"></div>
 		    			<div class="tile-label">Encounters</div>
 		    		</a>
 	    		</div>
 	    		<div class="tile low last">
-	    			<a href="problems.html">
+	    			<a href="{% url diagnosis-list %}">
 		    			<div class="tile-problems"></div>
 		    			<div class="tile-label">Problems</div>
 		    		</a>
