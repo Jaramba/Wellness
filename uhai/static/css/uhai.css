@@ -7,7 +7,7 @@ html,body{height:100%;}
 a.brand,a.brand:link,a.brand:hover,a.brand:active,a.brand:visited{color:#fff;}
 [class^="icon-"],[class*=" icon-"]{margin-top:2px;}
 #body-inner{min-height:100%;height:auto !important;height:100%;margin:0 auto -160px;}#body-inner .push{height:160px;}
-i.icon-big-search{background-image:url("https://dtl9zya2lik3.cloudfront.net/img/search.35c2b3f998b9.png");background-position:0 0;height:24px;width:24px;}
+i.icon-big-search{background-image:url("https://dtl9zya2lik3.cloudfront.net/images/search.35c2b3f998b9.png");background-position:0 0;height:24px;width:24px;}
 .account-heading{margin-bottom:27px;font-size:19.5px;line-height:36px;color:#333;border-bottom:1px solid #EEE;font-weight:400;}
 .login-image{padding-left:2em;padding-bottom:2em;}
 .sidebyside .login-image{display:inline;}
@@ -53,10 +53,10 @@ footer .sponsor-logo{margin-top:10px;}
 #release-detail .tab-content h6{padding-top:0.1em;}
 #release-detail #sidebar{padding-top:2em;}#release-detail #sidebar .downloads{color:#999;}#release-detail #sidebar .downloads .count{display:block;color:#404040;font-weight:bold;font-size:3em;line-height:1;}
 #release-detail #sidebar .downloads .package,#release-detail #sidebar .downloads .version{margin-bottom:1em;}
-#release-detail #sidebar #download-chart{margin-bottom:1em;}#release-detail #sidebar #download-chart .loading{min-height:200px;min-width:200px;background:url("https://dtl9zya2lik3.cloudfront.net/img/ajax-loader.a51c5608d01a.gif");background-repeat:no-repeat;background-position:center;}
+#release-detail #sidebar #download-chart{margin-bottom:1em;}#release-detail #sidebar #download-chart .loading{min-height:200px;min-width:200px;background:url("https://dtl9zya2lik3.cloudfront.net/images/ajax-loader.a51c5608d01a.gif");background-repeat:no-repeat;background-position:center;}
 #release-detail #sidebar .alert{margin-bottom:0.6em;}
 #release-detail #sidebar .versions .yanked{text-decoration:line-through;font-style:italic;color:#999;}#release-detail #sidebar .versions .yanked a,#release-detail #sidebar .versions .yanked a:hover,#release-detail #sidebar .versions .yanked a:link,#release-detail #sidebar .versions .yanked a:active,#release-detail #sidebar .versions .yanked a:visited{color:#999;}
-#lists-detail h1.private{padding-left:30px;background-image:url("https://dtl9zya2lik3.cloudfront.net/img/glyphicons/lock.f0c96fb99aff.png");background-repeat:no-repeat;background-position:left;}
+#lists-detail h1.private{padding-left:30px;background-image:url("https://dtl9zya2lik3.cloudfront.net/images/glyphicons/lock.f0c96fb99aff.png");background-repeat:no-repeat;background-position:left;}
 #lists-list h3.public{padding-left:18px;}
 #lists-list h3 i[class^="icon-"],#lists-list h3 [class*=" icon-"]{margin-top:4px;}
 
