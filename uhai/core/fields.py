@@ -1,8 +1,3 @@
-# Code obtained from: http://code.djangoproject.com/attachment/ticket/5446/country_and_language_fields_trunk.2.patch
-
-# Countries list - ISO 3166-1993 (E)
-# http://xml.coverpages.org/country3166.html
-
 from django.db.models.fields import Field
 from django.db import models
 from django.core import exceptions

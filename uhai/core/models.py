@@ -30,10 +30,7 @@ class OwnerModel(models.Model):
     model_owner = models.ForeignKey('auth.User', verbose_name="Model Owner", null=True, editable=False, related_name="%(app_label)s_%(class)s")
     #A dictionary descrobing who has what rights on this object, if not, just leave it to
     access_control_list = fields.ACLField(null=True, blank=True, editable=False)
-        
-    #Now lets use a custom Manager that will work with our current site
-    objects = HostSiteManager()
-           
+  
     class Meta:
         abstract=True
         

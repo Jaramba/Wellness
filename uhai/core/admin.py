@@ -186,7 +186,6 @@ class BaseStackedInline(admin.StackedInline):
     formset = CoreBaseInlineFormSet
     
     def save_model(self, request, obj, form, change):
-        print "NES"
         if issubclass(type(obj), OwnerModel):
             obj.save(request=request)
         else:
