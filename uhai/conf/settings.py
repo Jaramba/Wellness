@@ -155,6 +155,14 @@ INSTALLED_APPS = [
     'uhai.portal.my.sharer',
 ]
 
+#Search Settings
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__),'..', '..', 'whoosh_index'),
+    },
+}
+
 QUESTIONNAIRE_BUILDER_UPLOAD_TO = UPLOAD_TO = 'formsbuilder_uploads'
 # Nay
 QUESTIONNAIRE_BUILDER_EMAIL_TO = EMAIL_TO = None
