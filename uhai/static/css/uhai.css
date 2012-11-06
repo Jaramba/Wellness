@@ -1,7 +1,7 @@
 /* Uhai */
 .visuallyhidden{height:1px;width:1px;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);position:absolute;overflow:hidden;}
 body,p,label,input,button,select,textarea,.navbar-search .search-query{
-	font-family: 'Segoe UI Light', "Helvetica Neue", Helvetica, Verdana, Arial,sans-serif;
+	font-family: 'Segoe UI', "Helvetica Neue", Helvetica, Verdana, Arial,sans-serif;
 }
 html,body{height:100%;}
 a.brand,a.brand:link,a.brand:hover,a.brand:active,a.brand:visited{color:#fff;}
