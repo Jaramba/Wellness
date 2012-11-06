@@ -13,10 +13,10 @@
 {% block container %}    
     <div class="menu-tiles">
     	{% if messages %}
-        <div class="info">
-            {{ message.content }}
-        </div>
-    {% endif %}    	
+	        <div class="info">
+	            {{ message.content }}
+	        </div>
+	    {% endif %}    	
 	    <div class="tiles">
 	    	<legend>Welcome, {{ request.user.first_name }}</legend>
 	    	<div class="tile-container">
@@ -94,28 +94,3 @@
 	    </div>
 	</div>
 {% endblock container %} 
-
-<div class="tile">
-	    			<div class="tile-share"></div>
-	    		</div>
-	    		<div class="tile">
-	    			<div class="tile-share"></div>
-	    		</div>
-	    		<div class="tile">
-	    			<div class="tile-share"></div>
-	    		</div>
-	    		<div class="tile">
-	    			<div class="tile-share"></div>
-	    		</div>	    	
-				<div class="tile">
-					<div class="tile-share"></div>
-				</div>
-	    		<div class="tile">
-	    			<div class="tile-share"></div>
-	    		</div>
-	    		<div class="tile last">
-	    			<div class="tile-share"></div>
-	    		</div>
-	    		<div class="tile last">
-	    			<div class="tile-share"></div>
-	    		</div>
