@@ -18,6 +18,7 @@ def index(request, problem_type='', template_name = "records/index.html", *args,
 
 @login_required
 def encounter(request, user_pk=None, encounter_type=None, extra_data={}, queryset=None, *args, **kwargs):
+    queryset = kwargs['model_class'].objects.all()
     kwargs['queryset'] = queryset.filter(type__slug=encounter_type) if encounter_type else queryset
 
     def save_form(form, commit=False):

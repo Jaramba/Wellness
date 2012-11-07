@@ -1,16 +1,23 @@
 {% load questionnaires_builder_tags %}
 
-{% if form %}
-	{% render_built_questionnaire questionnaire %}
-{% else %}
-	<div class="hero-unit">
-	  <h1>{{ questionnaire.title }}</h1>
-	  <br/>
-	  <p>{{ questionnaire.intro }}</p>
-	  <p>
-		<a class="btn btn-primary btn-large" href="#/page/1">
-		  Start Questionnaire
-		</a>
-	  </p>
+<div class="menu-tiles">    	
+    <div class="tiles">
+    	<legend>Questionnaires</legend>
+    	<div class="tile-container">
+			{% if form %}
+				{% render_built_questionnaire questionnaire %}
+			{% else %}
+				<div class="hero-unit">
+				  <h1 style="font-family:'Segoe UI Light';font-weight: normal;">{{ questionnaire.title }}</h1>
+				  <br;font-weight: normal;/>
+				  <p style="font-family:'Segoe UI Light';">{{ questionnaire.intro }}</p>
+				  <p;>
+					<a class="btn btn-primary btn-large" href="#/page/1">
+					  Start Questionnaire
+					</a>
+				  </p>
+				</div>
+			{% endif %}
+		</div>
 	</div>
-{% endif %}
+</div>

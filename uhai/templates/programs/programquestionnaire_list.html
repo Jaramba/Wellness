@@ -1,12 +1,12 @@
 {% extends "programs/list_base.html" %}
 
 {% block header %}
-	Questionnaire Responses
+	Questionnaires
 {% endblock header %}
 
 {% block table-list %}
 	{% if programquestionnaires %}
-		<table class='table table-stripped'>
+		<table class='table table-stripped table-bordered '>
 			<tr>
 				<th>Title</th>
 				<th>Program</th>
@@ -21,12 +21,12 @@
 					<td>{{programquestionnaire.expiry_date}}</td>
 				</tr>
 			{% empty %}
-				<tr><td colspan="2">No Questionnaire Responses Found</td></tr>
+				<tr><td colspan="2">No Questionnaire Found</td></tr>
 			{% endfor %}
 		</table>
 	{% else %}
 		<div>
-			No Questionnaire Responses Found
+			No Questionnaire Found
 		</div>
 	{% endif %}
 {% endblock table-list %}

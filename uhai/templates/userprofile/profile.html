@@ -1,0 +1,100 @@
+{% extends "app_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page-title %}Profile{% endblock %}
+
+{% block extracss-links %}
+	<link rel='stylesheet' href='{{ STATIC_URL }}css/Aristo.css' type='text/css' media='screen' />
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
+{% endblock extracss-links %}
+
+{% block extrajs-jquery-plugins %}
+	{{block.super}}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
+{% endblock extrajs-jquery-plugins %}
+
+{% block extrajs-jquery-enclosed %}
+	{{block.super}}
+	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
+	$('#id_date_of_birth').datepicker();
+{% endblock extrajs-jquery-enclosed %}
+
+{% block container %}
+	<div class="back-button">
+		<a href="/">
+			<img src="{{ STATIC_URL }}images/swap-left.png">
+		</a>
+	</div>
+	<div class="menu-tiles">    	
+	    <div class="tiles">
+	    	<legend>patient profile</legend>
+	    	<div class="tile-container">
+	    		<div class="tile photo tile-border">
+					<div class="profile-photo crop">
+	    				<img src="{{ STATIC_URL }}images/pic11.jpg"/>
+	    				<div class="profile-name">{{ user.first_name }} {{ user.last_name }}</div>
+	    			</div>
+	    		</div>					    		
+	    		<div class="tile medical-profile">
+	    			<table class="profile-table">
+	    				{% with user.patient_set.get as patientprofile %}
+	    				<tr>
+	    					<td class="profile-label">Blood Type:</td>
+	    					<td>{{patientprofile.get_blood_group_display}} ({{patientprofile.blood_group}})</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">Sex:</td>
+	    					<td>{{ patientprofile.get_gender_display }}</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">Age:</td>
+	    					<td>{{ 23 }} Years</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">Employer:</td>
+	    					<td>{{patientprofile.employer}}</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">Weight:</td>
+	    					<td>86kg</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">Allergies:</td>
+	    					<td>Peanuts, Feathers</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">Phone:</td>
+	    					<td>{{user.userprofile.phone}}</td>
+	    				</tr>
+	    				<tr>
+	    					<td class="profile-label">City:</td>
+	    					<td>{{user.userprofile.county}}</td>
+	    				</tr>
+	    				{% endwith %}
+	    			</table>
+	    		</div>
+	    		<div class="tile notes last">
+	    			<div class="notes-label">Notes:</div>
+	    			<div class="notes-text">
+	    				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	    				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	    			</div>
+	    		</div>
+			</div>
+			<div>
+				{% crispy forms.contact forms.contact.helper %}
+			</div>
+			<legend>password</legend>
+	    </div>
+	</div>
+{% endblock container %}

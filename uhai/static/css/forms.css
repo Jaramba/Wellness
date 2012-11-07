@@ -11,12 +11,8 @@ form .column.textarea{
 	width: 50%;
 }
 
-form{
-	margin: 0 0 18px -20px;
-}
-
 form .row{
-	margin-left: -10px;
+	margin-left: 0px;
 }
 
 /** The General Form **/
@@ -87,7 +83,6 @@ label.checkbox-label{
 .field input{	
 	float:left;
 	height:27px;
-	padding: 2px 2px;
 	margin: 7px 0 0 0;
 }
 

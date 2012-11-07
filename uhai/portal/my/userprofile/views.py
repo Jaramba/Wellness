@@ -48,6 +48,22 @@ def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
 
 @login_required
 @require_GET
+def profile(request, user_id=None, forms={}, template_name="userprofile/profile.html"):
+    data = {}
+
+    user = user=get_object_or_404(User, pk=user_id) if user_id else request.user
+    profile, created = UserProfile.objects.get_or_create(user=user)
+    
+    if not (request.user == profile.user):
+        profile.views += 1
+        profile.save()
+        
+    data['profile'] = profile
+    data['forms'] = forms
+    return render_to_response(template_name, data, context_instance=RequestContext(request)) 
+
+@login_required
+@require_GET
 def public(request, user_id=None, template_name="userprofile/public.html"):
     data = {}
     

@@ -1,6 +1,6 @@
 {% extends "records/records_base.html" %}
 
-{% block page-title %}Dependents{% endblock page-title %}
+{% block page-title %}Doctors{% endblock page-title %}
 
 {% block container %}
 	<div class="back-button">
@@ -10,26 +10,30 @@
 	</div>
 	<div class="menu-tiles">    	
 	    <div class="tiles">
-	    	<legend>dependents</legend>
+	    	<legend>doctors</legend>
 	    	<div class="tile-container">
 	    		<table class="table table-font table-bordered ">
 	    			<thead>
 	    				<tr>	
-	    					<th>Dependent</th>
-	    					<th>Next of Kin</th>
-	    					<th>Relationship</th>
+	    					<th>Practice Number</th>
+	    					<th>Name</th>
+	    					<th>Facility</th>
+	    					<th>Specialities</th>
+	    					<th>Primary</th>
 	    				</tr>
 	    			</thead>
 	    			<tbody>
-	    				{% for dependent_relationship in dependent_relationships%}
+	    				{% for doctor in doctors%}
 		    				<tr>
+		    					<td>{{doctor.provider.practice_number}}</td>
 		    					<td class="link-column">
 		    						<a href="profile.html">
-		    							{{dependent_relationship.person_b}}
+		    							{{doctor.provider.user.full_name}}
 		    						</a>
 		    					</td>
-		    					<td>{{dependent_relationship.next_of_kin}}</td>
-		    					<td>{{dependent_relationship.relationship}}</td>
+		    					<td>{{doctor.provider.facility}}</td>
+		    					<td>{{doctor.provider.speciality.all|join:", "}}</td>
+		    					<td>{{doctor.primary}}</td>
 		    				</tr>
 		    			{% endfor %}
 	    			</tbody>

@@ -1,6 +1,11 @@
 {% extends "records/records_base.html" %}
 
 {% block container %}
+	<div class="back-button">
+		<a href="/">
+			<img src="{{STATIC_URL}}images/swap-left.png">
+		</a>
+	</div>
 	<div class="menu-tiles">    	
 	    <div class="tiles">
 	    	<legend>your patient records</legend>
@@ -12,7 +17,7 @@
 		    		</a>
 	    		</div>
 	    		<div class="tile">
-	    			<a href="immunizations.html">
+	    			<a href="{% url encounter-list 'immunization' %}">
 		    			<div class="tile-immunization"></div>
 		    			<div class="tile-label">Immunizations</div>
 		    		</a>

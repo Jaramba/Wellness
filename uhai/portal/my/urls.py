@@ -1,6 +1,12 @@
 from django.conf.urls.defaults import * 
 
+from django.contrib import admin
+admin.autodiscover()
+
 urlpatterns = patterns('',
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin_tools/', include('admin_tools.urls')),
+
 	url(r'^/?$', 'uhai.portal.my.views.switchboard', name="index"),
 
     url(r'^reminders/', include('uhai.portal.my.reminders.urls')),

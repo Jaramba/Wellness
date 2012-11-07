@@ -12,7 +12,6 @@
 	{{block.super}}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/sammy-latest.min.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.waiting.0.1.js"></script>
 {% endblock extrajs-jquery-plugins %}
 
 {% block extrajs-global %}
@@ -36,9 +35,9 @@
 		return surveydata;
 	};	
 	
-	var app = $.sammy('div.container-right', function() {  
+	var app = $.sammy('div.menu-tiles', function() {  
 		var successData = function(data){
-			$("div.container-right").hide().html(data).fadeIn(300);
+			$("div.menu-tiles").hide().html(data).fadeIn(300);
 			$("#id_previous, #id_next").click(function(){
 				serialiseForm();
 			});
@@ -49,7 +48,7 @@
 			$("#id_finish").click(function(){
 				$.post("{% url questionnaire_detail questionnaire.slug %}", serialiseForm())
 				.success(function(data) {					
-					$("div.container-right").hide().html(data).fadeIn(300);
+					$("div.menu-tiles").hide().html(data).fadeIn(300);
 				});
 			});
 		};
@@ -71,24 +70,34 @@
 		});		
 	});
 	
-	$(function() {
-		app.run('#/');		
-	});
+	app.run('#');
 {% endblock extrajs-jquery-enclosed %}
 
-{% block container-right %}
-	{% if form %}
-		{% render_built_questionnaire questionnaire %}
-	{% else %}
-		<div class="hero-unit">
-		  <h1>{{ questionnaire.title }}</h1>
-		  <br/>
-		  <p>{{ questionnaire.intro }}</p>
-		  <p>
-			<a class="btn btn-primary btn-large" href="#/page/1">
-			  Start Questionnaire
-			</a>
-		  </p>
+{% block container %}
+	<div class="back-button">
+		<a href="/">
+			<img src="{{STATIC_URL}}images/swap-left.png">
+		</a>
+	</div>
+	<div class="menu-tiles">    	
+	    <div class="tiles">
+	    	<legend>Questionnaires</legend>
+	    	<div class="tile-container">
+				{% if form %}
+					{% render_built_questionnaire questionnaire %}
+				{% else %}
+					<div class="hero-unit">
+					  <h1 style="font-family:'Segoe UI Light';font-weight: normal;">{{ questionnaire.title }}</h1>
+					  <br;font-weight: normal;/>
+					  <p style="font-family:'Segoe UI Light';">{{ questionnaire.intro }}</p>
+					  <p;>
+						<a class="btn btn-primary btn-large" href="#/page/1">
+						  Start Questionnaire
+						</a>
+					  </p>
+					</div>
+				{% endif %}
+			</div>
 		</div>
-	{% endif %}
-{% endblock container-right %}
+	</div>
+{% endblock container %}

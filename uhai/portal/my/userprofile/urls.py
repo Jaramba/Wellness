@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('uhai.portal.my.userprofile.views',
     # Private profile
+    url(r'^account/profile/$', 'profile', {'forms':{'contact':ContactsForm}}, name='profile'),
 	url(r'^account/settings/$', 'user_change', name='settings'),
     url(r'^account/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
 	url(r'^account/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
@@ -27,13 +28,13 @@ urlpatterns += patterns('uhai.portal.my.patients.views',
 	name='settings-medical'),
 )
 urlpatterns += patterns('',
-    url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
+    url(r'^account/password/reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'userprofile/password_reset.html'}, name='settings-password-reset'),
-    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
+    url(r'^account/password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
         {'template_name': 'userprofile/password_reset_done.html'}, name='password-reset-done'),
-    url(r'^password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
+    url(r'^account/password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
         {'template_name': 'userprofile/password_reset_confirm.html'}, name="password-reset-confirm"),
-    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
+    url(r'^account/password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
         {'template_name': 'userprofile/password_reset_complete.html'}, name="password-reset-complete"),
 )
 

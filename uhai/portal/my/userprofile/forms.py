@@ -165,7 +165,7 @@ class ContactsForm(forms.ModelForm):
         self.helper.form_action = '.'
         
         layout = Layout(
-            HTML('<legend>Personal Contacts (Emergencies and Alerts)</legend>'),
+            HTML('<legend>Contacts</legend>'),
             Row(Column(Field('email', css_class='span4'))),
             Row(Column(Field('postal_code', css_class='span2'))),
             Row(Column(Field('mobile_phone', css_class='span3'))),
@@ -182,7 +182,7 @@ class ContactsForm(forms.ModelForm):
         
         return super(ContactsForm, self).__init__(*args, **kwargs)
     
-    email = forms.EmailField(help_text="The Email used to send alerts, and to communicate")
+    email = forms.EmailField()
     
     class Meta:
 		model = UserProfile

@@ -1,5 +1,7 @@
 {% extends "app_base.html" %}
 
+{% block page-title %}Switchboard{% endblock page-title %}
+
 {% block extracss-inline %}
 	.tile{
 		width: 170px;
@@ -21,22 +23,26 @@
 	    	<legend>Welcome, {{ request.user.first_name }}</legend>
 	    	<div class="tile-container">
 	    		<div class="tile long">
-	    			<a href="profile.html">
+	    			<a href="{% url profile %}">
 	    				<div class="profile-icon">
 			    			<div class="tile-profile"></div>
 			    			<div class="tile-label">My Profile</div>
 			    		</div>
 			    		<div class="profile-details">
-			    			<span class="profile name">onesmus mukewa</span>
-			    			<span class="profile blood-type">B+ (b-positive)</span>
-			    			<span class="profile age">23 years</span>
-			    			<span class="profile employer">kenya power</span>
-			    			<span class="profile weight">56 kg</span>
+			    			{% with user.patient_set.get as patientprofile %}
+				    			<span class="profile name">{{ user.first_name }} {{ user.last_name }}</span>
+				    			<span class="profile blood-type">			    				
+				    				{{patientprofile.get_blood_group_display}} ({{patientprofile.blood_group}})
+				    			</span>
+				    			<span class="profile age">23 years</span>
+				    			<span class="profile employer">{{patientprofile.employer}}</span>
+				    			<span class="profile weight">{{patientprofile.weight}} kg</span>
+				    		{% endwith %}
 			    		</div>
 		    		</a>
 	    		</div>
 	    		<div class="tile">
-	    			<a href="{% url enrolledprogram-list %}">
+	    			<a href="{% url dependents %}">
 		    			<div class="tile-dependent"></div>
 		    			<div valign="bottom"  class="tile-label">Dependents</div>
 		    		</a>
@@ -54,7 +60,7 @@
 		    		</a>
 	    		</div>	    	
 				<div class="tile long low">
-					<a href="{% url programquestionnaire-list %}">
+					<a href="{% url reminders %}">
 						<div class="reminder-messages">
 							<div class="reminder-message">Submit your latest blood sugar level</div>
 							<div class="reminder-message">Appointment with Dr. Juma Kimani</div>
@@ -73,13 +79,13 @@
 		    		</a>
 				</div>
 	    		<div class="tile low">
-	    			<a href="{% url insurance-list %}">
+	    			<a href="{% url covers %}">
 		    			<div class="tile-covers"></div>
 		    			<div class="tile-label">Covers</div>
 		    		</a>
 	    		</div>
 	    		<div class="tile low">
-	    			<a href="doctors.html">
+	    			<a href="{% url doctors %}">
 		    			<div class="tile-doctors"></div>
 		    			<div class="tile-label">My Doctors</div>
 		    		</a>

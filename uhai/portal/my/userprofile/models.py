@@ -16,20 +16,20 @@ class UserProfile(models.Model):
 
     first_name = models.CharField(max_length=50, null=True)
     middle_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=50, null=True, help_text="Family/Sur-name")
+    last_name = models.CharField(max_length=50, null=True)
 
     email = models.CharField(max_length=50, null=True)
-    mobile_phone = models.CharField(max_length=50, null=True, help_text="For alerts, (+2547xxxxxxxx)")
-    home_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Emergency purposes (+2547xxxxxxxx)")
-    work_phone = models.CharField(max_length=50, null=True, blank=True, help_text="Emergency purposes (+2547xxxxxxxx)")
+    mobile_phone = models.CharField(max_length=50, null=True)
+    home_phone = models.CharField(max_length=50, null=True, blank=True)
+    work_phone = models.CharField(max_length=50, null=True, blank=True)
 
     photo = models.FileField(upload_to='photos', null=True, blank=True)
 
     postal_code = models.CharField(max_length=50, null=True, blank=True)
-    village = models.CharField(max_length=50, null=True, blank=True, help_text='Your home village')
-    province = models.ForeignKey('core.Province', null=True, help_text='Your home province')
-    county = models.ForeignKey('core.County', null=True, help_text='Your home county')
-    country = models.ForeignKey('core.Country', null=True, help_text='Your home country')
+    village = models.CharField(max_length=50, null=True, blank=True)
+    province = models.ForeignKey('core.Province', null=True)
+    county = models.ForeignKey('core.County', null=True)
+    country = models.ForeignKey('core.Country', null=True)
         
     user = models.ForeignKey('auth.User', unique=True)
     national_id = models.CharField(max_length=25)

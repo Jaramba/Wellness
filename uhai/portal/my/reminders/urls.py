@@ -4,7 +4,7 @@ from uhai.core.funcs import get_crud_urls
 from app_map import VIEW_NAME, APP_MAP
 
 urlpatterns = patterns('uhai.portal.my.reminders.views',
-	url(r'^calendar/$', 'calendar', name="calendar"),
+	url(r'^reminders/$', 'reminders', name="reminders"),
 )
 
 urlpatterns += get_crud_urls(

@@ -6,6 +6,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
 from uhai.core.views import *
+from uhai.portal.my.providers.models import PatientProvider
 
 @login_required
 def patient(request, *args, **kwargs):
@@ -33,4 +34,11 @@ def relationship(request, queryset=None, *args, **kwargs):
 
 @login_required
 def dependents(request, template_name="patients/dependents.html", data={}, *args, **kwargs):
+    dependent_relationships = Relationship.objects.filter(relationship__dependent=True)
+    data['dependent_relationships'] = dependent_relationships
+    return render_to_response(template_name, data, context_instance=RequestContext(request))
+
+@login_required
+def doctors(request, template_name="patients/doctors.html", data={}, *args, **kwargs):
+    data['doctors'] = PatientProvider.objects.filter(patient=request.user.patient_set.get())
     return render_to_response(template_name, data, context_instance=RequestContext(request))

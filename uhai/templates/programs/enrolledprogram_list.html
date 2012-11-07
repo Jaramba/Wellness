@@ -10,7 +10,7 @@
 
 {% block table-list %}
 	{% if enrolledprograms %} 
-		<table class='table'>
+		<table class='table table-bordered '>
 			<tr>			
 				<th>Program Name</th>
 				{% if not request.session.use_page_as == 'patient' %}
@@ -19,9 +19,6 @@
 				<th>Enrolled by</th>
 				<th>Date</th>
 				<th>Date of Completion</th>
-				{% if not request.session.use_page_as == 'patient' %}
-					<td></td>
-				{% endif %}
 			</tr>
 			{% for enrolledprogram in enrolledprograms %}
 				<tr>
@@ -32,14 +29,6 @@
 					<td>{{enrolledprogram.enroller}}</td>					
 					<td>{{enrolledprogram.date_enrolled|date:"SHORT_DATE_FORMAT"}}</td>
 					<td>{{enrolledprogram.date_completed|date:"SHORT_DATE_FORMAT"}}</td>
-					{% if not request.session.use_page_as == 'patient' %}
-						<td>
-							<div class="btn-group">							
-								<a class="btn btn-info" href="{% url enrolledprogram-edit enrolledprogram.pk %}">Edit</a>
-								<a class="btn btn-danger" href="{% url enrolledprogram-delete enrolledprogram.pk %}">Delete</a>							
-							</div>
-						</td>
-					{% endif %}
 				</tr>
 			{% empty %}
 				No Enrolled Programs Found

@@ -11,4 +11,5 @@ urlpatterns = get_crud_urls(
 
 urlpatterns = patterns(VIEW_NAME,
     url(r'^dependents/$', 'dependents', name='dependents'),
+    url(r'^doctors/$', 'doctors', name='doctors'),
 )

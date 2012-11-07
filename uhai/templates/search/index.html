@@ -29,7 +29,6 @@
 	$('#id_patient').attr({
 		"autocomplete":"off",
 		"placeholder":"Search Patient by Surname",
-		"class":"span11",
 		"type":"text",
 		"name":"q"
 	});
@@ -38,61 +37,30 @@
 {% endblock extrajs-jquery-enclosed %}
 
 {% block container %}
-  <div class="row">
-	<div id="main-title" class="span6">
-	  <h1>Uhai Search</h1>
+	<div class="back-button">
+		<a href="{% url records %}">
+			<img src="{{ STATIC_URL }}images/swap-left.png">
+		</a>
 	</div>
-  </div>
-  <div class="row">
-	<div class="span12">
-	  <div id="search-area">
-		<form class="form-search" method="GET" action=".">
-		  <div class="control-group">
-			<div class="controls">
-			  <div id="search-box" class="input-append">
-				<input name="users" value="yes" type="hidden" style="display:none"/>
-				{{ form.patient }}
-				<button class="btn" type="submit">
-					<i class="icon-big-search"></i>
-					<span class="visuallyhidden">Search</span>
-				</button>
+	<div class="menu-tiles">    	
+		<legend style="margin-bottom: 10px;">
+			Uhai Search
+		</legend>
+		<div id="search-area">
+			<form class="form-search" method="GET" action=".">
+			  <div class="control-group">
+				<div class="controls">
+				  <div id="search-box" class="input-append">
+					<input name="users" value="yes" type="hidden" style="display:none"/>
+					{{ form.patient }}
+					<button class="btn" type="submit">
+						<i class="icon-big-search"></i>
+						<span class="visuallyhidden">Search</span>
+					</button>
+				  </div>
+				</div>
 			  </div>
-			</div>
-		  </div>
-		</form>
-	  </div>
-	</div>
-  </div>
-  <div class="row">
-	<div class="span12">
-	  <div id="tagline">
-		<p>Uhai is a new kind of wellness tracking system.</p>
-	  </div>
-	</div>
-  </div>
-	<div class="row">
-		<div class="span3">
-			<div class="info-box">
-				{{ 322|intcomma }} <span class="info-label">client companies</span>
-			</div>
-		</div>
-		<div class="span3">
-			<div class="info-box">
-				{{ 2333|intcomma }} <span class="info-label">encounters</span>      
-			</div>
-		</div>
-		<div class="span3">
-			<div class="info-box">
-				{{ 8000|intcomma }} <span class="info-label">covered patients</span>
-			</div>
+			</form>
 		</div>
 	</div>
-	<div class="row">
-		<div class="span4">
-			<div class="info-box">
-				{{ 31228|intcomma }} <span class="info-label">registered programs</span>
-			</div>
-		</div>
-	</div>
-  </div>
 {% endblock container %}
