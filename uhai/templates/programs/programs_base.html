@@ -1,23 +1,2 @@
 {% extends "records/records_base.html" %}
 {% load i18n %}
-
-{% block container-left %}
-	<ul class="nav nav-list">
-		<li class="nav-header">Programs</li>
-		{% if not request.session.use_page_as == 'patient' %}
-			<li>
-				<a href="{% url program-list %}"><span>Programs</span></a>
-			</li>
-		{% else %}
-			<li>
-				<a href="{% url enrolledprogram-list %}"><span>Enrolled Programs</span></a>
-			</li>
-			<li>
-				<a href="{% url questionnaireresponseentry-list %}"><span>Responses</span></a>
-			</li>
-		{% endif %}		
-		<li>
-			<a href="{% url programquestionnaire-list %}"><span>Questionnaires</span></a>
-		</li>
-	</ul>
-{% endblock container-left %}

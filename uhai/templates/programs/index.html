@@ -1,56 +1,63 @@
 {% extends "programs/programs_base.html" %}	
 
 {% block container %}
-	<legend style="border-bottom: None;">
-		{% if request.session.use_page_as == 'patient' %}
-			Your Programs/Questionnaires
-		{% else %}
-			Programs/Questionnaires
-		{% endif %}
-	</legend>
-	<div id="medicalrecord" class="ajaxcontainer ">
-		<table cellspacing="10" class="table">
-			<tbody>
-				<tr>
-					<td style="vertical-align: top">
-					<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
-						<h3>
-							{% if not request.session.use_page_as == 'patient' %}
-								Programs
-							{% else %}
-								Enrolled Programs
-							{% endif %}
-						</h3>
-						<div style="clear:both; margin-bottom:20px">
-							{% if not request.session.use_page_as == 'patient' %}
-								Manage and keep track of your programs
-							{% else %}
-								Keep track of your enrolled programs, by your Employer, Insurer
-							{% endif %}
-						</div>
-						<a class="btn btn-success pull-right" href="
-							{% if not request.session.use_page_as == 'patient' %}
-								{% url program-list %}
-							{% else %}
-								{% url enrolledprogram-list %}
-							{% endif %}
-						">View Programs</a>
-					</div></td>
-					<td style="vertical-align: top">
+	<div class="back-button">
+		<a href="#" onclick="window.location.href=document.referrer || '';">
+			<img src="{{ STATIC_URL }}images/swap-left.png">
+		</a>
+	</div>
+	<div class="menu-tiles">    	
+		<legend style="border-bottom: None;">
+			{% if request.session.use_page_as == 'patient' %}
+				Your Programs/Questionnaires
+			{% else %}
+				Programs/Questionnaires
+			{% endif %}
+		</legend>
+		<div id="medicalrecord" class="ajaxcontainer ">
+			<table cellspacing="10" class="table">
+				<tbody>
+					<tr>
+						<td style="vertical-align: top">
 						<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
-							<h3>Questionnaires</h3>
+							<h3>
+								{% if not request.session.use_page_as == 'patient' %}
+									Programs
+								{% else %}
+									Enrolled Programs
+								{% endif %}
+							</h3>
 							<div style="clear:both; margin-bottom:20px">
 								{% if not request.session.use_page_as == 'patient' %}
-									View all the compulsory questionnaires you have administered
+									Manage and keep track of your programs
 								{% else %}
-									View all the compulsory questionnaires administered by your employer/insurer
-								{% endif %}								
+									Keep track of your enrolled programs, by your Employer, Insurer
+								{% endif %}
 							</div>
-							<a class="btn btn-success pull-right" href="{% url programquestionnaire-list %}">View Questionnaires</a>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+							<a class="btn btn-success pull-right" href="
+								{% if not request.session.use_page_as == 'patient' %}
+									{% url program-list %}
+								{% else %}
+									{% url enrolledprogram-list %}
+								{% endif %}
+							">View Programs</a>
+						</div></td>
+						<td style="vertical-align: top">
+							<div class="highlightbox" style="width: 412px;height: 127px; position:relative">
+								<h3>Questionnaires</h3>
+								<div style="clear:both; margin-bottom:20px">
+									{% if not request.session.use_page_as == 'patient' %}
+										View all the compulsory questionnaires you have administered
+									{% else %}
+										View all the compulsory questionnaires administered by your employer/insurer
+									{% endif %}								
+								</div>
+								<a class="btn btn-success pull-right" href="{% url programquestionnaire-list %}">View Questionnaires</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 {% endblock container %}

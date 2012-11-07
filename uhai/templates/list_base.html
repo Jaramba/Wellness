@@ -2,36 +2,41 @@
 
 {% block extrajs-jquery-enclosed %}
 	{{ block.super }}
-	$('legend .btn').tooltip({animation:true, placement:'bottom'});
 {% endblock extrajs-jquery-enclosed %}
 
-{% block container-right %}
-	<legend style="margin-bottom: 10px;">
-		{% block header %}{% endblock header %}
-		{% block action-buttons %}{% endblock action-buttons %}
-	</legend>
-	<div>		
-		{% block table-list %} 
-			{% if objects %}
-				{% block table %}
-				{% endblock table %}
-				{% block pagination %}
-					<div class="pager">
-						{% if objects.has_previous %}
-							<a class="previous" href="?page={{ objects.previous_page_number }}">previous</a>
-						{% endif %}
-						<span class="current">
-							Page {{ objects.number }} of {{ objects.paginator.num_pages }}.
-						</span>
-						{% if objects.has_next %}
-							<a class="next" href="?page={{ objects.next_page_number }}">next</a>
-						{% endif %}
-					</div>
-				{% endblock %}
-			{% else %}
-				{% block empty %}
-				{% endblock empty %}
-			{% endif %}
-		{% endblock table-list %}
+{% block container %}	
+	<div class="back-button">
+		<a href="#" onclick="window.location.href=document.referrer || '';">
+			<img src="{{ STATIC_URL }}images/swap-left.png">
+		</a>
+	</div>
+	<div class="menu-tiles">    	
+		<legend style="margin-bottom: 10px;">
+			{% block header %}{% endblock header %}
+		</legend>
+		<div>		
+			{% block table-list %} 
+				{% if objects %}
+					{% block table %}
+					{% endblock table %}
+					{% block pagination %}
+						<div class="pager">
+							{% if objects.has_previous %}
+								<a class="previous" href="?page={{ objects.previous_page_number }}">previous</a>
+							{% endif %}
+							<span class="current">
+								Page {{ objects.number }} of {{ objects.paginator.num_pages }}.
+							</span>
+							{% if objects.has_next %}
+								<a class="next" href="?page={{ objects.next_page_number }}">next</a>
+							{% endif %}
+						</div>
+					{% endblock %}
+				{% else %}
+					{% block empty %}
+					{% endblock empty %}
+				{% endif %}
+			{% endblock table-list %}
+		</div>	
 	</div>	
-{% endblock container-right %}
+{% endblock container %}

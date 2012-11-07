@@ -2,19 +2,11 @@
 
 {% block header %}
 	{% if not request.session.use_page_as == 'patient' %}
-		Program Enrolled Patients
+		Enrolled Programs
 	{% else %}
 		My Programs
 	{% endif %}
 {% endblock header %}
-
-{% block action-buttons %}
-	{% if not request.session.use_page_as == 'patient' %}
-		<a href="{% url enrolledprogram-create %}" class="btn pull-right" rel="tooltip" title="Add New">
-			<i class="icon-plus-sign"></i>
-		</a>
-	{% endif %}
-{% endblock action-buttons %}
 
 {% block table-list %}
 	{% if enrolledprograms %} 
