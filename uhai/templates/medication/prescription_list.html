@@ -16,28 +16,24 @@
 {% endblock action-buttons %}
 
 {% block table-list %}
-	{% if Prescriptions %} 
-		<table class='table'>
+	{% if prescriptions %} 
+		<table class='table table-bordered'>
 			<tr>
-				<th>Code</th>
-				<th>Vaccine</th>
-				<th>Brand name</th>
-				<th>Lot number</th>
-				<th>Site</th>
-				<th>Date</th>
+				<th>Provider</th>
+				<th>Medication</th>
+				<th>Medication Type</th>
+				<th>Quantity</th>
+				<th>Frequency</th>
+				<th>Way Taken</th>
 			</tr>
 			{% for prescription in prescriptions %}
 				<tr>	
-					<td>{{prescription.code}}</td>
-					<td>{{prescription.vaccine}}</td>
-					<td>{{prescription.brand_name}}</td>
-					<td>{{prescription.lot_number}}</td>
-					<td>{{prescription.site}}</td>
-					<td>{{prescription.practice_date}}</td>
-					<td>
-						<a href="{% url prescription-edit prescription.pk %}">Edit</a> |
-						<a href="{% url prescription-delete prescription.pk %}">Delete</a>
-					</td>
+					<td>{{prescription.provider}}</td>
+					<td>{{prescription.medication.name}}</td>
+					<td>{{prescription.medication.get_medication_type_display}}</td>
+					<td>{{prescription.quantity}} {{prescription.unit }}{{prescription.quantity|pluralize}}</td>
+					<td>{{prescription.get_frequency_display}}</td>
+					<td>{{prescription.medication.get_way_taken_display}}</td>
 				</tr>
 			{% empty %}
 				<tr><td colspan="2">No Prescriptions Found</td></tr>

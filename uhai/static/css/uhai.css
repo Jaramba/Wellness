@@ -422,3 +422,29 @@ td.profile-label{
 #search-box input{
 	width: 735px;
 }
+
+.reminder-calendar {
+	float: left;
+	padding: 2px;
+	background-color: #8BC53F;
+	color: white;
+	width: 50px;
+	height: 40px;
+	margin: 0px 0px 15px;
+}
+
+.reminder-calendar .calendar-day {
+	margin: 18px 3px 0px;
+}
+
+.reminder-calendar .calendar-date {
+	font-size: 35px;
+	margin: 18px 1px 0px;
+	margin-top: 10px;
+}
+
+.reminder-entries{
+	clear: both;
+	font-size: 17px;
+	font-family: "Segoe UI Light";
+}

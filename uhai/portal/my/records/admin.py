@@ -9,24 +9,24 @@ import forms
 
 class DiagnosisInline(BaseTabularInline):
     model = models.Diagnosis
-    extra = 0
+    extra = 1
 
 class OrderInline(BaseTabularInline):
 	model = models.Order
-	extra = 0
+	extra = 1
 	
 class EncounterTestInline(BaseTabularInline):
 	model = models.EncounterTest
-	extra = 0
+	extra = 1
 	
 class ProblemTestInline(BaseTabularInline):
 	model = models.ProblemTest
-	extra = 0
+	extra = 1
 
 class EncounterAdmin(BaseModelAdmin):
 	model = models.Encounter
 	list_display = [f.name for f in models.Encounter._meta.fields if not f.name in (
-        'id', 'event_ptr', 'observation_notes', 'message', 'completed', 'location',
+        'id', 'observation_notes', 'message', 'completed', 'location',
         'model_owner', 'site', 'access_control_list'
     )]
 	inlines = [DiagnosisInline, OrderInline, EncounterTestInline]
@@ -82,7 +82,7 @@ for M in [x
         #)
 
         list_display = [f.name for f in M._meta.fields if not f.name in (
-            'id', 'event_ptr', 'observation_notes', 'message', 'completed', 'location',
+            'id', 'observation_notes', 'message', 'completed', 'location',
             'model_owner', 'site', 'access_control_list'
         )]        
         inlines = []

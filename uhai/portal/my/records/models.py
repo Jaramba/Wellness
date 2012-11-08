@@ -46,12 +46,20 @@ class ICD10Block(MetaData):
 		)
 
 class EncounterType(MetaData):pass
-class Encounter(Event):	
+class Encounter(OwnerModel):	
+	user = models.ForeignKey("auth.User")
+	provider = models.ForeignKey('providers.HealthWorker', null=True)
+
+	completed = models.BooleanField(default=False)
+
+	start_time = models.DateTimeField()
+	end_time   = models.DateTimeField(null=True)
+
 	type = models.ForeignKey('EncounterType')
 	patient_complience = models.BooleanField(default=False)
 	location = models.CharField(max_length=50, null=True)	
 	observation_notes = models.TextField()
-	
+
 	def __unicode__(self):
 		return (self.user.full_name)
 
@@ -99,9 +107,10 @@ class ProblemTest(Test):
 
 class EncounterTest(Event):
 	name = models.CharField(max_length=30)
+	encounter = models.ForeignKey('Encounter')
 	test = models.ForeignKey('Test')
 	notes = models.TextField(null=True, blank=True)
-	
+
 class EncounterTestResult(Event):
 	name = models.CharField(max_length=30)
 	encounter_test = models.ForeignKey(EncounterTest)

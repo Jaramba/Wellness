@@ -1,6 +1,10 @@
 {% extends "records/list_base.html" %}
 {% load humanize %}
 
+{% block page-title %}
+	{% if encounter_type %} {{encounter_type}} {% else %}Encounter{% endif %} records
+{% endblock page-title %}
+
 {% block header %}
 	{% if encounter_type %} {{encounter_type}} {% else %}Encounter{% endif %} records
 {% endblock header %}
@@ -20,19 +24,18 @@
 				<th>Patient</th>
 				<th>Encounter Date</th>
 				<th>Type</th>
-                <th>Diagnosed problems</th>
-				<th>Actions</th>
+				{% if not encounter_type %}
+                	<th>Diagnosed problems</th>
+                {% endif %}
 			</tr>
 			{% for encounter in encounters %}
 				<tr>	
 					<td>{{encounter.user.full_name}}</td>
 					<td>{{encounter.start_time}}</td>
 					<td>{{encounter.type}}</td>
-                    <td>{{encounter.diagnosis_set.count|apnumber}}</td>
-					<td class="btn-group">
-                        <a class="btn btn-info" href="{% url encounter-edit encounter.pk %}">Edit</a>
-						<a class="btn btn-inverse" href="{% url encounter-share encounter.pk %}">Share</a>
-					</td>
+					{% if not encounter_type %}
+                    	<td>{{encounter.diagnosis_set.count|apnumber|default:"None"|capfirst}}</td>
+                    {% endif %}
 				</tr>
 			{% empty %}
 				<tr>
