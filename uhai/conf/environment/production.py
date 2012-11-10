@@ -9,6 +9,7 @@ TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
     'django_hosts', 
+    'gunicorn',
 ]
 
 MIDDLEWARE_CLASSES += [
