@@ -6,10 +6,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'uhai.portal.www.views.index', name="index"),    
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
 
-	url(r'^/?$', 'uhai.portal.my.views.switchboard', name="index"),
+	url(r'^$', 'uhai.portal.my.views.switchboard', name="index"),
 
     url(r'^reminders/', include('uhai.portal.my.reminders.urls')),
     url(r'^programs/', include('uhai.portal.my.programs.urls')),
@@ -39,8 +41,7 @@ urlpatterns = patterns('',
     url(r'', include('uhai.core.urls')),
 )	
 
-urlpatterns = patterns('',
-	url(r'^$', 'uhai.portal.www.views.index', name="index"),	
+urlpatterns = patterns('',	
     url(r'^about/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="about"),
     url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
     url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
