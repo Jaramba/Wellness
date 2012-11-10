@@ -41,7 +41,7 @@ urlpatterns = patterns('',
     url(r'', include('uhai.core.urls')),
 )	
 
-urlpatterns = patterns('',	
+urlpatterns += patterns('',	
     url(r'^about/$', TemplateView.as_view(template_name='website/how_it_works.html'), name="about"),
     url(r'^terms-of-service/$', TemplateView.as_view(template_name='website/terms-conditions.html'), name="terms_and_conditions"),
     url(r'^privacy-policy/$', TemplateView.as_view(template_name='website/privacy_policy.html'), name="privacy-policy"),
