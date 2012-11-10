@@ -7,13 +7,9 @@ PARENT_HOST   = 'uhai-app.cloudapp.net'
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG 
 
-INSTALLED_APPS += [
-    'django_hosts', 
-    'gunicorn',
-]
 
-MIDDLEWARE_CLASSES += [
-    'django_hosts.middleware.HostsMiddleware',
+INSTALLED_APPS += [
+    'gunicorn',
 ]
 
 # e-mail settings
@@ -75,3 +71,21 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+CONFIG = {
+    'mode': 'django',
+    'environment': {
+        'PYTHONPATH': '/home/uhai/webapps/uhai/wellness/',
+    },
+    # 'working_dir': '/',
+    'user': 'www-data',
+    'group': 'www-data',
+    'args': (
+        '--bind=127.0.0.1:8000',
+        '--workers=4',
+        '--log-level=debug',
+        '--log-file=/home/uhai/webapps/uhai/logs/uhai.log',
+        '--worker-class=egg:gunicorn#sync',
+        '--timeout=30',
+        'settings',
+    ),
+}

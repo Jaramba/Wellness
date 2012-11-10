@@ -8,11 +8,9 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
-    'django_hosts', 
 ]
 
 MIDDLEWARE_CLASSES += [
-    'django_hosts.middleware.HostsMiddleware',
 ]
 
 # e-mail settings
