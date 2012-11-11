@@ -1,29 +1,16 @@
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
+
 set :application, "uhai"
-set :deploy_to, "~/webapp_releases/uhai"
+set :deploy_to, "~/webapp_releases/#{application}"
 set :shared_children, %w(config lib upload database)
 
-set :repository, "http://ian:n41l4b@git.synacor.co.ke/uhai.git"
 set :local_repository, ".git"
-
 set :scm, :git
 
 set :user, "uhai"
-set :use_sudo, false
-set :python_command, "PYTHONPATH=/home/uhai/webapps/uhai/lib/python2.7:$PYTHONPATH python2.7"
-
-server "synacor.co.ke", :app, :web, :primary => true
-#server "uhai-app.cloudapp.net", :app, :web, :primary => true
-
-namespace (:deploy) do
-  task :restart do
-    run "~/webapps/uhai/apache2/bin/restart"
-  end
-
-  task :finalize_update, :except => { :no_release => true } do
-    django.static
-    django.syncdb
-  end
-end
+set :python_command, "PYTHONPATH=/home/#{user}/webapps/#{application}/lib/python2.7:$PYTHONPATH python2.7"
 
 namespace (:django) do
   desc <<-DESC
