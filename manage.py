@@ -4,5 +4,5 @@ import sys
 from django.core.management import execute_from_command_line
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'uhai.conf.environment.%s' % os.environ.get('STAGE', 'staging'))
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'uhai.config.environment.%s' % os.environ.get('STAGE', 'staging'))
     execute_from_command_line(sys.argv)

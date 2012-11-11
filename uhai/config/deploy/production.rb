@@ -2,7 +2,6 @@ set :repository, "http://ian:n41l4b@git.synacor.co.ke/#{application}.git"
 set :python_command, "PYTHONPATH=/home/#{user}/webapps/#{application}/wellness:$PYTHONPATH python2.7"
 
 set :use_sudo, true
-
 server "uhai-app.cloudapp.net", :app, :web, :primary => true
 
 namespace (:deploy) do

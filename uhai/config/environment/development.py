@@ -1,4 +1,4 @@
-from uhai.conf.settings import *
+from uhai.config.settings import *
 import os
 
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
