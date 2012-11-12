@@ -5,8 +5,7 @@ PROJECT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__fi
 PARENT_HOST   = 'uhai-app.cloudapp.net'
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG 
-
+TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
     'gunicorn',

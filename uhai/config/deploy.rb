@@ -25,15 +25,16 @@ task :production do
 
     namespace (:deploy) do
       task :restart do
+        run "STAGE=\"production\" && export STAGE"
         run "service gunicorn restart"
         run "echo kill `ps aux | grep 'run_gunicorn' | grep -v grep | awk '{print $2}'` > /dev/null"
         run "cd #{webapps_loc}/wellness && #{python_command} manage.py run_gunicorn &"
-        #run "printenv"
       end
  
       task :finalize_update, :except => { :no_release => true } do
-        #django.static
-        #django.syncdb
+        django.static
+        django.syncdb
+        django.update_index
       end
     end    
 end
@@ -53,6 +54,7 @@ task :staging do
       task :finalize_update, :except => { :no_release => true } do
         django.static
         django.syncdb
+        django.update_index
       end
     end
 end
@@ -66,6 +68,13 @@ namespace (:django) do
     run "cd #{webapps_loc}/wellness && #{python_command} manage.py collectstatic --noinput" 
   end
   
+  desc <<-DESC
+    Run the "python manage.py update_index" task
+  DESC
+  task :update_index do
+    run "cd #{webapps_loc}/wellness && #{python_command} manage.py update_index --noinput"
+  end
+
   desc <<-DESC
     Run the "python manage.py syncdb" task
   DESC
