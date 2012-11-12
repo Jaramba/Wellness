@@ -26,6 +26,7 @@ task :production do
     namespace (:deploy) do
       task :restart do
         run "STAGE=\"production\" && export STAGE"
+        run "service nginx restart"
         run "service gunicorn restart"
         run "echo kill `ps aux | grep 'run_gunicorn' | grep -v grep | awk '{print $2}'` > /dev/null"
         run "cd #{webapps_loc}/wellness && #{python_command} manage.py run_gunicorn &"
