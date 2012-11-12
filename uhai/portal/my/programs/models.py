@@ -1,10 +1,6 @@
 from django.conf import settings
 
-if settings.STAGE == "staging":
-    from django_hosts.reverse import reverse_full
-else:
-    from django.core.urlresolvers import reverse
-    reverse_full = lambda hostname, url, *args, **kwargs: reverse(url, *args, **kwargs)
+from django.core.urlresolvers import reverse
 
 from django.contrib.sites.models import Site
 from django.db import models
@@ -188,9 +184,9 @@ class Questionnaire(OwnerModel):
         kw = {"view_args": (self.id,)}
         links = [
             (_("View questionnaire on site"), self.get_absolute_url()),
-            (_("Filter entries"), reverse_full("admin-portal", "admin:form_entries", **kw)),
-            (_("View all entries"), reverse_full("admin-portal", "admin:form_entries_show", **kw)),
-            (_("Export all entries"), reverse_full("admin-portal", "admin:form_entries_export", **kw)),
+            (_("Filter entries"), reverse("admin-portal", "admin:form_entries", **kw)),
+            (_("View all entries"), reverse("admin-portal", "admin:form_entries_show", **kw)),
+            (_("Export all entries"), reverse("admin-portal", "admin:form_entries_export", **kw)),
         ]
         for i, (text, url) in enumerate(links):
             links[i] = "<a href='%s'>%s</a>" % (url, ugettext(text))

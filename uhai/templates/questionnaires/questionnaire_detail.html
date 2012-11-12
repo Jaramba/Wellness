@@ -37,7 +37,7 @@
 	
 	var app = $.sammy('div.menu-tiles', function() {  
 		var successData = function(data){
-			$("div.menu-tiles").hide().html(data).fadeIn(300);
+			$("div.menu-tiles").html(data).removeClass('loading').fadeIn(300);
 			$("#id_previous, #id_next").click(function(){
 				serialiseForm();
 			});
@@ -48,11 +48,12 @@
 			$("#id_finish").click(function(){
 				$.post("{% url questionnaire_detail questionnaire.slug %}", serialiseForm())
 				.success(function(data) {					
-					$("div.menu-tiles").hide().html(data).fadeIn(300);
+					$("div.menu-tiles").hide().html(data).fadeIn(300).removeClass('loading');
 				});
 			});
 		};
 		this.get('#/', function(context) {
+			$("div.menu-tiles").addClass('loading');
 			$.ajax({
 				url: "{% url questionnaire_detail questionnaire.slug %}",
 				success: function(data) {
@@ -61,13 +62,14 @@
 			});
 		});
 		this.get('#/page/:id', function(context) {
+			$("div.menu-tiles").addClass('loading');
 			$.ajax({
 				url: "{% url questionnaire_detail questionnaire.slug %}?page=" + this.params['id'],
 				success: function(data) {
 					successData(data);
 				}
 			});
-		});		
+		});
 	});
 	
 	app.run('#');

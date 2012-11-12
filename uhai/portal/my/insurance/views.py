@@ -7,6 +7,6 @@ from uhai.core.views import *
 employercompany = login_required(lambda request, *args, **kwargs: model_view(request, context_object_name_plural=lambda obj:"companies", *args, **kwargs))
 
 @login_required
-def covers(request, template_name="insurance/covers.html", data={}, *args, **kwargs):
-	data['covers'] = PatientInsurance.objects.filter(patient=request.user.patient_set.get())
-	return render_to_response(template_name, data, context_instance=RequestContext(request))
+def patientinsurance(request, data={}, *args, **kwargs):
+	kwargs['queryset'] = PatientInsurance.objects.filter(patient=request.user.patient_set.get())
+	return model_view(request, extra_data=data, *args, **kwargs)

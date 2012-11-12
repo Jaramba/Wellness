@@ -2,19 +2,21 @@
 
 {% block page-title %}Logout{% endblock page-title %}
 
+{% block extracss-inline %}
+	.container{
+		width: 803px;
+	}
+{% endblock extracss-inline %}
+
 {% block container %}
 	<div class="row">
-		<div class="span12">
-			<form method="POST" action="." class="form-horizontal">{% csrf_token %}
-				<legend>Log out</legend>
-				<input type="hidden" name="next" value="{% url index %}" />
-				<fieldset>
-					<p>Are you sure you want to log out?</p>
-					<div class="form-actions">
-						<button type="submit" class="btn btn-primary">Log out</button>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+		<form method="POST" action="." class="form-horizontal">{% csrf_token %}
+			<legend>Log out</legend>
+			<input type="hidden" name="next" value="{% url index %}" />
+			<fieldset>
+				<p>Are you sure you want to log out?</p>
+					<button type="submit" class="btn btn-primary">Log out</button>
+			</fieldset>
+		</form>
 	</div>
 {% endblock container %}

@@ -88,7 +88,7 @@ def questionnaire_detail(request, slug, QuestionnaireType=Questionnaire,
 								   attachments=attachments,
 								   fail_silently=settings.DEBUG)
 			questionnaire_valid.send(sender=request, form=questionnaireform, entry=entry)
-			return redirect(reverse_full("my-portal", "questionnaire_sent", view_kwargs={"slug": questionnaire.slug}))
+			return redirect(reverse("questionnaire_sent", kwargs={"slug": questionnaire.slug}))
 	context = {"questionnaire": questionnaire}
 	context["form"] = questionnaireform if page else None
 	return render_to_response(template % ("" if not request.is_ajax() else "simple_"), context, request_context)

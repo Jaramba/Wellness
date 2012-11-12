@@ -2,31 +2,39 @@
 {% load i18n %}
 {% comment %}{% load thumbnail %}{% endcomment %}
 
+{% block page-title %}Patient Covers{% endblock page-title %}
+
 {% block container %}	
 	<div class="back-button">
-		<a href="#" onclick="window.location.href=document.referrer || '';">
+		<a href="/">
 			<img src="{{ STATIC_URL }}images/swap-left.png">
 		</a>
 	</div>
 	<div class="menu-tiles">    	
-		<legend>my cover schemes</legend>
+		<legend>my insurance schemes</legend>
 	    <div class="tiles">
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>Plan ID</th>
-						<th>Name</th> 
-						<th>Type</th>
+						<th style=" width: 48px; ">Plan ID</th>
+						<th style=" width: 178px; ">Plan Name</th> 
+						<th style=" width: 78px; ">Plan Type</th>
+						<th style=" width: 78px; ">Status</th>
+						<th style=" width: 78px; ">Policy ID</th>
+						<th style=" width: 78px; ">Expiry Date</th>
 						<th>Policy Provider</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for insurance in insurances %}
+					{% for insurance in objects %}
 						<tr>
-							<td>{{ insurance.plan_id }}</td>
-							<td>{{ insurance.plan_name }}</td>
-							<td>{{ insurance.type }}</td>
-							<td>{{ insurance.policy_provider }}</td>
+							<td>{{ insurance.insurance.plan_id }}</td>
+							<td><a href="{% url insurance-detail insurance.pk %}">{{ insurance.insurance.plan_name }}</a></td>
+							<td>{{ insurance.insurance.type }}</td>
+							<td>{{ insurance.get_status_display }}</td>
+							<td>{{ insurance.subscriber_policy_id }}</td>
+							<td>{{ insurance.coverage_end_date }}</td>
+							<td><a href="#">{{ insurance.insurance.policy_provider }}</a></td>
 						</tr>
 					{% endfor %}
 				</tbody>

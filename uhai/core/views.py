@@ -33,14 +33,9 @@ def model_view(request, pk=None,
          *args,
          **kwargs):
            
-    if not queryset:
-        try:
-            print request.site
-            queryset = model_class.objects.by_request(request)
-        except AttributeError, e:
-            queryset =  model_class.objects.filter(site=settings.SITE_ID)
-
+    queryset = queryset if queryset else model_class.objects.all()
     success = False
+
     if action in ('detail','edit','delete', 'create', 'view'):
         try:
             model_obj = queryset.filter(pk=pk).get() if pk else queryset.model()

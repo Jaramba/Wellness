@@ -23,7 +23,7 @@
 	  height:600,
 	  height:200,
 	  stroke: true,
-	  dataURL: '{% url patient-stats %}',
+	  dataURL: '',
 	  onData: function(d){
 		$("#download-chart .loading").removeClass("loading");
 		return $.map(d, function(i){ i["color"] = palette.color(); return i; });

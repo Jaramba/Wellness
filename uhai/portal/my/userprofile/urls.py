@@ -8,11 +8,28 @@ from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('uhai.portal.my.userprofile.views',
     # Private profile
-    url(r'^account/profile/$', 'profile', {'forms':{'contact':ContactsForm}}, name='profile'),
+    url(r'^account/profile/$', 'profile', {"contact":ContactsForm, "password":PasswordChangeForm}, name='profile'),
 	url(r'^account/settings/$', 'user_change', name='settings'),
     url(r'^account/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
 	url(r'^account/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
     url(r'^account/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
+)
+
+urlpatterns += patterns('django.contrib.auth.views',
+    url(r'^account/password/$', 'password_change',
+        {
+             'template_name': 'userprofile/password_change.html',
+             'password_change_form':PasswordChangeForm,
+             'post_change_redirect':reverse_lazy('settings-password-done'),
+        }, 
+        name='settings-password'
+    ),
+    url(r'^account/password/done/$', 'password_change_done',
+        {
+            'template_name': 'userprofile/password_change_done.html'
+        }, 
+        name='settings-password-done'
+    ),
 )
 
 urlpatterns += patterns('uhai.portal.my.patients.views',
@@ -36,21 +53,4 @@ urlpatterns += patterns('',
         {'template_name': 'userprofile/password_reset_confirm.html'}, name="password-reset-confirm"),
     url(r'^account/password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
         {'template_name': 'userprofile/password_reset_complete.html'}, name="password-reset-complete"),
-)
-
-urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^account/password/$', 'password_change',
-        {
-             'template_name': 'userprofile/password_change.html',
-             'password_change_form':PasswordChangeForm,
-             'post_change_redirect':reverse_lazy('settings-password-done'),
-        }, 
-        name='settings-password'
-    ),
-    url(r'^account/password/done/$', 'password_change_done',
-		{
-			'template_name': 'userprofile/password_change_done.html'
-		}, 
-        name='settings-password-done'
-    ),
 )

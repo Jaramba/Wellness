@@ -48,7 +48,7 @@ def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
 
 @login_required
 @require_GET
-def profile(request, user_id=None, forms={}, template_name="userprofile/profile.html"):
+def profile(request, user_id=None, template_name="userprofile/profile.html", **kwargs):
     data = {}
 
     user = user=get_object_or_404(User, pk=user_id) if user_id else request.user
@@ -59,7 +59,7 @@ def profile(request, user_id=None, forms={}, template_name="userprofile/profile.
         profile.save()
         
     data['profile'] = profile
-    data['forms'] = forms
+    data.update(kwargs)
     return render_to_response(template_name, data, context_instance=RequestContext(request)) 
 
 @login_required

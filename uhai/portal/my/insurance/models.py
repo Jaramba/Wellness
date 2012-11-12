@@ -62,14 +62,15 @@ class Insurance(OwnerModel):
     type = models.ForeignKey('InsuranceType')
     policy_provider = models.ForeignKey('HealthInsuranceProvider', null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
-    
+    upload = models.FileField(upload_to='insurance-brochures', null=True, blank=True)
+
     class Meta:
         verbose_name_plural = "Insurance Policies"
         verbose_name = "Insurance Policy"
         permissions = (
             ('view_insurance', 'View insurance'),
         )
-    
+
     def __unicode__(self):
         return self.plan_name
         

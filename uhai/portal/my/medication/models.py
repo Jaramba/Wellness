@@ -63,6 +63,7 @@ class Prescription(Event):
     quantity = models.SmallIntegerField()
     unit = models.CharField(max_length=50, choices=UNIT)
     notes = models.CharField(max_length=2000)
+    date_prescribed = models.DateTimeField(auto_now_add=True, null=True)
     
     def __unicode__(self):
         return '%s, %s %s taken %s %s prescribed by %s' % (
