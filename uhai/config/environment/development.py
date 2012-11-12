@@ -1,6 +1,8 @@
 from uhai.config.settings import *
 import os
 
+print __file__
+
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
 
 ROOT_URLCONF  = 'uhai.portal.my.urls'
