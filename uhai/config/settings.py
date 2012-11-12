@@ -106,7 +106,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-STAGE = os.environ.get('STAGE', 'staging')
+STAGE = os.environ.get('STAGE', 'production')
 # Load settings specified by STAGE environment variable
 
 

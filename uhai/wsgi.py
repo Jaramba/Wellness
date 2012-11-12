@@ -1,8 +1,7 @@
 import os
 from django.utils.importlib import import_module
 
-STAGE = os.environ.get('STAGE', 'staging')
-os.environ['DJANGO_SETTINGS_MODULE'] = settings_module = 'uhai.config.environment.%s' % STAGE
+os.environ['DJANGO_SETTINGS_MODULE'] = settings_module = 'uhai.config.environment.%s' % os.environ.get('STAGE', 'production')
 
 from django.core import management
 

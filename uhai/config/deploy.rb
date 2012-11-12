@@ -20,19 +20,20 @@ task :production do
     set :repository, "http://ian:n41l4b@git.synacor.co.ke/#{application}.git"
     set :python_command, "python"
 
-    set :use_sudo, true
+    set :use_sudo, false
     server "uhai-app.cloudapp.net", :app, :web, :primary => true
 
     namespace (:deploy) do
       task :restart do
-        run "service gunicorn restart"
-        run "echo kill `ps aux | grep 'run_gunicorn' | grep -v grep | awk '{print $2}'` > /dev/null"
-        run "cd #{webapps_loc}/wellness && nohup #{python_command} manage.py run_gunicorn --noinput"
+        #run "service gunicorn restart"
+        #run "echo kill `ps aux | grep 'run_gunicorn' | grep -v grep | awk '{print $2}'` > /dev/null"
+        #run "cd #{webapps_loc}/wellness && nohup #{python_command} manage.py run_gunicorn --noinput"
+        run "printenv"
       end
 
       task :finalize_update, :except => { :no_release => true } do
-        django.static
-        django.syncdb
+        #django.static
+        #django.syncdb
       end
     end    
 end
