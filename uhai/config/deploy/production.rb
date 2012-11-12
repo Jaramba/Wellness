@@ -8,6 +8,8 @@ namespace (:deploy) do
   task :restart do
     run "service gunicorn restart"
     run "kill `ps aux | grep 'run_gunicorn' | grep -v grep | awk '{print $2}'`"
+  rescue Exception => error
+  	puts "No gunicorn instance running, boss..."
     run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput"
   end
 

@@ -14,7 +14,7 @@ from datetime import datetime
 
 def index(request, template_name='index.html', data={}):
 	if request.user.is_authenticated():
-		return redirect('home')
+		return redirect('index')
 	return render_to_response(template_name, data, context_instance= RequestContext(request))
 
 @login_required

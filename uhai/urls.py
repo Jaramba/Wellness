@@ -6,12 +6,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'uhai.portal.www.views.index', name="index"),    
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name="index"),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
 
-	url(r'^$', 'uhai.portal.my.views.switchboard', name="index"),
+	url(r'^$', 'uhai.portal.my.views.switchboard', name="home"),
 
     url(r'^reminders/', include('uhai.portal.my.reminders.urls')),
     url(r'^programs/', include('uhai.portal.my.programs.urls')),
