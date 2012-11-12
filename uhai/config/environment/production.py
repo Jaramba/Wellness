@@ -12,6 +12,8 @@ INSTALLED_APPS += [
     'gunicorn',
 ]
 
+print __file__, "\n", INSTALLED_APPS, "\n"
+
 # e-mail settings
 DEFAULT_FROM_EMAIL = 'noreply@uhai.com'
 EMAIL_HOST = 'smtp.webfaction.com'
