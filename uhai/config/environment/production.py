@@ -4,7 +4,7 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'))
 PARENT_HOST   = 'uhai-app.cloudapp.net'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
