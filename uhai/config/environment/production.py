@@ -88,6 +88,7 @@ REDIS = {
 RABBITMQ = {
     "default": {
         "HOST": "localhost",
+        "USER": "admin",
         "PORT": "5672",
         "PASSWORD": "synacor90201",
     }
@@ -108,6 +109,7 @@ CACHES = {
 
 BROKER_HOST = RABBITMQ["default"]["HOST"]
 BROKER_PORT = RABBITMQ["default"]["PORT"]
+BROKER_USER = RABBITMQ["default"]["USER"]
 BROKER_PASSWORD = RABBITMQ["default"]["PASSWORD"]
 BROKER_VHOST = "0"
 
