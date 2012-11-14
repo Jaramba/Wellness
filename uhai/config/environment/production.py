@@ -99,6 +99,7 @@ CACHES = {
         "OPTIONS": {
             "DB": 0,
             "PASSWORD": REDIS["default"]["PASSWORD"],
+            "PARSER_CLASS": "redis.connection.HiredisParser"
         }
     }
 }
