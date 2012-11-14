@@ -15,7 +15,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
     
-
     url(r'^reminders/', include('uhai.portal.my.reminders.urls')),
     url(r'^programs/', include('uhai.portal.my.programs.urls')),
     url(r'^medication/', include('uhai.portal.my.medication.urls')),

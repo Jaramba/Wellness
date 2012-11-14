@@ -15,47 +15,32 @@ set :local_repository, ".git"
 set :scm, :git
 
 set :user, "uhai"
+set :use_sudo, false
 
 task :production do
     set :repository, "http://ian:n41l4b@git.synacor.co.ke/#{application}.git"
     set :python_command, "python"
 
-    set :use_sudo, false
     server "uhai-app.cloudapp.net", :app, :web, :primary => true
-
-    namespace (:deploy) do
-      task :restart do
-        run "STAGE=\"production\" && export STAGE"
-        run "service nginx restart"
-        run "~/webapps/uhai/apache2/bin/restart"
-      end
- 
-      task :finalize_update, :except => { :no_release => true } do
-        django.static
-        django.syncdb
-        django.update_index
-      end
-    end    
 end
 
 task :staging do
     set :repository, "~/webapps/git/repos/uhai.git"
     set :python_command, "PYTHONPATH=#{webapps_loc}/lib/python2.7:$PYTHONPATH python2.7"
 
-    set :use_sudo, false
     server "synacor.co.ke", :app, :web, :primary => true
+end
 
-    namespace (:deploy) do
-      task :restart do
-        run "~/webapps/uhai/apache2/bin/restart"
-      end
+namespace (:deploy) do
+  task :restart do
+    run "~/webapps/uhai/apache2/bin/restart"
+  end
 
-      task :finalize_update, :except => { :no_release => true } do
-        django.static
-        django.syncdb
-        django.update_index
-      end
-    end
+  task :finalize_update, :except => { :no_release => true } do
+    django.static
+    django.syncdb
+    django.update_index
+  end
 end
 
 namespace (:django) do
@@ -63,8 +48,8 @@ namespace (:django) do
     Run the "python manage.py collectstatic" task
   DESC
   task :static do
-    run "mkdir -p #{webapps_loc}/wellness/static_root"
-    run "cd #{webapps_loc}/wellness && #{python_command} manage.py collectstatic --noinput" 
+    run "mkdir -p #{latest_release}/static_root"
+    run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput" 
   end
   
   desc <<-DESC

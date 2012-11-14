@@ -138,6 +138,7 @@ INSTALLED_APPS = [
     #Search Tools
     'haystack',
     'celery_haystack',
+    'djcelery',
     
     #Database tools
     #'south',
@@ -158,6 +159,25 @@ INSTALLED_APPS = [
     'uhai.portal.api.sms',
     'uhai.portal.my.sharer',
 ]
+
+import djcelery
+djcelery.setup_loader()
+
+CELERY_SEND_TASK_ERROR_EMAILS = True
+CELERY_DISABLE_RATE_LIMITS = True
+CELERY_TASK_PUBLISH_RETRY = True
+
+CELERYD_MAX_TASKS_PER_CHILD = 10000
+
+CELERY_IGNORE_RESULT = True
+
+CELERY_TASK_RESULT_EXPIRES = 7 * 24 * 60 * 60  # 7 Days
+
+CELERYD_HIJACK_ROOT_LOGGER = False
+
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 15
 
 #Search Settings
 HAYSTACK_CONNECTIONS = {

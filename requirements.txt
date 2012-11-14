@@ -13,3 +13,4 @@ mock==0.8.0
 pisa==3.0.33
 setuptools-git==0.4.2
 simplejson==2.2.1
+django-kombu

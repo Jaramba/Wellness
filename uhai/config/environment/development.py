@@ -5,15 +5,18 @@ PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'
 PARENT_HOST   = 'localhost'
 
 #development settings
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 CRISPY_FAIL_SILENTLY = DEBUG
+SERVE_MEDIA = DEBUG
 
-# e-mail settings
-DEFAULT_FROM_EMAIL = 'noreply@uhai.com'
-EMAIL_HOST = 'smtp.webfaction.com'
-EMAIL_HOST_USER = 'uhai'
-EMAIL_HOST_PASSWORD = 'a79fHH7722!'
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    }
+}
+
+BROKER_URL = "django://" # tell kombu to use the Django database as the message queue  
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -44,6 +47,8 @@ MIDDLEWARE_CLASSES += [
 INSTALLED_APPS += [
     "debug_toolbar",
     #"devserver",
+    'kombu.transport.django',  
+    'djcelery',  
 ]
 
 DEBUG_TOOLBAR_CONFIG = {

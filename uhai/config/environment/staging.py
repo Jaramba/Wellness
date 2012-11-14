@@ -8,7 +8,10 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
+    'kombu.transport.django',     
 ]
+
+BROKER_URL = "django://" # tell kombu to use the Django database as the message queue  
 
 MIDDLEWARE_CLASSES += [
 ]

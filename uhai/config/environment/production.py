@@ -11,12 +11,6 @@ INSTALLED_APPS += [
     'gunicorn',
 ]
 
-# e-mail settings
-DEFAULT_FROM_EMAIL = 'noreply@uhai.com'
-EMAIL_HOST = 'smtp.webfaction.com'
-EMAIL_HOST_USER = 'uhai'
-EMAIL_HOST_PASSWORD = 'a79fHH7722!'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', 
@@ -62,14 +56,6 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, 'static'),
 )
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'haystack',
-    },
-}
-
 CONFIG = {
     'mode': 'django',
     'environment': {
@@ -88,3 +74,76 @@ CONFIG = {
         'settings',
     ),
 }
+
+REDIS = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": "6379",
+        "PASSWORD": "synacor90@201!666-heaven",
+    }
+}
+
+RABBITMQ = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": "5672",
+        "PASSWORD": "synacor90201",
+    }
+}
+
+CACHES = {
+   "default": {
+        "BACKEND": "redis_cache.redisCache",
+        "LOCATION": "%(HOST)s:%(PORT)s" % REDIS["default"],
+        "KEY_PREFIX": "cache",
+        "OPTIONS": {
+            "DB": 0,
+            "PASSWORD": REDIS["default"]["PASSWORD"],
+        }
+    }
+}
+
+PYPI_DATASTORE = "default"
+LOCK_DATASTORE = "default"
+
+# Celery Broker
+BROKER_TRANSPORT = CELERY_RESULT_BACKEND = "rabbitmq"
+
+BROKER_HOST = RABBITMQ["default"]["HOST"]
+BROKER_PORT = RABBITMQ["default"]["PORT"]
+BROKER_PASSWORD = RABBITMQ["default"]["PASSWORD"]
+BROKER_VHOST = "0"
+
+BROKER_POOL_LIMIT = 10
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
+
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31556926
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT"))
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+INTERCOM_USER_HASH_KEY = os.environ.get("INTERCOM_USER_HASH_KEY")
