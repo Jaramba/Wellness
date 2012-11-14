@@ -13,6 +13,7 @@ INSTALLED_APPS += [
     'djsupervisor',
 ]
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
@@ -131,12 +132,6 @@ SECURE_BROWSER_XSS_FILTER = True
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
-
-SESSION_ENGINE = 'redis_sessions.session'
-
-SESSION_REDIS_HOST = 'localhost'
-SESSION_REDIS_PORT = REDIS["default"]["PORT"]
-SESSION_REDIS_DB = 0
 
 #SECRET_KEY = os.environ.get("SECRET_KEY")
 
