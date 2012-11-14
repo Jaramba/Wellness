@@ -93,7 +93,7 @@ RABBITMQ = {
 
 CACHES = {
    "default": {
-        "BACKEND": "redis_cache.redisCache",
+        "BACKEND": "redis_cache.RedisCache",
         "LOCATION": "%(HOST)s:%(PORT)s" % REDIS["default"],
         "KEY_PREFIX": "cache",
         "OPTIONS": {
