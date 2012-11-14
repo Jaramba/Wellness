@@ -107,7 +107,7 @@ CACHES = {
 }
 
 # Celery Broker
-BROKER_TRANSPORT = CELERY_RESULT_BACKEND = "rabbitmq"
+BROKER_TRANSPORT = "rabbitmq"
 
 BROKER_HOST = RABBITMQ["default"]["HOST"]
 BROKER_PORT = RABBITMQ["default"]["PORT"]
