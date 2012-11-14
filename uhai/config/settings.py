@@ -138,7 +138,6 @@ INSTALLED_APPS = [
     #Search Tools
     'haystack',
     'celery_haystack',
-    'djcelery',
     
     #Database tools
     #'south',

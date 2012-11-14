@@ -9,6 +9,7 @@ TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
     'kombu.transport.django',     
+    'djcelery',  
 ]
 
 BROKER_URL = "django://" # tell kombu to use the Django database as the message queue  

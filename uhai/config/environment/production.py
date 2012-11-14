@@ -9,6 +9,7 @@ TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
     'gunicorn',
+    'djcelery',
 ]
 
 DATABASES = {
@@ -103,9 +104,6 @@ CACHES = {
         }
     }
 }
-
-PYPI_DATASTORE = "default"
-LOCK_DATASTORE = "default"
 
 # Celery Broker
 BROKER_TRANSPORT = CELERY_RESULT_BACKEND = "rabbitmq"
