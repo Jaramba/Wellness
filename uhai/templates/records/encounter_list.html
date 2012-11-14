@@ -21,18 +21,20 @@
 	{% if encounters %}
 		<table class='table table-stripped table-bordered'>
 			<tr>
-				<th>Patient</th>
+				<th>Provider</th>
 				<th>Encounter Date</th>
 				<th>Type</th>
+				<th>Location</th>
 				{% if not encounter_type %}
                 	<th>Diagnosed problems</th>
                 {% endif %}
 			</tr>
 			{% for encounter in encounters %}
-				<tr>	
-					<td>{{encounter.user.full_name}}</td>
+				<tr>
+					<td>{{encounter.provider.user.full_name}}</td>
 					<td>{{encounter.start_time}}</td>
 					<td>{{encounter.type}}</td>
+					<td>{{encounter.location}}</td>
 					{% if not encounter_type %}
                     	<td>{{encounter.diagnosis_set.count|apnumber|default:"None"|capfirst}}</td>
                     {% endif %}

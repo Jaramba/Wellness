@@ -16,7 +16,7 @@
 			{% for programquestionnaire in programquestionnaires %}
 				<tr>	
 					<td><a href="{{ programquestionnaire.get_absolute_url }}">{{programquestionnaire.title}}</a></td>
-					<td><a href="{% url program-detail programquestionnaire.program.pk %}">{{programquestionnaire.program}}</a></td>
+					<td>{{programquestionnaire.program}}</td>
 					<td>{{programquestionnaire.publish_date}}</td>
 					<td>{{programquestionnaire.expiry_date}}</td>
 				</tr>

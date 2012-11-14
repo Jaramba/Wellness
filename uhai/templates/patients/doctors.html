@@ -26,11 +26,7 @@
 	    				{% for doctor in doctors%}
 		    				<tr>
 		    					<td>{{doctor.provider.practice_number}}</td>
-		    					<td class="link-column">
-		    						<a href="profile.html">
-		    							{{doctor.provider.user.full_name}}
-		    						</a>
-		    					</td>
+		    					<td>{{doctor.provider.user.full_name}}</td>
 		    					<td>{{doctor.provider.facility}}</td>
 		    					<td>{{doctor.provider.speciality.all|join:", "}}</td>
 		    					<td>{{doctor.primary}}</td>

@@ -59,6 +59,7 @@ def profile(request, user_id=None, template_name="userprofile/profile.html", **k
         profile.save()
         
     data['profile'] = profile
+    data['profileuser'] = user
     data.update(kwargs)
     return render_to_response(template_name, data, context_instance=RequestContext(request)) 
 

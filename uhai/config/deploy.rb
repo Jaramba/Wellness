@@ -27,9 +27,7 @@ task :production do
       task :restart do
         run "STAGE=\"production\" && export STAGE"
         run "service nginx restart"
-        run "service gunicorn restart"
-        run "echo kill `ps aux | grep 'run_gunicorn' | grep -v grep | awk '{print $2}'` > /dev/null"
-        run "cd #{webapps_loc}/wellness && #{python_command} manage.py run_gunicorn &"
+        run "~/webapps/uhai/apache2/bin/restart"
       end
  
       task :finalize_update, :except => { :no_release => true } do
@@ -73,7 +71,7 @@ namespace (:django) do
     Run the "python manage.py update_index" task
   DESC
   task :update_index do
-    run "cd #{webapps_loc}/wellness && #{python_command} manage.py update_index --noinput"
+    run "cd #{webapps_loc}/wellness && #{python_command} manage.py update_index"
   end
 
   desc <<-DESC

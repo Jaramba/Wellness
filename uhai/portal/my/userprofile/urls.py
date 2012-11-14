@@ -8,15 +8,25 @@ from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('uhai.portal.my.userprofile.views',
     # Private profile
-    url(r'^account/profile/$', 'profile', {"contact":ContactsForm, "password":PasswordChangeForm}, name='profile'),
-	url(r'^account/settings/$', 'user_change', name='settings'),
-    url(r'^account/personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
-	url(r'^account/location/$', 'personal', {'form':LocationForm}, name='settings-location'),
-    url(r'^account/contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
+    url(r'^profile/(?P<pk>[0-9A-Za-z]+)?/?$', 'profile', {"contact":ContactsForm, "password":PasswordChangeForm}, name='profile'),
+	url(r'^settings/$', 'user_change', name='settings'),
+    url(r'^personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
+	url(r'^location/$', 'personal', {'form':LocationForm}, name='settings-location'),
+    url(r'^contacts/$', 'personal', {'form':ContactsForm}, name='settings-contacts'),
+
+    url(r'^login/?$', 'login', {
+            'template_name':'userprofile/login.html'
+        }, name='login'
+    ),
+    url(r'^logout/?$','logout', {
+            'redirect_field_name':'next',
+            'template_name':'userprofile/logout.html'
+        }, name='logout'
+    ),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^account/password/$', 'password_change',
+    url(r'^password/$', 'password_change',
         {
              'template_name': 'userprofile/password_change.html',
              'password_change_form':PasswordChangeForm,
@@ -24,7 +34,7 @@ urlpatterns += patterns('django.contrib.auth.views',
         }, 
         name='settings-password'
     ),
-    url(r'^account/password/done/$', 'password_change_done',
+    url(r'^password/done/$', 'password_change_done',
         {
             'template_name': 'userprofile/password_change_done.html'
         }, 
@@ -33,7 +43,7 @@ urlpatterns += patterns('django.contrib.auth.views',
 )
 
 urlpatterns += patterns('uhai.portal.my.patients.views',
-	url(r'^account/medical/$', 'patient', {
+	url(r'^medical/$', 'patient', {
 		'action' : 'edit',
 		'template_name':'userprofile/personal.html',
 		'queryset': Patient.objects.all(),
@@ -45,12 +55,12 @@ urlpatterns += patterns('uhai.portal.my.patients.views',
 	name='settings-medical'),
 )
 urlpatterns += patterns('',
-    url(r'^account/password/reset/$', 'django.contrib.auth.views.password_reset',
+    url(r'^password/reset/$', 'django.contrib.auth.views.password_reset',
         {'template_name': 'userprofile/password_reset.html'}, name='settings-password-reset'),
-    url(r'^account/password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
+    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_done',
         {'template_name': 'userprofile/password_reset_done.html'}, name='password-reset-done'),
-    url(r'^account/password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
+    url(r'^password/reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm',
         {'template_name': 'userprofile/password_reset_confirm.html'}, name="password-reset-confirm"),
-    url(r'^account/password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
+    url(r'^password/reset/done/$', 'django.contrib.auth.views.password_reset_complete',
         {'template_name': 'userprofile/password_reset_complete.html'}, name="password-reset-complete"),
 )

@@ -19,7 +19,7 @@ class Program(OwnerModel):
     to help Alcoholics.
     '''
     name = models.CharField(max_length=100)
-    problems = models.ManyToManyField("records.Problem")
+    problems = models.ManyToManyField("records.Problem", blank=True, null=True)
     concept_notes = models.TextField(null=True, blank=True)
     expected_outcome_notes = models.TextField(null=True, blank=True)
     
@@ -47,7 +47,7 @@ class EnrolledProgram(OwnerModel):
     enrollee = models.ForeignKey("patients.Patient", related_name='enrollee')
     enroller = models.ForeignKey("auth.User", related_name='enroller', verbose_name="Enrolled By")
     date_enrolled = models.DateField(auto_now=True)
-    date_completed = models.DateField()
+    date_completed = models.DateField(null=True, blank=True)
     outcome_notes = models.TextField(null=True, blank=True)
     
     def __unicode__(self):
@@ -181,12 +181,12 @@ class Questionnaire(OwnerModel):
         return ("questionnaire_detail", (), {"slug": self.slug})
 
     def admin_links(self):
-        kw = {"view_args": (self.id,)}
+        kw = {"args": (self.id,)}
         links = [
             (_("View questionnaire on site"), self.get_absolute_url()),
-            (_("Filter entries"), reverse("admin-portal", "admin:form_entries", **kw)),
-            (_("View all entries"), reverse("admin-portal", "admin:form_entries_show", **kw)),
-            (_("Export all entries"), reverse("admin-portal", "admin:form_entries_export", **kw)),
+            (_("Filter entries"), reverse("admin:form_entries", **kw)),
+            (_("View all entries"), reverse("admin:form_entries_show", **kw)),
+            (_("Export all entries"), reverse("admin:form_entries_export", **kw)),
         ]
         for i, (text, url) in enumerate(links):
             links[i] = "<a href='%s'>%s</a>" % (url, ugettext(text))

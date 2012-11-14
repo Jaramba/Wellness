@@ -234,5 +234,3 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 2
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # Whether the session cookie should be secure (https:// only).
 SESSION_COOKIE_SECURE = False
-
-

@@ -31,13 +31,13 @@
 	    	<div class="tile-container">
 	    		<div class="tile photo tile-border">
 					<div class="profile-photo crop">
-	    				<img src="{{ STATIC_URL }}images/pic11.jpg"/>
-	    				<div class="profile-name">{{ user.first_name }} {{ user.last_name }}</div>
+	    				<img src="{{ MEDIA_URL }}{{ profile.photo }}"/>
+	    				<div class="profile-name">{{ profileuser.first_name }} {{ profileuser.last_name }}</div>
 	    			</div>
 	    		</div>					    		
 	    		<div class="tile medical-profile">
 	    			<table class="profile-table">
-	    				{% with user.patient_set.get as patientprofile %}
+	    				{% with profileuser.patient_set.get as patientprofile %}
 	    				<tr>
 	    					<td class="profile-label">Blood Type:</td>
 	    					<td>{{patientprofile.get_blood_group_display}} ({{patientprofile.blood_group}})</td>
@@ -64,11 +64,11 @@
 	    				</tr>
 	    				<tr>
 	    					<td class="profile-label">Phone:</td>
-	    					<td>{{user.userprofile.phone}}</td>
+	    					<td>{{profileuser.profileuserprofile.phone}}</td>
 	    				</tr>
 	    				<tr>
 	    					<td class="profile-label">City:</td>
-	    					<td>{{user.userprofile.county}}</td>
+	    					<td>{{profileuser.profileuserprofile.county}}</td>
 	    				</tr>
 	    				{% endwith %}
 	    			</table>
@@ -91,9 +91,11 @@
 	    			</div>
 	    		</div>
 			</div>
-			<div>
-				{% crispy contact contact.helper %}
-			</div>
+			{% if profileuser == user %}
+				<div>
+					{% crispy contact contact.helper %}
+				</div>
+			{% endif %}
 	    </div>
 	</div>
 {% endblock container %}
