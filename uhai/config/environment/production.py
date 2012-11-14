@@ -10,6 +10,7 @@ TEMPLATE_DEBUG = DEBUG
 INSTALLED_APPS += [
     'gunicorn',
     'djcelery',
+    'djsupervisor',
 ]
 
 DATABASES = {
@@ -114,6 +115,12 @@ BROKER_PASSWORD = RABBITMQ["default"]["PASSWORD"]
 BROKER_VHOST = "0"
 
 BROKER_POOL_LIMIT = 10
+
+os.environ["CELERY_LOADER"] = "django"
+
+CELERYD_CONCURRENCY = 1
+CELERYD_NODES="w1"
+CELERY_RESULT_BACKEND="amqp"
 
 HAYSTACK_CONNECTIONS = {
     'default': {

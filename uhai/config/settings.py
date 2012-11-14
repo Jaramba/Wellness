@@ -130,7 +130,7 @@ INSTALLED_APPS = [
     
     #apps
     'crispy_forms',
-    'cloudinary',
+    'cloudinary',    
     
     # API Tools
     'tastypie',
