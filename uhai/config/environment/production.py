@@ -137,13 +137,8 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 #SECRET_KEY = os.environ.get("SECRET_KEY")
 
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = int(os.environ.get("EMAIL_PORT"))
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = True
-
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-
-INTERCOM_USER_HASH_KEY = os.environ.get("INTERCOM_USER_HASH_KEY")
+#EMAIL_HOST = os.environ.get("EMAIL_HOST")
+#EMAIL_PORT = int(os.environ.get("EMAIL_PORT"))
+#EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+#EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+#EMAIL_USE_TLS = True
