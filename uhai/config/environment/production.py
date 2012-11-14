@@ -4,7 +4,7 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'))
 PARENT_HOST   = 'uhai-app.cloudapp.net'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
@@ -102,7 +102,6 @@ CACHES = {
         "OPTIONS": {
             "DB": 0,
             "PASSWORD": REDIS["default"]["PASSWORD"],
-            "PARSER_CLASS": "redis.connection.HiredisParser"
         }
     }
 }
@@ -111,7 +110,7 @@ BROKER_HOST = RABBITMQ["default"]["HOST"]
 BROKER_PORT = RABBITMQ["default"]["PORT"]
 BROKER_USER = RABBITMQ["default"]["USER"]
 BROKER_PASSWORD = RABBITMQ["default"]["PASSWORD"]
-BROKER_VHOST = "/"
+BROKER_VHOST = "/uhai-app"
 
 BROKER_POOL_LIMIT = 10
 
