@@ -13,6 +13,13 @@ INSTALLED_APPS += [
     'djsupervisor',
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', 
@@ -81,7 +88,7 @@ REDIS = {
     "default": {
         "HOST": "localhost",
         "PORT": "6379",
-        "PASSWORD": "synacor90@201!666-heaven",
+        "PASSWORD": "synacor90@210!666-heaven"
     }
 }
 
@@ -91,18 +98,6 @@ RABBITMQ = {
         "USER": "admin",
         "PORT": "5672",
         "PASSWORD": "synacor90201",
-    }
-}
-
-CACHES = {
-   "default": {
-        "BACKEND": "redis_cache.RedisCache",
-        "LOCATION": "%(HOST)s:%(PORT)s" % REDIS["default"],
-        "KEY_PREFIX": "cache",
-        "OPTIONS": {
-            "DB": 0,
-            "PASSWORD": REDIS["default"]["PASSWORD"],
-        }
     }
 }
 
@@ -137,7 +132,11 @@ SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS_HOST = 'localhost'
+SESSION_REDIS_PORT = REDIS["default"]["PORT"]
+SESSION_REDIS_DB = 0
 
 #SECRET_KEY = os.environ.get("SECRET_KEY")
 

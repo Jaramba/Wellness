@@ -16,3 +16,4 @@ simplejson==2.2.1
 django-kombu
 rabbitmq
 django-supervisor
+django-redis-sessions
