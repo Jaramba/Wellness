@@ -39,7 +39,6 @@ namespace (:deploy) do
   task :finalize_update, :except => { :no_release => true } do
     django.static
     django.syncdb
-    django.update_index
   end
 end
 
@@ -52,13 +51,6 @@ namespace (:django) do
     run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput" 
   end
   
-  desc <<-DESC
-    Run the "python manage.py update_index" task
-  DESC
-  task :update_index do
-    run "cd #{webapps_loc}/wellness && #{python_command} manage.py update_index"
-  end
-
   desc <<-DESC
     Run the "python manage.py syncdb" task
   DESC
