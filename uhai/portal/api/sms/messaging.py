@@ -1,6 +1,8 @@
 from celery.messaging import establish_connection
 from kombu.compat import Publisher, Consumer
 
+from django.contrib.auth.models import User
+
 import requests, sys
 
 class SMSProcessor(object):
@@ -23,7 +25,7 @@ class SMSProcessor(object):
 
         publisher.send({
             'text':message,
-            'recipient': User.objects.get(pk=user_pk).profile.phone
+            'recipient': User.objects.get(pk=user_pk).profile.mobile_phone
         })
         publisher.close()
         connection.close()

@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import * 
-from views import send, new_message
+from views import out_message, new_message
 
 urlpatterns = patterns('',
 	(r'^cb/new-message/', new_message),

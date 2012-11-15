@@ -5,7 +5,7 @@ PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'
 PARENT_HOST   = 'localhost'
 
 #development settings
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 CRISPY_FAIL_SILENTLY = DEBUG
 SERVE_MEDIA = DEBUG
