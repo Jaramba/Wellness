@@ -10,7 +10,7 @@
 
 {% block container %}
 	<div class="row">
-		<form method="POST" action="." class="form-horizontal">{% csrf_token %}
+		<form method="POST" action="{% url logout %}" class="form-horizontal">{% csrf_token %}
 			<legend>Log out</legend>
 			<input type="hidden" name="next" value="{% url index %}" />
 			<fieldset>
