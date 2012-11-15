@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-
-from models import SmsMessageOutbox
 from messaging import SMSProcessor
 
 import logging
