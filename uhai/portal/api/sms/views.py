@@ -12,9 +12,9 @@ from django.views.decorators.csrf import csrf_exempt
 logger = logging.getLogger(__name__)
 
 def new_message(request):
-	if request.method == "GET" or request.method == "POST":
+    if request.method == "GET" or request.method == "POST":
         SMSProcessor().publish('We will Kill Nes', request.user.pk, routing_key="incoming")
-	return HttpResponse()
+    return HttpResponse()
     
 def out_message(request):
     if request.method == "GET" or request.method == "POST":
