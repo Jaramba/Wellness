@@ -45,7 +45,7 @@ class Medication(OwnerModel):
     def __unicode__(self):
         return self.name
 
-class Prescription(Event):
+class Prescription(OwnerModel):
     UNIT = [
         ('tablet', 'Tablet(s)'),         
         ('capsule', 'Capsule(s)'),
@@ -57,7 +57,25 @@ class Prescription(Event):
         ('teaspoon', 'Teaspoon (Tbsp)'),
         ('ounce', 'Ounce (oz)'),
     ]
-    medication = models.ForeignKey('Medication')   
+    PERIODS = [
+        ('every-hour', 'Hourly'),
+        ('twice-a-day', 'Twice daily'),
+        ('thrice-a-day', 'Thrice daily'),
+        ('four-times-a-day', 'Four times daily'),
+        ('five-times-a-day', 'Five times daily'),
+        ('daily', 'Daily'),
+        ('weekly', 'Weekly'),
+        ('monthly', 'Monthly'),
+        ('three-months', 'Three months'),
+        ('six-months', 'Six months'),
+        ('nine-months', 'Nine months'),
+        ('yearly', 'Yearly')
+    ]
+    user = models.ForeignKey("auth.User")
+    provider = models.ForeignKey('providers.HealthWorker', null=True)
+
+    frequency = models.CharField(choices=PERIODS, max_length=50)
+    medication = models.ForeignKey('Medication')
     reason = models.CharField(max_length=300)
 
     priority = models.CharField(max_length=15, choices=[

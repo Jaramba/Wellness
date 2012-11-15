@@ -11,26 +11,22 @@ class ReminderProcessor(object):
 	def __init__(self, *args, **kwargs):
 		pass
 
-	def prepare_publisher(self, routing_key='', 
-		exchange='', exchange_type="direct"):
-		connection = establish_connection()
-	    publisher = Publisher(connection=connection,
-	                          exchange=exchange,
-	                          routing_key=routing_key,
-	                          exchange_type=exchange_type)
-	    return publisher
-
 	def due_prescriptions(self):
 		prescriptions = Prescription.objects.filter(
 			dose_cleared__isnotnull=True,
 			date_dose_cleared__lt=now()
 		)
 
-		publisher = prepare_publisher()
-
-		for prescription in  prescriptions:
-			publisher.send()
-
+		connection = establish_connection()
+	    publisher = Publisher(connection=connection,
+	                          exchange='reminders',
+	                          routing_key='prescriptions',
+	                          exchange_type='direct')
+		for prescription in prescriptions:			
+			publisher.send({
+				'text':'Please remember that your have some prescriptions for {0} due in {1} day{2}.',
+				'user':
+			})
 
 	def enrolledprograms(self):
 		pass

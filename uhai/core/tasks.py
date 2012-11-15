@@ -7,9 +7,6 @@ from django.conf import settings
 from django.db import transaction
 from django.utils.timezone import now
 
-@task
-reminders
-
 #Create a task to create reminders to:
 	# -Patients who have prescriptions
 	# -Patients who are enrolled to programs; check on progress vis-a-vis 
