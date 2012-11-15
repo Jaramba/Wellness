@@ -59,12 +59,22 @@ class Prescription(Event):
     ]
     medication = models.ForeignKey('Medication')   
     reason = models.CharField(max_length=300)
-    
+
+    priority = models.CharField(max_length=15, choices=[
+        ('low', 'Low'),
+        ('medium', 'medium'),
+        ('high', 'High'),
+    ])
+
     quantity = models.SmallIntegerField()
     unit = models.CharField(max_length=50, choices=UNIT)
     notes = models.CharField(max_length=2000)
+
+
     date_prescribed = models.DateTimeField(auto_now_add=True, null=True)
-    
+    clear_dose_by = models.DateTimeField(null=True)
+    date_dose_cleared = models.DateTimeField(null=True)
+
     def __unicode__(self):
         return '%s, %s %s taken %s %s prescribed by %s' % (
             self.medication.name, self.quantity, self.unit, 
@@ -75,7 +85,7 @@ class Prescription(Event):
     class Meta:
         permissions = ( 
             ('view_prescription', 'View prescription'), 
-        )
+    )
 
 class Immunization(Event):
     MODE_OF_DELIVERY = [
