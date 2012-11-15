@@ -14,4 +14,5 @@ def outgoingmessage_pt():
 @periodic_task(run_every=timedelta(seconds=1))
 def incomingmessage_pt():
 	SMSProcessor().process_incomingmessages()
+
 	

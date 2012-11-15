@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', 'uhai.portal.my.views.switchboard', name="home"),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin_tools/', include('admin_tools.urls')),
+    url(r'sms/', include('uhai.portal.api.sms.urls')),
     
     url(r'^reminders/', include('uhai.portal.my.reminders.urls')),
     url(r'^programs/', include('uhai.portal.my.programs.urls')),

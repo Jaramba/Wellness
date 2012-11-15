@@ -1,10 +1,7 @@
-import redis
 import requests
 
 from celery.task import task
-
 from django.db import transaction
-from django.utils.timezone import now
 
 #Create a task to create reminders to:
 	# -Patients who have prescriptions
