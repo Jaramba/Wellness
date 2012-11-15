@@ -21,27 +21,27 @@ CACHES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3', 
-#         'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
-#         'HOST': '', 
-#         'USER': '', 
-#         'PASSWORD': '', 
-#         'PORT': ''
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'uhai', 
-        'HOST': 'localhost', 
-        'USER': 'root', 
-        'PASSWORD': 'mkemonda90@210!', 
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
+        'HOST': '', 
+        'USER': '', 
+        'PASSWORD': '', 
         'PORT': ''
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql', 
+#         'NAME': 'uhai', 
+#         'HOST': 'localhost', 
+#         'USER': 'root', 
+#         'PASSWORD': 'mkemonda90@210!', 
+#         'PORT': ''
+#     }
+# }
 
 
 TEMPLATE_LOADERS = (
