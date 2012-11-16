@@ -10,7 +10,7 @@ class Problem(OwnerModel):
 	'''
 	Anything that a patient can experience, be it Stress, Disease, Condition, that can be noted down
 	'''
-	name = models.CharField(max_length=200)	
+	name = models.CharField(max_length=1500)	
 	type = models.ForeignKey(ProblemType, null=True)
 	icd10_code = models.CharField(max_length=10, verbose_name='ICD Code', null=True, blank=True)
 	icd10_block = models.ForeignKey('ICD10Block', verbose_name='ICD Block', editable=False, null=True)
@@ -106,13 +106,13 @@ class ProblemTest(Test):
 	problem = models.ForeignKey('Problem')
 
 class EncounterTest(Event):
-	name = models.CharField(max_length=100)
+	name = models.CharField(max_length=200)
 	encounter = models.ForeignKey('Encounter')
 	test = models.ForeignKey('Test')
 	notes = models.TextField(null=True, blank=True)
 
 class EncounterTestResult(Event):
-	name = models.CharField(max_length=100)
+	name = models.CharField(max_length=200)
 	encounter_test = models.ForeignKey(EncounterTest)
 	inference = models.TextField(null=True, blank=True)
 	notes = models.TextField(null=True, blank=True)

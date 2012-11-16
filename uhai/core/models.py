@@ -88,7 +88,7 @@ class MetaData(OwnerModel):
     '''
     a base class for objects that are simply explainative of other objects
     '''
-    name = models.CharField(max_length=120)
+    name = models.CharField(max_length=225)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now=True, default=datetime.now)

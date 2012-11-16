@@ -33,11 +33,11 @@ end
 
 namespace (:deploy) do
   task :restart do
-    run "~/webapps/uhai/apache2/bin/restart"
+    #run "~/webapps/uhai/apache2/bin/restart"
   end
 
   task :finalize_update, :except => { :no_release => true } do
-    django.static
+    #django.static
     django.syncdb
   end
 end

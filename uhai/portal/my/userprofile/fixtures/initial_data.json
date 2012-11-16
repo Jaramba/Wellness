@@ -71,7 +71,7 @@
     }
   },
   {
-    "pk": 0,
+    "pk": -1,
     "model": "auth.user",
     "fields": {
       "username": "system",
@@ -206,7 +206,6 @@
     "pk": 1,
     "model": "userprofile.userprofile",
     "fields": {
-      "province": 1,
       "first_name": "Onesmus",
       "mobile_phone": "+254736705812",
       "middle_name": "Wekalao",
@@ -215,14 +214,12 @@
       "photo": "photos/pic1.jpg",
       "main_role": 2,
       "national_id": "2102993",
-      "county": 1,
       "last_name": "Mukewa",
       "postal_code": "30177-00100",
       "user": 1,
       "home_phone": "+254736705812",
       "village": "",
       "date_created": "2012-05-21T04:44:26",
-      "country": 1,
       "email": "kanarelo+kanarelo@gmail.com",
       "date_edited": "2012-05-21T04:18:50"
     }
@@ -231,7 +228,6 @@
     "pk": 2,
     "model": "userprofile.userprofile",
     "fields": {
-      "province": 1,
       "first_name": "David",
       "mobile_phone": "+254735199807",
       "middle_name": "Simbiri",
@@ -240,14 +236,12 @@
       "photo": "photos/pic2.jpg",
       "main_role": 2,
       "national_id": "2332244",
-      "county": 1,
       "last_name": "Simbiri",
       "postal_code": "",
       "user": 2,
       "home_phone": "",
       "village": "",
       "date_created": "2012-05-29T23:07:36.309",
-      "country": 1,
       "email": "kanarelo+simbiri@gmail.com",
       "date_edited": "2012-05-29T23:07:36.309"
     }
@@ -256,7 +250,6 @@
     "pk":3,
     "model": "userprofile.userprofile",
     "fields": {
-      "province": 1,
       "first_name": "Edth",
       "mobile_phone": "+254721111234",
       "middle_name": "Wekalao",
@@ -265,14 +258,12 @@
       "photo": "photos/pic5.jpg",
       "main_role": 2,
       "national_id": "9832923",
-      "county": 1,
       "last_name": "Khalai",
       "postal_code": "30177-00100",
       "user": 3,
       "home_phone": "254736705812",
       "village": "Komarock",
       "date_created": "2012-09-21T20:20:51.587",
-      "country": 2,
       "email": "kanarelo+wekalao@gmail.com",
       "date_edited": "2012-09-21T20:20:51.587"
     }
@@ -281,7 +272,6 @@
     "pk": 4,
     "model": "userprofile.userprofile",
     "fields": {
-      "province": 1,
       "first_name": "Mary",
       "mobile_phone": "+254735100807",
       "middle_name": "Masika",
@@ -290,14 +280,12 @@
       "photo": "photos/pic7.jpg",
       "main_role": 2,
       "national_id": "",
-      "county": 1,
       "last_name": "Khaemba",
       "postal_code": "30177-00100",
       "user": 4,
       "home_phone": "254736705812",
       "village": "",
       "date_created": "2012-05-21T04:55:08",
-      "country": 1,
       "email": "kanarelo+khaemba@gmail.com",
       "date_edited": "2012-05-21T04:51:10"
     }
@@ -306,7 +294,6 @@
     "pk": 5,
     "model": "userprofile.userprofile",
     "fields": {
-      "province": 1,
       "first_name": "John",
       "mobile_phone": "+25472666265",
       "middle_name": "Mluvi",
@@ -315,14 +302,12 @@
       "photo": "photos/pic11.jpg",
       "main_role": 2,
       "national_id": "",
-      "county": 1,
       "last_name": "Maisiba",
       "postal_code": "",
       "user": 5,
       "home_phone": "",
       "village": "",
       "date_created": "2012-05-29T17:49:14.463",
-      "country": 1,
       "email": "kanarelo+maisiba@gmail.com",
       "date_edited": "2012-05-29T17:49:14.463"
     }
