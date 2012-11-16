@@ -23,10 +23,11 @@ import copy
 def login(request, *args, **kwargs):
     if not request.user.is_authenticated():
     	if request.method == 'POST':
-    		if not request.POST.get('remember', None):
+    		if request.POST.get('remember', None):
     			request.session.set_expiry(0)
+        return
     	return auth_login(
-                request, 
+                request,
                 authentication_form=AuthenticationForm, 
                 *args, **kwargs
         )
