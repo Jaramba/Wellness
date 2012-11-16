@@ -47,7 +47,7 @@ namespace (:django) do
     Run the "python manage.py collectstatic" task
   DESC
   task :static do
-    run "mkdir -p #{latest_release}/static_root"
+    run "mkdir -p #{latest_release}/static"
     run "cd #{latest_release} && #{python_command} manage.py collectstatic --noinput" 
   end
   
