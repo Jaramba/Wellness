@@ -25,7 +25,6 @@ def login(request, *args, **kwargs):
     	if request.method == 'POST':
     		if request.POST.get('remember', None):
     			request.session.set_expiry(0)
-        return
     	return auth_login(
                 request,
                 authentication_form=AuthenticationForm, 
