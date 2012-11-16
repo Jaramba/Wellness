@@ -14,11 +14,11 @@ class Title(models.Model):
 class UserProfile(models.Model):
     title = models.ForeignKey(Title, null=True)
 
-    first_name = models.CharField(max_length=50, null=True)
-    middle_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=50, null=True)
+    first_name = models.CharField(max_length=72, null=True)
+    middle_name = models.CharField(max_length=72, null=True)
+    last_name = models.CharField(max_length=72, null=True)
 
-    email = models.CharField(max_length=50, null=True)
+    email = models.CharField(max_length=72, null=True)
     mobile_phone = models.CharField(max_length=50, null=True)
     home_phone = models.CharField(max_length=50, null=True, blank=True)
     work_phone = models.CharField(max_length=50, null=True, blank=True)
@@ -26,7 +26,7 @@ class UserProfile(models.Model):
     photo = models.FileField(upload_to='photos', null=True, blank=True)
 
     postal_code = models.CharField(max_length=50, null=True, blank=True)
-    village = models.CharField(max_length=50, null=True, blank=True)
+    village = models.CharField(max_length=120, null=True, blank=True)
     province = models.ForeignKey('core.Province', null=True)
     county = models.ForeignKey('core.County', null=True)
     country = models.ForeignKey('core.Country', null=True)

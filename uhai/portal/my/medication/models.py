@@ -32,7 +32,7 @@ class Medication(OwnerModel):
         ('microgram', 'Microgram (mcg)'),
         ('percent', 'Percent (%)'),
     ]    
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
     medication_type = models.CharField(max_length=50, choices=MEDICATION_TYPE)
     way_taken = models.CharField(max_length=20, choices=WAY_TAKEN)
     
@@ -40,7 +40,7 @@ class Medication(OwnerModel):
     max_daily_dose = models.CharField(max_length=50)
     strength = models.CharField(max_length=50)
     strength_unit = models.CharField(max_length=50, choices=STRENGTH_UNIT)
-    side_effects = models.CharField(max_length=200)
+    side_effects = models.CharField(max_length=500)
     
     def __unicode__(self):
         return self.name

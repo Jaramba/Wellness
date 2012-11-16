@@ -3,8 +3,8 @@ from uhai.core.models import OwnerModel, MetaData
 from django.shortcuts import get_object_or_404
 
 class Company(OwnerModel):
-    name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
+    phone = models.CharField(max_length=72)
     email = models.EmailField(null=True, blank=True)
     location = models.CharField(max_length=200)
     date_edited = models.DateTimeField(auto_now=True)
@@ -21,7 +21,7 @@ class HealthInsuranceProvider(models.Model):
     The Insurance providers that are enrolled into Uhai
     A company can have more than one covers
     '''
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, null=False, blank=False)
     phone = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True)
@@ -58,7 +58,7 @@ class Insurance(OwnerModel):
     A policy for a patient to be enrolled in.
     """
     plan_id = models.CharField('Policy/Plan ID', max_length=70)
-    plan_name = models.CharField(max_length=50)
+    plan_name = models.CharField(max_length=120)
     type = models.ForeignKey('InsuranceType')
     policy_provider = models.ForeignKey('HealthInsuranceProvider', null=True, blank=True)
     notes = models.TextField(null=True, blank=True)

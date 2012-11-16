@@ -8,7 +8,6 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [
-    'gunicorn',
     'djcelery',
     'djsupervisor',
 ]
@@ -21,27 +20,27 @@ INSTALLED_APPS += [
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
-        'HOST': '', 
-        'USER': '', 
-        'PASSWORD': '', 
-        'PORT': ''
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql', 
-#         'NAME': 'uhai', 
-#         'HOST': 'localhost', 
-#         'USER': 'root', 
-#         'PASSWORD': 'mkemonda90@210!', 
+#         'ENGINE': 'django.db.backends.sqlite3', 
+#         'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
+#         'HOST': '', 
+#         'USER': '', 
+#         'PASSWORD': '', 
 #         'PORT': ''
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'uhai', 
+        'HOST': 'localhost', 
+        'USER': 'root', 
+        'PASSWORD': 'mkemonda90@210!', 
+        'PORT': ''
+    }
+}
 
 
 TEMPLATE_LOADERS = (
@@ -62,7 +61,7 @@ LOCALE_PATHS = (
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
