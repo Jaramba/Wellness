@@ -26,15 +26,27 @@ TEMPLATE_DIRS = (
 )
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3', 
-		'NAME': os.path.join(PROJECT_PATH, 'database', 'uhai.db'), 
-		'HOST': '', 
-		'USER': '', 
-		'PASSWORD': '', 
-		'PORT': ''
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'uhai', 
+        'HOST': 'localhost', 
+        'USER': 'root', 
+        'PASSWORD': '', 
+        'PORT': ''
+    }
 }
+
+
+# DATABASES = {
+# 	'default': {
+# 		'ENGINE': 'django.db.backends.sqlite3', 
+# 		'NAME': os.path.join(PROJECT_PATH, 'database', 'uhai.db'), 
+# 		'HOST': '', 
+# 		'USER': '', 
+# 		'PASSWORD': '', 
+# 		'PORT': ''
+# 	}
+# }
 
 SIMPLE_API_URL = "https://simple.majisoft.co.ke/"
 

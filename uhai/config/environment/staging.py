@@ -25,14 +25,26 @@ EMAIL_HOST_PASSWORD = 'a79fHH7722!'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
-        'HOST': '', 
-        'USER': '', 
-        'PASSWORD': '', 
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'uhai', 
+        'HOST': 'localhost', 
+        'USER': 'root', 
+        'PASSWORD': 'mkemonda90@210!', 
         'PORT': ''
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3', 
+#         'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
+#         'HOST': '', 
+#         'USER': '', 
+#         'PASSWORD': '', 
+#         'PORT': ''
+#     }
+# }
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
