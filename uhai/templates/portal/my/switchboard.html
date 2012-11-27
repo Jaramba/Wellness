@@ -62,14 +62,14 @@
 				<div class="tile long low">
 					<a href="{% url reminders %}">
 						<div class="reminder-messages">
-							<div class="reminder-message">Submit your latest blood sugar level</div>
-							<div class="reminder-message">Appointment with Dr. Juma Kimani</div>
-							<div class="reminder-message">Polio Vaccination for James Wandani</div>
+							{% for reminder in reminders%}
+								<div class="reminder-message">{{ reminder.text }}</div>
+							{% endfor %}
 						</div>
 		    			<div class="tile-label" style="margin: 10px 15px; font-weight: normal;">
 		    				<div class="reminder">
-			    				<div class="reminder-count">12</div>
-			    				<div>Reminders</div>
+			    				<div class="reminder-count">{{ reminders_count }}</div>
+			    				<div>Reminder{{ reminders_count|pluralize }}</div>
 			    			</div>
 			    			<div class="calendar">
 			    				<div class="calendar-day" style="text-transform:lowercase;">{% now "D" %}</div>

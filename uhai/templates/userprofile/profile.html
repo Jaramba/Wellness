@@ -1,23 +1,10 @@
 {% extends "app_base.html" %}
-{% load crispy_forms_tags %}
-
 {% block page-title %}Profile{% endblock %}
-
-{% block extracss-links %}
-	<link rel='stylesheet' href='{{ STATIC_URL }}css/Aristo.css' type='text/css' media='screen' />
-	<link rel="stylesheet" href="{{ STATIC_URL }}css/forms.css" type="text/css" />
-{% endblock extracss-links %}
 
 {% block extrajs-jquery-plugins %}
 	{{block.super}}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.17.custom.min.js"></script>
 {% endblock extrajs-jquery-plugins %}
-
-{% block extrajs-jquery-enclosed %}
-	{{block.super}}
-	$.datepicker.setDefaults({dateFormat: "yy-mm-dd"});
-	$('#id_date_of_birth').datepicker();
-{% endblock extrajs-jquery-enclosed %}
 
 {% block container %}
 	<div class="back-button">
@@ -27,7 +14,7 @@
 	</div>
 	<div class="menu-tiles">    	
 	    <div class="tiles">
-	    	<legend>patient profile</legend>
+	    	<legend>{% if profileuser == user %}my{% else %}dependent{% endif %} profile</legend>
 	    	<div class="tile-container">
 	    		<div class="tile photo tile-border">
 					<div class="profile-photo crop">
@@ -91,11 +78,6 @@
 	    			</div>
 	    		</div>
 			</div>
-			{% if profileuser == user %}
-				<div>
-					{% crispy contact contact.helper %}
-				</div>
-			{% endif %}
 	    </div>
 	</div>
 {% endblock container %}

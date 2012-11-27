@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 urlpatterns = patterns('uhai.portal.my.userprofile.views',
     # Private profile
-    url(r'^profile/(?P<pk>[0-9A-Za-z]+)?/?$', 'profile', {"contact":ContactsForm, "password":PasswordChangeForm}, name='profile'),
+    url(r'^profile/(?P<user_pk>[0-9A-Za-z]+)?/?$', 'profile', {"contact":ContactsForm, "password":PasswordChangeForm}, name='profile'),
 	url(r'^settings/$', 'user_change', name='settings'),
     url(r'^personal/$', 'personal', {'form':UserProfileForm}, name='settings-personal'),
 	url(r'^location/$', 'personal', {'form':LocationForm}, name='settings-location'),

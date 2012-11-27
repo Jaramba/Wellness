@@ -34,7 +34,7 @@ def relationship(request, queryset=None, *args, **kwargs):
 
 @login_required
 def dependents(request, template_name="patients/dependents.html", data={}, *args, **kwargs):
-    dependent_relationships = Relationship.objects.filter(relationship__dependent=True)
+    dependent_relationships = Relationship.objects.filter(person_a=request.user, relationship__dependent=True)
     data['dependent_relationships'] = dependent_relationships
     return render_to_response(template_name, data, context_instance=RequestContext(request))
 

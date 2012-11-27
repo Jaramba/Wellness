@@ -242,6 +242,7 @@ legend{
 	color: #ffffff;
 	margin: 15px auto 10px 15px;
 	font-size: 15px;
+	height: 60px;
 }
 
 .profile{
@@ -453,7 +454,7 @@ td.profile-label{
 .reminder-entries{
 	clear: both;
 	font-size: 17px;
-	font-family: "Segoe UI Light";
+	font-family: "Segoe UI";
 }
 
 .navbar .brand{

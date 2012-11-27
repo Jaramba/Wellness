@@ -10,31 +10,35 @@
 	</div>
 	<div class="menu-tiles">    	
 	    <div class="tiles">
-	    	<legend>dependents</legend>
-	    	<div class="tile-container">
-	    		<table class="table table-font table-bordered ">
-	    			<thead>
-	    				<tr>	
-	    					<th>Dependent</th>
-	    					<th>Next of Kin</th>
-	    					<th>Relationship</th>
-	    				</tr>
-	    			</thead>
-	    			<tbody>
-	    				{% for dependent_relationship in dependent_relationships%}
-		    				<tr>
-		    					<td class="link-column">
-		    						<a href="profile.html">
-		    							{{dependent_relationship.person_b}}
-		    						</a>
-		    					</td>
-		    					<td>{{dependent_relationship.next_of_kin}}</td>
-		    					<td>{{dependent_relationship.relationship}}</td>
+	    	<legend>dependents</legend>	    	
+    		{% if dependent_relationships %}
+    			<div class="tile-container">
+		    		<table class="table table-font table-bordered ">
+		    			<thead>
+		    				<tr>	
+		    					<th>Dependent</th>
+		    					<th>Next of Kin</th>
+		    					<th>Relationship</th>
 		    				</tr>
-		    			{% endfor %}
-	    			</tbody>
-	    		</table>
-			</div>
+		    			</thead>
+		    			<tbody>
+		    				{% for dependent_relationship in dependent_relationships%}
+			    				<tr>
+			    					<td class="link-column">
+			    						<a href="{% url profile dependent_relationship.person_b.pk %}">
+			    							{{dependent_relationship.person_b}}
+			    						</a>
+			    					</td>
+			    					<td>{{dependent_relationship.next_of_kin}}</td>
+			    					<td>{{dependent_relationship.relationship}}</td>
+			    				</tr>
+			    			{% endfor %}
+		    			</tbody>
+		    		</table>
+				</div>
+	    	{% else %}
+	    		No dependents recorded
+	    	{% endif %}
 	    </div>
 	</div>
 {% endblock container %}

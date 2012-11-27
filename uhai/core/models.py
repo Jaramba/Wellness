@@ -52,7 +52,7 @@ class OwnerModel(models.Model):
                 self.access_control_list  = isinstance(self.access_control_list, dict) or {}
                     
                 if request.user.is_superuser:
-                    user = User.objects.get(pk=0)
+                    user = User.objects.get(pk=-1)
                     self.model_owner = user
                     self.access_control_list['system'] = {
                         'view'  : True,

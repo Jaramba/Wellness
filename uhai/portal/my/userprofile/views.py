@@ -15,6 +15,8 @@ from django.views.generic.base import TemplateView
 
 from django.core.urlresolvers import reverse
 
+from uhai.portal.my.patients.models import Relationship
+
 from forms import *
 from signals import *
 
@@ -44,17 +46,26 @@ def logout(request, user_type="applicant", template_name=None, *args, **kwargs):
 
 @login_required
 @require_GET
-def profile(request, user_id=None, template_name="userprofile/profile.html", **kwargs):
+def profile(request, user_pk=None, template_name="userprofile/profile.html", **kwargs):
     data = {}
 
-    user = user=get_object_or_404(User, pk=user_id) if user_id else request.user
-    profile, created = UserProfile.objects.get_or_create(user=user)
+
+    if user_pk and not request.user.pk == user_pk:
+        relationships = Relationship.objects.filter(person_a=request.user)
+        #check if there is such a dependent
+
+        print relationships
+
+        dependent_relationship = relationships.filter(person_b__pk=user_pk)
     
-    if not (request.user == profile.user):
-        profile.views += 1
-        profile.save()
-        
-    data['profile'] = profile
+        try:
+            user = dependent_relationship.get()
+        except Relationship.DoesNotExist:
+            raise Http404('No such dependent relationship')
+    else:
+        user = request.user
+
+    data['profile'], created = UserProfile.objects.get_or_create(user=user)
     data['profileuser'] = user
     data.update(kwargs)
     return render_to_response(template_name, data, context_instance=RequestContext(request)) 

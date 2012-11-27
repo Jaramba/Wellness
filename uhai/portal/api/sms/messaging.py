@@ -23,10 +23,15 @@ class SMSProcessor(object):
                               routing_key=routing_key,
                               exchange_type=exchange_type)
 
-        publisher.send({
+        pb_message = {
             'text':message,
             'recipient': User.objects.get(pk=user_pk).profile.mobile_phone
-        })
+        }
+
+        publisher.send(pb_message)
+
+        print publisher, connection
+
         publisher.close()
         connection.close()
 
@@ -75,7 +80,8 @@ class SMSProcessor(object):
         )
 
         for message in consumer.iterqueue():
-            process_text_message = message.body.get('text')
+            print message.body.get('text')
+            raise Exception("NES!")
             message.ack()
 
         consumer.close()
@@ -83,3 +89,4 @@ class SMSProcessor(object):
 
     def process_text_message(message):
         pass
+        
