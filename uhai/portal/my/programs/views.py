@@ -24,6 +24,11 @@ def index(request, problem_type='', template_name = "programs/index.html", *args
     data = {}
     return render_to_response(template_name, data, context_instance= RequestContext(request))
 
+def vitals(request, template_name="programs/vitals_list.html", *args, **kwargs):
+	questionnaires = QuestionnaireResponseEntry.objects.all()
+	
+	return render_to_response(template_name, data, context_instance= RequestContext(request))	
+
 def questionnaire_detail(request, slug, QuestionnaireType=Questionnaire, 
     QuestionnaireTypeForm=QuestionnaireForm, template="questionnaires/questionnaire_%sdetail.html"):
 	"""

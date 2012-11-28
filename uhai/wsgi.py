@@ -11,5 +11,8 @@ utility = management.ManagementUtility()
 command = utility.fetch_command('runserver')
 command.validate()  # validate the models - *THIS* is what was missing
 
+import djcelery
+djcelery.setup_loader()
+
 from django.core.handlers.wsgi import WSGIHandler
 application = WSGIHandler()

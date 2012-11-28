@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from messaging import SMSProcessor
+from tasks import process_outgoingmessages
 
 import logging
 
@@ -12,12 +12,12 @@ logger = logging.getLogger(__name__)
 @login_required
 def new_message(request):
     if request.method == "GET" or request.method == "POST":
-        SMSProcessor().publish('We will Kill Nes', request.user.pk, routing_key="incoming")
-    return HttpResponse('Sent <b>Solved</b> issues')
+        process_outgoingmessages.delay(request.user.pk, 'We will Kill Nes')
+    return HttpResponse(request.GET)
     
 @login_required
 def out_message(request):
     if request.method == "GET" or request.method == "POST":
-        SMSProcessor().publish('We will not Kill Nes', request.user.pk)
+        publish('We will not Kill Nes', request.user.pk)
     return HttpResponse('<b>Sent</b> Mail')
     

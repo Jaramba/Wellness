@@ -12,35 +12,35 @@ INSTALLED_APPS += [
     'djsupervisor',
 ]
 
-#SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': '127.0.0.1:11211',
-#     }
-# }
-
-DATABASES = {
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+CACHES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
-        'HOST': '', 
-        'USER': '', 
-        'PASSWORD': '', 
-        'PORT': ''
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
     }
 }
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql', 
-#         'NAME': 'uhai', 
-#         'HOST': 'localhost', 
-#         'USER': 'root', 
-#         'PASSWORD': 'mkemonda90@210!', 
+#         'ENGINE': 'django.db.backends.sqlite3', 
+#         'NAME': '/home/uhai/webapp_releases/uhai/shared/database/uhai.db', 
+#         'HOST': '', 
+#         'USER': '', 
+#         'PASSWORD': '', 
 #         'PORT': ''
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'uhai', 
+        'HOST': 'localhost', 
+        'USER': 'root', 
+        'PASSWORD': 'mkemonda90@210!', 
+        'PORT': ''
+    }
+}
 
 
 TEMPLATE_LOADERS = (
@@ -117,7 +117,7 @@ BROKER_HOST = RABBITMQ["default"]["HOST"]
 BROKER_PORT = RABBITMQ["default"]["PORT"]
 BROKER_USER = RABBITMQ["default"]["USER"]
 BROKER_PASSWORD = RABBITMQ["default"]["PASSWORD"]
-BROKER_VHOST = "/uhai-app"
+BROKER_VHOST = "/"
 
 BROKER_POOL_LIMIT = 10
 

@@ -29,7 +29,7 @@
 					{% for insurance in objects %}
 						<tr>
 							<td>{{ insurance.insurance.plan_id }}</td>
-							<td><a href="{% url insurance-detail insurance.pk %}">{{ insurance.insurance.plan_name }}</a></td>
+							<td>{{ insurance.insurance.plan_name }}</td>
 							<td>{{ insurance.insurance.type }}</td>
 							<td>{{ insurance.get_status_display }}</td>
 							<td>{{ insurance.subscriber_policy_id }}</td>

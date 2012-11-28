@@ -4,12 +4,29 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 from uhai.core.models import OwnerModel, MetaData
+from uhai.portal.api.sms.tasks import process_outgoingmessages
 
 class Title(models.Model):
 	name = models.CharField(max_length=50)
 	
 	def __unicode__(self):
 		return self.name
+
+class SmsConfirmation(models.Model):
+    user = models.ForeignKey('auth.User')
+    sent = models.DateTimeField()
+    confirmation_key = models.CharField(max_length=40)
+
+    def key_expired(self):
+        expiration_date = self.sent + timedelta(days=10)
+        return expiration_date <= datetime.now()
+    key_expired.boolean = True
+
+    def __unicode__(self):
+        return u"Confirmation for %s" % self.mobile_phone
+
+    class Meta:
+        verbose_name = "Sms confirmation"
 
 class UserProfile(models.Model):
     title = models.ForeignKey(Title, null=True)
@@ -38,6 +55,8 @@ class UserProfile(models.Model):
         
     date_edited = models.DateTimeField(auto_now=True)
     date_created = models.DateTimeField(auto_now=True)
+
+    verified = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.full_name

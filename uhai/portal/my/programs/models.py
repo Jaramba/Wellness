@@ -209,6 +209,7 @@ class ProgramQuestionnaire(Questionnaire):
     objects = QuestionnaireManager()
     
 class DiagnosisQuestionnaire(Questionnaire):pass
+class VitalsQuestionnaire(Questionnaire):pass
         
 class FieldManager(models.Manager):
     """

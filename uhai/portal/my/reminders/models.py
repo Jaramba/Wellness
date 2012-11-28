@@ -27,3 +27,6 @@ class Event(OwnerModel):
 
     def __unicode__(self):
         return self.text
+
+class Appointment(Event):
+    pass

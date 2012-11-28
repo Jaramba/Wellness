@@ -238,8 +238,11 @@ class DiagnosisQuestionnaireAdmin(QuestionnaireAdmin):
             "classes": ("collapse",)}))
     form_admin_filter_horizontal = ("sites",)
       
+class VitalsQuestionnaireAdmin(DiagnosisQuestionnaireAdmin):pass
+
 admin.site.register(models.ProgramQuestionnaire, ProgramQuestionnaireAdmin)
 admin.site.register(models.DiagnosisQuestionnaire, DiagnosisQuestionnaireAdmin)
+admin.site.register(models.VitalsQuestionnaire, VitalsQuestionnaireAdmin)
 admin.site.register(models.QuestionnaireResponseEntry)
 admin.site.register(models.Field, FieldAdmin)
 admin.site.register(models.QuestionnaireFieldResponseEntry)
