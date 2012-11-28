@@ -63,6 +63,9 @@ class Encounter(OwnerModel):
 	def __unicode__(self):
 		return (self.user.full_name)
 
+	class Meta:
+		get_latest_by = 'end_time'
+
 class Order(OwnerModel):
 	encounter = models.ForeignKey('Encounter')
 	concept_notes = models.CharField(max_length=500)

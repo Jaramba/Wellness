@@ -46,7 +46,7 @@
 				fieldItem.val(value);
 			});
 			$("#id_finish").click(function(){
-				$.post("{% url questionnaire_detail questionnaire.slug %}", serialiseForm())
+				$.post("{% url questionnaire_detail qtype questionnaire.slug %}", serialiseForm())
 				.success(function(data) {					
 					$("div.menu-tiles").hide().html(data).fadeIn(300).removeClass('loading');
 				});
@@ -55,7 +55,7 @@
 		this.get('#/', function(context) {
 			$("div.menu-tiles").addClass('loading');
 			$.ajax({
-				url: "{% url questionnaire_detail questionnaire.slug %}",
+				url: "{% url questionnaire_detail qtype questionnaire.slug %}",
 				success: function(data) {
 					successData(data);
 				}
@@ -64,7 +64,7 @@
 		this.get('#/page/:id', function(context) {
 			$("div.menu-tiles").addClass('loading');
 			$.ajax({
-				url: "{% url questionnaire_detail questionnaire.slug %}?page=" + this.params['id'],
+				url: "{% url questionnaire_detail qtype questionnaire.slug %}?page=" + this.params['id'],
 				success: function(data) {
 					successData(data);
 				}

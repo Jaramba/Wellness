@@ -19,22 +19,39 @@ from signals import questionnaire_invalid, questionnaire_valid
 
 from django.http import Http404, HttpResponse
 
+questionnaire_dict = {
+	'vitals':{
+		'model':VitalsQuestionnaire,
+		'form':VitalsQuestionnaireForm
+	},
+	'programs':{
+		'model':ProgramQuestionnaire,
+		'form':ProgramQuestionnaireForm
+	}
+}
+
 @login_required
 def index(request, problem_type='', template_name = "programs/index.html", *args, **kwargs):
     data = {}
     return render_to_response(template_name, data, context_instance= RequestContext(request))
 
-def vitals(request, template_name="programs/vitals_list.html", *args, **kwargs):
-	questionnaires = QuestionnaireResponseEntry.objects.all()
-	
-	return render_to_response(template_name, data, context_instance= RequestContext(request))	
+def questionnaire_entries(request, slug=None, qtype=None, template_name="programs/vitalsquestionnaire_entries.html", *args, **kwargs):
+	questionnaire = get_object_or_404(VitalsQuestionnaire, slug=slug)
 
-def questionnaire_detail(request, slug, QuestionnaireType=Questionnaire, 
-    QuestionnaireTypeForm=QuestionnaireForm, template="questionnaires/questionnaire_%sdetail.html"):
+	context={}
+	context["qtype"] = qtype
+	return render_to_response(template_name, context, context_instance= RequestContext(request))	
+
+def questionnaire_detail(request, slug=None, qtype=None, template="questionnaires/questionnaire_%sdetail.html"):
 	"""
 	Display a built questionnaire and handle submission.
 	"""
-    
+	try:
+		QuestionnaireType = questionnaire_dict[qtype]['model']
+		QuestionnaireTypeForm = questionnaire_dict[qtype]['form']
+	except KeyError:
+		raise Http404('''Something wrong with the 'type' argument passed''')
+
 	published = QuestionnaireType.objects.published(for_user=request.user)
 	questionnaire = get_object_or_404(published, slug=slug)
 	if questionnaire.login_required and not request.user.is_authenticated():
@@ -96,15 +113,17 @@ def questionnaire_detail(request, slug, QuestionnaireType=Questionnaire,
 			questionnaire_valid.send(sender=request, form=questionnaireform, entry=entry)
 			return redirect(reverse("questionnaire_sent", kwargs={"slug": questionnaire.slug}))
 	context = {"questionnaire": questionnaire}
+	context["qtype"] = qtype
 	context["form"] = questionnaireform if page else None
 	return render_to_response(template % ("" if not request.is_ajax() else "simple_"), context, request_context)
 
 
-def questionnaire_sent(request, slug, template="questionnaires/questionnaire_%ssent.html"):
-    """
-    Show the response message.
-    """
-    published = Questionnaire.objects.published(for_user=request.user)
-    questionnaire = get_object_or_404(published, slug=slug)
-    context = {"questionnaire": questionnaire}
-    return render_to_response(template % ("" if not request.is_ajax() else "simple_"), context, RequestContext(request))
+def questionnaire_sent(request, slug=None, qtype=None, template="questionnaires/questionnaire_%ssent.html"):
+	"""
+	Show the response message.
+	"""
+	published = Questionnaire.objects.published(for_user=request.user)
+	questionnaire = get_object_or_404(published, slug=slug)
+	context = {"questionnaire": questionnaire}
+	context["qtype"] = qtype
+	return render_to_response(template % ("" if not request.is_ajax() else "simple_"), context, RequestContext(request))

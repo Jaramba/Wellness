@@ -25,6 +25,10 @@ APP_MAP={
 		'model':ProgramQuestionnaire,		
 		'actions':'RL',
 	},
+	'vitalsquestionnaire':{
+		'model':VitalsQuestionnaire,		
+		'actions':'RL',
+	},
 	'questionnaireresponseentry':{
 		'model':QuestionnaireResponseEntry,		
 		'actions':'RL',

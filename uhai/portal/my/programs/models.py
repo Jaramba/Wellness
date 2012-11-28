@@ -207,9 +207,24 @@ class ProgramQuestionnaire(Questionnaire):
 
     program = models.ForeignKey("Program")
     objects = QuestionnaireManager()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ("questionnaire_detail", (), {"qtype":"programs", "slug": self.slug})
     
-class DiagnosisQuestionnaire(Questionnaire):pass
-class VitalsQuestionnaire(Questionnaire):pass
+class DiagnosisQuestionnaire(Questionnaire):
+    objects = QuestionnaireManager()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ("questionnaire_detail", (), {"qtype":"diagnosis", "slug": self.slug})
+
+class VitalsQuestionnaire(Questionnaire):
+    objects = QuestionnaireManager()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ("questionnaire_detail", (), {"qtype":"vitals", "slug": self.slug})
         
 class FieldManager(models.Manager):
     """

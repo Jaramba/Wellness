@@ -291,7 +291,9 @@ class ProgramQuestionnaireForm(QuestionnaireForm):
             if field.is_a(fields.EMAIL):
                 return self.cleaned_data[field.slug]
         return None
-    
+
+class VitalsQuestionnaireForm(QuestionnaireForm):
+    class Meta(QuestionnaireForm.Meta):pass    
         
 class ResponseQuestionnaire(forms.Form):
     """
