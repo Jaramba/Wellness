@@ -10,15 +10,15 @@
 			<tr>
 				<th>Title</th>
 				<th>Program</th>
-				<th>Published On</th>
-				<th>Expires On</th>
+				<th>Details</th>
+				<th>Questions</th>
 			</tr>
 			{% for programquestionnaire in programquestionnaires %}
 				<tr>	
 					<td><a href="{{ programquestionnaire.get_absolute_url }}">{{programquestionnaire.title}}</a></td>
 					<td>{{programquestionnaire.program}}</td>
-					<td>{{programquestionnaire.publish_date}}</td>
-					<td>{{programquestionnaire.expiry_date}}</td>
+					<td>{{programquestionnaire.intro}}</td>
+					<td>{{programquestionnaire.fields.count}}</td>
 				</tr>
 			{% empty %}
 				<tr><td colspan="2">No Questionnaire Found</td></tr>

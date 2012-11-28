@@ -314,16 +314,17 @@ legend{
 	font-size: 20px;
 	color: #ffffff;
 	margin-top: 3px;
+	max-height: 20px;
 }
 
 .medical-profile{
-	width: 200px;
+	width: 207px;
 	height: 268px;
 	padding: 5px 10px;
 }
 
 .notes{
-	width: 327px;
+	width: 320px;
 	height: 268px;
 	padding: 5px 10px;
 }
@@ -420,8 +421,9 @@ td.profile-label{
 }
 
 .form-actions{
-	margin-top: 10px;
+	margin-top: 0px;
 	margin-bottom: 0px;
+	padding: 0px 20px 0px;
 }
 
 #search-box{
@@ -459,4 +461,10 @@ td.profile-label{
 
 .navbar .brand{
 	padding: 7px 15px 5px;
+}
+
+img.profile-pic{
+	max-height: 250px;
+	min-width: 226px;
+	margin-left: -5px;
 }

@@ -46,7 +46,8 @@ def questionnaire_detail(request, slug, QuestionnaireType=Questionnaire,
 		questionnaireform = QuestionnaireTypeForm(
 			questionnaire, request_context, 
 			request.POST or None, request.FILES or None,
-			page=page
+			page=page,
+			page_items=5
 		)
 	else:
 		questionnaireform = QuestionnaireTypeForm(

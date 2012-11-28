@@ -18,7 +18,7 @@
 	    	<div class="tile-container">
 	    		<div class="tile photo tile-border">
 					<div class="profile-photo crop">
-	    				<img src="{{ MEDIA_URL }}{{ profile.photo }}"/>
+	    				<img src="{{ MEDIA_URL }}{{ profile.photo }}" class="profile-pic"/>
 	    				<div class="profile-name">{{ profileuser.first_name }} {{ profileuser.last_name }}</div>
 	    			</div>
 	    		</div>					    		
@@ -51,17 +51,17 @@
 	    				</tr>
 	    				<tr>
 	    					<td class="profile-label">Phone:</td>
-	    					<td>{{profileuser.profileuserprofile.phone}}</td>
+	    					<td>{{profileuser.profile.mobile_phone}}</td>
 	    				</tr>
 	    				<tr>
-	    					<td class="profile-label">City:</td>
-	    					<td>{{profileuser.profileuserprofile.county}}</td>
+	    					<td class="profile-label">Country:</td>
+	    					<td>{{profileuser.profile.country}}</td>
 	    				</tr>
 	    				{% endwith %}
 	    			</table>
 	    		</div>
 	    		<div class="tile notes last">
-	    			<div class="notes-label">Notes:</div>
+	    			<div class="notes-label">Latest Encounter Notes:</div>
 	    			<div class="notes-text">
 	    				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	    				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
