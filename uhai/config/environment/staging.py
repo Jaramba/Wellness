@@ -4,6 +4,8 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'))
 PARENT_HOST   = 'uhai.synacor.co.ke'
 
+DJANGO_SETTINGS_MODULE = 'uhai.config.environment.staging'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

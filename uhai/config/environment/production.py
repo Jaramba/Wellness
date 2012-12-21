@@ -4,7 +4,9 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..'))
 PARENT_HOST   = 'uhai-app.cloudapp.net'
 
-DEBUG = True
+DJANGO_SETTINGS_MODULE = 'uhai.config.environment.production'
+
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 INSTALLED_APPS += [

@@ -4,6 +4,8 @@ import os
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..','..')
 PARENT_HOST   = 'localhost'
 
+DJANGO_SETTINGS_MODULE = 'uhai.config.environment.development'
+
 #development settings
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

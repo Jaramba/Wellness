@@ -9,7 +9,17 @@
 		{% block extracss %}{% endblock %} 
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
-		{% block extrajs %}{% endblock %}
+		{% block extrajs %}
+			{% block extrajs-javascript %}{% endblock extrajs-javascript %}
+			{% block extrajs-jquery-plugins %}{% endblock extrajs-jquery-plugins %}
+			<script type="text/javascript">
+				{% block extrajs-global %}{% endblock extrajs-global %}
+				$(function(){
+					{% block extrajs-jquery-enclosed %}{% endblock extrajs-jquery-enclosed %}
+				});
+			</script>
+		{% endblock extrajs %}
+
 		<meta name="robots" content="{% block robots %}index,follow{% endblock %}"/>
 	</head>
 	<body {% block body-hook %}{% endblock body-hook %}>
